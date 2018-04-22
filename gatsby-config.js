@@ -45,6 +45,7 @@ module.exports = {
     "gatsby-plugin-catch-links",
     "gatsby-plugin-sitemap",
     "gatsby-plugin-offline",
-    "gatsby-plugin-styled-components"
+    "gatsby-plugin-styled-components",
+    "gatsby-plugin-netlify-cms"
   ]
 };

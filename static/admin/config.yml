@@ -1,0 +1,41 @@
+backend:
+  name: git-gateway
+  branch: master
+
+media_folder: static/img
+public_folder: /img
+
+collections:
+
+  # - name: "languages"
+  #   label: "Languages"
+  #   folder: "_data/languages"
+  #   create: true
+  #   extension: json
+  #   format: json
+  #   editor:
+  #     preview: false
+  #   fields:
+  #     - {label: "Title", name: "title", widget: "string"}
+  #     - {label: "Language code", name: "langCode", widget: "text"}
+  #     - label: "Translations"
+  #       name: "translations"
+  #       widget: "object"
+  #       fields: 
+  #         - {label: "Item 1", name: "item1", widget: "string"}
+  #         - {label: "Item 2", name: "item2", widget: "string"}
+  #         - {label: "Item 3", name: "item3", widget: "string"}
+  #         - {label: "Item 4", name: "item4", widget: "string"}
+  #         - {label: "Item 5", name: "item5", widget: "string"}
+
+  - name: "blog"
+    label: "Blog"
+    folder: "content/posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Body", name: "body", widget: "markdown"}
+
+
