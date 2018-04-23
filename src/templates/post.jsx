@@ -17,6 +17,12 @@ function parsePost(post, slug) {
   return result;
 }
 
+const urlFormatter = (locale, category) => {
+  if (locale === config.defaultLangKey)
+    return `/categories/${_.kebabCase(category)}`;
+  return `/${locale}/categories/${_.kebabCase(category)}`;
+};
+
 class PostTemplate extends React.Component {
   render() {
     const { slug } = this.props.pathContext;
@@ -30,9 +36,7 @@ class PostTemplate extends React.Component {
         <article>
           <header>
             <h1 className="post-title">{title}</h1>
-            <Link to={`/${locale}/categories/${_.kebabCase(category)}`}>
-              {category}
-            </Link>
+            <Link to={urlFormatter(locale, category)}>{category}</Link>
             <PostDate date={date} />
           </header>
 

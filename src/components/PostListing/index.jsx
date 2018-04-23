@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "gatsby-link";
 import styled from "styled-components";
+import config from "../../../data/SiteConfig";
 
 import PostDate from "../PostDate";
 
@@ -31,7 +32,8 @@ class PostListing extends React.Component {
         {/* This is the post loop - each post will be output using this markup */}
         {postList.map(post => {
           const { locale, title, path, excerpt, date, category } = post;
-          const url = `/${locale}${path}`;
+          const url =
+            locale === config.defaultLangKey ? path : `/${locale}${path}`;
 
           return (
             <Article key={title}>

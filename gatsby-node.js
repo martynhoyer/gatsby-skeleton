@@ -95,6 +95,9 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             post => post.node.frontmatter.locale === code
           );
 
+          const langUrlPrefix =
+            code === siteConfig.defaultLangKey ? "" : `/${code}`;
+
           // Create Paginated Tag and Category Pages
 
           const tagSet = new Set();
@@ -126,7 +129,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
               createPage,
               edges: localePosts,
               component: indexPage,
-              pathFormatter: prefixPathFormatter(`/${code}`),
+              pathFormatter: prefixPathFormatter(`${langUrlPrefix}`),
               limit: siteConfig.sitePaginationLimit
             });
           });
@@ -138,7 +141,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
               edges: tagMap.get(tag),
               component: tagPage,
               pathFormatter: prefixPathFormatter(
-                `${code}/tags/${_.kebabCase(tag)}`
+                `${langUrlPrefix}/tags/${_.kebabCase(tag)}`
               ),
               limit: siteConfig.sitePaginationLimit,
               context: {
@@ -157,7 +160,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
               edges: categoryEdges,
               component: tagPage,
               pathFormatter: prefixPathFormatter(
-                `${code}/categories/${_.kebabCase(category)}`
+                `${langUrlPrefix}/categories/${_.kebabCase(category)}`
               ),
               limit: siteConfig.sitePaginationLimit,
               context: {
@@ -176,7 +179,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
               edges: authorEdges,
               component: tagPage,
               pathFormatter: prefixPathFormatter(
-                `${code}/authors/${_.kebabCase(author)}`
+                `${langUrlPrefix}/authors/${_.kebabCase(author)}`
               ),
               limit: siteConfig.sitePaginationLimit,
               context: {
@@ -187,7 +190,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 
           localePosts.forEach(({ node }) => {
             createPage({
-              path: `${code}${node.fields.slug}`,
+              path: `${langUrlPrefix}${node.fields.slug}`,
               component: postPage,
               context: {
                 slug: `${node.fields.slug}`

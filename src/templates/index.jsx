@@ -27,6 +27,7 @@ class IndexTemplate extends React.Component {
       prev,
       next
     } = this.props.pathContext;
+    console.log(this.props.pathContext);
 
     return (
       <div>

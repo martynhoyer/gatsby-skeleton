@@ -42,7 +42,11 @@ export default class MainLayout extends React.Component {
 
   handleLocaleClick = e => {
     cookies.set("lang", e.target.value, { path: "/" });
-    navigateTo(`/${e.target.value}/`);
+    if (e.target.value === config.defaultLangKey) {
+      navigateTo(`/`);
+    } else {
+      navigateTo(`/${e.target.value}/`);
+    }
   };
 
   render() {
