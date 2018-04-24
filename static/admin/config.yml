@@ -51,6 +51,7 @@ collections:
       - {label: "Category", name: "category", widget: "string", default: "Uncategorised"}
       - {label: "Tags", name: "tags", widget: "list", default: ["news"]}
       - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Author", name: "author", widget: "string"}
       - {label: "Content", name: "body", widget: "markdown"}
 
   - label: "Blog in English"
@@ -65,5 +66,6 @@ collections:
       - {label: "Category", name: "category", widget: "string", default: "Uncategorised"}
       - {label: "Tags", name: "tags", widget: "list", default: ["news"]}
       - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Author", name: "author", widget: "string"}
       - {label: "Content", name: "body", widget: "markdown"}
 

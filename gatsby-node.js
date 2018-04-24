@@ -65,7 +65,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                   frontmatter {
                     title
                     tags
-                    cover
                     date
                     category
                     author
