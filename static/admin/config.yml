@@ -28,14 +28,42 @@ collections:
   #         - {label: "Item 4", name: "item4", widget: "string"}
   #         - {label: "Item 5", name: "item5", widget: "string"}
 
-  - name: "blog"
-    label: "Blog"
+  # - name: "blog"
+  #   label: "Blog"
+  #   folder: "content/posts"
+  #   create: true
+  #   slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+  #   fields:
+  #     - {label: "Title", name: "title", widget: "string"}
+  #     - {label: "Publish Date", name: "date", widget: "datetime"}
+  #     - {label: "Body", name: "body", widget: "markdown"}
+  #     - {label: "Locale", name: "locale", widget: "string", default: "fr"}
+
+  - label: "Blog in French"
+    name: "french_posts"
     folder: "content/posts"
     create: true
+    filter: {field: "locale", value: "fr"}
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
+      - {label: "Language", name: "locale", widget: "select", options: ["fr", "en"]}
       - {label: "Title", name: "title", widget: "string"}
+      - {label: "Content", name: "body", widget: "markdown"}
+      - {label: "Category", name: "category", widget: "string", default: "Uncategorised"}
+      - {label: "Tags", name: "tags", widget: "list", default: ["news"]}
       - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Body", name: "body", widget: "markdown"}
 
+  - label: "Blog in English"
+    name: "english_posts"
+    folder: "content/posts"
+    create: true
+    filter: {field: "locale", value: "en"}
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Language", name: "locale", widget: "select", options: ["fr", "en"]}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Content", name: "body", widget: "markdown"}
+      - {label: "Category", name: "category", widget: "string", default: "Uncategorised"}
+      - {label: "Tags", name: "tags", widget: "list", default: ["news"]}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
 
