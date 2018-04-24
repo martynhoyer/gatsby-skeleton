@@ -24,6 +24,7 @@ class TagTemplate extends React.Component {
     return (
       <div>
         <Helmet title={`${pageTitle} | ${config.siteTitle}`} />
+        <h1>{category || tag}</h1>
         <PaginatedContent
           page={page}
           pages={pages}

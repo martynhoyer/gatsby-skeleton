@@ -138,7 +138,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
               edges: tagMap.get(tag),
               component: tagPage,
               pathFormatter: prefixPathFormatter(
-                `${code}/tags/${_.kebabCase(tag)}`
+                `/${code}/tags/${_.kebabCase(tag)}`
               ),
               limit: siteConfig.sitePaginationLimit,
               context: {
@@ -157,7 +157,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
               edges: categoryEdges,
               component: tagPage,
               pathFormatter: prefixPathFormatter(
-                `${code}/categories/${_.kebabCase(category)}`
+                `/${code}/categories/${_.kebabCase(category)}`
               ),
               limit: siteConfig.sitePaginationLimit,
               context: {
@@ -176,7 +176,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
               edges: authorEdges,
               component: tagPage,
               pathFormatter: prefixPathFormatter(
-                `${code}/authors/${_.kebabCase(author)}`
+                `/${code}/authors/${_.kebabCase(author)}`
               ),
               limit: siteConfig.sitePaginationLimit,
               context: {

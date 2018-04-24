@@ -5,7 +5,7 @@ import config from "../../data/SiteConfig";
 
 class CategoryTemplate extends React.Component {
   render() {
-    const category = this.props.pathContext.category;
+    const { category } = this.props.pathContext;
     const postEdges = this.props.data.allMarkdownRemark.edges;
     const authorsEdges = this.props.data.authors.edges;
     return (
@@ -13,6 +13,7 @@ class CategoryTemplate extends React.Component {
         <Helmet
           title={`Posts in category "${category}" | ${config.siteTitle}`}
         />
+        <h1>{category}</h1>
         <PostListing postEdges={postEdges} postAuthors={authorsEdges} />
       </div>
     );

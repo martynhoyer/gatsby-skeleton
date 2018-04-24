@@ -29,12 +29,13 @@ class PostListing extends React.Component {
     return (
       <div>
         {/* This is the post loop - each post will be output using this markup */}
-        {postList.map(post => {
+        {postList.map((post, index) => {
           const { locale, title, path, excerpt, date, category } = post;
           const url = `/${locale}${path}`;
+          const mapKey = `${title}+${index}`;
 
           return (
-            <Article key={title}>
+            <Article key={mapKey}>
               <header>
                 <h2>
                   <Link to={url}>{title}</Link>

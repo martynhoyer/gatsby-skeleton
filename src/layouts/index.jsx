@@ -3,6 +3,7 @@ import Helmet from "react-helmet";
 import Cookies from "universal-cookie";
 import { navigateTo } from "gatsby-link";
 import config from "../../data/SiteConfig";
+import "./global.styles.css";
 
 const cookies = new Cookies();
 
