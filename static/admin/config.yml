@@ -46,12 +46,12 @@ collections:
     filter: {field: "locale", value: "fr"}
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - {label: "Language", name: "locale", widget: "select", options: ["fr", "en"]}
+      - {label: "Language", name: "locale", widget: "select", options: ["fr", "en"], default: "fr"}
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Content", name: "body", widget: "markdown"}
       - {label: "Category", name: "category", widget: "string", default: "Uncategorised"}
       - {label: "Tags", name: "tags", widget: "list", default: ["news"]}
       - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Content", name: "body", widget: "markdown"}
 
   - label: "Blog in English"
     name: "english_posts"
@@ -60,10 +60,10 @@ collections:
     filter: {field: "locale", value: "en"}
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - {label: "Language", name: "locale", widget: "select", options: ["fr", "en"]}
+      - {label: "Language", name: "locale", widget: "select", options: ["fr", "en"], default: "en"}
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Content", name: "body", widget: "markdown"}
       - {label: "Category", name: "category", widget: "string", default: "Uncategorised"}
       - {label: "Tags", name: "tags", widget: "list", default: ["news"]}
       - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Content", name: "body", widget: "markdown"}
 
