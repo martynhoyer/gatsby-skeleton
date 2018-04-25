@@ -54,12 +54,19 @@ export default class MainLayout extends React.Component {
           <title>{`${config.siteTitle} | ${this.getLocalTitle()}`}</title>
           <meta name="description" content={config.siteDescription} />
         </Helmet>
-        {config.locales.map(locale => (
-          <button key={locale} value={locale} onClick={this.handleLocaleClick}>
-            {locale}
-          </button>
-        ))}
+        <header>
+          {config.locales.map(locale => (
+            <button
+              key={locale}
+              value={locale}
+              onClick={this.handleLocaleClick}
+            >
+              {locale}
+            </button>
+          ))}
+        </header>
         {children()}
+        <footer>Footer</footer>
       </div>
     );
   }

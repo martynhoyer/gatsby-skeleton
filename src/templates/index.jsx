@@ -45,6 +45,7 @@ class IndexTemplate extends React.Component {
           {/* PostListing component renders all the posts */}
           <PostListing postEdges={nodes} />
         </PaginatedContent>
+        <aside>Sidebar</aside>
       </div>
     );
   }

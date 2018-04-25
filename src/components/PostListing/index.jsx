@@ -44,7 +44,6 @@ class PostListing extends React.Component {
                 <PostDate date={date} />
               </header>
               <section>
-                {/* TODO limit excerpt to 26 words */}
                 <p>{excerpt}</p>
               </section>
               <footer>

@@ -36,6 +36,7 @@ class TagTemplate extends React.Component {
           {/* PostListing component renders all the posts */}
           <PostListing postEdges={nodes} postAuthors={authorsEdges} />
         </PaginatedContent>
+        <aside>Sidebar</aside>
       </div>
     );
   }
@@ -43,30 +44,7 @@ class TagTemplate extends React.Component {
 
 /* eslint no-undef: "off" */
 export const pageQuery = graphql`
-  query TagPage($tag: String) {
-    allMarkdownRemark(
-      limit: 1000
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { tags: { in: [$tag] } } }
-    ) {
-      totalCount
-      edges {
-        node {
-          fields {
-            slug
-          }
-          excerpt
-          timeToRead
-          frontmatter {
-            title
-            tags
-            date
-            locale
-          }
-        }
-      }
-    }
-    # authors
+  query TagPage {
     authors: allAuthorsJson {
       edges {
         node {
