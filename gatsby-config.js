@@ -23,6 +23,13 @@ module.exports = {
         path: `${__dirname}/content/${config.blogAuthorDir}`
       }
     },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "categories",
+        path: `${__dirname}/content/categories`
+      }
+    },
     "gatsby-transformer-json",
     {
       resolve: "gatsby-transformer-remark",

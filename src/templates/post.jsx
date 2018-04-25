@@ -5,11 +5,34 @@ import Link from "gatsby-link";
 import config from "../../data/SiteConfig";
 import PostDate from "../components/PostDate";
 import PostTags from "../components/PostTags";
+import AuthorModel from "../models/author-model";
+import CategoryModel from "../models/category-model";
 
 class PostTemplate extends React.Component {
   render() {
     const postNode = this.props.data.markdownRemark;
-    const { locale, title, date, tags, category } = postNode.frontmatter;
+    const {
+      locale,
+      title,
+      date,
+      tags,
+      category,
+      author
+    } = postNode.frontmatter;
+
+    const authorData = AuthorModel.getAuthor(
+      this.props.data.authors.edges,
+      author,
+      config.blogAuthorId
+    );
+
+    const categoryData = CategoryModel.getCategory(
+      this.props.data.categories.edges,
+      _.kebabCase(category),
+      config.blogAuthorId
+    );
+
+    console.log(categoryData);
 
     return (
       <div>
@@ -18,7 +41,7 @@ class PostTemplate extends React.Component {
           <header>
             <h1>{title}</h1>
             <Link to={`/${locale}/categories/${_.kebabCase(category)}`}>
-              {category}
+              <span style={{ color: categoryData.color }}>{category}</span>
             </Link>
             <PostDate date={date} />
           </header>
@@ -27,7 +50,7 @@ class PostTemplate extends React.Component {
 
           <footer>
             <PostTags prefix="Tags" tags={tags} locale={locale} />
-            Author
+            <p>{authorData.name}</p>
           </footer>
         </article>
       </div>
@@ -60,6 +83,14 @@ export const pageQuery = graphql`
         node {
           id
           name
+        }
+      }
+    }
+    categories: allCategoriesJson {
+      edges {
+        node {
+          id
+          color
         }
       }
     }

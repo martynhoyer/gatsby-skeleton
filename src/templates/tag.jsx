@@ -3,6 +3,8 @@ import Helmet from "react-helmet";
 import PostListing from "../components/PostListing";
 import config from "../../data/SiteConfig";
 import PaginatedContent from "../components/PaginatedContent";
+import PopularPosts from "../components/PopularPosts";
+import CategoriesList from "../components/CategoriesList";
 
 class TagTemplate extends React.Component {
   render() {
@@ -19,6 +21,7 @@ class TagTemplate extends React.Component {
     } = this.props.pathContext;
     const authorsEdges = this.props.data.authors.edges;
     const popularPosts = this.props.data.popularPosts.edges;
+    const categories = this.props.data.categories.group;
     const pageTitle = category
       ? `Posts categorised with "${category}"`
       : `Posts tagged as "${tag}"`;
@@ -38,16 +41,8 @@ class TagTemplate extends React.Component {
           <PostListing postEdges={nodes} postAuthors={authorsEdges} />
         </PaginatedContent>
         <aside>
-          {popularPosts.map(({ node: popularPost }) => (
-            <a
-              key={popularPost.id}
-              href={`/${popularPost.frontmatter.locale}${
-                popularPost.fields.slug
-              }`}
-            >
-              {popularPost.frontmatter.title}
-            </a>
-          ))}
+          <PopularPosts popularPosts={popularPosts} />
+          <CategoriesList categories={categories} />
         </aside>
       </div>
     );
@@ -78,11 +73,20 @@ export const tagPageQuery = graphql`
           frontmatter {
             title
             locale
+            date
           }
           fields {
             slug
           }
         }
+      }
+    }
+    categories: allMarkdownRemark(
+      filter: { frontmatter: { locale: { eq: $locale } } }
+    ) {
+      group(field: frontmatter___category) {
+        fieldValue
+        totalCount
       }
     }
   }

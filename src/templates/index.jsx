@@ -2,6 +2,8 @@ import React from "react";
 import Script from "react-load-script";
 import PostListing from "../components/PostListing";
 import PaginatedContent from "../components/PaginatedContent";
+import PopularPosts from "../components/PopularPosts";
+import CategoriesList from "../components/CategoriesList/index";
 
 class IndexTemplate extends React.Component {
   handleScriptLoad() {
@@ -28,6 +30,7 @@ class IndexTemplate extends React.Component {
       next
     } = this.props.pathContext;
     const popularPosts = this.props.data.popularPosts.edges;
+    const categories = this.props.data.categories.group;
 
     return (
       <div>
@@ -47,16 +50,8 @@ class IndexTemplate extends React.Component {
           <PostListing postEdges={nodes} />
         </PaginatedContent>
         <aside>
-          {popularPosts.map(({ node: popularPost }) => (
-            <a
-              key={popularPost.id}
-              href={`/${popularPost.frontmatter.locale}${
-                popularPost.fields.slug
-              }`}
-            >
-              {popularPost.frontmatter.title}
-            </a>
-          ))}
+          <PopularPosts popularPosts={popularPosts} />
+          <CategoriesList categories={categories} />
         </aside>
       </div>
     );
@@ -79,11 +74,20 @@ export const indexPageQuery = graphql`
           frontmatter {
             title
             locale
+            date
           }
           fields {
             slug
           }
         }
+      }
+    }
+    categories: allMarkdownRemark(
+      filter: { frontmatter: { locale: { eq: $locale } } }
+    ) {
+      group(field: frontmatter___category) {
+        fieldValue
+        totalCount
       }
     }
   }
