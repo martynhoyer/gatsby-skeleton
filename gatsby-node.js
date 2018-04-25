@@ -126,7 +126,10 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
               edges: localePosts,
               component: indexPage,
               pathFormatter: prefixPathFormatter(`/${code}`),
-              limit: siteConfig.sitePaginationLimit
+              limit: siteConfig.sitePaginationLimit,
+              context: {
+                locale: code
+              }
             });
           });
 
@@ -141,7 +144,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
               ),
               limit: siteConfig.sitePaginationLimit,
               context: {
-                tag
+                tag,
+                locale: code
               }
             });
           });
@@ -160,7 +164,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
               ),
               limit: siteConfig.sitePaginationLimit,
               context: {
-                category
+                category,
+                locale: code
               }
             });
           });
@@ -179,7 +184,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
               ),
               limit: siteConfig.sitePaginationLimit,
               context: {
-                author
+                author,
+                locale: code
               }
             });
           });
@@ -189,7 +195,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
               path: `${code}${node.fields.slug}`,
               component: postPage,
               context: {
-                slug: `${node.fields.slug}`
+                slug: `${node.fields.slug}`,
+                locale: node.frontmatter.locale
               } // additional data can be passed via context
             });
           });

@@ -18,6 +18,7 @@ class TagTemplate extends React.Component {
       next
     } = this.props.pathContext;
     const authorsEdges = this.props.data.authors.edges;
+    const popularPosts = this.props.data.popularPosts.edges;
     const pageTitle = category
       ? `Posts categorised with "${category}"`
       : `Posts tagged as "${tag}"`;
@@ -36,20 +37,51 @@ class TagTemplate extends React.Component {
           {/* PostListing component renders all the posts */}
           <PostListing postEdges={nodes} postAuthors={authorsEdges} />
         </PaginatedContent>
-        <aside>Sidebar</aside>
+        <aside>
+          {popularPosts.map(({ node: popularPost }) => (
+            <a
+              key={popularPost.id}
+              href={`/${popularPost.frontmatter.locale}${
+                popularPost.fields.slug
+              }`}
+            >
+              {popularPost.frontmatter.title}
+            </a>
+          ))}
+        </aside>
       </div>
     );
   }
 }
 
 /* eslint no-undef: "off" */
-export const pageQuery = graphql`
-  query TagPage {
+export const tagPageQuery = graphql`
+  query TagPage($locale: String!) {
     authors: allAuthorsJson {
       edges {
         node {
           id
           name
+        }
+      }
+    }
+    popularPosts: allMarkdownRemark(
+      limit: 4
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: {
+        frontmatter: { isPopular: { eq: true }, locale: { eq: $locale } }
+      }
+    ) {
+      edges {
+        node {
+          id
+          frontmatter {
+            title
+            locale
+          }
+          fields {
+            slug
+          }
         }
       }
     }

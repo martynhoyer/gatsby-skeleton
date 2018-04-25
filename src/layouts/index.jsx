@@ -8,6 +8,10 @@ import "./global.styles.css";
 const cookies = new Cookies();
 
 export default class MainLayout extends React.Component {
+  state = {
+    siteLocale: config.defaultLangKey
+  };
+
   getLocalTitle() {
     function capitalize(string) {
       return string.charAt(0).toUpperCase() + string.slice(1);

@@ -52,6 +52,7 @@ collections:
       - {label: "Tags", name: "tags", widget: "list", default: ["news"]}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Author", name: "author", widget: "string"}
+      - {label: "Show on popular posts sidebar?", name: "isPopular", widget: "boolean"}
       - {label: "Content", name: "body", widget: "markdown"}
 
   - label: "Blog in English"
@@ -67,5 +68,6 @@ collections:
       - {label: "Tags", name: "tags", widget: "list", default: ["news"]}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Author", name: "author", widget: "string"}
+      - {label: "Show on popular posts sidebar?", name: "isPopular", widget: "boolean"}
       - {label: "Content", name: "body", widget: "markdown"}
 

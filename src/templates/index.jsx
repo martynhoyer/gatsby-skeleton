@@ -27,6 +27,7 @@ class IndexTemplate extends React.Component {
       prev,
       next
     } = this.props.pathContext;
+    const popularPosts = this.props.data.popularPosts.edges;
 
     return (
       <div>
@@ -45,10 +46,47 @@ class IndexTemplate extends React.Component {
           {/* PostListing component renders all the posts */}
           <PostListing postEdges={nodes} />
         </PaginatedContent>
-        <aside>Sidebar</aside>
+        <aside>
+          {popularPosts.map(({ node: popularPost }) => (
+            <a
+              key={popularPost.id}
+              href={`/${popularPost.frontmatter.locale}${
+                popularPost.fields.slug
+              }`}
+            >
+              {popularPost.frontmatter.title}
+            </a>
+          ))}
+        </aside>
       </div>
     );
   }
 }
+
+/* eslint no-undef: "off" */
+export const indexPageQuery = graphql`
+  query IndexPage($locale: String!) {
+    popularPosts: allMarkdownRemark(
+      limit: 4
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: {
+        frontmatter: { isPopular: { eq: true }, locale: { eq: $locale } }
+      }
+    ) {
+      edges {
+        node {
+          id
+          frontmatter {
+            title
+            locale
+          }
+          fields {
+            slug
+          }
+        }
+      }
+    }
+  }
+`;
 
 export default IndexTemplate;
