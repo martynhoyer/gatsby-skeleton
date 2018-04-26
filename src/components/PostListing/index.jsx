@@ -4,6 +4,7 @@ import styled, { css } from "styled-components";
 import media from "../../tokens/breakpoints";
 
 import PostDate from "../PostDate";
+import Box from "../Box";
 
 const PostList = styled.div`
   display: grid;
@@ -26,10 +27,6 @@ const doubleWidthFirstPost = ({ isIndex }) =>
 
 const Article = styled.article`
   ${doubleWidthFirstPost};
-
-  padding: 32px 48px;
-  box-shadow: 2.8px 2.8px 5.6px 0 rgba(0, 0, 0, 0.1);
-  background-color: #fff;
 `;
 
 const getPostList = postEdges =>
@@ -59,19 +56,21 @@ class PostListing extends React.Component {
 
           return (
             <Article key={mapKey} isIndex={isIndex}>
-              <header>
-                <h2>
-                  <Link to={url}>{title}</Link>
-                </h2>
-                {category}
-                <PostDate date={date} />
-              </header>
-              <section>
-                <p>{excerpt}</p>
-              </section>
-              <footer>
-                <Link to={url}>Read more &rarr;</Link>
-              </footer>
+              <Box>
+                <header>
+                  <h2>
+                    <Link to={url}>{title}</Link>
+                  </h2>
+                  {category}
+                  <PostDate date={date} />
+                </header>
+                <section>
+                  <p>{excerpt}</p>
+                </section>
+                <footer>
+                  <Link to={url}>Read more &rarr;</Link>
+                </footer>
+              </Box>
             </Article>
           );
         })}
