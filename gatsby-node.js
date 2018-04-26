@@ -126,7 +126,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
               edges: localePosts,
               component: indexPage,
               pathFormatter: prefixPathFormatter(`/${code}`),
-              limit: siteConfig.sitePaginationLimit,
+              limit: siteConfig.sitePaginationLimit + 1,
               context: {
                 locale: code
               }

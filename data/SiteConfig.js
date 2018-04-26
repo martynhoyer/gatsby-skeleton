@@ -5,7 +5,7 @@ module.exports = {
   siteTitle: "Gatsby blog", // Site title.
   siteUrl: "https://martynhoyer.co.uk",
   siteNavigation: true, // If navigation is enabled the Menu button will be visible
-  sitePaginationLimit: 2, // The max number of posts per page.
+  sitePaginationLimit: 6, // The max number of posts per page.
   googleAnalyticsID: "", // GA tracking ID.
   locales: ["fr", "en"],
   defaultLangKey: "fr",

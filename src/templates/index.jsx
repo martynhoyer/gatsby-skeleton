@@ -27,7 +27,8 @@ class IndexTemplate extends React.Component {
       total,
       limit,
       prev,
-      next
+      next,
+      locale
     } = this.props.pathContext;
     const popularPosts = this.props.data.popularPosts.edges;
     const categories = this.props.data.categories.group;
@@ -47,11 +48,11 @@ class IndexTemplate extends React.Component {
           next={next}
         >
           {/* PostListing component renders all the posts */}
-          <PostListing postEdges={nodes} />
+          <PostListing postEdges={nodes} isIndex />
         </PaginatedContent>
         <aside>
           <PopularPosts popularPosts={popularPosts} />
-          <CategoriesList categories={categories} />
+          <CategoriesList categories={categories} locale={locale} />
         </aside>
       </div>
     );

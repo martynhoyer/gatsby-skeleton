@@ -17,7 +17,8 @@ class TagTemplate extends React.Component {
       total,
       limit,
       prev,
-      next
+      next,
+      locale
     } = this.props.pathContext;
     const authorsEdges = this.props.data.authors.edges;
     const popularPosts = this.props.data.popularPosts.edges;
@@ -42,7 +43,7 @@ class TagTemplate extends React.Component {
         </PaginatedContent>
         <aside>
           <PopularPosts popularPosts={popularPosts} />
-          <CategoriesList categories={categories} />
+          <CategoriesList categories={categories} locale={locale} />
         </aside>
       </div>
     );

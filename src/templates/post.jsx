@@ -32,8 +32,6 @@ class PostTemplate extends React.Component {
       config.blogAuthorId
     );
 
-    console.log(categoryData);
-
     return (
       <div>
         <Helmet title={`${title} | ${config.siteTitle}`} />
