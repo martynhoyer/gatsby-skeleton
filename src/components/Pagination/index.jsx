@@ -7,7 +7,7 @@ class Pagination extends React.Component {
     return (
       <nav>
         <PaginationLink url={prev} text="← Newer Posts" />
-        <span className="page-number">
+        <span>
           Page {page} of {pages}
         </span>
         <PaginationLink url={next} text="Older Posts →" />

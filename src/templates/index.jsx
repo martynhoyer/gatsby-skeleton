@@ -1,27 +1,11 @@
 import React, { Fragment } from "react";
 import Script from "react-load-script";
-import styled from "styled-components";
 import PostListing from "../components/PostListing";
 import PaginatedContent from "../components/PaginatedContent";
 import PopularPosts from "../components/PopularPosts";
 import CategoriesList from "../components/CategoriesList/index";
-import media from "../tokens/breakpoints";
-import Box from "../components/Box/index";
-
-const BodyWrapper = styled.div`
-  display: grid;
-  grid-gap: 24px;
-
-  @media (${media.md}) {
-    grid-template-columns: 3fr 1fr;
-  }
-`;
-
-const Sidebar = styled.aside`
-  display: grid;
-  grid-gap: 16px;
-  align-content: start;
-`;
+import TwoColumn from "../components/Layouts/TwoColumn";
+import Sidebar from "../components/Sidebar";
 
 class IndexTemplate extends React.Component {
   handleScriptLoad() {
@@ -57,7 +41,7 @@ class IndexTemplate extends React.Component {
           url="https://identity.netlify.com/v1/netlify-identity-widget.js"
           onLoad={() => this.handleScriptLoad()}
         />
-        <BodyWrapper>
+        <TwoColumn>
           <PaginatedContent
             page={page}
             pages={pages}
@@ -70,14 +54,10 @@ class IndexTemplate extends React.Component {
             <PostListing postEdges={nodes} isIndex />
           </PaginatedContent>
           <Sidebar>
-            <Box>
-              <PopularPosts popularPosts={popularPosts} />
-            </Box>
-            <Box>
-              <CategoriesList categories={categories} locale={locale} />
-            </Box>
+            <PopularPosts popularPosts={popularPosts} />
+            <CategoriesList categories={categories} locale={locale} />
           </Sidebar>
-        </BodyWrapper>
+        </TwoColumn>
       </Fragment>
     );
   }

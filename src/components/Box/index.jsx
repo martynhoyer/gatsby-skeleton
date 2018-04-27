@@ -7,8 +7,6 @@ const StyledBox = styled.div`
   background-color: #fff;
 `;
 
-const Box = ({ children }) => {
-  return <StyledBox>{children}</StyledBox>;
-};
+const Box = ({ children }) => <StyledBox>{children}</StyledBox>;
 
 export default Box;

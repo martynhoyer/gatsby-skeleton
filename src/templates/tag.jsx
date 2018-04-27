@@ -5,6 +5,8 @@ import config from "../../data/SiteConfig";
 import PaginatedContent from "../components/PaginatedContent";
 import PopularPosts from "../components/PopularPosts";
 import CategoriesList from "../components/CategoriesList";
+import Sidebar from "../components/Sidebar";
+import TwoColumn from "../components/Layouts/TwoColumn";
 
 class TagTemplate extends React.Component {
   render() {
@@ -27,25 +29,27 @@ class TagTemplate extends React.Component {
       ? `Posts categorised with "${category}"`
       : `Posts tagged as "${tag}"`;
     return (
-      <div>
+      <TwoColumn>
         <Helmet title={`${pageTitle} | ${config.siteTitle}`} />
-        <h1>{category || tag}</h1>
-        <PaginatedContent
-          page={page}
-          pages={pages}
-          total={total}
-          limit={limit}
-          prev={prev}
-          next={next}
-        >
-          {/* PostListing component renders all the posts */}
-          <PostListing postEdges={nodes} postAuthors={authorsEdges} />
-        </PaginatedContent>
-        <aside>
+        <div>
+          <h1>{category || tag}</h1>
+          <PaginatedContent
+            page={page}
+            pages={pages}
+            total={total}
+            limit={limit}
+            prev={prev}
+            next={next}
+          >
+            {/* PostListing component renders all the posts */}
+            <PostListing postEdges={nodes} postAuthors={authorsEdges} />
+          </PaginatedContent>
+        </div>
+        <Sidebar>
           <PopularPosts popularPosts={popularPosts} />
           <CategoriesList categories={categories} locale={locale} />
-        </aside>
-      </div>
+        </Sidebar>
+      </TwoColumn>
     );
   }
 }
