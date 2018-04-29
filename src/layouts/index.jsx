@@ -2,8 +2,12 @@ import React from "react";
 import Helmet from "react-helmet";
 import Cookies from "universal-cookie";
 import { navigateTo } from "gatsby-link";
+import { ThemeProvider } from "styled-components";
 import config from "../../data/SiteConfig";
 import "./global.styles.css";
+import GYMLIB from "../tokens/colours";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const cookies = new Cookies();
 
@@ -49,25 +53,27 @@ export default class MainLayout extends React.Component {
   render() {
     const { children } = this.props;
     return (
-      <div>
-        <Helmet>
-          <title>{`${config.siteTitle} | ${this.getLocalTitle()}`}</title>
-          <meta name="description" content={config.siteDescription} />
-        </Helmet>
-        <header>
-          {config.locales.map(locale => (
-            <button
-              key={locale}
-              value={locale}
-              onClick={this.handleLocaleClick}
-            >
-              {locale}
-            </button>
-          ))}
-        </header>
-        {children()}
-        <footer>Footer</footer>
-      </div>
+      <ThemeProvider theme={GYMLIB}>
+        <div>
+          <Helmet>
+            <title>{`${config.siteTitle} | ${this.getLocalTitle()}`}</title>
+            <meta name="description" content={config.siteDescription} />
+          </Helmet>
+          <Header>
+            {config.locales.map(locale => (
+              <button
+                key={locale}
+                value={locale}
+                onClick={this.handleLocaleClick}
+              >
+                {locale}
+              </button>
+            ))}
+          </Header>
+          {children()}
+          <Footer>Footer</Footer>
+        </div>
+      </ThemeProvider>
     );
   }
 }
