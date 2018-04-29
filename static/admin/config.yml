@@ -48,11 +48,12 @@ collections:
     fields:
       - {label: "Language", name: "locale", widget: "select", options: ["fr", "en"], default: "fr"}
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Category", name: "category", widget: "string", default: "Uncategorised"}
+      - {label: "Category", name: "category", widget: "string", default: "fr-uncategorised"}
       - {label: "Tags", name: "tags", widget: "list", default: ["news"]}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Author", name: "author", widget: "string"}
       - {label: "Show on popular posts sidebar?", name: "isPopular", widget: "boolean"}
+      - {label: "Image", name: "image", widget: "image"}
       - {label: "Content", name: "body", widget: "markdown"}
 
   - label: "Blog in English"
@@ -64,10 +65,11 @@ collections:
     fields:
       - {label: "Language", name: "locale", widget: "select", options: ["fr", "en"], default: "en"}
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Category", name: "category", widget: "string", default: "Uncategorised"}
+      - {label: "Category", name: "category", widget: "string", default: "en-uncategorised"}
       - {label: "Tags", name: "tags", widget: "list", default: ["news"]}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Author", name: "author", widget: "string"}
       - {label: "Show on popular posts sidebar?", name: "isPopular", widget: "boolean"}
+      - {label: "Image", name: "image", widget: "image"}
       - {label: "Content", name: "body", widget: "markdown"}
 
