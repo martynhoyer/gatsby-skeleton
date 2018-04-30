@@ -7,6 +7,7 @@ import CategoriesList from "../components/CategoriesList/index";
 import TwoColumn from "../components/Layouts/TwoColumn";
 import Sidebar from "../components/Sidebar";
 import { Helmet } from "react-helmet";
+import SubscribeForm from "../components/SubscribeForm/index";
 
 class IndexTemplate extends React.Component {
   handleScriptLoad() {
@@ -58,6 +59,8 @@ class IndexTemplate extends React.Component {
             <PostListing postEdges={nodes} isIndex />
           </PaginatedContent>
           <Sidebar>
+            <SubscribeForm locale={locale} whitepaper />
+            <SubscribeForm locale={locale} />
             <PopularPosts popularPosts={popularPosts} />
             <CategoriesList categories={categories} locale={locale} />
           </Sidebar>
