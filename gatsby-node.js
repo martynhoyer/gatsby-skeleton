@@ -8,8 +8,8 @@ const {
   prefixPathFormatter
 } = require("gatsby-pagination");
 
-exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
-  const { createNodeField } = boundActionCreators;
+exports.onCreateNode = ({ node, boundActionCreators, getNode, getNodes }) => {
+  const { createNodeField, createParentChildLink } = boundActionCreators;
   let slug;
   if (node.internal.type === "MarkdownRemark") {
     const fileNode = getNode(node.parent);
@@ -32,6 +32,31 @@ exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
       slug = `/${parsedFilePath.dir}/`;
     }
     createNodeField({ node, name: "slug", value: slug });
+
+    // Attach image's ImageSharp node by public path if necessary
+    if (node.frontmatter.image && typeof node.frontmatter.image === "string") {
+      // Find absolute path of linked path
+      const pathToFile = path
+        .join(__dirname, "static", node.frontmatter.image)
+        .split(path.sep)
+        .join("/");
+
+      console.log(`Path to file: ${pathToFile}`);
+      // Find ID of File node
+      const fileImageNode = getNodes().find(n => n.absolutePath === pathToFile);
+      console.log(`File image node: ${fileImageNode}`);
+
+      if (fileImageNode != null) {
+        // Find ImageSharp node corresponding to the File node
+        const imageSharpNodeId = fileImageNode.children.find(n =>
+          n.endsWith(">> ImageSharp")
+        );
+        const imageSharpNode = getNodes().find(n => n.id === imageSharpNodeId);
+
+        // Add ImageSharp node as child
+        createParentChildLink({ parent: node, child: imageSharpNode });
+      }
+    }
   }
 };
 
@@ -201,102 +226,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             });
           });
         });
-
-        // siteConfig.locales.forEach(({ code }) => {
-        //   const localePosts = posts.filter(
-        //     post => post.node.frontmatter.locale === code
-        //   );
-        //   // Creates Index page
-        //   createPaginationPages({
-        //     createPage,
-        //     edges: localePosts,
-        //     component: indexPage,
-        //     limit: siteConfig.sitePaginationLimit,
-        //     pathFormatter: prefixPathFormatter(`/${code}`)
-        //   });
-        //   // Creates Posts
-        //   createLinkedPages({
-        //     createPage,
-        //     edges: localePosts,
-        //     component: postPage,
-        //     edgeParser: edge => ({
-        //       path: `${code}${edge.node.fields.slug}`,
-        //       context: {
-        //         slug: `${edge.node.fields.slug}`
-        //       }
-        //     }),
-        //     circular: true
-        //   });
-
-        //   const tagSet = new Set();
-        //   const tagMap = new Map();
-        //   const categorySet = new Set();
-
-        //   localePosts.forEach(edge => {
-        //     if (edge.node.frontmatter.tags) {
-        //       edge.node.frontmatter.tags.forEach(tag => {
-        //         tagSet.add(tag);
-
-        //         const array = tagMap.has(tag) ? tagMap.get(tag) : [];
-        //         array.push(edge);
-        //         tagMap.set(tag, array);
-        //       });
-        //     }
-
-        //     if (edge.node.frontmatter.category) {
-        //       categorySet.add(edge.node.frontmatter.category);
-        //     }
-        //   });
-
-        //   const tagFormatter = tag => route =>
-        //     `${code}/tags/${_.kebabCase(tag)}/${route !== 1 ? route : ""}`;
-        //   const tagList = Array.from(tagSet);
-        //   tagList.forEach(tag => {
-        //     // Creates tag pages
-        //     createPaginationPages({
-        //       createPage,
-        //       edges: tagMap.get(tag),
-        //       component: tagPage,
-        //       pathFormatter: tagFormatter(tag),
-        //       limit: siteConfig.sitePaginationLimit,
-        //       context: {
-        //         tag
-        //       }
-        //     });
-        //   });
-
-        //   const categoryList = Array.from(categorySet);
-        //   categoryList.forEach(category => {
-        //     createPage({
-        //       path: `${code}/categories/${_.kebabCase(category)}/`,
-        //       component: categoryPage,
-        //       context: {
-        //         category
-        //       }
-        //     });
-        //   });
-        // });
-
-        // const authorSet = new Set();
-
-        // authorSet.add(siteConfig.blogAuthorId);
-
-        // posts.forEach(edge => {
-        //   if (edge.node.frontmatter.author) {
-        //     authorSet.add(edge.node.frontmatter.author);
-        //   }
-        // });
-
-        // const authorList = Array.from(authorSet);
-        // authorList.forEach(author => {
-        //   createPage({
-        //     path: `/author/${_.kebabCase(author)}/`,
-        //     component: authorPage,
-        //     context: {
-        //       author
-        //     }
-        //   });
-        // });
       })
     );
   });

@@ -30,6 +30,13 @@ module.exports = {
         path: `${__dirname}/content/categories`
       }
     },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "cmsimages",
+        path: `${__dirname}/static/img`
+      }
+    },
     "gatsby-transformer-json",
     {
       resolve: "gatsby-transformer-remark",
@@ -53,6 +60,7 @@ module.exports = {
     "gatsby-plugin-sitemap",
     "gatsby-plugin-offline",
     "gatsby-plugin-styled-components",
-    "gatsby-plugin-netlify-cms"
+    "gatsby-plugin-netlify-cms",
+    "gatsby-transformer-sharp"
   ]
 };
