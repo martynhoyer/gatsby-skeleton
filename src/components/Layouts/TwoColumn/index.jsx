@@ -8,6 +8,7 @@ const StyledTwoColumn = styled.div`
 
   margin-right: auto;
   margin-left: auto;
+  padding: 24px 24px;
 
   @media (${media.md}) {
     grid-template-columns: 3fr 1fr;

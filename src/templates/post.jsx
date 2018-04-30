@@ -34,7 +34,9 @@ class PostTemplate extends React.Component {
 
     return (
       <div>
-        <Helmet title={`${title} | ${config.siteTitle}`} />
+        <Helmet title={`${title} | ${config.siteTitle}`}>
+          <html lang={locale} />
+        </Helmet>
         <article>
           <header>
             <h1>{title}</h1>

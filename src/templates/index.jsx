@@ -6,6 +6,7 @@ import PopularPosts from "../components/PopularPosts";
 import CategoriesList from "../components/CategoriesList/index";
 import TwoColumn from "../components/Layouts/TwoColumn";
 import Sidebar from "../components/Sidebar";
+import { Helmet } from "react-helmet";
 
 class IndexTemplate extends React.Component {
   handleScriptLoad() {
@@ -37,6 +38,9 @@ class IndexTemplate extends React.Component {
 
     return (
       <Fragment>
+        <Helmet>
+          <html lang={locale} />
+        </Helmet>
         <Script
           url="https://identity.netlify.com/v1/netlify-identity-widget.js"
           onLoad={() => this.handleScriptLoad()}

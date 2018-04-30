@@ -10,6 +10,8 @@ const PostList = styled.div`
   display: grid;
   grid-gap: 16px 24px;
 
+  margin-top: -72px;
+
   @media (${media.sm}) {
     grid-template-columns: 1fr 1fr;
   }

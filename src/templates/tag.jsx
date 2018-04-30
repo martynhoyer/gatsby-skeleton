@@ -30,7 +30,9 @@ class TagTemplate extends React.Component {
       : `Posts tagged as "${tag}"`;
     return (
       <TwoColumn>
-        <Helmet title={`${pageTitle} | ${config.siteTitle}`} />
+        <Helmet title={`${pageTitle} | ${config.siteTitle}`}>
+          <html lang={locale} />
+        </Helmet>
         <div>
           <h1>{category || tag}</h1>
           <PaginatedContent
