@@ -8,8 +8,8 @@ const {
   prefixPathFormatter
 } = require("gatsby-pagination");
 
-exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
-  const { createNodeField } = boundActionCreators;
+exports.onCreateNode = ({ node, boundActionCreators, getNode, getNodes }) => {
+  const { createNodeField, createParentChildLink } = boundActionCreators;
   let slug;
   if (node.internal.type === "MarkdownRemark") {
     const fileNode = getNode(node.parent);
@@ -32,6 +32,31 @@ exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
       slug = `/${parsedFilePath.dir}/`;
     }
     createNodeField({ node, name: "slug", value: slug });
+
+    // Attach image's ImageSharp node by public path if necessary
+    if (node.frontmatter.image && typeof node.frontmatter.image === "string") {
+      // Find absolute path of linked path
+      const pathToFile = path
+        .join(__dirname, "static", node.frontmatter.image)
+        .split(path.sep)
+        .join("/");
+
+      console.log(`Path to file: ${pathToFile}`);
+      // Find ID of File node
+      const fileImageNode = getNodes().find(n => n.absolutePath === pathToFile);
+      console.log(`File image node: ${fileImageNode}`);
+
+      if (fileImageNode != null) {
+        // Find ImageSharp node corresponding to the File node
+        const imageSharpNodeId = fileImageNode.children.find(n =>
+          n.endsWith(">> ImageSharp")
+        );
+        const imageSharpNode = getNodes().find(n => n.id === imageSharpNodeId);
+
+        // Add ImageSharp node as child
+        createParentChildLink({ parent: node, child: imageSharpNode });
+      }
+    }
   }
 };
 
