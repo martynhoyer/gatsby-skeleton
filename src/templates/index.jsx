@@ -1,13 +1,14 @@
 import React, { Fragment } from "react";
 import Script from "react-load-script";
+import { Helmet } from "react-helmet";
 import PostListing from "../components/PostListing";
 import PaginatedContent from "../components/PaginatedContent";
 import PopularPosts from "../components/PopularPosts";
 import CategoriesList from "../components/CategoriesList/index";
 import TwoColumn from "../components/Layouts/TwoColumn";
 import Sidebar from "../components/Sidebar";
-import { Helmet } from "react-helmet";
 import SubscribeForm from "../components/SubscribeForm/index";
+import Box from "../components/Box/index";
 
 class IndexTemplate extends React.Component {
   handleScriptLoad() {
@@ -59,10 +60,16 @@ class IndexTemplate extends React.Component {
             <PostListing postEdges={nodes} isIndex />
           </PaginatedContent>
           <Sidebar>
-            <SubscribeForm locale={locale} whitepaper />
-            <SubscribeForm locale={locale} />
-            <PopularPosts popularPosts={popularPosts} />
-            <CategoriesList categories={categories} locale={locale} />
+            <Box>
+              <SubscribeForm locale={locale} whitepaper />
+            </Box>
+            <Box>
+              <SubscribeForm locale={locale} />
+            </Box>
+            <Box>
+              <PopularPosts popularPosts={popularPosts} />
+              <CategoriesList categories={categories} locale={locale} />
+            </Box>
           </Sidebar>
         </TwoColumn>
       </Fragment>

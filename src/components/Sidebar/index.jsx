@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Box from "../Box";
 
 const StyledSidebar = styled.aside`
   display: grid;
@@ -8,10 +7,6 @@ const StyledSidebar = styled.aside`
   align-content: start;
 `;
 
-const Sidebar = ({ children }) => (
-  <StyledSidebar>
-    <Box>{children}</Box>
-  </StyledSidebar>
-);
+const Sidebar = ({ children }) => <StyledSidebar>{children}</StyledSidebar>;
 
 export default Sidebar;

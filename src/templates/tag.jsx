@@ -7,6 +7,8 @@ import PopularPosts from "../components/PopularPosts";
 import CategoriesList from "../components/CategoriesList";
 import Sidebar from "../components/Sidebar";
 import TwoColumn from "../components/Layouts/TwoColumn";
+import Box from "../components/Box";
+import SubscribeForm from "../components/SubscribeForm";
 
 class TagTemplate extends React.Component {
   render() {
@@ -48,8 +50,16 @@ class TagTemplate extends React.Component {
           </PaginatedContent>
         </div>
         <Sidebar>
-          <PopularPosts popularPosts={popularPosts} />
-          <CategoriesList categories={categories} locale={locale} />
+          <Box>
+            <SubscribeForm locale={locale} whitepaper />
+          </Box>
+          <Box>
+            <SubscribeForm locale={locale} />
+          </Box>
+          <Box>
+            <PopularPosts popularPosts={popularPosts} />
+            <CategoriesList categories={categories} locale={locale} />
+          </Box>
         </Sidebar>
       </TwoColumn>
     );

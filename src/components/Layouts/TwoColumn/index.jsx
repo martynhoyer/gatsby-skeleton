@@ -11,7 +11,7 @@ const StyledTwoColumn = styled.div`
   padding: 24px 24px;
 
   @media (${media.md}) {
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 2fr 1fr;
 
     max-width: 1024px;
   }

@@ -6,11 +6,17 @@ import media from "../../tokens/breakpoints";
 import PostDate from "../PostDate";
 import Box from "../Box";
 
+const homeTemplateNegativeMargin = ({ isIndex }) =>
+  isIndex &&
+  css`
+    margin-top: -72px;
+  `;
+
 const PostList = styled.div`
+  ${homeTemplateNegativeMargin};
+
   display: grid;
   grid-gap: 16px 24px;
-
-  margin-top: -72px;
 
   @media (${media.sm}) {
     grid-template-columns: 1fr 1fr;
@@ -49,7 +55,7 @@ class PostListing extends React.Component {
     const { isIndex } = this.props;
 
     return (
-      <PostList>
+      <PostList isIndex={isIndex}>
         {/* This is the post loop - each post will be output using this markup */}
         {postList.map((post, index) => {
           const { locale, title, path, excerpt, date, category } = post;
