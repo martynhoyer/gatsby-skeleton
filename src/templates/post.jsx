@@ -2,11 +2,38 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import _ from "lodash";
 import Link from "gatsby-link";
+import styled from "styled-components";
 import config from "../../data/SiteConfig";
 import PostDate from "../components/PostDate";
 import PostTags from "../components/PostTags";
 import AuthorModel from "../models/author-model";
 import CategoryModel from "../models/category-model";
+import SingleColumn from "../components/Layouts/SingleColumn";
+import Box from "../components/Box/index";
+import SubscribeForm from "../components/SubscribeForm/index";
+import media from "../tokens/breakpoints";
+
+const SubscribeWrapper = styled.div`
+  display: grid;
+  grid-gap: 24px;
+
+  @media (${media.md}) {
+    grid-template-columns: 1fr 1fr;
+  }
+`;
+
+const Title = styled.h1`
+  font-size: 24px;
+  text-align: center;
+
+  @media (${media.sm}) {
+    font-size: 48px;
+  }
+
+  @media (${media.md}) {
+    font-size: 64px;
+  }
+`;
 
 class PostTemplate extends React.Component {
   render() {
@@ -33,13 +60,13 @@ class PostTemplate extends React.Component {
     );
 
     return (
-      <div>
+      <SingleColumn>
         <Helmet title={`${title} | ${config.siteTitle}`}>
           <html lang={locale} />
         </Helmet>
         <article>
           <header>
-            <h1>{title}</h1>
+            <Title>{title}</Title>
             <Link to={`/${locale}/categories/${_.kebabCase(category)}`}>
               <span style={{ color: categoryData.color }}>{category}</span>
             </Link>
@@ -49,11 +76,19 @@ class PostTemplate extends React.Component {
           <section dangerouslySetInnerHTML={{ __html: postNode.html }} />
 
           <footer>
+            <SubscribeWrapper>
+              <Box>
+                <SubscribeForm locale={locale} whitepaper />
+              </Box>
+              <Box>
+                <SubscribeForm locale={locale} />
+              </Box>
+            </SubscribeWrapper>
             <PostTags prefix="Tags" tags={tags} locale={locale} />
             <p>{authorData.name}</p>
           </footer>
         </article>
-      </div>
+      </SingleColumn>
     );
   }
 }

@@ -66,7 +66,12 @@ class SubscribeForm extends React.Component {
           <div>Thank you! Youʼll receive your first email shortly.</div>
         ) : (
           <div>
-            <form id="email-capture" method="post" noValidate>
+            <form
+              id="email-capture"
+              method="post"
+              noValidate
+              onSubmit={this.handleFormSubmit}
+            >
               <div>
                 <input
                   type="email"
@@ -74,9 +79,7 @@ class SubscribeForm extends React.Component {
                   placeholder="you@email.com"
                   onChange={this.handleEmailChange}
                 />
-                <button type="submit" onClick={this.handleFormSubmit}>
-                  Subscribe
-                </button>
+                <button type="submit">Subscribe</button>
                 {this.state.status === `error` && (
                   <div dangerouslySetInnerHTML={{ __html: this.state.msg }} />
                 )}
