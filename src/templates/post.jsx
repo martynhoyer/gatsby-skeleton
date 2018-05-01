@@ -70,7 +70,7 @@ class PostTemplate extends React.Component {
             <Link to={`/${locale}/categories/${_.kebabCase(category)}`}>
               <span style={{ color: categoryData.color }}>{category}</span>
             </Link>
-            <PostDate date={date} />
+            <PostDate date={date} locale={locale} />
           </header>
 
           <section dangerouslySetInnerHTML={{ __html: postNode.html }} />

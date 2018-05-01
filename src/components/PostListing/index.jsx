@@ -70,7 +70,7 @@ class PostListing extends React.Component {
                     <Link to={url}>{title}</Link>
                   </h2>
                   {category}
-                  <PostDate date={date} />
+                  <PostDate date={date} locale={locale} />
                 </header>
                 <section>
                   <p>{excerpt}</p>

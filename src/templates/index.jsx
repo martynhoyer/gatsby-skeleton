@@ -67,7 +67,7 @@ class IndexTemplate extends React.Component {
               <SubscribeForm locale={locale} />
             </Box>
             <Box>
-              <PopularPosts popularPosts={popularPosts} />
+              <PopularPosts popularPosts={popularPosts} locale={locale} />
               <CategoriesList categories={categories} locale={locale} />
             </Box>
           </Sidebar>
