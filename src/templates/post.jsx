@@ -41,6 +41,7 @@ class PostTemplate extends React.Component {
     const {
       locale,
       title,
+      localDate,
       date,
       tags,
       category,
@@ -70,7 +71,7 @@ class PostTemplate extends React.Component {
             <Link to={`/${locale}/categories/${_.kebabCase(category)}`}>
               <span style={{ color: categoryData.color }}>{category}</span>
             </Link>
-            <PostDate date={date} locale={locale} />
+            <PostDate date={date} localDate={localDate} />
           </header>
 
           <section dangerouslySetInnerHTML={{ __html: postNode.html }} />
@@ -95,13 +96,14 @@ class PostTemplate extends React.Component {
 
 /* eslint no-undef: "off" */
 export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!) {
+  query BlogPostBySlug($slug: String!, $locale: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       timeToRead
       excerpt
       frontmatter {
         title
+        localDate: date(locale: $locale, formatString: "DD MMMM YYYY")
         date
         category
         tags

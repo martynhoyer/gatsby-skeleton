@@ -2,7 +2,7 @@ import React from "react";
 import Link from "gatsby-link";
 import PostDate from "../PostDate";
 
-const PopularPosts = ({ popularPosts = [], locale }) => {
+const PopularPosts = ({ popularPosts = [] }) => {
   if (!popularPosts.length) return null;
   return (
     <div>
@@ -16,7 +16,10 @@ const PopularPosts = ({ popularPosts = [], locale }) => {
               }`}
             >
               <div>{popularPost.frontmatter.title}</div>
-              <PostDate date={popularPost.frontmatter.date} locale={locale} />
+              <PostDate
+                date={popularPost.frontmatter.date}
+                localDate={popularPost.frontmatter.localDate}
+              />
             </Link>
           </li>
         ))}

@@ -93,6 +93,7 @@ export const indexPageQuery = graphql`
           frontmatter {
             title
             locale
+            localDate: date(locale: $locale, formatString: "DD MMMM YYYY")
             date
           }
           fields {

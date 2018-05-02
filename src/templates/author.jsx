@@ -29,7 +29,7 @@ class AuthorTemplate extends React.Component {
 
 /* eslint no-undef: "off" */
 export const pageQuery = graphql`
-  query AuthorPage($author: String) {
+  query AuthorPage($author: String, $locale: String) {
     allMarkdownRemark(
       limit: 1000
       sort: { fields: [frontmatter___date], order: DESC }
@@ -46,6 +46,7 @@ export const pageQuery = graphql`
           frontmatter {
             title
             tags
+            localDate: date(locale: $locale, formatString: "DD MMMM YYYY")
             date
             author
             locale

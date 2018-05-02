@@ -44,6 +44,7 @@ const getPostList = postEdges =>
     cover: postEdge.node.frontmatter.cover,
     title: postEdge.node.frontmatter.title,
     date: postEdge.node.frontmatter.date,
+    localDate: postEdge.node.frontmatter.localDate,
     category: postEdge.node.frontmatter.category,
     excerpt: postEdge.node.excerpt,
     timeToRead: postEdge.node.timeToRead
@@ -58,7 +59,15 @@ class PostListing extends React.Component {
       <PostList isIndex={isIndex}>
         {/* This is the post loop - each post will be output using this markup */}
         {postList.map((post, index) => {
-          const { locale, title, path, excerpt, date, category } = post;
+          const {
+            locale,
+            title,
+            path,
+            excerpt,
+            localDate,
+            date,
+            category
+          } = post;
           const url = `/${locale}${path}`;
           const mapKey = `${title}+${index}`;
 
@@ -70,7 +79,7 @@ class PostListing extends React.Component {
                     <Link to={url}>{title}</Link>
                   </h2>
                   {category}
-                  <PostDate date={date} locale={locale} />
+                  <PostDate date={date} localDate={localDate} />
                 </header>
                 <section>
                   <p>{excerpt}</p>
