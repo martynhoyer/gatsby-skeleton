@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "gatsby-link";
+import Img from "gatsby-image";
 import styled, { css } from "styled-components";
 import media from "../../tokens/breakpoints";
 
@@ -47,7 +48,8 @@ const getPostList = postEdges =>
     localDate: postEdge.node.frontmatter.localDate,
     category: postEdge.node.frontmatter.category,
     excerpt: postEdge.node.excerpt,
-    timeToRead: postEdge.node.timeToRead
+    timeToRead: postEdge.node.timeToRead,
+    thumbnail: postEdge.node.thumbnail
   }));
 
 class PostListing extends React.Component {
@@ -66,7 +68,8 @@ class PostListing extends React.Component {
             excerpt,
             localDate,
             date,
-            category
+            category,
+            thumbnail = null
           } = post;
           const url = `/${locale}${path}`;
           const mapKey = `${title}+${index}`;
@@ -74,6 +77,7 @@ class PostListing extends React.Component {
           return (
             <Article key={mapKey} isIndex={isIndex}>
               <Box>
+                {thumbnail && <Img sizes={thumbnail.sizes} />}
                 <header>
                   <h2>
                     <Link to={url}>{title}</Link>

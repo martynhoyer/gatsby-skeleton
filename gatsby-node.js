@@ -103,6 +103,18 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                     }
                     excerpt
                     timeToRead
+                    thumbnail: childImageSharp {
+                      sizes(maxWidth: 560) {
+                        base64
+                        aspectRatio
+                        src
+                        srcSet
+                        srcWebp
+                        srcSetWebp
+                        sizes
+                        originalName
+                      }
+                    }
                   }
                 }
               }
