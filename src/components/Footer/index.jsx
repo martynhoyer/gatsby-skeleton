@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { FormattedMessage } from "react-intl";
 
 const StyledFooter = styled.footer`
   padding: 24px 0;
@@ -7,6 +8,13 @@ const StyledFooter = styled.footer`
   color: ${props => props.theme.palette.blanc};
 `;
 
-const Footer = ({ children }) => <StyledFooter>{children}</StyledFooter>;
+const Footer = ({ children }) => (
+  <StyledFooter>
+    {children}
+    <h1>
+      <FormattedMessage id="goodbye" />
+    </h1>
+  </StyledFooter>
+);
 
 export default Footer;

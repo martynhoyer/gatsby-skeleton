@@ -10,6 +10,14 @@ module.exports = {
   plugins: [
     "gatsby-plugin-react-helmet",
     {
+      resolve: "gatsby-plugin-i18n",
+      options: {
+        langKeyForNull: "any",
+        langKeyDefault: config.defaultLangKey,
+        useLangKeyLayout: false
+      }
+    },
+    {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "cmsimages",

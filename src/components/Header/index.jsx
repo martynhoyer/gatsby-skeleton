@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { FormattedMessage } from "react-intl";
 
 const StyledHeader = styled.header`
   height: 300px;
@@ -11,6 +12,13 @@ const StyledHeader = styled.header`
   color: ${props => props.theme.palette.blanc};
 `;
 
-const Header = ({ children }) => <StyledHeader>{children}</StyledHeader>;
+const Header = ({ children }) => (
+  <StyledHeader>
+    <h1>
+      <FormattedMessage id="hello" />
+    </h1>
+    {children}
+  </StyledHeader>
+);
 
 export default Header;
