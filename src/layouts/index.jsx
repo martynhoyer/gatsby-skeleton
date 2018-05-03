@@ -10,7 +10,7 @@ import fr from "react-intl/locale-data/fr";
 import "intl/locale-data/jsonp/fr";
 
 import Cookies from "universal-cookie";
-import { navigateTo } from "gatsby-link";
+import Link from "gatsby-link";
 import { ThemeProvider } from "styled-components";
 import config from "../../data/SiteConfig";
 import "./global.styles.css";
@@ -57,8 +57,9 @@ export default class MainLayout extends React.Component {
   }
 
   handleLocaleClick = e => {
-    cookies.set("lang", e.target.value, { path: "/" });
-    navigateTo(`/${e.target.value}/`);
+    cookies.set("lang", e.target.pathname.replace(/^\/|\/$/g, ""), {
+      path: "/"
+    });
   };
 
   render() {
@@ -75,8 +76,8 @@ export default class MainLayout extends React.Component {
 
     function flattenMessages(nestedMessages, prefix = "") {
       return Object.keys(nestedMessages).reduce((messages, key) => {
-        let value = nestedMessages[key];
-        let prefixedKey = prefix ? `${prefix}.${key}` : key;
+        const value = nestedMessages[key];
+        const prefixedKey = prefix ? `${prefix}.${key}` : key;
 
         if (typeof value === "string") {
           messages[prefixedKey] = value;
@@ -100,13 +101,13 @@ export default class MainLayout extends React.Component {
             </Helmet>
             <Header>
               {config.locales.map(locale => (
-                <button
+                <Link
                   key={locale}
-                  value={locale}
+                  to={`/${locale}/`}
                   onClick={this.handleLocaleClick}
                 >
                   {locale}
-                </button>
+                </Link>
               ))}
             </Header>
             {children()}
