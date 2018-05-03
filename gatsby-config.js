@@ -37,6 +37,13 @@ module.exports = {
         path: `${__dirname}/content/categories`
       }
     },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "cmsimages",
+        path: `${__dirname}/static/img`
+      }
+    },
     "gatsby-transformer-json",
     {
       resolve: "gatsby-transformer-remark",
