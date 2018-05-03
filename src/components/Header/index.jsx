@@ -17,6 +17,9 @@ const Header = ({ children }) => (
     <h1>
       <FormattedMessage id="hello" />
     </h1>
+    <h1>
+      <FormattedMessage id="header.test" />
+    </h1>
     {children}
   </StyledHeader>
 );

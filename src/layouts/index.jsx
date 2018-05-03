@@ -73,8 +73,25 @@ export default class MainLayout extends React.Component {
     // with the appropriate language code
     const i18nMessages = require(`../../data/translations/${langKey}.json`);
 
+    function flattenMessages(nestedMessages, prefix = "") {
+      return Object.keys(nestedMessages).reduce((messages, key) => {
+        let value = nestedMessages[key];
+        let prefixedKey = prefix ? `${prefix}.${key}` : key;
+
+        if (typeof value === "string") {
+          messages[prefixedKey] = value;
+        } else {
+          Object.assign(messages, flattenMessages(value, prefixedKey));
+        }
+
+        return messages;
+      }, {});
+    }
+
+    const messages = flattenMessages(i18nMessages);
+
     return (
-      <IntlProvider locale={langKey} messages={i18nMessages}>
+      <IntlProvider locale={langKey} messages={messages}>
         <ThemeProvider theme={GYMLIB}>
           <div>
             <Helmet>

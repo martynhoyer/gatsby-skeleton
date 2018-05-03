@@ -1,4 +1,7 @@
 {
   "hello": "Bonjour",
-  "goodbye": "Au revoir"
+  "goodbye": "Au revoir",
+  "header": {
+    "test": "Test fr"
+  }
 }
