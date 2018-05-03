@@ -12,6 +12,13 @@ module.exports = {
     {
       resolve: "gatsby-source-filesystem",
       options: {
+        name: "cmsimages",
+        path: `${__dirname}/static/img`
+      }
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
         name: "posts",
         path: `${__dirname}/content/${config.blogPostDir}`
       }
@@ -28,13 +35,6 @@ module.exports = {
       options: {
         name: "categories",
         path: `${__dirname}/content/categories`
-      }
-    },
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "cmsimages",
-        path: `${__dirname}/static/img`
       }
     },
     "gatsby-transformer-json",

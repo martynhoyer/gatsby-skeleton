@@ -41,10 +41,8 @@ exports.onCreateNode = ({ node, boundActionCreators, getNode, getNodes }) => {
         .split(path.sep)
         .join("/");
 
-      console.log(`Path to file: ${pathToFile}`);
       // Find ID of File node
       const fileImageNode = getNodes().find(n => n.absolutePath === pathToFile);
-      console.log(`File image node: ${fileImageNode}`);
 
       if (fileImageNode != null) {
         // Find ImageSharp node corresponding to the File node
