@@ -38,6 +38,15 @@ const Article = styled.article`
   ${doubleWidthFirstPost};
 `;
 
+const Thumbnail = styled(Img)`
+  margin: -32px -24px 0;
+
+  @media (${media.md}) {
+    margin-right: -48px;
+    margin-left: -48px;
+  }
+`;
+
 const getPostList = postEdges =>
   postEdges.map(postEdge => ({
     locale: postEdge.node.frontmatter.locale,
@@ -77,7 +86,7 @@ class PostListing extends React.Component {
           return (
             <Article key={mapKey} isIndex={isIndex}>
               <Box>
-                {thumbnail && <Img sizes={thumbnail.sizes} />}
+                {thumbnail && <Thumbnail sizes={thumbnail.sizes} />}
                 <header>
                   <h2>
                     <Link to={url}>{title}</Link>
