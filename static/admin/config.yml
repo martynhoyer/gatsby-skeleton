@@ -1,43 +1,71 @@
 backend:
   name: git-gateway
-  branch: master
+  branch: feature/site-text-entries
 
 media_folder: static/img
 public_folder: /img
 
 collections:
 
-  # - name: "languages"
-  #   label: "Languages"
-  #   folder: "_data/languages"
-  #   create: true
-  #   extension: json
-  #   format: json
-  #   editor:
-  #     preview: false
-  #   fields:
-  #     - {label: "Title", name: "title", widget: "string"}
-  #     - {label: "Language code", name: "langCode", widget: "text"}
-  #     - label: "Translations"
-  #       name: "translations"
-  #       widget: "object"
-  #       fields: 
-  #         - {label: "Item 1", name: "item1", widget: "string"}
-  #         - {label: "Item 2", name: "item2", widget: "string"}
-  #         - {label: "Item 3", name: "item3", widget: "string"}
-  #         - {label: "Item 4", name: "item4", widget: "string"}
-  #         - {label: "Item 5", name: "item5", widget: "string"}
+  - name: "languages"
+    label: "Languages"
+    folder: "data/translations"
+    create: true
+    extension: json
+    format: json
+    editor:
+      preview: false
+    fields:
+      - {label: "Two-digit language code", name: "title", widget: "string"}
+      - label: "Sidebar"
+        name: "sidebar"
+        widget: "object"
+        fields: 
+          - label: "Mailchimp boxes"
+            name: "mailchimpBoxes"
+            widget: "object"
+            fields: 
+              - label: "Subscribe"
+                name: "subscribe"
+                widget: "object"
+                fields: 
+                  - {label: "Heading", name: "heading", widget: "string"}
+                  - {label: "Body", name: "body", widget: "string"}
+                  - {label: "Button text", name: "buttonText", widget: "string"}
+              - label: "Whitepaper"
+                name: "whitepaper"
+                widget: "object"
+                fields: 
+                  - {label: "Heading", name: "heading", widget: "string"}
+                  - {label: "Body", name: "body", widget: "string"}
+                  - {label: "Button text", name: "buttonText", widget: "string"}
+          - label: "About"
+            name: "about"
+            widget: "object"
+            fields: 
+              - {label: "Heading", name: "heading", widget: "string"}
+              - {label: "Body", name: "body", widget: "string"}
+          - label: "Categories"
+            name: "categories"
+            widget: "object"
+            fields: 
+              - {label: "Heading", name: "heading", widget: "string"}
+          - label: "Popular posts"
+            name: "popularPosts"
+            widget: "object"
+            fields: 
+              - {label: "Heading", name: "heading", widget: "string"}
+          - label: "Social media"
+            name: "socialMedia"
+            widget: "object"
+            fields: 
+              - {label: "Heading", name: "heading", widget: "string"}
+      - label: "Blog list"
+        name: "blogList"
+        widget: "object"
+        fields: 
+          - {label: "Read more link text", name: "readMoreLink", widget: "string"}
 
-  # - name: "blog"
-  #   label: "Blog"
-  #   folder: "content/posts"
-  #   create: true
-  #   slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-  #   fields:
-  #     - {label: "Title", name: "title", widget: "string"}
-  #     - {label: "Publish Date", name: "date", widget: "datetime"}
-  #     - {label: "Body", name: "body", widget: "markdown"}
-  #     - {label: "Locale", name: "locale", widget: "string", default: "fr"}
 
   - label: "Blog in French"
     name: "french_posts"
