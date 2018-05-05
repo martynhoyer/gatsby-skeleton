@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "gatsby-link";
 import Img from "gatsby-image";
+import { FormattedMessage } from "react-intl";
 import styled, { css } from "styled-components";
 import media from "../../tokens/breakpoints";
 
@@ -45,7 +46,12 @@ const Thumbnail = styled(Img)`
     margin-right: -48px;
     margin-left: -48px;
   }
-`
+`;
+
+const Footer = styled.footer`
+  display: flex;
+  justify-content: flex-end;
+`;
 
 const getPostList = postEdges =>
   postEdges.map(postEdge => ({
@@ -82,7 +88,8 @@ class PostListing extends React.Component {
           } = post;
           const url = `/${locale}${path}`;
           const mapKey = `${title}+${index}`;
-          const thumbnail = thumbnailArray && thumbnailArray.length && thumbnailArray[0]
+          const thumbnail =
+            thumbnailArray && thumbnailArray.length && thumbnailArray[0];
 
           return (
             <Article key={mapKey} isIndex={isIndex}>
@@ -98,9 +105,11 @@ class PostListing extends React.Component {
                 <section>
                   <p>{excerpt}</p>
                 </section>
-                <footer>
-                  <Link to={url}>Read more &rarr;</Link>
-                </footer>
+                <Footer>
+                  <Link to={url}>
+                    <FormattedMessage id="blogList.readMoreLink" /> &rarr;
+                  </Link>
+                </Footer>
               </Box>
             </Article>
           );

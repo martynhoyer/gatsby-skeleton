@@ -1,12 +1,15 @@
 import React from "react";
 import Link from "gatsby-link";
 import _ from "lodash";
+import { FormattedMessage } from "react-intl";
 
 const CategoriesList = ({ categories = [], locale }) => {
   if (!categories.length) return null;
   return (
     <div>
-      <h2>Categories</h2>
+      <h2>
+        <FormattedMessage id="sidebar.categories.heading" />
+      </h2>
       <ul>
         {categories.map(({ fieldValue: category, totalCount }, index) => (
           <li key={`${category}+${index}`}>

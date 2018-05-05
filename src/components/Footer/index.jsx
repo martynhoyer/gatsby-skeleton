@@ -8,13 +8,6 @@ const StyledFooter = styled.footer`
   color: ${props => props.theme.palette.blanc};
 `;
 
-const Footer = ({ children }) => (
-  <StyledFooter>
-    {children}
-    <h1>
-      <FormattedMessage id="goodbye" />
-    </h1>
-  </StyledFooter>
-);
+const Footer = ({ children }) => <StyledFooter>{children}</StyledFooter>;
 
 export default Footer;

@@ -1,7 +1,32 @@
 {
-  "hello": "Hello",
-  "goodbye": "Goodbye",
-  "header": {
-    "test": "Test en"
+  "sidebar": {
+    "mailchimpBoxes": {
+      "subscribe": {
+        "heading": "Subscribe",
+        "body": "Receive our newsletter to stay on top of the latest posts.",
+        "buttonText": "Subscribe"
+      },
+      "whitepaper": {
+        "heading": "Download our white paper",
+        "body": "Receive our newsletter to stay on top of the latest posts.",
+        "buttonText": "Subscribe"
+      }
+    },
+    "about": {
+      "heading": "About",
+      "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    },
+    "categories": {
+      "heading": "Categories"
+    },
+    "popularPosts": {
+      "heading": "Popular posts"
+    },
+    "socialMedia": {
+      "heading": "Follow us"
+    }
+  },
+  "blogList": {
+    "readMoreLink": "See more"
   }
 }

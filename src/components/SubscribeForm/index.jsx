@@ -1,5 +1,6 @@
 import React from "react";
 import addToMailchimp from "gatsby-plugin-mailchimp";
+import { FormattedMessage } from "react-intl";
 
 class SubscribeForm extends React.Component {
   constructor() {
@@ -60,12 +61,27 @@ class SubscribeForm extends React.Component {
   };
 
   render() {
+    const heading = this.props.whitepaper
+      ? "sidebar.mailchimpBoxes.whitepaper.heading"
+      : "sidebar.mailchimpBoxes.subscribe.heading";
+    const body = this.props.whitepaper
+      ? "sidebar.mailchimpBoxes.whitepaper.body"
+      : "sidebar.mailchimpBoxes.subscribe.body";
+    const buttonText = this.props.whitepaper
+      ? "sidebar.mailchimpBoxes.whitepaper.buttonText"
+      : "sidebar.mailchimpBoxes.subscribe.buttonText";
     return (
       <div>
         {this.state.status === `success` ? (
           <div>Thank you! Youʼll receive your first email shortly.</div>
         ) : (
           <div>
+            <h2>
+              <FormattedMessage id={heading} />
+            </h2>
+            <p>
+              <FormattedMessage id={body} />
+            </p>
             <form
               id="email-capture"
               method="post"
@@ -79,7 +95,9 @@ class SubscribeForm extends React.Component {
                   placeholder="you@email.com"
                   onChange={this.handleEmailChange}
                 />
-                <button type="submit">Subscribe</button>
+                <button type="submit">
+                  <FormattedMessage id={buttonText} />
+                </button>
                 {this.state.status === `error` && (
                   <div dangerouslySetInnerHTML={{ __html: this.state.msg }} />
                 )}

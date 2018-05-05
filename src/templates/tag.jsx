@@ -9,6 +9,8 @@ import Sidebar from "../components/Sidebar";
 import TwoColumn from "../components/Layouts/TwoColumn";
 import Box from "../components/Box";
 import SubscribeForm from "../components/SubscribeForm";
+import About from "../components/About";
+import SocialFollow from "../components/SocialFollow";
 
 class TagTemplate extends React.Component {
   render() {
@@ -57,8 +59,10 @@ class TagTemplate extends React.Component {
             <SubscribeForm locale={locale} />
           </Box>
           <Box>
+            <About />
             <PopularPosts popularPosts={popularPosts} />
             <CategoriesList categories={categories} locale={locale} />
+            <SocialFollow />
           </Box>
         </Sidebar>
       </TwoColumn>

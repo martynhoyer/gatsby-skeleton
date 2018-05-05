@@ -4,11 +4,13 @@ import { Helmet } from "react-helmet";
 import PostListing from "../components/PostListing";
 import PaginatedContent from "../components/PaginatedContent";
 import PopularPosts from "../components/PopularPosts";
-import CategoriesList from "../components/CategoriesList/index";
+import CategoriesList from "../components/CategoriesList";
 import TwoColumn from "../components/Layouts/TwoColumn";
 import Sidebar from "../components/Sidebar";
-import SubscribeForm from "../components/SubscribeForm/index";
-import Box from "../components/Box/index";
+import SubscribeForm from "../components/SubscribeForm";
+import Box from "../components/Box";
+import About from "../components/About";
+import SocialFollow from "../components/SocialFollow";
 
 class IndexTemplate extends React.Component {
   handleScriptLoad() {
@@ -61,14 +63,16 @@ class IndexTemplate extends React.Component {
           </PaginatedContent>
           <Sidebar>
             <Box>
-              <SubscribeForm locale={locale} whitepaper />
-            </Box>
-            <Box>
               <SubscribeForm locale={locale} />
             </Box>
             <Box>
+              <SubscribeForm locale={locale} whitepaper />
+            </Box>
+            <Box>
+              <About />
               <PopularPosts popularPosts={popularPosts} locale={locale} />
               <CategoriesList categories={categories} locale={locale} />
+              <SocialFollow />
             </Box>
           </Sidebar>
         </TwoColumn>

@@ -1,12 +1,15 @@
 import React from "react";
 import Link from "gatsby-link";
+import { FormattedMessage } from "react-intl";
 import PostDate from "../PostDate";
 
 const PopularPosts = ({ popularPosts = [] }) => {
   if (!popularPosts.length) return null;
   return (
     <div>
-      <h2>Popular posts</h2>
+      <h2>
+        <FormattedMessage id="sidebar.popularPosts.heading" />
+      </h2>
       <ol>
         {popularPosts.map(({ node: popularPost }) => (
           <li key={popularPost.id}>
