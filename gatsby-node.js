@@ -103,7 +103,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                     }
                     excerpt
                     timeToRead
-                    thumbnail: childImageSharp {
+                    thumbnailArray: childrenImageSharp {
                       sizes(maxWidth: 560) {
                         base64
                         aspectRatio

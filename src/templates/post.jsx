@@ -2,6 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import _ from "lodash";
 import Link from "gatsby-link";
+import Img from "gatsby-image";
 import styled from "styled-components";
 import config from "../../data/SiteConfig";
 import PostDate from "../components/PostDate";
@@ -20,6 +21,10 @@ const SubscribeWrapper = styled.div`
   @media (${media.md}) {
     grid-template-columns: 1fr 1fr;
   }
+`;
+
+const Thumbnail = styled(Img)`
+  margin-top: -${24 + 32}px;
 `;
 
 const Title = styled.h1`
@@ -48,6 +53,11 @@ class PostTemplate extends React.Component {
       author
     } = postNode.frontmatter;
 
+    const thumbnail =
+      postNode.thumbnailArray &&
+      postNode.thumbnailArray.length &&
+      postNode.thumbnailArray[0];
+
     const authorData = AuthorModel.getAuthor(
       this.props.data.authors.edges,
       author,
@@ -67,6 +77,7 @@ class PostTemplate extends React.Component {
         </Helmet>
         <article>
           <header>
+            {thumbnail && <Thumbnail sizes={thumbnail.sizes} />}
             <Title>{title}</Title>
             <Link to={`/${locale}/categories/${_.kebabCase(category)}`}>
               <span style={{ color: categoryData.color }}>{category}</span>
@@ -112,6 +123,18 @@ export const pageQuery = graphql`
       }
       fields {
         slug
+      }
+      thumbnailArray: childrenImageSharp {
+        sizes(maxWidth: 1600) {
+          base64
+          aspectRatio
+          src
+          srcSet
+          srcWebp
+          srcSetWebp
+          sizes
+          originalName
+        }
       }
     }
     # authors

@@ -38,6 +38,15 @@ const Article = styled.article`
   ${doubleWidthFirstPost};
 `;
 
+const Thumbnail = styled(Img)`
+  margin: -32px -24px 0;
+
+  @media (${media.md}) {
+    margin-right: -48px;
+    margin-left: -48px;
+  }
+`
+
 const getPostList = postEdges =>
   postEdges.map(postEdge => ({
     locale: postEdge.node.frontmatter.locale,
@@ -49,7 +58,7 @@ const getPostList = postEdges =>
     category: postEdge.node.frontmatter.category,
     excerpt: postEdge.node.excerpt,
     timeToRead: postEdge.node.timeToRead,
-    thumbnail: postEdge.node.thumbnail
+    thumbnailArray: postEdge.node.thumbnailArray
   }));
 
 class PostListing extends React.Component {
@@ -69,15 +78,16 @@ class PostListing extends React.Component {
             localDate,
             date,
             category,
-            thumbnail = null
+            thumbnailArray = []
           } = post;
           const url = `/${locale}${path}`;
           const mapKey = `${title}+${index}`;
+          const thumbnail = thumbnailArray && thumbnailArray.length && thumbnailArray[0]
 
           return (
             <Article key={mapKey} isIndex={isIndex}>
               <Box>
-                {thumbnail && <Img sizes={thumbnail.sizes} />}
+                {thumbnail && <Thumbnail sizes={thumbnail.sizes} />}
                 <header>
                   <h2>
                     <Link to={url}>{title}</Link>
