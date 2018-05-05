@@ -1,12 +1,8 @@
 import React from "react";
-import Link from "gatsby-link";
-import Img from "gatsby-image";
-import { FormattedMessage } from "react-intl";
 import styled, { css } from "styled-components";
 import media from "../../tokens/breakpoints";
-
-import PostDate from "../PostDate";
-import Box from "../Box";
+import spacing from "../../tokens/dimensions";
+import PostCard from "../PostCard/index";
 
 const homeTemplateNegativeMargin = ({ isIndex }) =>
   isIndex &&
@@ -18,39 +14,11 @@ const PostList = styled.div`
   ${homeTemplateNegativeMargin};
 
   display: grid;
-  grid-gap: 16px 24px;
+  grid-gap: ${spacing.base} ${spacing.md};
 
   @media (${media.sm}) {
     grid-template-columns: 1fr 1fr;
   }
-`;
-
-const doubleWidthFirstPost = ({ isIndex }) =>
-  isIndex &&
-  css`
-    &:first-child {
-      @media (${media.sm}) {
-        grid-column: span 2;
-      }
-    }
-  `;
-
-const Article = styled.article`
-  ${doubleWidthFirstPost};
-`;
-
-const Thumbnail = styled(Img)`
-  margin: -32px -24px 0;
-
-  @media (${media.md}) {
-    margin-right: -48px;
-    margin-left: -48px;
-  }
-`;
-
-const Footer = styled.footer`
-  display: flex;
-  justify-content: flex-end;
 `;
 
 const getPostList = postEdges =>
@@ -75,45 +43,14 @@ class PostListing extends React.Component {
     return (
       <PostList isIndex={isIndex}>
         {/* This is the post loop - each post will be output using this markup */}
-        {postList.map((post, index) => {
-          const {
-            locale,
-            title,
-            path,
-            excerpt,
-            localDate,
-            date,
-            category,
-            thumbnailArray = []
-          } = post;
-          const url = `/${locale}${path}`;
-          const mapKey = `${title}+${index}`;
-          const thumbnail =
-            thumbnailArray && thumbnailArray.length && thumbnailArray[0];
-
-          return (
-            <Article key={mapKey} isIndex={isIndex}>
-              <Box>
-                {thumbnail && <Thumbnail sizes={thumbnail.sizes} />}
-                <header>
-                  <h2>
-                    <Link to={url}>{title}</Link>
-                  </h2>
-                  {category}
-                  <PostDate date={date} localDate={localDate} />
-                </header>
-                <section>
-                  <p>{excerpt}</p>
-                </section>
-                <Footer>
-                  <Link to={url}>
-                    <FormattedMessage id="blogList.readMoreLink" /> &rarr;
-                  </Link>
-                </Footer>
-              </Box>
-            </Article>
-          );
-        })}
+        {postList.map((post, index) => (
+          <PostCard
+            post={post}
+            isIndex={isIndex}
+            isBoxed
+            key={`${post.title}+${index}`}
+          />
+        ))}
       </PostList>
     );
   }

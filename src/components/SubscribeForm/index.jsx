@@ -1,6 +1,49 @@
 import React from "react";
 import addToMailchimp from "gatsby-plugin-mailchimp";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, injectIntl } from "react-intl";
+import styled from "styled-components";
+import { hideVisually } from "polished";
+import spacing, { fontsize } from "../../tokens/dimensions";
+
+const Title = styled.h2`
+  margin: 0;
+  font-size: ${fontsize.base};
+`;
+
+const Label = styled.label`
+  display: block;
+  margin-top: ${spacing.base};
+`;
+
+const LabelText = styled.span`
+  ${hideVisually};
+`;
+
+const Input = styled.input`
+  width: 100%;
+  padding: ${spacing.sm} ${spacing.base};
+  border: 1px solid ${props => props.theme.palette.grisLight};
+  border-radius: ${spacing.xl};
+  line-height: inherit;
+  font-family: inherit;
+  font-size: inherit;
+`;
+
+const SubmitButton = styled.button`
+  display: block;
+  width: 100%;
+  margin-top: ${spacing.sm};
+  padding: ${spacing.sm} ${spacing.base};
+  border: 1px solid ${props => props.theme.palette.rose};
+  border-radius: ${spacing.xl};
+  line-height: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: bold;
+  background-color: ${props => props.theme.palette.rose};
+  color: ${props => props.theme.palette.blanc};
+  cursor: pointer;
+`;
 
 class SubscribeForm extends React.Component {
   constructor() {
@@ -61,6 +104,7 @@ class SubscribeForm extends React.Component {
   };
 
   render() {
+    const { intl, formId = null } = this.props;
     const heading = this.props.whitepaper
       ? "sidebar.mailchimpBoxes.whitepaper.heading"
       : "sidebar.mailchimpBoxes.subscribe.heading";
@@ -70,38 +114,45 @@ class SubscribeForm extends React.Component {
     const buttonText = this.props.whitepaper
       ? "sidebar.mailchimpBoxes.whitepaper.buttonText"
       : "sidebar.mailchimpBoxes.subscribe.buttonText";
+
+    const placeholder = intl.formatMessage({
+      id: "sidebar.mailchimpBoxes.emailAddressPlaceholder"
+    });
     return (
       <div>
         {this.state.status === `success` ? (
-          <div>Thank you! Youʼll receive your first email shortly.</div>
+          <FormattedMessage id="sidebar.mailchimpBoxes.successMessage" />
         ) : (
           <div>
-            <h2>
+            <Title>
               <FormattedMessage id={heading} />
-            </h2>
+            </Title>
             <p>
               <FormattedMessage id={body} />
             </p>
             <form
-              id="email-capture"
+              id={formId}
               method="post"
               noValidate
               onSubmit={this.handleFormSubmit}
             >
-              <div>
-                <input
+              <Label htmlFor="email">
+                <LabelText>
+                  <FormattedMessage id="sidebar.mailchimpBoxes.emailAddressLabel" />
+                </LabelText>
+                <Input
                   type="email"
                   name="email"
-                  placeholder="you@email.com"
+                  placeholder={placeholder}
                   onChange={this.handleEmailChange}
                 />
-                <button type="submit">
-                  <FormattedMessage id={buttonText} />
-                </button>
-                {this.state.status === `error` && (
-                  <div dangerouslySetInnerHTML={{ __html: this.state.msg }} />
-                )}
-              </div>
+              </Label>
+              <SubmitButton type="submit">
+                <FormattedMessage id={buttonText} />
+              </SubmitButton>
+              {this.state.status === `error` && (
+                <div dangerouslySetInnerHTML={{ __html: this.state.msg }} />
+              )}
             </form>
           </div>
         )}
@@ -110,4 +161,4 @@ class SubscribeForm extends React.Component {
   }
 }
 
-export default SubscribeForm;
+export default injectIntl(SubscribeForm);

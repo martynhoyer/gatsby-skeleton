@@ -7,6 +7,7 @@ import PopularPosts from "../components/PopularPosts";
 import CategoriesList from "../components/CategoriesList";
 import TwoColumn from "../components/Layouts/TwoColumn";
 import Sidebar from "../components/Sidebar";
+import SubSidebar from "../components/SubSidebar";
 import SubscribeForm from "../components/SubscribeForm";
 import Box from "../components/Box";
 import About from "../components/About";
@@ -63,16 +64,22 @@ class IndexTemplate extends React.Component {
           </PaginatedContent>
           <Sidebar>
             <Box>
-              <SubscribeForm locale={locale} />
+              <SubscribeForm locale={locale} formId={"form-subscribe"} />
             </Box>
             <Box>
-              <SubscribeForm locale={locale} whitepaper />
+              <SubscribeForm
+                locale={locale}
+                whitepaper
+                formId={"form-subscribe-whitepaper"}
+              />
             </Box>
             <Box>
-              <About />
-              <PopularPosts popularPosts={popularPosts} locale={locale} />
-              <CategoriesList categories={categories} locale={locale} />
-              <SocialFollow />
+              <SubSidebar>
+                <About />
+                <PopularPosts popularPosts={popularPosts} locale={locale} />
+                <CategoriesList categories={categories} locale={locale} />
+                <SocialFollow />
+              </SubSidebar>
             </Box>
           </Sidebar>
         </TwoColumn>

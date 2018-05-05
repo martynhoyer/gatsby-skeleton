@@ -3,9 +3,12 @@ import moment from "moment";
 
 class PostDate extends React.Component {
   render() {
-    const { date, localDate } = this.props;
+    const { date, localDate, className } = this.props;
     return (
-      <time dateTime={moment(new Date(date)).format("YYYY-MM-DD")}>
+      <time
+        className={className}
+        dateTime={moment(new Date(date)).format("YYYY-MM-DD")}
+      >
         {localDate}
       </time>
     );

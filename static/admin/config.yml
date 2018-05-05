@@ -21,6 +21,9 @@ collections:
         name: "sidebar"
         widget: "object"
         fields: 
+          - {label: "Email address label", name: "emailAddressLabel", widget: "string"}
+          - {label: "Email address placeholder", name: "emailAddressPlaceholder", widget: "string"}
+          - {label: "Success message", name: "successMessage", widget: "string"}
           - label: "Mailchimp boxes"
             name: "mailchimpBoxes"
             widget: "object"

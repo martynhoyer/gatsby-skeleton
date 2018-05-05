@@ -2,6 +2,9 @@
   "title": "en",
   "sidebar": {
     "mailchimpBoxes": {
+      "emailAddressLabel": "Email",
+      "emailAddressPlaceholder": "you@email.com",
+      "successMessage": "Thanks for subscribing!",
       "subscribe": {
         "heading": "Subscribe",
         "body": "Receive our newsletter to stay on top of the latest posts.",

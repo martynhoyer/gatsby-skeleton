@@ -1,15 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import media from "../../tokens/breakpoints";
+import { boxPadding } from "../../tokens/dimensions";
 
 const StyledBox = styled.div`
-  padding: 32px 24px;
-  box-shadow: 2.8px 2.8px 5.6px 0 rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  padding: ${boxPadding.xs.y} ${boxPadding.xs.x};
+  box-shadow: ${props => props.theme.shadows.default};
+  background-color: ${props => props.theme.palette.blanc};
 
   @media (${media.md}) {
-    padding-right: 48px;
-    padding-left: 48px;
+    padding-right: ${boxPadding.md.x};
+    padding-left: ${boxPadding.md.x};
   }
 `;
 

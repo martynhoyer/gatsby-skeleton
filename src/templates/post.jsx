@@ -10,18 +10,8 @@ import PostTags from "../components/PostTags";
 import AuthorModel from "../models/author-model";
 import CategoryModel from "../models/category-model";
 import SingleColumn from "../components/Layouts/SingleColumn";
-import Box from "../components/Box/index";
-import SubscribeForm from "../components/SubscribeForm/index";
 import media from "../tokens/breakpoints";
-
-const SubscribeWrapper = styled.div`
-  display: grid;
-  grid-gap: 24px;
-
-  @media (${media.md}) {
-    grid-template-columns: 1fr 1fr;
-  }
-`;
+import PostFooterSubscribe from "../components/PostFooterSubscribe";
 
 const Thumbnail = styled(Img)`
   margin-top: -${24 + 32}px;
@@ -88,14 +78,7 @@ class PostTemplate extends React.Component {
           <section dangerouslySetInnerHTML={{ __html: postNode.html }} />
 
           <footer>
-            <SubscribeWrapper>
-              <Box>
-                <SubscribeForm locale={locale} whitepaper />
-              </Box>
-              <Box>
-                <SubscribeForm locale={locale} />
-              </Box>
-            </SubscribeWrapper>
+            <PostFooterSubscribe />
             <PostTags prefix="Tags" tags={tags} locale={locale} />
             <p>{authorData.name}</p>
           </footer>

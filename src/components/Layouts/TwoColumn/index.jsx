@@ -13,7 +13,7 @@ const StyledTwoColumn = styled.div`
   @media (${media.md}) {
     grid-template-columns: 2fr 1fr;
 
-    max-width: 1024px;
+    max-width: 1400px;
   }
 `;
 
