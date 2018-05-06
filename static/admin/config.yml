@@ -20,6 +20,36 @@ collections:
       - {label: "Display name", name: "displayName", widget: "string"}
       - {label: "Image", name: "image", widget: "image"}
 
+  - name: "french_categories"
+    label: "Categories in French"
+    folder: "content/categories"
+    create: true
+    extension: json
+    format: json
+    slug: "fr-{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - {label: "Category ID", name: "title", widget: "string"}
+      - {label: "Display name", name: "displayName", widget: "string"}
+      - {label: "Locale", name: "locale", widget: "hidden" default: "fr"}
+      - {label: "Colour (hex code)", name: "color", widget: "string"}
+
+  - name: "english_categories"
+    label: "Categories in English"
+    folder: "content/categories"
+    create: true
+    extension: json
+    format: json
+    slug: "en-{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - {label: "Category ID", name: "title", widget: "string"}
+      - {label: "Display name", name: "displayName", widget: "string"}
+      - {label: "Locale", name: "locale", widget: "hidden" default: "en"}
+      - {label: "Colour (hex code)", name: "color", widget: "string"}
+
   - name: "languages"
     label: "Languages"
     folder: "data/translations"
@@ -98,7 +128,7 @@ collections:
     fields:
       - {label: "Language", name: "locale", widget: "select", options: ["fr", "en"], default: "fr"}
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Category", name: "category", widget: "string", default: "fr-uncategorised"}
+      - {label: "Category", name: "category", widget: "relation", collection: "french_categories", searchFields: ["title", "displayName"], valueField: "title", displayFields: ["title", "displayName"]}
       - {label: "Tags", name: "tags", widget: "list", default: ["news"]}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Author", name: "author", widget: "string"}
@@ -115,7 +145,7 @@ collections:
     fields:
       - {label: "Language", name: "locale", widget: "select", options: ["fr", "en"], default: "en"}
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Category", name: "category", widget: "string", default: "en-uncategorised"}
+      - {label: "Category", name: "category", widget: "relation", collection: "english_categories", searchFields: ["title", "displayName"], valueField: "title", displayFields: ["title", "displayName"]}
       - {label: "Tags", name: "tags", widget: "list", default: ["news"]}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Author", name: "author", widget: "string"}

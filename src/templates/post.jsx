@@ -117,14 +117,7 @@ const getPostList = postEdges =>
 class PostTemplate extends React.Component {
   render() {
     const postNode = this.props.data.markdownRemark;
-    const {
-      locale,
-      title,
-      localDate,
-      date,
-      tags,
-      category
-    } = postNode.frontmatter;
+    const { locale, title, localDate, date, tags } = postNode.frontmatter;
 
     let relatedPostsList = [];
 
@@ -147,11 +140,7 @@ class PostTemplate extends React.Component {
 
     const { author } = this.props.data;
 
-    const categoryData = CategoryModel.getCategory(
-      this.props.data.categories.edges,
-      _.kebabCase(category),
-      config.blogAuthorId
-    );
+    const { category } = this.props.data;
 
     return (
       <SingleColumn>
@@ -164,9 +153,9 @@ class PostTemplate extends React.Component {
             <Meta>
               <CategoryLink
                 to={`/${locale}/categories/${_.kebabCase(category)}`}
-                color={categoryData.color}
+                color={category.color}
               >
-                {category}
+                {category.displayName}
               </CategoryLink>
               <StyledPostDate date={date} localDate={localDate} />
             </Meta>
@@ -249,13 +238,13 @@ export const pageQuery = graphql`
         }
       }
     }
-    categories: allCategoriesJson {
-      edges {
-        node {
-          id
-          color
-        }
-      }
+    category: categoriesJson(
+      title: { eq: $category }
+      locale: { eq: $locale }
+    ) {
+      title
+      displayName
+      color
     }
     relatedPosts: allMarkdownRemark(
       limit: 3
