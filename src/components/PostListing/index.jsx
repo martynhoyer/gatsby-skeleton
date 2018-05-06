@@ -43,12 +43,12 @@ class PostListing extends React.Component {
     return (
       <PostList isIndex={isIndex}>
         {/* This is the post loop - each post will be output using this markup */}
-        {postList.map((post, index) => (
+        {postList.map(post => (
           <PostCard
             post={post}
             isIndex={isIndex}
             isBoxed
-            key={`${post.title}+${index}`}
+            key={`${post.path}+${post.locale}`}
           />
         ))}
       </PostList>

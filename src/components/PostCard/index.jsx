@@ -40,12 +40,10 @@ const Thumbnail = styled(Img)`
 `;
 
 const Header = styled.header`
-  padding-top: ${spacing.lg};
+  margin-top: ${spacing.lg};
 `;
 
-const Meta = styled.div`
-  margin-bottom: ${spacing.base};
-`;
+const Meta = styled.div``;
 
 const Category = styled.span`
   margin-right: ${spacing.base};
@@ -56,7 +54,7 @@ const StyledPostDate = styled(PostDate)`
 `;
 
 const Title = styled.h2`
-  margin: 0;
+  margin: ${spacing.md} 0 0;
 `;
 
 const TitleLink = styled(Link)`
@@ -69,11 +67,15 @@ const TitleLink = styled(Link)`
   }
 `;
 
-const Body = styled.section``;
+const Body = styled.section`
+  margin-top: ${spacing.base};
+`;
 
 const Footer = styled.footer`
   display: flex;
   justify-content: flex-end;
+
+  margin-top: ${spacing.md};
 `;
 
 const ReadMoreLink = styled(Link)`
@@ -104,7 +106,7 @@ const CardRoot = ({ post, isBoxed }) => {
   } = post;
   const url = `/${locale}${path}`;
   const thumbnail =
-    thumbnailArray && thumbnailArray.length && thumbnailArray[0];
+    thumbnailArray && thumbnailArray.length > 0 && thumbnailArray[0];
   return (
     <Fragment>
       {thumbnail && <Thumbnail sizes={thumbnail.sizes} isBoxed={isBoxed} />}

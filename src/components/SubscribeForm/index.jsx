@@ -10,9 +10,22 @@ const Title = styled.h2`
   font-size: ${fontsize.base};
 `;
 
+const Form = styled.form`
+  display: flex;
+  flex-wrap: wrap;
+
+  margin-top: ${spacing.sm};
+  margin-right: -${spacing.xs};
+  margin-left: -${spacing.xs};
+`;
+
 const Label = styled.label`
+  flex-grow: 1;
+
   display: block;
-  margin-top: ${spacing.base};
+  margin-top: ${spacing.sm};
+  margin-right: ${spacing.xs};
+  margin-left: ${spacing.xs};
 `;
 
 const LabelText = styled.span`
@@ -30,9 +43,12 @@ const Input = styled.input`
 `;
 
 const SubmitButton = styled.button`
+  flex-grow: 1;
+
   display: block;
-  width: 100%;
   margin-top: ${spacing.sm};
+  margin-right: ${spacing.xs};
+  margin-left: ${spacing.xs};
   padding: ${spacing.sm} ${spacing.base};
   border: 1px solid ${props => props.theme.palette.rose};
   border-radius: ${spacing.xl};
@@ -130,7 +146,7 @@ class SubscribeForm extends React.Component {
             <p>
               <FormattedMessage id={body} />
             </p>
-            <form
+            <Form
               id={formId}
               method="post"
               noValidate
@@ -153,7 +169,7 @@ class SubscribeForm extends React.Component {
               {this.state.status === `error` && (
                 <div dangerouslySetInnerHTML={{ __html: this.state.msg }} />
               )}
-            </form>
+            </Form>
           </div>
         )}
       </div>

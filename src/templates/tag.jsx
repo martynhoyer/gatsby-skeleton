@@ -11,6 +11,7 @@ import Box from "../components/Box";
 import SubscribeForm from "../components/SubscribeForm";
 import About from "../components/About";
 import SocialFollow from "../components/SocialFollow";
+import SubSidebar from "../components/SubSidebar";
 
 class TagTemplate extends React.Component {
   render() {
@@ -53,16 +54,22 @@ class TagTemplate extends React.Component {
         </div>
         <Sidebar>
           <Box>
-            <SubscribeForm locale={locale} whitepaper />
+            <SubscribeForm locale={locale} formId="form-subscribe" />
           </Box>
           <Box>
-            <SubscribeForm locale={locale} />
+            <SubscribeForm
+              locale={locale}
+              whitepaper
+              formId="form-subscribe-whitepaper"
+            />
           </Box>
           <Box>
-            <About />
-            <PopularPosts popularPosts={popularPosts} />
-            <CategoriesList categories={categories} locale={locale} />
-            <SocialFollow />
+            <SubSidebar>
+              <About />
+              <PopularPosts popularPosts={popularPosts} locale={locale} />
+              <CategoriesList categories={categories} locale={locale} />
+              <SocialFollow />
+            </SubSidebar>
           </Box>
         </Sidebar>
       </TwoColumn>

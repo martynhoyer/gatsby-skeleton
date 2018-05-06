@@ -64,13 +64,13 @@ class IndexTemplate extends React.Component {
           </PaginatedContent>
           <Sidebar>
             <Box>
-              <SubscribeForm locale={locale} formId={"form-subscribe"} />
+              <SubscribeForm locale={locale} formId="form-subscribe" />
             </Box>
             <Box>
               <SubscribeForm
                 locale={locale}
                 whitepaper
-                formId={"form-subscribe-whitepaper"}
+                formId="form-subscribe-whitepaper"
               />
             </Box>
             <Box>

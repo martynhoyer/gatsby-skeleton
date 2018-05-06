@@ -68,7 +68,11 @@ collections:
         widget: "object"
         fields: 
           - {label: "Read more link text", name: "readMoreLink", widget: "string"}
-
+      - label: "Post page"
+        name: "post"
+        widget: "object"
+        fields: 
+          - {label: "Related articles heading", name: "relatedArticlesHeading", widget: "string"}
 
   - label: "Blog in French"
     name: "french_posts"

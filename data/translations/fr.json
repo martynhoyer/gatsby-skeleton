@@ -32,5 +32,8 @@
   },
   "blogList": {
     "readMoreLink": "Voir plus"
+  },
+  "post": {
+    "relatedArticlesHeading": "Consulter d'autres articles"
   }
 }
