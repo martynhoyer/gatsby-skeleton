@@ -39,7 +39,7 @@ class IndexTemplate extends React.Component {
       locale
     } = this.props.pathContext;
     const popularPosts = this.props.data.popularPosts.edges;
-    const categories = this.props.data.categories.group;
+    const categories = this.props.data.categories.edges;
 
     return (
       <Fragment>
@@ -60,7 +60,7 @@ class IndexTemplate extends React.Component {
             next={next}
           >
             {/* PostListing component renders all the posts */}
-            <PostListing postEdges={nodes} isIndex />
+            <PostListing postEdges={nodes} categories={categories} isIndex />
           </PaginatedContent>
           <Sidebar>
             <Box>
@@ -113,12 +113,13 @@ export const indexPageQuery = graphql`
         }
       }
     }
-    categories: allMarkdownRemark(
-      filter: { frontmatter: { locale: { eq: $locale } } }
-    ) {
-      group(field: frontmatter___category) {
-        fieldValue
-        totalCount
+    categories: allCategoriesJson(filter: { locale: { eq: $locale } }) {
+      edges {
+        node {
+          title
+          displayName
+          color
+        }
       }
     }
   }

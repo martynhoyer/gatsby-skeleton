@@ -18,6 +18,7 @@ const List = styled.ul`
 
 const ListItem = styled.li`
   margin: 1em 0 0;
+  color: ${props => props.color};
 `;
 
 const StyledLink = styled(Link)`
@@ -33,11 +34,12 @@ const CategoriesList = ({ categories = [], locale }) => {
         <FormattedMessage id="sidebar.categories.heading" />
       </Title>
       <List>
-        {categories.map(({ fieldValue: category, totalCount }, index) => (
-          <ListItem key={`${category}+${index}`}>
-            <StyledLink to={`/${locale}/categories/${_.kebabCase(category)}`}>
-              {category}
-              {/* ({totalCount}) */}
+        {categories.map(({ node: category }) => (
+          <ListItem key={`${category.title}+${locale}`} color={category.color}>
+            <StyledLink
+              to={`/${locale}/categories/${_.kebabCase(category.title)}`}
+            >
+              {category.displayName}
             </StyledLink>
           </ListItem>
         ))}

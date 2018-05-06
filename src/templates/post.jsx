@@ -118,6 +118,7 @@ class PostTemplate extends React.Component {
   render() {
     const postNode = this.props.data.markdownRemark;
     const { locale, title, localDate, date, tags } = postNode.frontmatter;
+    const categories = this.props.data.categories.edges;
 
     let relatedPostsList = [];
 
@@ -177,6 +178,7 @@ class PostTemplate extends React.Component {
                   <RelatedPosts>
                     {relatedPostsList.map(post => (
                       <PostCard
+                        categories={categories}
                         post={post}
                         key={`${post.path}+${post.locale}`}
                       />
@@ -245,6 +247,15 @@ export const pageQuery = graphql`
       title
       displayName
       color
+    }
+    categories: allCategoriesJson(filter: { locale: { eq: $locale } }) {
+      edges {
+        node {
+          title
+          displayName
+          color
+        }
+      }
     }
     relatedPosts: allMarkdownRemark(
       limit: 3

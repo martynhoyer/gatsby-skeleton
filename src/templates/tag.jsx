@@ -1,5 +1,6 @@
 import React from "react";
 import Helmet from "react-helmet";
+import styled from "styled-components";
 import PostListing from "../components/PostListing";
 import config from "../../data/SiteConfig";
 import PaginatedContent from "../components/PaginatedContent";
@@ -12,6 +13,13 @@ import SubscribeForm from "../components/SubscribeForm";
 import About from "../components/About";
 import SocialFollow from "../components/SocialFollow";
 import SubSidebar from "../components/SubSidebar";
+import { fontsize } from "../tokens/dimensions";
+
+const Heading = styled.h1`
+  font-size: ${fontsize.xxl};
+  text-align: center;
+  color: ${props => props.color};
+`;
 
 class TagTemplate extends React.Component {
   render() {
@@ -29,17 +37,29 @@ class TagTemplate extends React.Component {
     } = this.props.pathContext;
     const authorsEdges = this.props.data.authors.edges;
     const popularPosts = this.props.data.popularPosts.edges;
-    const categories = this.props.data.categories.group;
+    const categories = this.props.data.categories.edges;
+
+    let categoryObject;
+    if (category) {
+      const { node: categoryObjectNode } = categories.find(
+        obj => obj.node.title === category
+      );
+      categoryObject = categoryObjectNode;
+    }
     const pageTitle = category
-      ? `Posts categorised with "${category}"`
+      ? `Posts categorised with "${categoryObject.displayName}"`
       : `Posts tagged as "${tag}"`;
+
+    const pageTitleColor = category && categoryObject.color;
     return (
       <TwoColumn>
         <Helmet title={`${pageTitle} | ${config.siteTitle}`}>
           <html lang={locale} />
         </Helmet>
         <div>
-          <h1>{category || tag}</h1>
+          <Heading color={pageTitleColor}>
+            {(categoryObject && categoryObject.displayName) || tag}
+          </Heading>
           <PaginatedContent
             page={page}
             pages={pages}
@@ -49,7 +69,11 @@ class TagTemplate extends React.Component {
             next={next}
           >
             {/* PostListing component renders all the posts */}
-            <PostListing postEdges={nodes} postAuthors={authorsEdges} />
+            <PostListing
+              postEdges={nodes}
+              categories={categories}
+              postAuthors={authorsEdges}
+            />
           </PaginatedContent>
         </div>
         <Sidebar>
@@ -110,12 +134,13 @@ export const tagPageQuery = graphql`
         }
       }
     }
-    categories: allMarkdownRemark(
-      filter: { frontmatter: { locale: { eq: $locale } } }
-    ) {
-      group(field: frontmatter___category) {
-        fieldValue
-        totalCount
+    categories: allCategoriesJson(filter: { locale: { eq: $locale } }) {
+      edges {
+        node {
+          title
+          displayName
+          color
+        }
       }
     }
   }

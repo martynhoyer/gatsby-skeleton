@@ -23,7 +23,9 @@ export const fontsize = {
   base: '1rem',
   md: '1.25rem',
   lg: '1.5rem',
-  xl: '2rem'
+  xl: '2rem',
+  xxl: '3rem',
+  xxxl: '4rem',
 }
 
 export default spacing

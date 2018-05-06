@@ -38,7 +38,7 @@ const getPostList = postEdges =>
 class PostListing extends React.Component {
   render() {
     const postList = getPostList(this.props.postEdges);
-    const { isIndex } = this.props;
+    const { isIndex, categories } = this.props;
 
     return (
       <PostList isIndex={isIndex}>
@@ -47,6 +47,7 @@ class PostListing extends React.Component {
           <PostCard
             post={post}
             isIndex={isIndex}
+            categories={categories}
             isBoxed
             key={`${post.path}+${post.locale}`}
           />
