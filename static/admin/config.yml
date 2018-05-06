@@ -7,6 +7,19 @@ public_folder: /img
 
 collections:
 
+  - name: "authors"
+    label: "Authors"
+    folder: "content/authors"
+    create: true
+    extension: json
+    format: json
+    editor:
+      preview: false
+    fields:
+      - {label: "Author ID", name: "title", widget: "string"}
+      - {label: "Display name", name: "displayName", widget: "string"}
+      - {label: "Image", name: "image", widget: "image"}
+
   - name: "languages"
     label: "Languages"
     folder: "data/translations"
@@ -73,6 +86,7 @@ collections:
         widget: "object"
         fields: 
           - {label: "Tags heading", name: "tagsHeading", widget: "string"}
+          - {label: "Author heading", name: "authorHeading", widget: "string"}
           - {label: "Related articles heading", name: "relatedArticlesHeading", widget: "string"}
 
   - label: "Blog in French"

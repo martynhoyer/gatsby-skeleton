@@ -8,12 +8,12 @@ import { FormattedMessage } from "react-intl";
 import config from "../../data/SiteConfig";
 import PostDate from "../components/PostDate";
 import PostTags from "../components/PostTags";
-import AuthorModel from "../models/author-model";
 import CategoryModel from "../models/category-model";
 import SingleColumn from "../components/Layouts/SingleColumn";
 import media from "../tokens/breakpoints";
 import PostFooterSubscribe from "../components/PostFooterSubscribe";
 import PostCard from "../components/PostCard";
+import PostAuthor from "../components/PostAuthor";
 import spacing, { fontsize } from "../tokens/dimensions";
 
 const Article = styled.article`
@@ -123,8 +123,7 @@ class PostTemplate extends React.Component {
       localDate,
       date,
       tags,
-      category,
-      author
+      category
     } = postNode.frontmatter;
 
     let relatedPostsList = [];
@@ -140,11 +139,13 @@ class PostTemplate extends React.Component {
       postNode.thumbnailArray.length > 0 &&
       postNode.thumbnailArray[0];
 
-    const authorData = AuthorModel.getAuthor(
-      this.props.data.authors.edges,
-      author,
-      config.blogAuthorId
-    );
+    // const authorData = AuthorModel.getAuthor(
+    //   this.props.data.authors.edges,
+    //   author,
+    //   config.blogAuthorId
+    // );
+
+    const { author } = this.props.data;
 
     const categoryData = CategoryModel.getCategory(
       this.props.data.categories.edges,
@@ -177,7 +178,7 @@ class PostTemplate extends React.Component {
           <Footer>
             <PostFooterSubscribe />
             <PostTags tags={tags} locale={locale} />
-            <p>{authorData.name}</p>
+            <PostAuthor author={author} />
             {relatedPostsList &&
               relatedPostsList.length > 0 && (
                 <RelatedPostsWrapper>
@@ -203,7 +204,12 @@ class PostTemplate extends React.Component {
 
 /* eslint no-undef: "off" */
 export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!, $locale: String!, $category: String!) {
+  query BlogPostBySlug(
+    $slug: String!
+    $locale: String!
+    $category: String!
+    $author: String!
+  ) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       timeToRead
@@ -233,12 +239,13 @@ export const pageQuery = graphql`
         }
       }
     }
-    # authors
-    authors: allAuthorsJson {
-      edges {
-        node {
-          id
-          name
+    # author
+    author: authorsJson(title: { eq: $author }) {
+      title
+      displayName
+      image: childImageSharp {
+        resolutions(width: 96, height: 96) {
+          ...GatsbyImageSharpResolutions_withWebp
         }
       }
     }

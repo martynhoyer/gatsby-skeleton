@@ -57,8 +57,8 @@ export const pageQuery = graphql`
     allAuthorsJson(filter: { id: { eq: $author } }) {
       edges {
         node {
-          id
-          name
+          title
+          displayName
         }
       }
     }

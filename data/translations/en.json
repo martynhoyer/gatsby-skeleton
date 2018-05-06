@@ -35,6 +35,7 @@
   },
   "post": {
     "tagsHeading": "Tags",
+    "authorHeading": "Author",
     "relatedArticlesHeading": "See other articles"
   }
 }

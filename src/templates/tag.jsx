@@ -83,8 +83,8 @@ export const tagPageQuery = graphql`
     authors: allAuthorsJson {
       edges {
         node {
-          id
-          name
+          title
+          displayName
         }
       }
     }

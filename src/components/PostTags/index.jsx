@@ -12,7 +12,7 @@ const Container = styled.div`
 
 const Heading = styled.h2`
   margin: 0 0 ${spacing.base};
-  font-size: ${fontsize.base};
+  font-size: ${fontsize.md};
 `;
 
 const StyledLink = styled(Link)`

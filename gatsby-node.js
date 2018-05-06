@@ -19,6 +19,34 @@ exports.onCreateNode = ({
     createParentChildLink
   } = boundActionCreators;
   let slug;
+  if (node.internal.type === "AuthorsJson") {
+    // Attach image's ImageSharp node by public path if necessary
+    if (node.image && typeof node.image === "string") {
+      // Find absolute path of linked path
+      const pathToFile = path
+        .join(__dirname, "static", node.image)
+        .split(path.sep)
+        .join("/");
+
+      // Find ID of File node
+      const fileImageNode = getNodes().find(n => n.absolutePath === pathToFile);
+
+      if (fileImageNode != null) {
+        // Find ImageSharp node corresponding to the File node
+        const imageSharpNodeId = fileImageNode.children.find(n =>
+          n.endsWith(">> ImageSharp")
+        );
+        const imageSharpNode = getNodes().find(n => n.id === imageSharpNodeId);
+
+        // Add ImageSharp node as child
+        createParentChildLink({
+          parent: node,
+          child: imageSharpNode
+        });
+      }
+    }
+  }
+
   if (node.internal.type === "MarkdownRemark") {
     const fileNode = getNode(node.parent);
     const parsedFilePath = path.parse(fileNode.relativePath);
@@ -256,7 +284,8 @@ exports.createPages = ({
               context: {
                 slug: `${node.fields.slug}`,
                 locale: node.frontmatter.locale,
-                category: node.frontmatter.category
+                category: node.frontmatter.category,
+                author: node.frontmatter.author
               } // additional data can be passed via context
             });
           });
