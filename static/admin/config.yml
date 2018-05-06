@@ -72,6 +72,7 @@ collections:
         name: "post"
         widget: "object"
         fields: 
+          - {label: "Tags heading", name: "tagsHeading", widget: "string"}
           - {label: "Related articles heading", name: "relatedArticlesHeading", widget: "string"}
 
   - label: "Blog in French"

@@ -1,23 +1,43 @@
 import React, { Component } from "react";
 import _ from "lodash";
 import Link from "gatsby-link";
+import { FormattedMessage } from "react-intl";
+import styled from "styled-components";
+import spacing, { fontsize } from "../../tokens/dimensions";
+
+const Container = styled.div`
+  margin-top: ${spacing.xxl};
+  text-align: center;
+`;
+
+const Heading = styled.h2`
+  margin: 0 0 ${spacing.base};
+  font-size: ${fontsize.base};
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: ${props => props.theme.palette.grisLight};
+`;
 
 class PostTags extends Component {
   render() {
-    const { prefix, tags, locale } = this.props;
+    const { tags, locale } = this.props;
     if (tags) {
       return (
-        <div>
-          <h4>{prefix}</h4>
+        <Container>
+          <Heading>
+            <FormattedMessage id="post.tagsHeading" />
+          </Heading>
           {tags.map((tag, index, arr) => (
             <span key={tag}>
-              <Link key={tag} to={`/${locale}/tags/${_.kebabCase(tag)}`}>
+              <StyledLink key={tag} to={`/${locale}/tags/${_.kebabCase(tag)}`}>
                 {tag}
-              </Link>
+              </StyledLink>
               {index !== arr.length - 1 ? ", " : ""}
             </span>
           ))}
-        </div>
+        </Container>
       );
     }
     return null;
