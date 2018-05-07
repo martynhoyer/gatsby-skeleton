@@ -27,13 +27,6 @@ module.exports = {
     {
       resolve: "gatsby-source-filesystem",
       options: {
-        name: "posts",
-        path: `${__dirname}/content/${config.blogPostDir}`
-      }
-    },
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
         name: "authors",
         path: `${__dirname}/content/${config.blogAuthorDir}`
       }
@@ -52,12 +45,18 @@ module.exports = {
         path: `${__dirname}/static/img`
       }
     },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "posts",
+        path: `${__dirname}/content/${config.blogPostDir}`
+      }
+    },
     "gatsby-transformer-json",
     {
       resolve: "gatsby-transformer-remark",
       options: {
-        plugins: [
-          {
+        plugins: [{
             resolve: "gatsby-remark-images",
             options: {
               maxWidth: 710
@@ -73,8 +72,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-mailchimp",
       options: {
-        endpoint:
-          "https://corseconcierge.us18.list-manage.com/subscribe/post?u=a4f682a765cb09bfe2f975137&amp;id=1e22875e0a"
+        endpoint: "https://corseconcierge.us18.list-manage.com/subscribe/post?u=a4f682a765cb09bfe2f975137&amp;id=1e22875e0a"
       }
     },
     "gatsby-plugin-sharp",

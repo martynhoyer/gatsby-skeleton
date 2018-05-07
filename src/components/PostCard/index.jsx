@@ -94,7 +94,7 @@ const Arrow = styled.span`
   color: ${props => props.theme.palette.rose};
 `;
 
-const CardRoot = ({ post, isBoxed, categories }) => {
+const CardRoot = ({ post, isBoxed }) => {
   const {
     locale,
     title,
@@ -102,23 +102,21 @@ const CardRoot = ({ post, isBoxed, categories }) => {
     excerpt,
     localDate,
     date,
-    category,
-    thumbnailArray = []
+    thumbnailArray = [],
+    categoriesArray = []
   } = post;
   const url = `/${locale}${path}`;
   const thumbnail =
     thumbnailArray && thumbnailArray.length > 0 && thumbnailArray[0];
-  const { node: categoryObject } = categories.find(
-    obj => obj.node.title === category
-  );
+  const category =
+    categoriesArray && categoriesArray.length > 0 && categoriesArray[0];
+
   return (
     <Fragment>
       {thumbnail && <Thumbnail sizes={thumbnail.sizes} isBoxed={isBoxed} />}
       <Header>
         <Meta>
-          <Category color={categoryObject.color}>
-            {categoryObject.displayName}
-          </Category>
+          <Category color={category.color}>{category.displayName}</Category>
           <StyledPostDate date={date} localDate={localDate} />
         </Meta>
         <Title>
@@ -137,16 +135,16 @@ const CardRoot = ({ post, isBoxed, categories }) => {
   );
 };
 
-const PostCard = ({ post, isIndex, isBoxed = false, categories }) =>
+const PostCard = ({ post, isIndex, isBoxed = false }) =>
   isBoxed ? (
     <Article isIndex={isIndex}>
       <Box>
-        <CardRoot post={post} categories={categories} isBoxed />
+        <CardRoot post={post} isBoxed />
       </Box>
     </Article>
   ) : (
     <Article isIndex={isIndex}>
-      <CardRoot post={post} categories={categories} />
+      <CardRoot post={post} />
     </Article>
   );
 

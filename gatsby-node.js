@@ -98,8 +98,35 @@ exports.onCreateNode = ({
         });
       }
     }
+
+    // Attach category's JSON node by public path if necessary
+    if (node.frontmatter.category && typeof node.frontmatter.category === "string") {
+
+      const pathToFile = path
+        .join(__dirname, "content/categories", `${node.frontmatter.locale}-${node.frontmatter.category}.json`)
+        .split(path.sep)
+        .join("/");
+
+      // Find ID of File node
+      const jsonCategoryNode = getNodes()
+        .find(n => n.absolutePath === pathToFile);
+
+      if (jsonCategoryNode != null) {
+        // Find JSON node corresponding to the File node
+        const jsonCategoryNodeId = jsonCategoryNode.children.find(n =>
+          n.endsWith(">> JSON")
+        );
+        const jsonCategoryItem = getNodes().find(n => n.id === jsonCategoryNodeId);
+
+        // Add JSON node as child
+        createParentChildLink({
+          parent: node,
+          child: jsonCategoryItem
+        });
+      }
+    }
   }
-};
+}
 
 exports.createPages = ({
   graphql,
@@ -160,6 +187,11 @@ exports.createPages = ({
                         sizes
                         originalName
                       }
+                    }
+                    categoriesArray: childrenCategoriesJson {
+                      title
+                      displayName
+                      color
                     }
                   }
                 }

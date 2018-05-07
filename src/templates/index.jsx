@@ -60,7 +60,7 @@ class IndexTemplate extends React.Component {
             next={next}
           >
             {/* PostListing component renders all the posts */}
-            <PostListing postEdges={nodes} categories={categories} isIndex />
+            <PostListing postEdges={nodes} isIndex />
           </PaginatedContent>
           <Sidebar>
             <Box>

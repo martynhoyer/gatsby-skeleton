@@ -32,13 +32,14 @@ const getPostList = postEdges =>
     category: postEdge.node.frontmatter.category,
     excerpt: postEdge.node.excerpt,
     timeToRead: postEdge.node.timeToRead,
-    thumbnailArray: postEdge.node.thumbnailArray
+    thumbnailArray: postEdge.node.thumbnailArray,
+    categoriesArray: postEdge.node.categoriesArray
   }));
 
 class PostListing extends React.Component {
   render() {
     const postList = getPostList(this.props.postEdges);
-    const { isIndex, categories } = this.props;
+    const { isIndex } = this.props;
 
     return (
       <PostList isIndex={isIndex}>
@@ -47,7 +48,6 @@ class PostListing extends React.Component {
           <PostCard
             post={post}
             isIndex={isIndex}
-            categories={categories}
             isBoxed
             key={`${post.path}+${post.locale}`}
           />

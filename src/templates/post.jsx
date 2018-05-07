@@ -107,17 +107,16 @@ const getPostList = postEdges =>
     title: postEdge.node.frontmatter.title,
     date: postEdge.node.frontmatter.date,
     localDate: postEdge.node.frontmatter.localDate,
-    category: postEdge.node.frontmatter.category,
     excerpt: postEdge.node.excerpt,
     timeToRead: postEdge.node.timeToRead,
-    thumbnailArray: postEdge.node.thumbnailArray
+    thumbnailArray: postEdge.node.thumbnailArray,
+    categoriesArray: postEdge.node.categoriesArray
   }));
 
 class PostTemplate extends React.Component {
   render() {
     const postNode = this.props.data.markdownRemark;
     const { locale, title, localDate, date, tags } = postNode.frontmatter;
-    const categories = this.props.data.categories.edges;
 
     let relatedPostsList = [];
 
@@ -132,6 +131,11 @@ class PostTemplate extends React.Component {
       postNode.thumbnailArray.length > 0 &&
       postNode.thumbnailArray[0];
 
+    const category =
+      postNode.categoriesArray &&
+      postNode.categoriesArray.length > 0 &&
+      postNode.categoriesArray[0];
+
     // const authorData = AuthorModel.getAuthor(
     //   this.props.data.authors.edges,
     //   author,
@@ -139,8 +143,6 @@ class PostTemplate extends React.Component {
     // );
 
     const { author } = this.props.data;
-
-    const { category } = this.props.data;
 
     return (
       <SingleColumn>
@@ -177,7 +179,6 @@ class PostTemplate extends React.Component {
                   <RelatedPosts>
                     {relatedPostsList.map(post => (
                       <PostCard
-                        categories={categories}
                         post={post}
                         key={`${post.path}+${post.locale}`}
                       />
@@ -218,15 +219,13 @@ export const pageQuery = graphql`
       }
       thumbnailArray: childrenImageSharp {
         sizes(maxWidth: 1600) {
-          base64
-          aspectRatio
-          src
-          srcSet
-          srcWebp
-          srcSetWebp
-          sizes
-          originalName
+          ...GatsbyImageSharpSizes_withWebp
         }
+      }
+      categoriesArray: childrenCategoriesJson {
+        title
+        displayName
+        color
       }
     }
     # author
@@ -236,23 +235,6 @@ export const pageQuery = graphql`
       image: childImageSharp {
         resolutions(width: 96, height: 96) {
           ...GatsbyImageSharpResolutions_withWebp
-        }
-      }
-    }
-    category: categoriesJson(
-      title: { eq: $category }
-      locale: { eq: $locale }
-    ) {
-      title
-      displayName
-      color
-    }
-    categories: allCategoriesJson(filter: { locale: { eq: $locale } }) {
-      edges {
-        node {
-          title
-          displayName
-          color
         }
       }
     }
@@ -280,15 +262,12 @@ export const pageQuery = graphql`
           excerpt
           thumbnailArray: childrenImageSharp {
             sizes(maxWidth: 560) {
-              base64
-              aspectRatio
-              src
-              srcSet
-              srcWebp
-              srcSetWebp
-              sizes
-              originalName
+              ...GatsbyImageSharpSizes_withWebp
             }
+          }
+          categoriesArray: childrenCategoriesJson {
+            displayName
+            color
           }
         }
       }

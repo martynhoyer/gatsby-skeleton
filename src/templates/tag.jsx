@@ -25,7 +25,6 @@ class TagTemplate extends React.Component {
   render() {
     const {
       tag,
-      category,
       nodes,
       page,
       pages,
@@ -38,19 +37,13 @@ class TagTemplate extends React.Component {
     const authorsEdges = this.props.data.authors.edges;
     const popularPosts = this.props.data.popularPosts.edges;
     const categories = this.props.data.categories.edges;
+    const { category } = this.props.data;
 
-    let categoryObject;
-    if (category) {
-      const { node: categoryObjectNode } = categories.find(
-        obj => obj.node.title === category
-      );
-      categoryObject = categoryObjectNode;
-    }
     const pageTitle = category
-      ? `Posts categorised with "${categoryObject.displayName}"`
+      ? `Posts categorised with "${category.displayName}"`
       : `Posts tagged as "${tag}"`;
 
-    const pageTitleColor = category && categoryObject.color;
+    const pageTitleColor = category && category.color;
     return (
       <TwoColumn>
         <Helmet title={`${pageTitle} | ${config.siteTitle}`}>
@@ -58,7 +51,7 @@ class TagTemplate extends React.Component {
         </Helmet>
         <div>
           <Heading color={pageTitleColor}>
-            {(categoryObject && categoryObject.displayName) || tag}
+            {(category && category.displayName) || tag}
           </Heading>
           <PaginatedContent
             page={page}
@@ -69,11 +62,7 @@ class TagTemplate extends React.Component {
             next={next}
           >
             {/* PostListing component renders all the posts */}
-            <PostListing
-              postEdges={nodes}
-              categories={categories}
-              postAuthors={authorsEdges}
-            />
+            <PostListing postEdges={nodes} postAuthors={authorsEdges} />
           </PaginatedContent>
         </div>
         <Sidebar>
@@ -103,7 +92,7 @@ class TagTemplate extends React.Component {
 
 /* eslint no-undef: "off" */
 export const tagPageQuery = graphql`
-  query TagPage($locale: String!) {
+  query TagPage($locale: String!, $category: String) {
     authors: allAuthorsJson {
       edges {
         node {
@@ -133,6 +122,13 @@ export const tagPageQuery = graphql`
           }
         }
       }
+    }
+    category: categoriesJson(
+      title: { eq: $category }
+      locale: { eq: $locale }
+    ) {
+      displayName
+      color
     }
     categories: allCategoriesJson(filter: { locale: { eq: $locale } }) {
       edges {
