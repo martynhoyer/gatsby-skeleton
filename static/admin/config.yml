@@ -32,7 +32,7 @@ collections:
     fields:
       - {label: "Category ID", name: "title", widget: "string"}
       - {label: "Display name", name: "displayName", widget: "string"}
-      - {label: "Locale", name: "locale", widget: "hidden" default: "fr"}
+      - {label: "Locale", name: "locale", widget: "hidden", default: "fr"}
       - {label: "Colour (hex code)", name: "color", widget: "string"}
 
   - name: "english_categories"
@@ -47,7 +47,7 @@ collections:
     fields:
       - {label: "Category ID", name: "title", widget: "string"}
       - {label: "Display name", name: "displayName", widget: "string"}
-      - {label: "Locale", name: "locale", widget: "hidden" default: "en"}
+      - {label: "Locale", name: "locale", widget: "hidden", default: "en"}
       - {label: "Colour (hex code)", name: "color", widget: "string"}
 
   - name: "languages"

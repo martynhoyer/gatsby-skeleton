@@ -8,7 +8,6 @@ import { FormattedMessage } from "react-intl";
 import config from "../../data/SiteConfig";
 import PostDate from "../components/PostDate";
 import PostTags from "../components/PostTags";
-import CategoryModel from "../models/category-model";
 import SingleColumn from "../components/Layouts/SingleColumn";
 import media from "../tokens/breakpoints";
 import PostFooterSubscribe from "../components/PostFooterSubscribe";
