@@ -23,6 +23,7 @@ collections:
   - name: "french_categories"
     label: "Categories in French"
     folder: "content/categories"
+    filter: {field: "locale", value: "fr"}
     create: true
     extension: json
     format: json
@@ -38,6 +39,7 @@ collections:
   - name: "english_categories"
     label: "Categories in English"
     folder: "content/categories"
+    filter: {field: "locale", value: "en"}
     create: true
     extension: json
     format: json
