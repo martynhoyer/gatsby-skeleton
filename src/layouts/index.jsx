@@ -9,8 +9,6 @@ import "intl/locale-data/jsonp/en";
 import fr from "react-intl/locale-data/fr";
 import "intl/locale-data/jsonp/fr";
 
-import Cookies from "universal-cookie";
-import Link from "gatsby-link";
 import { ThemeProvider } from "styled-components";
 import config from "../../data/SiteConfig";
 import "./global.styles.css";
@@ -19,8 +17,6 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 addLocaleData([...en, ...fr]);
-
-const cookies = new Cookies();
 
 export default class MainLayout extends React.Component {
   getLocalTitle() {
@@ -55,12 +51,6 @@ export default class MainLayout extends React.Component {
     }
     return title;
   }
-
-  handleLocaleClick = e => {
-    cookies.set("lang", e.target.pathname.replace(/^\/|\/$/g, ""), {
-      path: "/"
-    });
-  };
 
   render() {
     const { children, location } = this.props;
@@ -99,19 +89,9 @@ export default class MainLayout extends React.Component {
               <title>{`${config.siteTitle} | ${this.getLocalTitle()}`}</title>
               <meta name="description" content={config.siteDescription} />
             </Helmet>
-            <Header>
-              {config.locales.map(locale => (
-                <Link
-                  key={locale}
-                  to={`/${locale}/`}
-                  onClick={this.handleLocaleClick}
-                >
-                  {locale}
-                </Link>
-              ))}
-            </Header>
+            <Header />
             {children()}
-            <Footer>Footer</Footer>
+            <Footer />
           </div>
         </ThemeProvider>
       </IntlProvider>

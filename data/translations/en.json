@@ -1,5 +1,22 @@
 {
   "title": "en",
+  "global": {
+    "languagesLabel": "Language:"
+  },
+  "navigation": {
+    "home": {
+      "linkText": "Home",
+      "linkUrl": "/"
+    },
+    "offers": {
+      "linkText": "Business & Employee Offer",
+      "linkUrl": "/"
+    },
+    "profile": {
+      "linkText": "Profile",
+      "linkUrl": "/"
+    }
+  },
   "sidebar": {
     "mailchimpBoxes": {
       "emailAddressLabel": "Email",

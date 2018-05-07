@@ -11,8 +11,8 @@ module.exports = {
   defaultLangKey: "fr",
   // Copyright string for the footer of the website and RSS feed.
   copyright: {
-    label: "Martyn Hoyer" // Label used before the year
-    // year: "2018" // optional, set specific copyright year or range of years, defaults to current year
+    label: "Gymlib.com", // Label used after the year
+    startYear: "2014" // optional, set specific copyright year or range of years, defaults to current year
     // url: "https://www.gatsbyjs.org/" // optional, set link address of copyright, defaults to site root
   },
   themeColor: "#c62828", // Used for setting manifest and progress theme colors.

@@ -12,9 +12,9 @@ const StyledTwoColumn = styled.div`
   padding: ${spacing.md} ${spacing.md} ${spacing.xxl};
 
   @media (${media.md}) {
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 5fr 2fr;
 
-    max-width: 1400px;
+    max-width: 1200px;
   }
 `;
 
