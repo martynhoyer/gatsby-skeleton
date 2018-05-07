@@ -153,7 +153,7 @@ class PostTemplate extends React.Component {
             {thumbnail && <Thumbnail sizes={thumbnail.sizes} />}
             <Meta>
               <CategoryLink
-                to={`/${locale}/categories/${_.kebabCase(category)}`}
+                to={`/${locale}/categories/${_.kebabCase(category.title)}`}
                 color={category.color}
               >
                 {category.displayName}
