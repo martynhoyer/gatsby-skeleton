@@ -114,20 +114,20 @@ class SubscribeForm extends React.Component {
       // setState callback (subscribe email to MC)
       this.postEmailToMailchimp(this.state.email, {
         LANG: this.props.locale,
-        WHITEPAPER: this.props.whitepaper
+        WHITEPAPER: this.props.whitepaper || false
       })
     );
   };
 
   render() {
-    const { intl, formId = null } = this.props;
-    const heading = this.props.whitepaper
+    const { intl, formId = null, whitepaper = false } = this.props;
+    const heading = whitepaper
       ? "sidebar.mailchimpBoxes.whitepaper.heading"
       : "sidebar.mailchimpBoxes.subscribe.heading";
-    const body = this.props.whitepaper
+    const body = whitepaper
       ? "sidebar.mailchimpBoxes.whitepaper.body"
       : "sidebar.mailchimpBoxes.subscribe.body";
-    const buttonText = this.props.whitepaper
+    const buttonText = whitepaper
       ? "sidebar.mailchimpBoxes.whitepaper.buttonText"
       : "sidebar.mailchimpBoxes.subscribe.buttonText";
 
