@@ -43,7 +43,10 @@ const Header = styled.header`
   margin-top: ${spacing.lg};
 `;
 
-const Meta = styled.div``;
+const Meta = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
 
 const Category = styled.span`
   margin-right: ${spacing.base};
@@ -56,6 +59,7 @@ const CategoryLink = styled(Link)`
 `
 
 const StyledPostDate = styled(PostDate)`
+  white-space: nowrap;
   color: ${props => props.theme.palette.grisLight};
 `;
 
