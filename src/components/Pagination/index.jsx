@@ -28,6 +28,7 @@ class Pagination extends React.Component {
     const { page, pages, prev, next } = this.props;
 
     const getUrlRoot = string => {
+      if (string === undefined) return null;
       const arrayFromString = string.split("/");
       arrayFromString.pop();
       const urlRoot = arrayFromString.join("/");
