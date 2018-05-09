@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import Script from "react-load-script";
 import { Helmet } from "react-helmet";
 import PostListing from "../components/PostListing";
 import PaginatedContent from "../components/PaginatedContent";
@@ -14,19 +13,6 @@ import About from "../components/About";
 import SocialFollow from "../components/SocialFollow";
 
 class IndexTemplate extends React.Component {
-  handleScriptLoad() {
-    if (typeof window !== `undefined` && window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
-          });
-        }
-      });
-    }
-    window.netlifyIdentity.init();
-  }
-
   render() {
     const {
       nodes,
@@ -46,10 +32,6 @@ class IndexTemplate extends React.Component {
         <Helmet>
           <html lang={locale} />
         </Helmet>
-        <Script
-          url="https://identity.netlify.com/v1/netlify-identity-widget.js"
-          onLoad={() => this.handleScriptLoad()}
-        />
         <TwoColumn>
           <PaginatedContent
             page={page}

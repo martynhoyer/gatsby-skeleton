@@ -76,11 +76,12 @@ module.exports = {
       }
     },
     "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
     "gatsby-plugin-catch-links",
     "gatsby-plugin-sitemap",
     "gatsby-plugin-offline",
     "gatsby-plugin-styled-components",
     "gatsby-plugin-netlify-cms",
-    "gatsby-transformer-sharp"
+    "gatsby-plugin-netlify",
   ]
 };
