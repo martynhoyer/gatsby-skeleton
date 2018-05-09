@@ -63,17 +63,17 @@ class IndexTemplate extends React.Component {
             <PostListing postEdges={nodes} isIndex />
           </PaginatedContent>
           <Sidebar>
-            <Box>
+            <Box compact>
               <SubscribeForm locale={locale} formId="form-subscribe" />
             </Box>
-            <Box>
+            <Box compact>
               <SubscribeForm
                 locale={locale}
                 whitepaper
                 formId="form-subscribe-whitepaper"
               />
             </Box>
-            <Box>
+            <Box compact>
               <SubSidebar>
                 <About />
                 <PopularPosts popularPosts={popularPosts} locale={locale} />

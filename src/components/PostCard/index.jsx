@@ -27,11 +27,11 @@ const Article = styled.article`
 const thumbnailNeedsNegativeMargin = ({ isBoxed }) =>
   isBoxed &&
   css`
-    margin: -${boxPadding.xs.y} -${boxPadding.xs.x} 0;
+    margin: -${boxPadding.default.xs.y} -${boxPadding.default.xs.x} 0;
 
     @media (${media.md}) {
-      margin-right: -${boxPadding.md.x};
-      margin-left: -${boxPadding.md.x};
+      margin-right: -${boxPadding.default.md.x};
+      margin-left: -${boxPadding.default.md.x};
     }
   `;
 
@@ -56,7 +56,7 @@ const Category = styled.span`
 const CategoryLink = styled(Link)`
   text-decoration: none;
   color: inherit;
-`
+`;
 
 const StyledPostDate = styled(PostDate)`
   white-space: nowrap;
@@ -122,10 +122,18 @@ const CardRoot = ({ post, isBoxed }) => {
 
   return (
     <Fragment>
-      {thumbnail && <Link to={url}><Thumbnail sizes={thumbnail.sizes} isBoxed={isBoxed} /></Link>}
+      {thumbnail && (
+        <Link to={url}>
+          <Thumbnail sizes={thumbnail.sizes} isBoxed={isBoxed} />
+        </Link>
+      )}
       <Header>
         <Meta>
-          <Category color={category.color}><CategoryLink to={`/${locale}/categories/${category.title}`}>{category.displayName}</CategoryLink></Category>
+          <Category color={category.color}>
+            <CategoryLink to={`/${locale}/categories/${category.title}`}>
+              {category.displayName}
+            </CategoryLink>
+          </Category>
           <StyledPostDate date={date} localDate={localDate} />
         </Meta>
         <Title>

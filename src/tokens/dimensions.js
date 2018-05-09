@@ -9,12 +9,23 @@ const spacing = {
 }
 
 export const boxPadding = {
-  xs: {
-    x: spacing.lg,
-    y: spacing.md
+  compact: {
+    xs: {
+      x: spacing.md,
+      y: spacing.md
+    },
+    md: {
+      x: spacing.md
+    }
   },
-  md: {
-    x: spacing.xl
+  default: {
+    xs: {
+      x: spacing.lg,
+      y: spacing.md
+    },
+    md: {
+      x: spacing.xl
+    }
   }
 }
 
