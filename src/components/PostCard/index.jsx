@@ -50,6 +50,11 @@ const Category = styled.span`
   color: ${props => props.color};
 `;
 
+const CategoryLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+`
+
 const StyledPostDate = styled(PostDate)`
   color: ${props => props.theme.palette.grisLight};
 `;
@@ -113,10 +118,10 @@ const CardRoot = ({ post, isBoxed }) => {
 
   return (
     <Fragment>
-      {thumbnail && <Thumbnail sizes={thumbnail.sizes} isBoxed={isBoxed} />}
+      {thumbnail && <Link to={url}><Thumbnail sizes={thumbnail.sizes} isBoxed={isBoxed} /></Link>}
       <Header>
         <Meta>
-          <Category color={category.color}>{category.displayName}</Category>
+          <Category color={category.color}><CategoryLink to={`/${locale}/categories/${category.title}`}>{category.displayName}</CategoryLink></Category>
           <StyledPostDate date={date} localDate={localDate} />
         </Meta>
         <Title>
