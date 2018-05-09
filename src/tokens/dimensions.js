@@ -1,12 +1,12 @@
 const spacing = {
-  xs: '0.25rem',
-  sm: '0.5rem',
-  base: '1rem',
-  md: '1.5rem',
-  lg: '2rem',
-  xl: '3rem',
-  xxl: '4rem',
-}
+  xs: "0.25rem",
+  sm: "0.5rem",
+  base: "1rem",
+  md: "1.5rem",
+  lg: "2rem",
+  xl: "3rem",
+  xxl: "4rem"
+};
 
 export const boxPadding = {
   compact: {
@@ -27,16 +27,16 @@ export const boxPadding = {
       x: spacing.xl
     }
   }
-}
+};
 
 export const fontsize = {
-  sm: '0.875rem',
-  base: '1rem',
-  md: '1.25rem',
-  lg: '1.5rem',
-  xl: '2rem',
-  xxl: '3rem',
-  xxxl: '4rem',
-}
+  sm: "0.875rem",
+  base: "1rem",
+  md: "1.25rem",
+  lg: "1.5rem",
+  xl: "2rem",
+  xxl: "3rem",
+  xxxl: "4rem"
+};
 
-export default spacing
+export default spacing;

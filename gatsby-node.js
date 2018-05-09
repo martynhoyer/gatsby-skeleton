@@ -8,16 +8,8 @@ const {
   prefixPathFormatter
 } = require("gatsby-pagination");
 
-exports.onCreateNode = ({
-  node,
-  boundActionCreators,
-  getNode,
-  getNodes
-}) => {
-  const {
-    createNodeField,
-    createParentChildLink
-  } = boundActionCreators;
+exports.onCreateNode = ({ node, boundActionCreators, getNode, getNodes }) => {
+  const { createNodeField, createParentChildLink } = boundActionCreators;
   let slug;
   if (node.internal.type === "AuthorsJson") {
     // Attach image's ImageSharp node by public path if necessary
@@ -100,23 +92,32 @@ exports.onCreateNode = ({
     }
 
     // Attach category's JSON node by public path if necessary
-    if (node.frontmatter.category && typeof node.frontmatter.category === "string") {
-
+    if (
+      node.frontmatter.category &&
+      typeof node.frontmatter.category === "string"
+    ) {
       const pathToFile = path
-        .join(__dirname, "content/categories", `${node.frontmatter.locale}-${node.frontmatter.category}.json`)
+        .join(
+          __dirname,
+          "content/categories",
+          `${node.frontmatter.locale}-${node.frontmatter.category}.json`
+        )
         .split(path.sep)
         .join("/");
 
       // Find ID of File node
-      const jsonCategoryNode = getNodes()
-        .find(n => n.absolutePath === pathToFile);
+      const jsonCategoryNode = getNodes().find(
+        n => n.absolutePath === pathToFile
+      );
 
       if (jsonCategoryNode != null) {
         // Find JSON node corresponding to the File node
         const jsonCategoryNodeId = jsonCategoryNode.children.find(n =>
           n.endsWith(">> JSON")
         );
-        const jsonCategoryItem = getNodes().find(n => n.id === jsonCategoryNodeId);
+        const jsonCategoryItem = getNodes().find(
+          n => n.id === jsonCategoryNodeId
+        );
 
         // Add JSON node as child
         createParentChildLink({
@@ -126,15 +127,10 @@ exports.onCreateNode = ({
       }
     }
   }
-}
+};
 
-exports.createPages = ({
-  graphql,
-  boundActionCreators
-}) => {
-  const {
-    createPage
-  } = boundActionCreators;
+exports.createPages = ({ graphql, boundActionCreators }) => {
+  const { createPage } = boundActionCreators;
 
   const indexPage = path.resolve("src/templates/index.jsx");
   const postPage = path.resolve("src/templates/post.jsx");
@@ -143,16 +139,18 @@ exports.createPages = ({
   // const authorPage = path.resolve("src/templates/author.jsx");
   siteConfig.locales.forEach(
     code =>
-    new Promise((resolve, reject) => {
-      if (!fs.existsSync(path.resolve(`content/${siteConfig.blogAuthorDir}/`))) {
-        reject(
-          "The 'authors' folder is missing within the 'blogAuthorDir' folder."
-        );
-      }
+      new Promise((resolve, reject) => {
+        if (
+          !fs.existsSync(path.resolve(`content/${siteConfig.blogAuthorDir}/`))
+        ) {
+          reject(
+            "The 'authors' folder is missing within the 'blogAuthorDir' folder."
+          );
+        }
 
-      resolve(
-        graphql(
-          `
+        resolve(
+          graphql(
+            `
             {
               allMarkdownRemark(
                 limit: 1000
@@ -198,139 +196,130 @@ exports.createPages = ({
               }
             }
           `
-        ).then(result => {
-          if (result.errors) {
-            /* eslint no-console: "off" */
-            console.log(result.errors);
-            reject(result.errors);
-          }
+          ).then(result => {
+            if (result.errors) {
+              /* eslint no-console: "off" */
+              console.log(result.errors);
+              reject(result.errors);
+            }
 
-          const posts = result.data.allMarkdownRemark.edges;
+            const posts = result.data.allMarkdownRemark.edges;
 
-          // Create Paginated Tag and Category Pages
+            // Create Paginated Tag and Category Pages
 
-          const tagSet = new Set();
-          const tagMap = new Map();
-          const categorySet = new Set();
-          const authorSet = new Set();
+            const tagSet = new Set();
+            const tagMap = new Map();
+            const categorySet = new Set();
+            const authorSet = new Set();
 
-          posts.forEach(edge => {
-            if (edge.node.frontmatter.tags) {
-              edge.node.frontmatter.tags.forEach(tag => {
-                tagSet.add(tag);
+            posts.forEach(edge => {
+              if (edge.node.frontmatter.tags) {
+                edge.node.frontmatter.tags.forEach(tag => {
+                  tagSet.add(tag);
 
-                const array = tagMap.has(tag) ? tagMap.get(tag) : [];
-                array.push(edge);
-                tagMap.set(tag, array);
+                  const array = tagMap.has(tag) ? tagMap.get(tag) : [];
+                  array.push(edge);
+                  tagMap.set(tag, array);
+                });
+              }
+
+              if (edge.node.frontmatter.author) {
+                authorSet.add(edge.node.frontmatter.author);
+              }
+
+              if (edge.node.frontmatter.category) {
+                categorySet.add(edge.node.frontmatter.category);
+              }
+
+              // Creates Index page
+              createPaginationPages({
+                createPage,
+                edges: posts,
+                component: indexPage,
+                pathFormatter: prefixPathFormatter(`/${code}`),
+                limit: siteConfig.sitePaginationLimit + 1,
+                context: {
+                  locale: code
+                }
               });
-            }
-
-            if (edge.node.frontmatter.author) {
-              authorSet.add(edge.node.frontmatter.author);
-            }
-
-            if (edge.node.frontmatter.category) {
-              categorySet.add(edge.node.frontmatter.category);
-            }
-
-            // Creates Index page
-            createPaginationPages({
-              createPage,
-              edges: posts,
-              component: indexPage,
-              pathFormatter: prefixPathFormatter(`/${code}`),
-              limit: siteConfig.sitePaginationLimit + 1,
-              context: {
-                locale: code
-              }
             });
-          });
 
-          const tagList = Array.from(tagSet);
-          tagList.forEach(tag => {
-            createPaginationPages({
-              createPage,
-              edges: tagMap.get(tag),
-              component: tagPage,
-              pathFormatter: prefixPathFormatter(
-                `/${code}/tags/${_.kebabCase(tag)}`
-              ),
-              limit: siteConfig.sitePaginationLimit,
-              context: {
-                tag,
-                locale: code
-              }
+            const tagList = Array.from(tagSet);
+            tagList.forEach(tag => {
+              createPaginationPages({
+                createPage,
+                edges: tagMap.get(tag),
+                component: tagPage,
+                pathFormatter: prefixPathFormatter(
+                  `/${code}/tags/${_.kebabCase(tag)}`
+                ),
+                limit: siteConfig.sitePaginationLimit,
+                context: {
+                  tag,
+                  locale: code
+                }
+              });
             });
-          });
 
-          const categoryList = Array.from(categorySet);
-          categoryList.forEach(category => {
-            const categoryEdges = posts.filter(
-              ({
-                node
-              }) => node.frontmatter.category === category
-            );
-            createPaginationPages({
-              createPage,
-              edges: categoryEdges,
-              component: tagPage,
-              pathFormatter: prefixPathFormatter(
-                `/${code}/categories/${_.kebabCase(category)}`
-              ),
-              limit: siteConfig.sitePaginationLimit,
-              context: {
-                category,
-                locale: code
-              }
+            const categoryList = Array.from(categorySet);
+            categoryList.forEach(category => {
+              const categoryEdges = posts.filter(
+                ({ node }) => node.frontmatter.category === category
+              );
+              createPaginationPages({
+                createPage,
+                edges: categoryEdges,
+                component: tagPage,
+                pathFormatter: prefixPathFormatter(
+                  `/${code}/categories/${_.kebabCase(category)}`
+                ),
+                limit: siteConfig.sitePaginationLimit,
+                context: {
+                  category,
+                  locale: code
+                }
+              });
             });
-          });
 
-          const authorList = Array.from(authorSet);
-          authorList.forEach(author => {
-            const authorEdges = posts.filter(
-              ({
-                node
-              }) => node.frontmatter.author === author
-            );
-            createPaginationPages({
-              createPage,
-              edges: authorEdges,
-              component: tagPage,
-              pathFormatter: prefixPathFormatter(
-                `/${code}/authors/${_.kebabCase(author)}`
-              ),
-              limit: siteConfig.sitePaginationLimit,
-              context: {
-                author,
-                locale: code
-              }
+            const authorList = Array.from(authorSet);
+            authorList.forEach(author => {
+              const authorEdges = posts.filter(
+                ({ node }) => node.frontmatter.author === author
+              );
+              createPaginationPages({
+                createPage,
+                edges: authorEdges,
+                component: tagPage,
+                pathFormatter: prefixPathFormatter(
+                  `/${code}/authors/${_.kebabCase(author)}`
+                ),
+                limit: siteConfig.sitePaginationLimit,
+                context: {
+                  author,
+                  locale: code
+                }
+              });
             });
-          });
 
-          posts.forEach(({
-            node
-          }) => {
-            createPage({
-              path: `${code}${node.fields.slug}`,
-              component: postPage,
-              context: {
-                slug: `${node.fields.slug}`,
-                locale: node.frontmatter.locale,
-                category: node.frontmatter.category,
-                author: node.frontmatter.author
-              } // additional data can be passed via context
+            posts.forEach(({ node }) => {
+              createPage({
+                path: `${code}${node.fields.slug}`,
+                component: postPage,
+                context: {
+                  slug: `${node.fields.slug}`,
+                  locale: node.frontmatter.locale,
+                  category: node.frontmatter.category,
+                  author: node.frontmatter.author
+                } // additional data can be passed via context
+              });
             });
-          });
-        })
-      );
-    })
+          })
+        );
+      })
   );
 };
 
-exports.modifyWebpackConfig = ({
-  config,
-  stage
-}) => {
+exports.modifyWebpackConfig = ({ config, stage }) => {
   if (stage === "build-javascript") {
     config.plugin("Lodash", webpackLodashPlugin, null);
   }
