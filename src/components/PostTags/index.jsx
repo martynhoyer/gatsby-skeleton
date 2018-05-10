@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import _ from "lodash";
 import Link from "gatsby-link";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, injectIntl } from "react-intl";
 import styled from "styled-components";
 import spacing, { fontsize } from "../../tokens/dimensions";
 
@@ -22,7 +22,8 @@ const StyledLink = styled(Link)`
 
 class PostTags extends Component {
   render() {
-    const { tags, locale } = this.props;
+    const { tags, intl } = this.props;
+    const { locale } = intl;
     if (tags) {
       return (
         <Container>
@@ -44,4 +45,4 @@ class PostTags extends Component {
   }
 }
 
-export default PostTags;
+export default injectIntl(PostTags);

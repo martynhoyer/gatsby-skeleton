@@ -18,7 +18,8 @@ import { fontsize } from "../tokens/dimensions";
 const Heading = styled.h1`
   font-size: ${fontsize.xxl};
   text-align: center;
-  color: ${props => props.color};
+  color: ${props =>
+    props.color === "default" ? props.theme.palette.noir : props.color};
 `;
 
 class TagTemplate extends React.Component {
@@ -39,11 +40,11 @@ class TagTemplate extends React.Component {
     const categories = this.props.data.categories.edges;
     const { category } = this.props.data;
 
-    const pageTitle = category
-      ? `Posts categorised with "${category.displayName}"`
-      : `Posts tagged as "${tag}"`;
+    const pageTitle = tag
+      ? `Posts tagged as "${tag}"`
+      : `Posts categorised with "${category.displayName}"`;
 
-    const pageTitleColor = category && category.color;
+    const pageTitleColor = (tag && "default") || (category && category.color);
     return (
       <TwoColumn>
         <Helmet title={`${pageTitle} | ${config.siteTitle}`}>
@@ -51,7 +52,7 @@ class TagTemplate extends React.Component {
         </Helmet>
         <div>
           <Heading color={pageTitleColor}>
-            {(category && category.displayName) || tag}
+            {tag || (category && category.displayName)}
           </Heading>
           <PaginatedContent
             page={page}
@@ -67,20 +68,16 @@ class TagTemplate extends React.Component {
         </div>
         <Sidebar>
           <Box compact>
-            <SubscribeForm locale={locale} formId="form-subscribe" />
+            <SubscribeForm formId="form-subscribe" />
           </Box>
           <Box compact>
-            <SubscribeForm
-              locale={locale}
-              whitepaper
-              formId="form-subscribe-whitepaper"
-            />
+            <SubscribeForm whitepaper formId="form-subscribe-whitepaper" />
           </Box>
           <Box compact>
             <SubSidebar>
               <About />
-              <PopularPosts popularPosts={popularPosts} locale={locale} />
-              <CategoriesList categories={categories} locale={locale} />
+              <PopularPosts popularPosts={popularPosts} />
+              <CategoriesList categories={categories} />
               <SocialFollow />
             </SubSidebar>
           </Box>

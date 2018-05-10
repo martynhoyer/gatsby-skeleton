@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { injectIntl } from "react-intl";
 import media from "../../tokens/breakpoints";
 import spacing from "../../tokens/dimensions";
 import Box from "../Box";
@@ -15,18 +14,15 @@ const Container = styled.div`
   }
 `;
 
-const PostFooterSubscribe = ({ intl }) => {
-  const { locale } = intl;
-  return (
-    <Container>
-      <Box>
-        <SubscribeForm locale={locale} whitepaper />
-      </Box>
-      <Box>
-        <SubscribeForm locale={locale} />
-      </Box>
-    </Container>
-  );
-};
+const PostFooterSubscribe = () => (
+  <Container>
+    <Box>
+      <SubscribeForm whitepaper />
+    </Box>
+    <Box>
+      <SubscribeForm />
+    </Box>
+  </Container>
+);
 
-export default injectIntl(PostFooterSubscribe);
+export default PostFooterSubscribe;

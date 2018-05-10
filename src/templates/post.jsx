@@ -168,7 +168,7 @@ class PostTemplate extends React.Component {
 
           <Footer>
             <PostFooterSubscribe />
-            <PostTags tags={tags} locale={locale} />
+            <PostTags tags={tags} />
             <PostAuthor author={author} />
             {relatedPostsList &&
               relatedPostsList.length > 0 && (

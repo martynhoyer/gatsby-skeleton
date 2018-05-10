@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "gatsby-link";
 import _ from "lodash";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, injectIntl } from "react-intl";
 import styled from "styled-components";
 import { fontsize } from "../../tokens/dimensions";
 
@@ -26,7 +26,8 @@ const StyledLink = styled(Link)`
   color: inherit;
 `;
 
-const CategoriesList = ({ categories = [], locale }) => {
+const CategoriesList = ({ categories = [], intl }) => {
+  const { locale } = intl;
   if (!categories.length) return null;
   return (
     <div>
@@ -48,4 +49,4 @@ const CategoriesList = ({ categories = [], locale }) => {
   );
 };
 
-export default CategoriesList;
+export default injectIntl(CategoriesList);

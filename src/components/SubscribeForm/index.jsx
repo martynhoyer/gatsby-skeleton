@@ -113,7 +113,7 @@ class SubscribeForm extends React.Component {
       },
       // setState callback (subscribe email to MC)
       this.postEmailToMailchimp(this.state.email, {
-        LANG: this.props.locale,
+        LANG: this.props.intl.locale,
         WHITEPAPER: this.props.whitepaper || false
       })
     );

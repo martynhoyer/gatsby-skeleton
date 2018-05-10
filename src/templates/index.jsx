@@ -46,20 +46,16 @@ class IndexTemplate extends React.Component {
           </PaginatedContent>
           <Sidebar>
             <Box compact>
-              <SubscribeForm locale={locale} formId="form-subscribe" />
+              <SubscribeForm formId="form-subscribe" />
             </Box>
             <Box compact>
-              <SubscribeForm
-                locale={locale}
-                whitepaper
-                formId="form-subscribe-whitepaper"
-              />
+              <SubscribeForm whitepaper formId="form-subscribe-whitepaper" />
             </Box>
             <Box compact>
               <SubSidebar>
                 <About />
-                <PopularPosts popularPosts={popularPosts} locale={locale} />
-                <CategoriesList categories={categories} locale={locale} />
+                <PopularPosts popularPosts={popularPosts} />
+                <CategoriesList categories={categories} />
                 <SocialFollow />
               </SubSidebar>
             </Box>
