@@ -8,8 +8,23 @@ import config from "../../../data/SiteConfig";
 const cookies = new Cookies();
 
 const Container = styled.div`
+  position: relative;
   margin: 0;
   color: ${props => props.theme.palette.blanc};
+`;
+
+const ToggleButton = styled.button`
+  margin: initial;
+  padding: initial;
+  border: 0;
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  text-align: inherit;
+  text-transform: inherit;
+  background-color: transparent;
+  color: inherit;
 `;
 
 const StyledLink = styled(Link)`
@@ -19,6 +34,14 @@ const StyledLink = styled(Link)`
 `;
 
 class LanguageSelection extends Component {
+  state = {
+    isToggled: false
+  };
+
+  handleToggleClick = () => {
+    this.setState({ isToggled: !this.state.isToggled });
+  };
+
   handleLocaleClick = e => {
     cookies.set("lang", e.target.pathname.replace(/^\/|\/$/g, ""), {
       path: "/"
@@ -27,19 +50,28 @@ class LanguageSelection extends Component {
 
   render() {
     const { intl } = this.props;
+    const { isToggled } = this.state;
     return (
       <Container>
-        <FormattedMessage id="global.languagesLabel" />
-        {config.locales.map(locale => (
-          <StyledLink
-            current={intl.locale === locale}
-            key={locale}
-            to={`/${locale}/`}
-            onClick={this.handleLocaleClick}
-          >
-            {locale}
-          </StyledLink>
-        ))}
+        <ToggleButton
+          onClick={this.handleToggleClick}
+          isToggled={isToggled}
+          aria-expanded={isToggled}
+        >
+          <FormattedMessage id="global.languagesLabel" />
+        </ToggleButton>
+        <div hidden={!isToggled}>
+          {config.locales.map(locale => (
+            <StyledLink
+              current={intl.locale === locale}
+              key={locale}
+              to={`/${locale}/`}
+              onClick={this.handleLocaleClick}
+            >
+              {locale}
+            </StyledLink>
+          ))}
+        </div>
       </Container>
     );
   }
