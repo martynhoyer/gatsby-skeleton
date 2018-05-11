@@ -25,8 +25,8 @@ const NavItem = styled.li`
 const NavLink = styled(Link)`
   display: block;
   padding: 0.5em;
-  color: ${props => props.theme.palette.blanc};
   text-decoration: none;
+  color: ${props => props.theme.palette.blanc};
 `;
 
 const Navigation = ({ intl }) => {
