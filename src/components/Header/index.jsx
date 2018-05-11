@@ -22,7 +22,9 @@ const Container = styled.div`
   margin: 0 auto;
 `;
 
-const Logo = styled.div``;
+const Logo = styled.div`
+  padding: 0.5em;
+`;
 
 const Header = () => (
   <StyledHeader>

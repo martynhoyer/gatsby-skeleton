@@ -3,7 +3,6 @@ import { injectIntl } from "react-intl";
 import styled from "styled-components";
 import Link from "gatsby-link";
 import LanguageSelection from "../LanguageSelection";
-import spacing from "../../tokens/dimensions";
 
 const Container = styled.nav``;
 
@@ -16,7 +15,7 @@ const NavList = styled.ul`
 `;
 
 const NavItem = styled.li`
-  margin-right: 2em;
+  margin-right: 1em;
 
   &:last-child {
     margin-right: 0;
@@ -24,6 +23,8 @@ const NavItem = styled.li`
 `;
 
 const NavLink = styled(Link)`
+  display: block;
+  padding: 0.5em;
   color: ${props => props.theme.palette.blanc};
   text-decoration: none;
 `;

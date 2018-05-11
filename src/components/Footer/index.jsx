@@ -23,7 +23,7 @@ const Footer = () => (
   <StyledFooter>
     <Container>
       <Copyright />
-      <LanguageSelection />
+      <LanguageSelection isBottom />
     </Container>
   </StyledFooter>
 );
