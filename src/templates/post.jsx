@@ -146,9 +146,7 @@ class PostTemplate extends React.Component {
 
     return (
       <SingleColumn>
-        <Helmet title={`${title} | ${config.siteTitle}`}>
-          <html lang={locale} />
-        </Helmet>
+        <Helmet title={`${title} | ${config.siteTitle}`} />
         <Article>
           <header>
             {thumbnail && <Thumbnail sizes={thumbnail.sizes} />}
