@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import spacing from "../../tokens/dimensions";
 import Navigation from "../Navigation";
+import { ReactComponent as LogoSvg } from "../../svg/logo.svg";
 
 const StyledHeader = styled.header`
   height: 300px;
@@ -17,19 +18,26 @@ const StyledHeader = styled.header`
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   max-width: 1440px;
   margin: 0 auto;
 `;
 
 const Logo = styled.div`
-  padding: 0.5em;
+  width: ${424 / 2.5}px;
+  height: ${88 / 2.5}px;
+  & > svg {
+    fill: white;
+  }
 `;
 
 const Header = () => (
   <StyledHeader>
     <Container>
-      <Logo>Gymlib</Logo>
+      <Logo>
+        <LogoSvg />
+      </Logo>
       <Navigation />
     </Container>
   </StyledHeader>
