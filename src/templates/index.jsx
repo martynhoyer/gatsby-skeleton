@@ -11,6 +11,7 @@ import SubscribeForm from "../components/SubscribeForm";
 import Box from "../components/Box";
 import About from "../components/About";
 import SocialFollow from "../components/SocialFollow";
+import config from "../../data/SiteConfig";
 
 class IndexTemplate extends React.Component {
   render() {
@@ -21,17 +22,14 @@ class IndexTemplate extends React.Component {
       total,
       limit,
       prev,
-      next,
-      locale
+      next
     } = this.props.pathContext;
     const popularPosts = this.props.data.popularPosts.edges;
     const categories = this.props.data.categories.edges;
 
     return (
       <Fragment>
-        <Helmet>
-          <html lang={locale} />
-        </Helmet>
+        <Helmet title={`Home | ${config.siteTitle}`} />
         <TwoColumn>
           <PaginatedContent
             page={page}

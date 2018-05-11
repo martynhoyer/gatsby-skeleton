@@ -32,8 +32,7 @@ class TagTemplate extends React.Component {
       total,
       limit,
       prev,
-      next,
-      locale
+      next
     } = this.props.pathContext;
     const authorsEdges = this.props.data.authors.edges;
     const popularPosts = this.props.data.popularPosts.edges;
@@ -47,9 +46,7 @@ class TagTemplate extends React.Component {
     const pageTitleColor = (tag && "default") || (category && category.color);
     return (
       <TwoColumn>
-        <Helmet title={`${pageTitle} | ${config.siteTitle}`}>
-          <html lang={locale} />
-        </Helmet>
+        <Helmet title={`${pageTitle} | ${config.siteTitle}`} />
         <div>
           <Heading color={pageTitleColor}>
             {tag || (category && category.displayName)}
