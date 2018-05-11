@@ -6,8 +6,8 @@ const Container = styled.p`
   margin: 0;
 `;
 
-const Copyright = () => (
-  <Container>
+const Copyright = ({className}) => (
+  <Container className={className}>
     &copy; {config.copyright.startYear} - {new Date().getFullYear()}{" "}
     {config.copyright.label}
   </Container>

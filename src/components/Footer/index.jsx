@@ -19,10 +19,14 @@ const Container = styled.div`
   padding: ${spacing.lg} ${spacing.md};
 `;
 
+const StyledCopyright = styled(Copyright)`
+  padding: 0.5em 0;
+`
+
 const Footer = () => (
   <StyledFooter>
     <Container>
-      <Copyright />
+      <StyledCopyright />
       <LanguageSelection isBottom />
     </Container>
   </StyledFooter>
