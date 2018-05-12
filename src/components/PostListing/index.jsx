@@ -7,7 +7,7 @@ import PostCard from "../PostCard/index";
 const homeTemplateNegativeMargin = ({ isIndex }) =>
   isIndex &&
   css`
-    margin-top: -72px;
+    ${"" /* margin-top: -72px; */};
   `;
 
 const PostList = styled.div`

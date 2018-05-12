@@ -148,6 +148,7 @@ exports.createPages = ({
   const indexPage = path.resolve("src/templates/index.jsx");
   const postPage = path.resolve("src/templates/post.jsx");
   const tagPage = path.resolve("src/templates/tag.jsx");
+  const searchPage = path.resolve("src/templates/search.jsx");
   // const categoryPage = path.resolve("src/templates/category.jsx");
   // const authorPage = path.resolve("src/templates/author.jsx");
   siteConfig.locales.forEach(
@@ -329,6 +330,14 @@ exports.createPages = ({
                 author: node.frontmatter.author
               } // additional data can be passed via context
             });
+          });
+
+          createPage({
+            path: `${code}/search`,
+            component: searchPage,
+            context: {
+              locale: code,
+            } // additional data can be passed via context
           });
         })
       );

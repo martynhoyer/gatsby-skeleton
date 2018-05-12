@@ -15,19 +15,12 @@ import Box from "../components/Box";
 import About from "../components/About";
 import SocialFollow from "../components/SocialFollow";
 import SEO from "../components/SEO";
+import Search from "../components/Search";
 
 class IndexTemplate extends React.Component {
   render() {
     const { intl } = this.props;
-    const {
-      nodes,
-      page,
-      pages,
-      total,
-      limit,
-      prev,
-      next
-    } = this.props.pathContext;
+    const { nodes, page, pages, limit, prev, next } = this.props.pathContext;
     const popularPosts = this.props.data.popularPosts.edges;
     const categories = this.props.data.categories.edges;
 
@@ -50,11 +43,11 @@ class IndexTemplate extends React.Component {
           <PaginatedContent
             page={page}
             pages={pages}
-            total={total}
             limit={limit}
             prev={prev}
             next={next}
           >
+            <Search categories={categories} />
             {/* PostListing component renders all the posts */}
             <PostListing postEdges={nodes} isIndex />
           </PaginatedContent>

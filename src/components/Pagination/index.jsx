@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import styled from "styled-components";
 import PaginationLink from "../PaginationLink";
 import spacing from "../../tokens/dimensions";
@@ -23,9 +23,75 @@ const CurrentPage = styled.span`
   color: ${props => props.theme.palette.blanc};
 `;
 
+const PageButton = styled.button`
+  width: ${spacing.lg};
+  height: ${spacing.lg};
+  margin: ${spacing.sm};
+  padding: ${spacing.sm};
+  border: inherit;
+  font-size: inherit;
+  line-height: 1;
+  border-radius: 50%;
+  text-decoration: none;
+  background-color: inherit;
+  color: ${props => props.theme.palette.noir};
+`;
+
 class Pagination extends React.Component {
   render() {
-    const { page, pages, prev, next } = this.props;
+    const {
+      page,
+      pages,
+      prev,
+      next,
+      isSearchResults,
+      handleButtonClick
+    } = this.props;
+    if (isSearchResults) {
+      const pageAsNumber = Number(page);
+      return (
+        <Container>
+          {pageAsNumber > 1 && (
+            <Fragment>
+              <PageButton onClick={handleButtonClick} value={pageAsNumber - 1}>
+                &larr;
+              </PageButton>
+
+              {pageAsNumber > 2 && (
+                <PageButton
+                  onClick={handleButtonClick}
+                  value={pageAsNumber - 2}
+                >
+                  {pageAsNumber - 2}
+                </PageButton>
+              )}
+              <PageButton onClick={handleButtonClick} value={pageAsNumber - 1}>
+                {pageAsNumber - 1}
+              </PageButton>
+            </Fragment>
+          )}
+          <CurrentPage>{page}</CurrentPage>
+          {pageAsNumber < pages && (
+            <Fragment>
+              <PageButton onClick={handleButtonClick} value={pageAsNumber + 1}>
+                {pageAsNumber + 1}
+              </PageButton>
+              {pageAsNumber < pages - 1 && (
+                <PageButton
+                  onClick={handleButtonClick}
+                  value={pageAsNumber + 2}
+                >
+                  {pageAsNumber + 2}
+                </PageButton>
+              )}
+              <PageButton onClick={handleButtonClick} value={pageAsNumber + 1}>
+                &rarr;
+              </PageButton>
+            </Fragment>
+          )}
+        </Container>
+      );
+    }
 
     const getUrlRoot = string => {
       if (string === undefined) return null;
