@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import Link from "gatsby-link";
+import { injectIntl } from "react-intl";
 import spacing from "../../tokens/dimensions";
 import Navigation from "../Navigation";
 import { ReactComponent as LogoSvg } from "../../svg/logo.svg";
@@ -19,12 +21,15 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 
   max-width: 1440px;
   margin: 0 auto;
 `;
 
-const Logo = styled.div`
+const Logo = styled(Link)`
+  flex-shrink: 0;
+
   width: ${424 / 2.5}px;
   height: ${88 / 2.5}px;
   & > svg {
@@ -32,15 +37,18 @@ const Logo = styled.div`
   }
 `;
 
-const Header = () => (
-  <StyledHeader>
-    <Container>
-      <Logo>
-        <LogoSvg />
-      </Logo>
-      <Navigation />
-    </Container>
-  </StyledHeader>
-);
+const Header = ({ intl }) => {
+  const { locale } = intl;
+  return (
+    <StyledHeader>
+      <Container>
+        <Logo to={`/${locale}/`}>
+          <LogoSvg />
+        </Logo>
+        <Navigation />
+      </Container>
+    </StyledHeader>
+  );
+};
 
-export default Header;
+export default injectIntl(Header);
