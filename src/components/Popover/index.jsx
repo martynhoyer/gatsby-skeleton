@@ -9,6 +9,9 @@ const Container = styled.div`
 `;
 
 const ToggleButton = styled.button`
+  display: flex;
+  align-items: center;
+  
   margin: initial;
   padding: 0.5em;
   border: 0;

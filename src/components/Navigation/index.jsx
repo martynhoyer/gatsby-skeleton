@@ -3,6 +3,7 @@ import { injectIntl } from "react-intl";
 import styled from "styled-components";
 import Link from "gatsby-link";
 import LanguageSelection from "../LanguageSelection";
+import { ReactComponent as User } from "../../svg/user.svg";
 
 const Container = styled.nav``;
 
@@ -23,11 +24,20 @@ const NavItem = styled.li`
 `;
 
 const NavLink = styled(Link)`
-  display: block;
+  display: flex;
+  align-items: center;
+
   padding: 0.5em;
   text-decoration: none;
   color: ${props => props.theme.palette.blanc};
 `;
+
+const StyledUser = styled(User)`
+  width: 1.2em;
+  height: 1.2em;
+  margin-left: 0.75em;
+  fill: currentColor;
+`
 
 const Navigation = ({ intl }) => {
   const { messages } = intl;
@@ -49,7 +59,7 @@ const Navigation = ({ intl }) => {
         </NavItem>
         <NavItem>
           <NavLink to={messages["navigation.profile.linkUrl"]}>
-            {messages["navigation.profile.linkText"]}
+            {messages["navigation.profile.linkText"]}<StyledUser />
           </NavLink>
         </NavItem>
       </NavList>

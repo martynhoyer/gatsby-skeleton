@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 import Link from "gatsby-link";
 import Cookies from "universal-cookie";
 import { FormattedMessage, injectIntl } from "react-intl";
 import config from "../../../data/SiteConfig";
 import Popover from "../Popover";
+import { ReactComponent as Globe } from "../../svg/globe.svg";
 
 const cookies = new Cookies();
 
@@ -21,6 +22,15 @@ const StyledLink = styled(Link)`
   }
 `;
 
+const StyledGlobe = styled(Globe)`
+  width: 1em;
+  height: 1em;
+  margin-right: 0.5em;
+  vertical-align: middle;
+  fill: currentColor;
+`
+
+
 class LanguageSelection extends Component {
   handleLocaleClick = e => {
     cookies.set("lang", e.target.pathname.replace(/^\/|\/$/g, ""), {
@@ -32,7 +42,7 @@ class LanguageSelection extends Component {
     const { intl, isBottom } = this.props;
     return (
       <Popover
-        buttonText={<FormattedMessage id="global.languagesLabel" />}
+        buttonText={<Fragment><StyledGlobe /><FormattedMessage id="global.languagesLabel" /></Fragment>}
         isBottom={isBottom}
       >
         {config.locales.map(locale => (
