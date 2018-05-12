@@ -14,11 +14,19 @@ class SearchTemplate extends React.Component {
     const { edges: postEdges } = nextProps.data.allMarkdownRemark;
     const queries = queryString.parse(search);
 
-    const filteredEdges = postEdges.filter(
-      ({ node }) =>
+    const filteredEdges = postEdges.filter(({ node }) => {
+      if (!queries.query) {
+        return node.frontmatter.category === queries.category;
+      }
+      if (!queries.category) {
+        return node.html.indexOf(queries.query) > -1;
+      }
+      return (
         node.frontmatter.category === queries.category &&
         node.html.indexOf(queries.query) > -1
-    );
+      );
+    });
+
     return {
       results: filteredEdges,
       currentPage: 1,
