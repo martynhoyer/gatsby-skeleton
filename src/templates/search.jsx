@@ -60,35 +60,36 @@ class SearchTemplate extends React.Component {
       <Fragment>
         <Helmet title={`Search | ${config.siteTitle}`} />
         <TwoColumn>
-          {results && results.length ? (
-            <Fragment>
-              <PaginatedContent
-                page={this.state.currentPage}
-                pages={pageCountForResultSet}
-                isSearchResults
-                handleButtonClick={this.handleButtonClick}
-              >
-                <Search categories={categories} />
-                <h1>
-                  Search results {queries.query && `for: "${queries.query}"`}{" "}
-                  {searchedCategory &&
-                    `in category: "${searchedCategory.displayName}"`}
-                </h1>
-                <PostListing postEdges={currentItems} />
-              </PaginatedContent>
-            </Fragment>
-          ) : (
-            <Fragment>
-              <Search categories={categories} />
-              {!_.isEmpty(touched) ? (
-                <h1>
-                  No results {queries.query && `for: "${queries.query}"`}{" "}
-                  {searchedCategory &&
-                    `in category: "${searchedCategory.displayName}"`}
-                </h1>
-              ) : null}
-            </Fragment>
-          )}
+          <div>
+            <Search categories={categories} />
+            {results && results.length ? (
+              <Fragment>
+                <PaginatedContent
+                  page={this.state.currentPage}
+                  pages={pageCountForResultSet}
+                  isSearchResults
+                  handleButtonClick={this.handleButtonClick}
+                >
+                  <h1>
+                    Search results {queries.query && `for: "${queries.query}"`}{" "}
+                    {searchedCategory &&
+                      `in category: "${searchedCategory.displayName}"`}
+                  </h1>
+                  <PostListing postEdges={currentItems} />
+                </PaginatedContent>
+              </Fragment>
+            ) : (
+              <Fragment>
+                {!_.isEmpty(touched) ? (
+                  <h1>
+                    No results {queries.query && `for: "${queries.query}"`}{" "}
+                    {searchedCategory &&
+                      `in category: "${searchedCategory.displayName}"`}
+                  </h1>
+                ) : null}
+              </Fragment>
+            )}
+          </div>
         </TwoColumn>
       </Fragment>
     );

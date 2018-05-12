@@ -8,6 +8,7 @@ import { FormattedMessage, injectIntl } from "react-intl";
 import config from "../../data/SiteConfig";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Search from "../components/Search";
 import PostDate from "../components/PostDate";
 import PostTags from "../components/PostTags";
 import SingleColumn from "../components/Layouts/SingleColumn";
@@ -24,7 +25,7 @@ const Article = styled.article`
 `;
 
 const Thumbnail = styled(Img)`
-  margin-top: -${24 + 32}px;
+  ${"" /* margin-top: -${24 + 32}px; */}
   margin-right: -${spacing.md};
   margin-left: -${spacing.md};
 
@@ -159,6 +160,7 @@ class PostTemplate extends React.Component {
       alternateLangLinks
     } = postNode.frontmatter;
     const postUrl = `${config.siteUrl}${this.props.location.pathname}`;
+    const categories = this.props.data.categories.edges;
 
     let relatedPostsList = [];
 
@@ -203,6 +205,7 @@ class PostTemplate extends React.Component {
                 />
               ))}
           </Helmet>
+          <Search categories={categories} />
           <Article>
             <header>
               {thumbnail && <Thumbnail sizes={thumbnail.sizes} />}
@@ -355,6 +358,15 @@ export const pageQuery = graphql`
             displayName
             color
           }
+        }
+      }
+    }
+    categories: allCategoriesJson(filter: { locale: { eq: $locale } }) {
+      edges {
+        node {
+          title
+          displayName
+          color
         }
       }
     }

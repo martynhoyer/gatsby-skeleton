@@ -40,17 +40,19 @@ class IndexTemplate extends React.Component {
         <Helmet title={`${pageTitle} | ${globalSiteTitle}`} />
         <Header />
         <TwoColumn>
-          <PaginatedContent
-            page={page}
-            pages={pages}
-            limit={limit}
-            prev={prev}
-            next={next}
-          >
+          <div>
             <Search categories={categories} />
-            {/* PostListing component renders all the posts */}
-            <PostListing postEdges={nodes} isIndex />
-          </PaginatedContent>
+            <PaginatedContent
+              page={page}
+              pages={pages}
+              limit={limit}
+              prev={prev}
+              next={next}
+            >
+              {/* PostListing component renders all the posts */}
+              <PostListing postEdges={nodes} isIndex />
+            </PaginatedContent>
+          </div>
           <Sidebar>
             <Box compact>
               <SubscribeForm formId="form-subscribe" />

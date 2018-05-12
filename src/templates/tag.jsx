@@ -5,6 +5,7 @@ import { injectIntl } from "react-intl";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import PostListing from "../components/PostListing";
+import Search from "../components/Search";
 import PaginatedContent from "../components/PaginatedContent";
 import PopularPosts from "../components/PopularPosts";
 import CategoriesList from "../components/CategoriesList";
@@ -67,6 +68,7 @@ class TagTemplate extends React.Component {
           <SEO />
           <Helmet title={`${pageTitle} | ${globalSiteTitle}`} />
           <div>
+            <Search categories={categories} />
             <Heading color={pageTitleColor}>
               {tag || (category && category.displayName)}
             </Heading>
