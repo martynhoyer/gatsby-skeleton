@@ -264,6 +264,7 @@ export const pageQuery = graphql`
             }
           }
           categoriesArray: childrenCategoriesJson {
+            title
             displayName
             color
           }
