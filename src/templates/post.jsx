@@ -13,6 +13,7 @@ import media from "../tokens/breakpoints";
 import PostFooterSubscribe from "../components/PostFooterSubscribe";
 import PostCard from "../components/PostCard";
 import PostAuthor from "../components/PostAuthor";
+import SocialShare from "../components/SocialShare";
 import spacing, { fontsize } from "../tokens/dimensions";
 
 const Article = styled.article`
@@ -64,11 +65,40 @@ const Title = styled.h1`
 `;
 
 const Body = styled.section`
-  max-width: 70ch;
+  position: relative;
   margin: 0 auto;
 
   @media (${media.md}) {
     font-size: 1.25em;
+  }
+`;
+
+const SocialShareWrapper = styled.div`
+  display: none;
+  position: sticky;
+  float: left;
+  top: ${spacing.md};
+  width: ${spacing.lg};
+
+  @media (${media.sm}) {
+    display: block;
+  }
+
+  @media (${media.md}) {
+    width: ${spacing.xl};
+  }
+`;
+
+const PostContent = styled.div`
+  max-width: 70ch;
+  margin: 0 auto;
+
+  @media (${media.sm}) {
+    padding: 0 calc(${spacing.lg} + ${spacing.md});
+  }
+
+  @media (${media.md}) {
+    padding: 0 calc(${spacing.xl} + ${spacing.md});
   }
 `;
 
@@ -117,6 +147,7 @@ class PostTemplate extends React.Component {
   render() {
     const postNode = this.props.data.markdownRemark;
     const { locale, title, localDate, date, tags } = postNode.frontmatter;
+    const postUrl = `${config.siteUrl}${this.props.location.pathname}`;
 
     let relatedPostsList = [];
 
@@ -161,9 +192,12 @@ class PostTemplate extends React.Component {
             </Meta>
             <Title>{title}</Title>
           </header>
-
-          <Body dangerouslySetInnerHTML={{ __html: postNode.html }} />
-
+          <Body>
+            <SocialShareWrapper>
+              <SocialShare url={postUrl} title={title} />
+            </SocialShareWrapper>
+            <PostContent dangerouslySetInnerHTML={{ __html: postNode.html }} />
+          </Body>
           <Footer>
             <PostFooterSubscribe />
             <PostTags tags={tags} />
