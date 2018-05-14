@@ -146,7 +146,14 @@ const getPostList = postEdges =>
 class PostTemplate extends React.Component {
   render() {
     const postNode = this.props.data.markdownRemark;
-    const { locale, title, localDate, date, tags } = postNode.frontmatter;
+    const {
+      locale,
+      title,
+      localDate,
+      date,
+      tags,
+      alternateLangLinks
+    } = postNode.frontmatter;
     const postUrl = `${config.siteUrl}${this.props.location.pathname}`;
 
     let relatedPostsList = [];
@@ -177,7 +184,18 @@ class PostTemplate extends React.Component {
 
     return (
       <SingleColumn>
-        <Helmet title={`${title} | ${config.siteTitle}`} />
+        <Helmet title={`${title} | ${config.siteTitle}`}>
+          {alternateLangLinks &&
+            alternateLangLinks.length > 0 &&
+            alternateLangLinks.map(link => (
+              <link
+                key={link.linkUrl}
+                rel="alternate"
+                href={link.linkUrl}
+                lang={link.language}
+              />
+            ))}
+        </Helmet>
         <Article>
           <header>
             {thumbnail && <Thumbnail sizes={thumbnail.sizes} />}
@@ -245,6 +263,10 @@ export const pageQuery = graphql`
         tags
         author
         locale
+        alternateLangLinks {
+          language
+          linkUrl
+        }
       }
       fields {
         slug
