@@ -1,12 +1,14 @@
 import React, { Fragment } from "react";
 import { FormattedMessage } from "react-intl";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { hideVisually } from "polished";
-import { ReactComponent as Twitter } from "../../svg/twitter.svg";
-import { ReactComponent as Instagram } from "../../svg/instagram.svg";
-import { ReactComponent as Facebook } from "../../svg/facebook.svg";
-import { ReactComponent as Linkedin } from "../../svg/linkedin.svg";
 import config from "../../../data/SiteConfig";
+import {
+  FacebookIcon,
+  TwitterIcon,
+  LinkedinIcon,
+  InstagramIcon
+} from "../SocialIcons";
 import spacing, { fontsize } from "../../tokens/dimensions";
 
 const Title = styled.h2`
@@ -27,45 +29,9 @@ export const DefinitionData = styled.dd`
   margin: 0 ${spacing.base} 0 0;
 `;
 
-const backgroundColor = ({ providerName }) => {
-  switch (providerName) {
-    case "facebook":
-      return css`
-        background-color: #6075f4;
-      `;
-    case "linkedin":
-      return css`
-        background-color: #0073b1;
-      `;
-    case "twitter":
-      return css`
-        background-color: #3edfff;
-      `;
-    case "instagram":
-      return css`
-        background-color: #e4228c;
-      `;
-    default:
-      return css`
-        background-color: ${props => props.theme.palette.rose};
-      `;
-  }
-};
-
 export const Link = styled.a`
-  ${backgroundColor};
   display: block;
   max-width: ${spacing.xl};
-  padding: 24%;
-  border-radius: 50%;
-  color: white;
-
-  & > svg {
-    display: block;
-    width: 100%;
-    height: 100%;
-    fill: currentColor;
-  }
 `;
 
 export const DisplayName = styled.span`
@@ -79,10 +45,10 @@ const SocialItem = ({
   providerName
 }) => {
   const icons = {
-    facebook: <Facebook />,
-    twitter: <Twitter />,
-    instagram: <Instagram />,
-    linkedin: <Linkedin />
+    facebook: <FacebookIcon />,
+    twitter: <TwitterIcon />,
+    instagram: <InstagramIcon />,
+    linkedin: <LinkedinIcon />
   };
   return (
     <Fragment>
