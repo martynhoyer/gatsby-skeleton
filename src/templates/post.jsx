@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Helmet } from "react-helmet";
 import _ from "lodash";
 import Link from "gatsby-link";
@@ -6,6 +6,8 @@ import Img from "gatsby-image";
 import styled from "styled-components";
 import { FormattedMessage } from "react-intl";
 import config from "../../data/SiteConfig";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import PostDate from "../components/PostDate";
 import PostTags from "../components/PostTags";
 import SingleColumn from "../components/Layouts/SingleColumn";
@@ -102,7 +104,7 @@ const PostContent = styled.div`
   }
 `;
 
-const Footer = styled.footer`
+const PostFooter = styled.footer`
   margin-top: ${spacing.xxl};
 `;
 
@@ -183,62 +185,68 @@ class PostTemplate extends React.Component {
     const { author } = this.props.data;
 
     return (
-      <SingleColumn>
-        <Helmet title={`${title} | ${config.siteTitle}`}>
-          {alternateLangLinks &&
-            alternateLangLinks.length > 0 &&
-            alternateLangLinks.map(link => (
-              <link
-                key={link.linkUrl}
-                rel="alternate"
-                href={link.linkUrl}
-                lang={link.language}
+      <Fragment>
+        <Header />
+        <SingleColumn>
+          <Helmet title={`${title} | ${config.siteTitle}`}>
+            {alternateLangLinks &&
+              alternateLangLinks.length > 0 &&
+              alternateLangLinks.map(link => (
+                <link
+                  key={link.linkUrl}
+                  rel="alternate"
+                  href={link.linkUrl}
+                  lang={link.language}
+                />
+              ))}
+          </Helmet>
+          <Article>
+            <header>
+              {thumbnail && <Thumbnail sizes={thumbnail.sizes} />}
+              <Meta>
+                <CategoryLink
+                  to={`/${locale}/categories/${_.kebabCase(category.title)}`}
+                  color={category.color}
+                >
+                  {category.displayName}
+                </CategoryLink>
+                <StyledPostDate date={date} localDate={localDate} />
+              </Meta>
+              <Title>{title}</Title>
+            </header>
+            <Body>
+              <SocialShareWrapper>
+                <SocialShare url={postUrl} title={title} />
+              </SocialShareWrapper>
+              <PostContent
+                dangerouslySetInnerHTML={{ __html: postNode.html }}
               />
-            ))}
-        </Helmet>
-        <Article>
-          <header>
-            {thumbnail && <Thumbnail sizes={thumbnail.sizes} />}
-            <Meta>
-              <CategoryLink
-                to={`/${locale}/categories/${_.kebabCase(category.title)}`}
-                color={category.color}
-              >
-                {category.displayName}
-              </CategoryLink>
-              <StyledPostDate date={date} localDate={localDate} />
-            </Meta>
-            <Title>{title}</Title>
-          </header>
-          <Body>
-            <SocialShareWrapper>
-              <SocialShare url={postUrl} title={title} />
-            </SocialShareWrapper>
-            <PostContent dangerouslySetInnerHTML={{ __html: postNode.html }} />
-          </Body>
-          <Footer>
-            <PostFooterSubscribe />
-            <PostTags tags={tags} />
-            <PostAuthor author={author} />
-            {relatedPostsList &&
-              relatedPostsList.length > 0 && (
-                <RelatedPostsWrapper>
-                  <RelatedPostsHeading>
-                    <FormattedMessage id="post.relatedArticlesHeading" />
-                  </RelatedPostsHeading>
-                  <RelatedPosts>
-                    {relatedPostsList.map(post => (
-                      <PostCard
-                        post={post}
-                        key={`${post.path}+${post.locale}`}
-                      />
-                    ))}
-                  </RelatedPosts>
-                </RelatedPostsWrapper>
-              )}
-          </Footer>
-        </Article>
-      </SingleColumn>
+            </Body>
+            <PostFooter>
+              <PostFooterSubscribe />
+              <PostTags tags={tags} />
+              <PostAuthor author={author} />
+              {relatedPostsList &&
+                relatedPostsList.length > 0 && (
+                  <RelatedPostsWrapper>
+                    <RelatedPostsHeading>
+                      <FormattedMessage id="post.relatedArticlesHeading" />
+                    </RelatedPostsHeading>
+                    <RelatedPosts>
+                      {relatedPostsList.map(post => (
+                        <PostCard
+                          post={post}
+                          key={`${post.path}+${post.locale}`}
+                        />
+                      ))}
+                    </RelatedPosts>
+                  </RelatedPostsWrapper>
+                )}
+            </PostFooter>
+          </Article>
+        </SingleColumn>
+        <Footer />
+      </Fragment>
     );
   }
 }

@@ -11,7 +11,7 @@ const Container = styled.div`
 const ToggleButton = styled.button`
   display: flex;
   align-items: center;
-  
+
   margin: initial;
   padding: 0.5em;
   border: 0;
@@ -54,6 +54,10 @@ class Popover extends Component {
   state = {
     isToggled: false
   };
+
+  componentWillUnmount() {
+    document.removeEventListener("click", this.handleOutsideClick, false);
+  }
 
   handleToggleClick = () => {
     if (!this.state.isToggled) {
