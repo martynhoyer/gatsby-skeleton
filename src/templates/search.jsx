@@ -7,7 +7,10 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import PostListing from "../components/PostListing";
 import PaginatedContent from "../components/PaginatedContent";
-import TwoColumn from "../components/Layouts/TwoColumn";
+import {
+  SearchLayout,
+  SearchResults
+} from "../components/Layouts/SearchLayout";
 import Search from "../components/Search";
 
 class SearchTemplate extends React.Component {
@@ -74,8 +77,8 @@ class SearchTemplate extends React.Component {
       <Fragment>
         <Header />
         <Helmet title={`Search | ${config.siteTitle}`} />
-        <TwoColumn>
-          <div>
+        <SearchLayout>
+          <SearchResults>
             <Search categories={categories} />
             {results && results.length ? (
               <Fragment>
@@ -104,8 +107,8 @@ class SearchTemplate extends React.Component {
                 ) : null}
               </Fragment>
             )}
-          </div>
-        </TwoColumn>
+          </SearchResults>
+        </SearchLayout>
         <Footer />
       </Fragment>
     );
