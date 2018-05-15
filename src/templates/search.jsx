@@ -15,16 +15,20 @@ class SearchTemplate extends React.Component {
     const queries = queryString.parse(search);
 
     const filteredEdges = postEdges.filter(({ node }) => {
+      const bodyMatch =
+        node.html.toLowerCase().indexOf(queries.query.toLowerCase()) > -1;
+      const titleMatch =
+        node.frontmatter.title
+          .toLowerCase()
+          .indexOf(queries.query.toLowerCase()) > -1;
+      const categoryMatch = node.frontmatter.category === queries.category;
       if (!queries.query) {
-        return node.frontmatter.category === queries.category;
+        return categoryMatch;
       }
       if (!queries.category) {
-        return node.html.indexOf(queries.query) > -1;
+        return bodyMatch || titleMatch;
       }
-      return (
-        node.frontmatter.category === queries.category &&
-        node.html.indexOf(queries.query) > -1
-      );
+      return categoryMatch && (bodyMatch || titleMatch);
     });
 
     return {
