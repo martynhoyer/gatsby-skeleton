@@ -9,8 +9,7 @@ tags:
   - netlify cms
 date: '2018-05-15T21:53:24+01:00'
 author: martyn
-alternateLangLinks:
-  - {}
+alternateLangLinks: []
 isPopular: true
 image: /img/017.jpeg
 ---
