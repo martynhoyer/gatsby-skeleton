@@ -3,6 +3,8 @@ import { Helmet } from "react-helmet";
 import _ from "lodash";
 import queryString from "query-string";
 import config from "../../data/SiteConfig";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import PostListing from "../components/PostListing";
 import PaginatedContent from "../components/PaginatedContent";
 import TwoColumn from "../components/Layouts/TwoColumn";
@@ -70,6 +72,7 @@ class SearchTemplate extends React.Component {
     const searchedCategory = searchedCategoryNode && searchedCategoryNode.node;
     return (
       <Fragment>
+        <Header />
         <Helmet title={`Search | ${config.siteTitle}`} />
         <TwoColumn>
           <div>
@@ -103,6 +106,7 @@ class SearchTemplate extends React.Component {
             )}
           </div>
         </TwoColumn>
+        <Footer />
       </Fragment>
     );
   }
