@@ -144,11 +144,13 @@ collections:
             {
               label: "Language", 
               name: "language", 
+              required: "false",
               widget: "string"
             }, 
             {
               label: "Link URL", 
               name: "linkUrl", 
+              required: "false",
               widget: "string"
             }
           ]
@@ -180,11 +182,13 @@ collections:
             {
               label: "Language", 
               name: "language", 
+              required: "false",
               widget: "string"
             }, 
             {
               label: "Link URL", 
               name: "linkUrl", 
+              required: "false",
               widget: "string"
             }
           ]
