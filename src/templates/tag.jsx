@@ -1,8 +1,10 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Helmet from "react-helmet";
 import styled from "styled-components";
-import PostListing from "../components/PostListing";
 import config from "../../data/SiteConfig";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import PostListing from "../components/PostListing";
 import PaginatedContent from "../components/PaginatedContent";
 import PopularPosts from "../components/PopularPosts";
 import CategoriesList from "../components/CategoriesList";
@@ -45,41 +47,45 @@ class TagTemplate extends React.Component {
 
     const pageTitleColor = (tag && "default") || (category && category.color);
     return (
-      <TwoColumn>
-        <Helmet title={`${pageTitle} | ${config.siteTitle}`} />
-        <div>
-          <Heading color={pageTitleColor}>
-            {tag || (category && category.displayName)}
-          </Heading>
-          <PaginatedContent
-            page={page}
-            pages={pages}
-            total={total}
-            limit={limit}
-            prev={prev}
-            next={next}
-          >
-            {/* PostListing component renders all the posts */}
-            <PostListing postEdges={nodes} postAuthors={authorsEdges} />
-          </PaginatedContent>
-        </div>
-        <Sidebar>
-          <Box compact>
-            <SubscribeForm formId="form-subscribe" />
-          </Box>
-          <Box compact>
-            <SubscribeForm whitepaper formId="form-subscribe-whitepaper" />
-          </Box>
-          <Box compact>
-            <SubSidebar>
-              <About />
-              <PopularPosts popularPosts={popularPosts} />
-              <CategoriesList categories={categories} />
-              <SocialFollow />
-            </SubSidebar>
-          </Box>
-        </Sidebar>
-      </TwoColumn>
+      <Fragment>
+        <Header />
+        <TwoColumn>
+          <Helmet title={`${pageTitle} | ${config.siteTitle}`} />
+          <div>
+            <Heading color={pageTitleColor}>
+              {tag || (category && category.displayName)}
+            </Heading>
+            <PaginatedContent
+              page={page}
+              pages={pages}
+              total={total}
+              limit={limit}
+              prev={prev}
+              next={next}
+            >
+              {/* PostListing component renders all the posts */}
+              <PostListing postEdges={nodes} postAuthors={authorsEdges} />
+            </PaginatedContent>
+          </div>
+          <Sidebar>
+            <Box compact>
+              <SubscribeForm formId="form-subscribe" />
+            </Box>
+            <Box compact>
+              <SubscribeForm whitepaper formId="form-subscribe-whitepaper" />
+            </Box>
+            <Box compact>
+              <SubSidebar>
+                <About />
+                <PopularPosts popularPosts={popularPosts} />
+                <CategoriesList categories={categories} />
+                <SocialFollow />
+              </SubSidebar>
+            </Box>
+          </Sidebar>
+        </TwoColumn>
+        <Footer />
+      </Fragment>
     );
   }
 }

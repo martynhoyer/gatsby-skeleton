@@ -30,16 +30,7 @@ class RedirectIndex extends React.Component {
     }
   }
   render() {
-    return (
-      <div>
-        Select language:
-        {config.locales.map(locale => (
-          <a key={locale} href={`/${locale}`}>
-            {locale}
-          </a>
-        ))}
-      </div>
-    );
+    return <div />;
   }
 }
 

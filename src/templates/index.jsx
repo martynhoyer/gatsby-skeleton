@@ -1,5 +1,7 @@
 import React, { Fragment } from "react";
 import { Helmet } from "react-helmet";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import PostListing from "../components/PostListing";
 import PaginatedContent from "../components/PaginatedContent";
 import PopularPosts from "../components/PopularPosts";
@@ -30,6 +32,7 @@ class IndexTemplate extends React.Component {
     return (
       <Fragment>
         <Helmet title={`Home | ${config.siteTitle}`} />
+        <Header />
         <TwoColumn>
           <PaginatedContent
             page={page}
@@ -59,6 +62,7 @@ class IndexTemplate extends React.Component {
             </Box>
           </Sidebar>
         </TwoColumn>
+        <Footer />
       </Fragment>
     );
   }
