@@ -21,8 +21,10 @@ class SearchTemplate extends React.Component {
 
     const filteredEdges = postEdges.filter(({ node }) => {
       const bodyMatch =
+        queries.query &&
         node.html.toLowerCase().indexOf(queries.query.toLowerCase()) > -1;
       const titleMatch =
+        queries.query &&
         node.frontmatter.title
           .toLowerCase()
           .indexOf(queries.query.toLowerCase()) > -1;
