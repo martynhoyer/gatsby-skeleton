@@ -105,7 +105,11 @@ export const tagPageQuery = graphql`
       limit: 4
       sort: { fields: [frontmatter___date], order: DESC }
       filter: {
-        frontmatter: { isPopular: { eq: true }, locale: { eq: $locale } }
+        frontmatter: {
+          isPopular: { eq: true }
+          locale: { eq: $locale }
+          isPublished: { eq: true }
+        }
       }
     ) {
       edges {

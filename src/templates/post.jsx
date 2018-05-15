@@ -304,7 +304,11 @@ export const pageQuery = graphql`
       limit: 3
       sort: { fields: [frontmatter___date], order: DESC }
       filter: {
-        frontmatter: { category: { eq: $category }, locale: { eq: $locale } }
+        frontmatter: {
+          category: { eq: $category }
+          locale: { eq: $locale }
+          isPublished: { eq: true }
+        }
         fields: { slug: { ne: $slug } }
       }
     ) {
