@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  branch: master
+  branch: feature/author-as-cms-relation
 
 media_folder: static/img
 public_folder: /img
@@ -134,7 +134,7 @@ collections:
       - {label: "Category", name: "category", widget: "relation", collection: "french_categories", searchFields: ["title", "displayName"], valueField: "title", displayFields: ["title", "displayName"], default: "uncategorised"}
       - {label: "Tags", name: "tags", widget: "list", default: ["news"], required: "false"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Author", name: "author", widget: "string"}
+      - {label: "Author", name: "author", widget: "relation", collection: "authors", searchFields: ["title", "displayName"], valueField: "title", displayFields: ["displayName"]}
       - {
           label: "Alternate language links", 
           name: "alternateLangLinks", 
@@ -172,7 +172,7 @@ collections:
       - {label: "Category", name: "category", widget: "relation", collection: "english_categories", searchFields: ["title", "displayName"], valueField: "title", displayFields: ["title", "displayName"], default: "uncategorised"}
       - {label: "Tags", name: "tags", widget: "list", default: ["news"], required: "false"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Author", name: "author", widget: "string"}
+      - {label: "Author", name: "author", widget: "relation", collection: "authors", searchFields: ["title", "displayName"], valueField: "title", displayFields: ["displayName"]}
       - {
           label: "Alternate language links", 
           name: "alternateLangLinks", 
