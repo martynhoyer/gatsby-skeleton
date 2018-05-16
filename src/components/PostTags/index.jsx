@@ -22,7 +22,7 @@ const StyledTagIcon = styled(TagIcon)`
   margin-right: 0.5em;
   vertical-align: middle;
   fill: ${props => props.theme.palette.grisLight};
-`
+`;
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -33,11 +33,12 @@ class PostTags extends Component {
   render() {
     const { tags, intl } = this.props;
     const { locale } = intl;
-    if (tags) {
+    if (tags && tags.indexOf("") === -1) {
       return (
         <Container>
           <Heading>
-            <StyledTagIcon /><FormattedMessage id="post.tagsHeading" />
+            <StyledTagIcon />
+            <FormattedMessage id="post.tagsHeading" />
           </Heading>
           {tags.map((tag, index, arr) => (
             <span key={tag}>
