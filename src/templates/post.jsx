@@ -196,7 +196,7 @@ class PostTemplate extends React.Component {
                   key={link.linkUrl}
                   rel="alternate"
                   href={link.linkUrl}
-                  lang={link.language}
+                  hrefLang={link.language}
                 />
               ))}
           </Helmet>
