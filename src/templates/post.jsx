@@ -16,6 +16,7 @@ import PostFooterSubscribe from "../components/PostFooterSubscribe";
 import PostCard from "../components/PostCard";
 import PostAuthor from "../components/PostAuthor";
 import SocialShare from "../components/SocialShare";
+import SEO from "../components/SEO";
 import spacing, { fontsize } from "../tokens/dimensions";
 
 const Article = styled.article`
@@ -188,6 +189,7 @@ class PostTemplate extends React.Component {
       <Fragment>
         <Header />
         <SingleColumn>
+          <SEO postSEO postNode={postNode} author={author} />
           <Helmet title={`${title} | ${config.siteTitle}`}>
             {alternateLangLinks &&
               alternateLangLinks.length > 0 &&
@@ -268,12 +270,25 @@ export const pageQuery = graphql`
         localDate: date(locale: $locale, formatString: "DD MMMM YYYY")
         date
         category
+        image
         tags
         author
         locale
         alternateLangLinks {
           language
           linkUrl
+        }
+        seo {
+          description
+          ogDescription
+          ogTitle
+          title
+          keywords
+          additional {
+            content
+            type
+            typeValue
+          }
         }
       }
       fields {
@@ -282,6 +297,7 @@ export const pageQuery = graphql`
       thumbnailArray: childrenImageSharp {
         sizes(maxWidth: 1600) {
           ...GatsbyImageSharpSizes_withWebp
+          originalImg
         }
       }
       categoriesArray: childrenCategoriesJson {

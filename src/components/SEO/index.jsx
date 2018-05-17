@@ -4,60 +4,49 @@ import config from "../../../data/SiteConfig";
 
 class SEO extends Component {
   render() {
-    const { postNode, postPath, postSEO } = this.props;
+    const { postNode, postSEO, author } = this.props;
     let title;
     let description;
     let image;
     let postURL;
+    let locale;
+    let publishTime;
     if (postSEO) {
       const postMeta = postNode.frontmatter;
-      title = postMeta.title;
-      description = postMeta.description
-        ? postMeta.description
-        : postNode.excerpt;
-      image = postMeta.cover;
-      postURL = config.siteUrl + config.pathPrefix + postPath;
+      ({ locale, title, date: publishTime } = postMeta);
+      image = postNode.thumbnailArray[0].sizes.originalImg;
+      description =
+        postMeta.seo && postMeta.seo.description
+          ? postMeta.seo.description
+          : postNode.excerpt;
+      postURL = `${config.siteUrl}/${postNode.frontmatter.locale}${
+        postNode.fields.slug
+      }`;
     } else {
       title = config.siteTitle;
       description = config.siteDescription;
       image = config.siteLogo;
     }
-    const realPrefix = config.pathPrefix === "/" ? "" : config.pathPrefix;
-    image = config.siteUrl + realPrefix + image;
-    const blogURL = config.siteUrl + config.pathPrefix;
+    image = config.siteUrl + image;
+    const blogURL = config.siteUrl;
     const schemaOrgJSONLD = [
       {
         "@context": "http://schema.org",
         "@type": "WebSite",
         url: blogURL,
-        name: title,
-        alternateName: config.siteTitleAlt ? config.siteTitleAlt : ""
+        name: title
       }
     ];
     if (postSEO) {
       schemaOrgJSONLD.push([
         {
           "@context": "http://schema.org",
-          "@type": "BreadcrumbList",
-          itemListElement: [
-            {
-              "@type": "ListItem",
-              position: 1,
-              item: {
-                "@id": postURL,
-                name: title,
-                image
-              }
-            }
-          ]
-        },
-        {
-          "@context": "http://schema.org",
           "@type": "BlogPosting",
-          url: blogURL,
+          url: postURL,
           name: title,
-          alternateName: config.siteTitleAlt ? config.siteTitleAlt : "",
+          author: author.displayName,
           headline: title,
+          published_time: publishTime,
           image: {
             "@type": "ImageObject",
             url: image
@@ -71,6 +60,8 @@ class SEO extends Component {
         {/* General tags */}
         <meta name="description" content={description} />
         <meta name="image" content={image} />
+        {postSEO && <meta name="author" content={author.displayName} />}
+        {postSEO && <link rel="canonical" href={postURL} />}
 
         {/* Schema.org tags */}
         <script type="application/ld+json">
@@ -82,6 +73,7 @@ class SEO extends Component {
         {postSEO ? <meta property="og:type" content="article" /> : null}
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
+        <meta property="og:locale" content={locale} />
         <meta property="og:image" content={image} />
         <meta
           property="fb:app_id"
@@ -89,7 +81,7 @@ class SEO extends Component {
         />
 
         {/* Twitter Card tags */}
-        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:card" content="summary" />
         <meta
           name="twitter:creator"
           content={config.userTwitter ? config.userTwitter : ""}
