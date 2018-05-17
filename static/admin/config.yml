@@ -180,13 +180,11 @@ collections:
             {
               label: "Language", 
               name: "language", 
-              required: false,
               widget: "string"
             }, 
             {
               label: "Link URL", 
               name: "linkUrl", 
-              required: false,
               widget: "string"
             }
           ]
@@ -194,4 +192,68 @@ collections:
       - {label: "Show on popular posts sidebar?", name: "isPopular", widget: "boolean", required: false}
       - {label: "Image", name: "image", widget: "image"}
       - {label: "Content", name: "body", widget: "markdown"}
+      - {
+          label: "SEO", 
+          name: "seo", 
+          widget: "object", 
+          required: false,
+          fields: [
+            {
+              label: "Title", 
+              name: "title", 
+              required: false,
+              widget: "string"
+            },
+            {
+              label: "og:title", 
+              name: "ogTitle", 
+              required: false,
+              widget: "string"
+            },
+            {
+              label: "Description", 
+              name: "description", 
+              required: false,
+              widget: "string"
+            },
+            {
+              label: "og:description", 
+              name: "ogDescription", 
+              required: false,
+              widget: "string"
+            },
+            {
+              label: "Keywords", 
+              name: "keywords", 
+              widget: "list", 
+              required: false
+            },
+            {
+              label: "Additional custom entries", 
+              name: "additional", 
+              widget: "list",
+              required: false,
+              fields: [
+                {
+                  label: "Type", 
+                  name: "type", 
+                  widget: "select",
+                  options: ["name", "description"]
+                }, 
+                {
+                  label: "Type value", 
+                  name: "typeValue", 
+                  widget: "string"
+                }, 
+                {
+                  label: "Content", 
+                  name: "content", 
+                  widget: "string"
+                }
+              ]
+
+              
+            }
+          ]
+        }
 
