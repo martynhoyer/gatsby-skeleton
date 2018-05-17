@@ -229,6 +229,12 @@ collections:
               required: false
             },
             {
+              label: "article:tag (comma-separated)", 
+              name: "articleTags", 
+              widget: "list", 
+              required: false
+            },
+            {
               label: "Additional custom entries", 
               name: "additional", 
               widget: "list",
