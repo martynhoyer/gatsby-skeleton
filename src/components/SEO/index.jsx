@@ -14,7 +14,9 @@ class SEO extends Component {
     if (postSEO) {
       const postMeta = postNode.frontmatter;
       ({ locale, title, date: publishTime } = postMeta);
-      image = postNode.thumbnailArray[0].sizes.originalImg;
+      image = postMeta.seo.ogImage
+        ? postMeta.seo.ogImage
+        : postNode.thumbnailArray[0].sizes.originalImg;
       description =
         postMeta.seo && postMeta.seo.description
           ? postMeta.seo.description
@@ -50,6 +52,7 @@ class SEO extends Component {
         author: author.displayName,
         headline: title,
         datePublished: publishTime,
+        dateModified: publishTime,
         publisher: {
           "@type": "Organization",
           name: config.organizationName,
