@@ -285,6 +285,7 @@ export const pageQuery = graphql`
           ogDescription
           keywords
           ogImage
+          ogArticleTags
           additional {
             content
             type

@@ -230,7 +230,7 @@ collections:
             },
             {
               label: "article:tag (comma-separated)", 
-              name: "articleTags", 
+              name: "ogArticleTags", 
               widget: "list", 
               required: false
             },

@@ -13,6 +13,7 @@ import SubscribeForm from "../components/SubscribeForm";
 import Box from "../components/Box";
 import About from "../components/About";
 import SocialFollow from "../components/SocialFollow";
+import SEO from "../components/SEO";
 import config from "../../data/SiteConfig";
 
 class IndexTemplate extends React.Component {
@@ -31,6 +32,7 @@ class IndexTemplate extends React.Component {
 
     return (
       <Fragment>
+        <SEO />
         <Helmet title={`Home | ${config.siteTitle}`} />
         <Header />
         <TwoColumn>

@@ -7,10 +7,13 @@ class SEO extends Component {
     const { postNode, postSEO, author } = this.props;
     let title;
     let description;
+    let keywords;
     let image;
     let postURL;
     let locale;
     let publishTime;
+    let ogArticleTags;
+    let additionalCustomTags;
     if (postSEO) {
       const postMeta = postNode.frontmatter;
       ({ locale, title, date: publishTime } = postMeta);
@@ -25,10 +28,17 @@ class SEO extends Component {
       postURL = `${config.siteUrl}/${postNode.frontmatter.locale}${
         postNode.fields.slug
       }`;
+      keywords =
+        postMeta.seo && postMeta.seo.keywords
+          ? postMeta.seo.keywords
+          : postMeta.tags;
+      ogArticleTags = postMeta.seo && postMeta.seo.ogArticleTags;
+      additionalCustomTags = postMeta.seo && postMeta.seo.additional;
     } else {
       title = config.siteTitle;
       description = config.siteDescription;
       image = config.siteLogo;
+      keywords = config.siteKeywords;
     }
     image = config.siteUrl + image;
     const blogURL = config.siteUrl;
@@ -69,10 +79,14 @@ class SEO extends Component {
         description
       });
     }
+
+    const ogTags = ogArticleTags || keywords;
+
     return (
       <Helmet>
         {/* General tags */}
         <meta name="description" content={description} />
+        <meta name="keywords" content={keywords} />
         <meta name="image" content={image} />
         {postSEO && <meta name="author" content={author.displayName} />}
         {postSEO && <link rel="canonical" href={postURL} />}
@@ -94,6 +108,10 @@ class SEO extends Component {
         <meta property="og:site_name" content={config.siteTitle} />
         <meta property="og:locale" content={locale} />
         <meta property="og:image" content={image} />
+        {postSEO &&
+          ogTags.map(tag => (
+            <meta key={tag} property="article:tag" content={tag} />
+          ))}
         <meta
           property="fb:app_id"
           content={config.siteFBAppID ? config.siteFBAppID : ""}
@@ -108,6 +126,26 @@ class SEO extends Component {
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={image} />
+
+        {/* Additional custom meta tags */}
+        {postSEO &&
+          additionalCustomTags &&
+          additionalCustomTags.map(
+            tag =>
+              tag.type === "name" ? (
+                <meta
+                  key={tag.type + tag.typeValue + tag.content}
+                  name={tag.typeValue}
+                  content={tag.content}
+                />
+              ) : (
+                <meta
+                  key={tag.type + tag.typeValue + tag.content}
+                  property={tag.typeValue}
+                  content={tag.content}
+                />
+              )
+          )}
       </Helmet>
     );
   }

@@ -16,6 +16,7 @@ import About from "../components/About";
 import SocialFollow from "../components/SocialFollow";
 import SubSidebar from "../components/SubSidebar";
 import { fontsize } from "../tokens/dimensions";
+import SEO from "../components/SEO/index";
 
 const Heading = styled.h1`
   font-size: ${fontsize.xxl};
@@ -50,6 +51,7 @@ class TagTemplate extends React.Component {
       <Fragment>
         <Header />
         <TwoColumn>
+          <SEO />
           <Helmet title={`${pageTitle} | ${config.siteTitle}`} />
           <div>
             <Heading color={pageTitleColor}>
