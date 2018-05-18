@@ -1,9 +1,10 @@
 module.exports = {
   blogPostDir: "posts", // The name of directory that contains your posts.
   blogAuthorDir: "authors", // The name of directory that contains your 'authors' folder.
+  organizationName: "Gymlib", // Used for SEO schema.org "organization" type
   siteTitle: "Gymlib blog", // Site title.
   siteUrl: "https://blog.gymlib.com",
-  siteLogo: "",
+  siteLogo: "/favicons/android-chrome-512x512.png",
   siteDescription: "",
   sitePaginationLimit: 6, // The max number of posts per page.
   locales: ["fr", "en"],

@@ -244,7 +244,7 @@ collections:
                   label: "Type", 
                   name: "type", 
                   widget: "select",
-                  options: ["name", "description"]
+                  options: ["name", "property"]
                 }, 
                 {
                   label: "Type value", 

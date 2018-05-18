@@ -34,26 +34,36 @@ class SEO extends Component {
         "@context": "http://schema.org",
         "@type": "WebSite",
         url: blogURL,
-        name: title
+        name: config.siteTitle
       }
     ];
     if (postSEO) {
-      schemaOrgJSONLD.push([
-        {
-          "@context": "http://schema.org",
-          "@type": "BlogPosting",
-          url: postURL,
-          name: title,
-          author: author.displayName,
-          headline: title,
-          published_time: publishTime,
-          image: {
+      schemaOrgJSONLD.push({
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        mainEntityOfPage: {
+          "@type": "WebSite",
+          "@id": blogURL
+        },
+        url: postURL,
+        name: title,
+        author: author.displayName,
+        headline: title,
+        datePublished: publishTime,
+        publisher: {
+          "@type": "Organization",
+          name: config.organizationName,
+          logo: {
             "@type": "ImageObject",
-            url: image
-          },
-          description
-        }
-      ]);
+            url: config.siteUrl + config.siteLogo
+          }
+        },
+        image: {
+          "@type": "ImageObject",
+          url: image
+        },
+        description
+      });
     }
     return (
       <Helmet>
@@ -70,9 +80,14 @@ class SEO extends Component {
 
         {/* OpenGraph tags */}
         <meta property="og:url" content={postSEO ? postURL : blogURL} />
-        {postSEO ? <meta property="og:type" content="article" /> : null}
+        {postSEO ? (
+          <meta property="og:type" content="article" />
+        ) : (
+          <meta property="og:type" content="website" />
+        )}
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
+        <meta property="og:site_name" content={config.siteTitle} />
         <meta property="og:locale" content={locale} />
         <meta property="og:image" content={image} />
         <meta
