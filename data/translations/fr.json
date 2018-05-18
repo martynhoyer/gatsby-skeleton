@@ -1,7 +1,12 @@
 {
   "title": "fr",
   "global": {
-    "languagesLabel": "Langues"
+    "languagesLabel": "Langues",
+    "seo": {
+      "siteTitle": "Gymlib blog FR",
+      "siteDescription": "Gymlib blog FR description",
+      "siteKeywords": ""
+    }
   },
   "navigation": {
     "home": {

@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { Helmet } from "react-helmet";
+import { injectIntl } from "react-intl";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import PostListing from "../components/PostListing";
@@ -14,10 +15,10 @@ import Box from "../components/Box";
 import About from "../components/About";
 import SocialFollow from "../components/SocialFollow";
 import SEO from "../components/SEO";
-import config from "../../data/SiteConfig";
 
 class IndexTemplate extends React.Component {
   render() {
+    const { intl } = this.props;
     const {
       nodes,
       page,
@@ -30,10 +31,16 @@ class IndexTemplate extends React.Component {
     const popularPosts = this.props.data.popularPosts.edges;
     const categories = this.props.data.categories.edges;
 
+    const globalSiteTitle =
+      intl.messages["global.seo.siteTitle"] &&
+      intl.formatMessage({
+        id: "global.seo.siteTitle"
+      });
+
     return (
       <Fragment>
         <SEO />
-        <Helmet title={`Home | ${config.siteTitle}`} />
+        <Helmet title={`Home | ${globalSiteTitle}`} />
         <Header />
         <TwoColumn>
           <PaginatedContent
@@ -111,4 +118,4 @@ export const indexPageQuery = graphql`
   }
 `;
 
-export default IndexTemplate;
+export default injectIntl(IndexTemplate);

@@ -4,7 +4,7 @@ import _ from "lodash";
 import Link from "gatsby-link";
 import Img from "gatsby-image";
 import styled from "styled-components";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, injectIntl } from "react-intl";
 import config from "../../data/SiteConfig";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -148,6 +148,7 @@ const getPostList = postEdges =>
 
 class PostTemplate extends React.Component {
   render() {
+    const { intl } = this.props;
     const postNode = this.props.data.markdownRemark;
     const {
       locale,
@@ -177,20 +178,20 @@ class PostTemplate extends React.Component {
       postNode.categoriesArray.length > 0 &&
       postNode.categoriesArray[0];
 
-    // const authorData = AuthorModel.getAuthor(
-    //   this.props.data.authors.edges,
-    //   author,
-    //   config.blogAuthorId
-    // );
-
     const { author } = this.props.data;
+
+    const globalSiteTitle =
+      intl.messages["global.seo.siteTitle"] &&
+      intl.formatMessage({
+        id: "global.seo.siteTitle"
+      });
 
     return (
       <Fragment>
         <Header />
         <SingleColumn>
           <SEO postSEO postNode={postNode} author={author} />
-          <Helmet title={`${title} | ${config.siteTitle}`}>
+          <Helmet title={`${title} | ${globalSiteTitle}`}>
             {alternateLangLinks &&
               alternateLangLinks.length > 0 &&
               alternateLangLinks.map(link => (
@@ -360,4 +361,4 @@ export const pageQuery = graphql`
   }
 `;
 
-export default PostTemplate;
+export default injectIntl(PostTemplate);

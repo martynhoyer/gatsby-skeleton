@@ -62,6 +62,40 @@ collections:
       preview: false
     fields:
       - {label: "Two-digit language code", name: "title", widget: "string"}
+      - label: "Global"
+        name: "global"
+        widget: "object"
+        fields: 
+          - {label: "Languages label", name: "languagesLabel", widget: "string"}
+          - label: "SEO"
+            name: "seo"
+            widget: "object"
+            fields: 
+              - {label: "Site title", name: "siteTitle", widget: "string"}
+              - {label: "Site description", name: "siteDescription", widget: "string"}
+              - {label: "Site keywords", name: "siteKeywords", widget: "string"}
+      - label: "Navigation"
+        name: "navigation"
+        widget: "object"
+        fields: 
+          - label: "Home"
+            name: "home"
+            widget: "object"
+            fields: 
+              - {label: "Link text", name: "linkText", widget: "string"}
+              - {label: "Link URL", name: "linkUrl", widget: "string"}
+          - label: "Offers"
+            name: "offers"
+            widget: "object"
+            fields: 
+              - {label: "Link text", name: "linkText", widget: "string"}
+              - {label: "Link URL", name: "linkUrl", widget: "string"}
+          - label: "Profile"
+            name: "profile"
+            widget: "object"
+            fields: 
+              - {label: "Link text", name: "linkText", widget: "string"}
+              - {label: "Link URL", name: "linkUrl", widget: "string"}
       - label: "Sidebar"
         name: "sidebar"
         widget: "object"

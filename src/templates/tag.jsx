@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import Helmet from "react-helmet";
 import styled from "styled-components";
-import config from "../../data/SiteConfig";
+import { injectIntl } from "react-intl";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import PostListing from "../components/PostListing";
@@ -27,6 +27,7 @@ const Heading = styled.h1`
 
 class TagTemplate extends React.Component {
   render() {
+    const { intl } = this.props;
     const {
       tag,
       nodes,
@@ -47,12 +48,19 @@ class TagTemplate extends React.Component {
       : `Posts categorised with "${category.displayName}"`;
 
     const pageTitleColor = (tag && "default") || (category && category.color);
+
+    const globalSiteTitle =
+      intl.messages["global.seo.siteTitle"] &&
+      intl.formatMessage({
+        id: "global.seo.siteTitle"
+      });
+
     return (
       <Fragment>
         <Header />
         <TwoColumn>
           <SEO />
-          <Helmet title={`${pageTitle} | ${config.siteTitle}`} />
+          <Helmet title={`${pageTitle} | ${globalSiteTitle}`} />
           <div>
             <Heading color={pageTitleColor}>
               {tag || (category && category.displayName)}
@@ -148,4 +156,4 @@ export const tagPageQuery = graphql`
   }
 `;
 
-export default TagTemplate;
+export default injectIntl(TagTemplate);

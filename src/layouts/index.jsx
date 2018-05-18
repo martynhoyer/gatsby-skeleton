@@ -52,7 +52,6 @@ export default class MainLayout extends React.Component {
           <Fragment>
             <Helmet>
               <html lang={langKey} />
-              <meta name="description" content={config.siteDescription} />
             </Helmet>
             {children()}
           </Fragment>

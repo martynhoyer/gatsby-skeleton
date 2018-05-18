@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import Helmet from "react-helmet";
+import { injectIntl } from "react-intl";
 import config from "../../../data/SiteConfig";
 
 class SEO extends Component {
   render() {
-    const { postNode, postSEO, author } = this.props;
+    const { postNode, postSEO, author, intl } = this.props;
     let title;
     let description;
     let keywords;
@@ -14,6 +15,25 @@ class SEO extends Component {
     let publishTime;
     let ogArticleTags;
     let additionalCustomTags;
+
+    const globalSiteTitle =
+      intl.messages["global.seo.siteTitle"] &&
+      intl.formatMessage({
+        id: "global.seo.siteTitle"
+      });
+
+    const globalSiteDescription =
+      intl.messages["global.seo.siteDescription"] &&
+      intl.formatMessage({
+        id: "global.seo.siteDescription"
+      });
+
+    const globalSiteKeywords =
+      intl.messages["global.seo.siteKeywords"] &&
+      intl.formatMessage({
+        id: "global.seo.siteKeywords"
+      });
+
     if (postSEO) {
       const postMeta = postNode.frontmatter;
       ({ locale, title, date: publishTime } = postMeta);
@@ -35,10 +55,10 @@ class SEO extends Component {
       ogArticleTags = postMeta.seo && postMeta.seo.ogArticleTags;
       additionalCustomTags = postMeta.seo && postMeta.seo.additional;
     } else {
-      title = config.siteTitle;
-      description = config.siteDescription;
+      title = globalSiteTitle;
+      description = globalSiteDescription;
       image = config.siteLogo;
-      keywords = config.siteKeywords;
+      keywords = globalSiteKeywords;
     }
     image = config.siteUrl + image;
     const blogURL = config.siteUrl;
@@ -47,7 +67,7 @@ class SEO extends Component {
         "@context": "http://schema.org",
         "@type": "WebSite",
         url: blogURL,
-        name: config.siteTitle
+        name: globalSiteTitle
       }
     ];
     if (postSEO) {
@@ -105,7 +125,7 @@ class SEO extends Component {
         )}
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
-        <meta property="og:site_name" content={config.siteTitle} />
+        <meta property="og:site_name" content={globalSiteTitle} />
         <meta property="og:locale" content={locale} />
         <meta property="og:image" content={image} />
         {postSEO &&
@@ -151,4 +171,4 @@ class SEO extends Component {
   }
 }
 
-export default SEO;
+export default injectIntl(SEO);
