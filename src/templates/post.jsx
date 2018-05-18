@@ -279,11 +279,13 @@ export const pageQuery = graphql`
           linkUrl
         }
         seo {
+          title
+          ogTitle
           description
           ogDescription
-          ogTitle
-          title
           keywords
+          articleTags
+          ogImage
           additional {
             content
             type
