@@ -6,6 +6,11 @@
       "siteTitle": "Gymlib blog EN",
       "siteDescription": "Gymlib blog EN description",
       "siteKeywords": ""
+    },
+    "pageTitles": {
+      "home": "Home",
+      "category": "Posts categorised as: {category}",
+      "tag": "Posts tagged with: {tag}"
     }
   },
   "navigation": {
