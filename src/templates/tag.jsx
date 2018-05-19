@@ -44,8 +44,13 @@ class TagTemplate extends React.Component {
     const { category } = this.props.data;
 
     const pageTitle = tag
-      ? `Posts tagged as "${tag}"`
-      : `Posts categorised with "${category.displayName}"`;
+      ? intl.formatMessage({ id: "global.pageTitles.tag" }, { tag })
+      : intl.formatMessage(
+          { id: "global.pageTitles.category" },
+          {
+            category: category.displayName
+          }
+        );
 
     const pageTitleColor = (tag && "default") || (category && category.color);
 

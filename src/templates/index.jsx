@@ -37,10 +37,14 @@ class IndexTemplate extends React.Component {
         id: "global.seo.siteTitle"
       });
 
+    const pageTitle = intl.formatMessage({
+      id: "global.pageTitles.home"
+    });
+
     return (
       <Fragment>
         <SEO />
-        <Helmet title={`Home | ${globalSiteTitle}`} />
+        <Helmet title={`${pageTitle} | ${globalSiteTitle}`} />
         <Header />
         <TwoColumn>
           <PaginatedContent
