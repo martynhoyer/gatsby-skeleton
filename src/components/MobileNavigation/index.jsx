@@ -18,11 +18,14 @@ const Wrapper = styled.div`
 `;
 
 const MenuButton = styled.button`
+  padding: 0;
   border: 0;
   background-color: transparent;
   color: inherit;
 
   & > svg {
+    width: ${spacing.md};
+    height: ${spacing.md};
     fill: currentColor;
   }
 `;
@@ -85,12 +88,15 @@ const CloseButton = styled.button`
   width: ${spacing.xxl};
   height: ${spacing.xxl};
   margin-top: ${spacing.xl};
+  padding: 0;
   border: 1px solid currentColor;
   border-radius: 50%;
   background-color: transparent;
   color: inherit;
 
   & > svg {
+    width: ${spacing.md};
+    height: ${spacing.md};
     fill: currentColor;
   }
 `;
@@ -147,7 +153,7 @@ class MobileNavigation extends Component {
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <LanguageSelection isMobile />
+                  <LanguageSelection isMobile id="mobileLangSelection" />
                 </NavItem>
                 <NavItem>
                   <NavLink to={messages["navigation.profile.linkUrl"]}>

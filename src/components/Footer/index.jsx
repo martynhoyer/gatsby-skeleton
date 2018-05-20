@@ -21,13 +21,13 @@ const Container = styled.div`
 
 const StyledCopyright = styled(Copyright)`
   padding: 0.5em 0;
-`
+`;
 
 const Footer = () => (
   <StyledFooter>
     <Container>
       <StyledCopyright />
-      <LanguageSelection isBottom />
+      <LanguageSelection isBottom id="footerLangSelection" />
     </Container>
   </StyledFooter>
 );

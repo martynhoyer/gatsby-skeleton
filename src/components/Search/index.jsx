@@ -3,6 +3,7 @@ import { navigateTo } from "gatsby-link";
 import { injectIntl } from "react-intl";
 import styled, { css } from "styled-components";
 import { hideVisually } from "polished";
+import { ReactComponent as MagnifyingGlass } from "../../svg/magnifying-glass.svg";
 import SearchCategoriesDropdown from "../SearchCategoriesDropdown";
 import spacing from "../../tokens/dimensions";
 import media from "../../tokens/breakpoints";
@@ -41,17 +42,32 @@ const Form = styled.form`
 `;
 
 const LabelWrapper = styled.label`
+  position: relative;
+  margin-top: 1em;
+
   @media (${media.md}) {
     padding: 0 ${spacing.xs};
   }
 `;
 
 const Wrapper = styled.div`
+  margin-top: 1em;
+
   @media (${media.md}) {
     flex-shrink: 0;
 
     padding: 0 ${spacing.xs};
   }
+`;
+
+const StyledMagnifyingGlass = styled(MagnifyingGlass)`
+  position: absolute;
+  top: 50%;
+  left: ${spacing.base};
+  width: 1em;
+  height: 1em;
+  margin-top: -0.5em;
+  fill: currentColor;
 `;
 
 const Label = styled.span`
@@ -60,8 +76,7 @@ const Label = styled.span`
 
 const SearchInput = styled.input`
   width: 100%;
-  margin-top: 1em;
-  padding: 0.5em 1em;
+  padding: 0.5em 1em 0.5em ${spacing.lg};
   border: 1px solid currentColor;
   border-radius: 2em;
   line-height: inherit;
@@ -73,7 +88,6 @@ const SearchInput = styled.input`
 
 const SubmitButton = styled.button`
   width: 100%;
-  margin-top: 1em;
   padding: 0.5em 1em;
   border: 1px solid currentColor;
   border-radius: 2em;
@@ -119,6 +133,7 @@ class Search extends Component {
         needsToClearNegativeMargin={needsToClearNegativeMargin}
       >
         <LabelWrapper htmlFor="searchInput">
+          <StyledMagnifyingGlass />
           <Label>Search term</Label>
           <SearchInput
             id="searchInput"

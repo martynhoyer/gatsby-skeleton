@@ -6,7 +6,6 @@ import media from "../../tokens/breakpoints";
 
 const StyledMenuButton = styled(MenuButton)`
   position: relative;
-  margin-top: 1em;
   color: currentColor;
 
   & > button {
@@ -26,9 +25,10 @@ const StyledMenuButton = styled(MenuButton)`
     }
 
     &::after {
+      content: "▼";
       display: inline-block;
       margin-left: 1em;
-      content: "▼";
+      line-height: 1;
       font-size: 0.6em;
       vertical-align: middle;
     }

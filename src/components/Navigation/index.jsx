@@ -59,7 +59,7 @@ const Navigation = ({ intl }) => {
           </NavLink>
         </NavItem>
         <NavItem>
-          <LanguageSelection />
+          <LanguageSelection id="topbarLangSelection" />
         </NavItem>
         <NavItem>
           <NavLink to={messages["navigation.profile.linkUrl"]}>
