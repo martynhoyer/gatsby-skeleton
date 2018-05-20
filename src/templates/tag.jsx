@@ -3,6 +3,7 @@ import Helmet from "react-helmet";
 import styled from "styled-components";
 import { injectIntl } from "react-intl";
 import Header from "../components/Header";
+import Body from "../components/Layouts/Body";
 import Footer from "../components/Footer";
 import PostListing from "../components/PostListing";
 import Search from "../components/Search";
@@ -63,44 +64,49 @@ class TagTemplate extends React.Component {
 
     return (
       <Fragment>
-        <Header />
-        <TwoColumn>
-          <SEO />
-          <Helmet title={`${pageTitle} | ${globalSiteTitle}`} />
-          <div>
+        <SEO />
+        <Helmet title={`${pageTitle} | ${globalSiteTitle}`} />
+        <Header>
+          <TwoColumn>
             <Search categories={categories} />
-            <Heading color={pageTitleColor}>
-              {tag || (category && category.displayName)}
-            </Heading>
-            <PaginatedContent
-              page={page}
-              pages={pages}
-              total={total}
-              limit={limit}
-              prev={prev}
-              next={next}
-            >
-              {/* PostListing component renders all the posts */}
-              <PostListing postEdges={nodes} postAuthors={authorsEdges} />
-            </PaginatedContent>
-          </div>
-          <Sidebar>
-            <Box compact>
-              <SubscribeForm formId="form-subscribe" />
-            </Box>
-            <Box compact>
-              <SubscribeForm whitepaper formId="form-subscribe-whitepaper" />
-            </Box>
-            <Box compact>
-              <SubSidebar>
-                <About />
-                <PopularPosts popularPosts={popularPosts} />
-                <CategoriesList categories={categories} />
-                <SocialFollow />
-              </SubSidebar>
-            </Box>
-          </Sidebar>
-        </TwoColumn>
+          </TwoColumn>
+        </Header>
+        <Body>
+          <TwoColumn>
+            <div>
+              <Heading color={pageTitleColor}>
+                {tag || (category && category.displayName)}
+              </Heading>
+              <PaginatedContent
+                page={page}
+                pages={pages}
+                total={total}
+                limit={limit}
+                prev={prev}
+                next={next}
+              >
+                {/* PostListing component renders all the posts */}
+                <PostListing postEdges={nodes} postAuthors={authorsEdges} />
+              </PaginatedContent>
+            </div>
+            <Sidebar>
+              <Box compact>
+                <SubscribeForm formId="form-subscribe" />
+              </Box>
+              <Box compact>
+                <SubscribeForm whitepaper formId="form-subscribe-whitepaper" />
+              </Box>
+              <Box compact>
+                <SubSidebar>
+                  <About />
+                  <PopularPosts popularPosts={popularPosts} />
+                  <CategoriesList categories={categories} />
+                  <SocialFollow />
+                </SubSidebar>
+              </Box>
+            </Sidebar>
+          </TwoColumn>
+        </Body>
         <Footer />
       </Fragment>
     );

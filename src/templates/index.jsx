@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { Helmet } from "react-helmet";
 import { injectIntl } from "react-intl";
 import Header from "../components/Header";
+import Body from "../components/Layouts/Body";
 import Footer from "../components/Footer";
 import PostListing from "../components/PostListing";
 import PaginatedContent from "../components/PaginatedContent";
@@ -38,10 +39,13 @@ class IndexTemplate extends React.Component {
       <Fragment>
         <SEO />
         <Helmet title={`${pageTitle} | ${globalSiteTitle}`} />
-        <Header />
-        <TwoColumn>
-          <div>
-            <Search categories={categories} />
+        <Header>
+          <TwoColumn>
+            <Search categories={categories} needsToClearNegativeMargin />
+          </TwoColumn>
+        </Header>
+        <Body>
+          <TwoColumn>
             <PaginatedContent
               page={page}
               pages={pages}
@@ -52,24 +56,24 @@ class IndexTemplate extends React.Component {
               {/* PostListing component renders all the posts */}
               <PostListing postEdges={nodes} isIndex />
             </PaginatedContent>
-          </div>
-          <Sidebar>
-            <Box compact>
-              <SubscribeForm formId="form-subscribe" />
-            </Box>
-            <Box compact>
-              <SubscribeForm whitepaper formId="form-subscribe-whitepaper" />
-            </Box>
-            <Box compact>
-              <SubSidebar>
-                <About />
-                <PopularPosts popularPosts={popularPosts} />
-                <CategoriesList categories={categories} />
-                <SocialFollow />
-              </SubSidebar>
-            </Box>
-          </Sidebar>
-        </TwoColumn>
+            <Sidebar>
+              <Box compact>
+                <SubscribeForm formId="form-subscribe" />
+              </Box>
+              <Box compact>
+                <SubscribeForm whitepaper formId="form-subscribe-whitepaper" />
+              </Box>
+              <Box compact>
+                <SubSidebar>
+                  <About />
+                  <PopularPosts popularPosts={popularPosts} />
+                  <CategoriesList categories={categories} />
+                  <SocialFollow />
+                </SubSidebar>
+              </Box>
+            </Sidebar>
+          </TwoColumn>
+        </Body>
         <Footer />
       </Fragment>
     );

@@ -9,7 +9,7 @@ const StyledTwoColumn = styled.div`
 
   margin-right: auto;
   margin-left: auto;
-  padding: ${spacing.md} ${spacing.md} ${spacing.xxl};
+  padding: ${spacing.md} ${spacing.md} 0;
 
   @media (${media.md}) {
     grid-template-columns: 5fr 2fr;

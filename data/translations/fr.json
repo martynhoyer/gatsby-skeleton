@@ -10,7 +10,8 @@
     "pageTitles": {
       "home": "Acceuil",
       "category": "Posts categorised as: {category}",
-      "tag": "Posts tagged with: {tag}"
+      "tag": "Posts tagged with: {tag}",
+      "search": "Rechercher"
     }
   },
   "navigation": {

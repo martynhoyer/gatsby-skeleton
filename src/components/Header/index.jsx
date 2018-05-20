@@ -7,7 +7,6 @@ import Navigation from "../Navigation";
 import { ReactComponent as LogoSvg } from "../../svg/logo.svg";
 
 const StyledHeader = styled.header`
-  height: 300px;
   padding: ${spacing.xl} ${spacing.md};
   background-image: linear-gradient(
     to bottom,
@@ -37,7 +36,11 @@ const Logo = styled(Link)`
   }
 `;
 
-const Header = ({ intl }) => {
+const ChildrenWrapper = styled.div`
+  width: 100%;
+`;
+
+const Header = ({ intl, children }) => {
   const { locale } = intl;
   return (
     <StyledHeader>
@@ -46,6 +49,7 @@ const Header = ({ intl }) => {
           <LogoSvg />
         </Logo>
         <Navigation />
+        <ChildrenWrapper>{children}</ChildrenWrapper>
       </Container>
     </StyledHeader>
   );

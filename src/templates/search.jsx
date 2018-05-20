@@ -2,8 +2,11 @@ import React, { Fragment } from "react";
 import { Helmet } from "react-helmet";
 import _ from "lodash";
 import queryString from "query-string";
+import { injectIntl } from "react-intl";
 import config from "../../data/SiteConfig";
+import SEO from "../components/SEO";
 import Header from "../components/Header";
+import Body from "../components/Layouts/Body";
 import Footer from "../components/Footer";
 import PostListing from "../components/PostListing";
 import PaginatedContent from "../components/PaginatedContent";
@@ -57,6 +60,7 @@ class SearchTemplate extends React.Component {
   };
 
   render() {
+    const { intl } = this.props;
     const { results, currentPage, itemsPerPage, touched } = this.state;
     const { search } = this.props.location;
     const categories = this.props.data.categories.edges;
@@ -75,42 +79,58 @@ class SearchTemplate extends React.Component {
       );
 
     const searchedCategory = searchedCategoryNode && searchedCategoryNode.node;
+
+    const globalSiteTitle =
+      intl.messages["global.seo.siteTitle"] &&
+      intl.formatMessage({
+        id: "global.seo.siteTitle"
+      });
+
+    const pageTitle = intl.formatMessage({
+      id: "global.pageTitles.search"
+    });
+
     return (
       <Fragment>
-        <Header />
-        <Helmet title={`Search | ${config.siteTitle}`} />
-        <SearchLayout>
-          <SearchResults>
-            <Search categories={categories} />
-            {results && results.length ? (
-              <Fragment>
-                <PaginatedContent
-                  page={this.state.currentPage}
-                  pages={pageCountForResultSet}
-                  isSearchResults
-                  handleButtonClick={this.handleButtonClick}
-                >
-                  <h1>
-                    Search results {queries.query && `for: "${queries.query}"`}{" "}
-                    {searchedCategory &&
-                      `in category: "${searchedCategory.displayName}"`}
-                  </h1>
-                  <PostListing postEdges={currentItems} />
-                </PaginatedContent>
-              </Fragment>
-            ) : (
-              <Fragment>
-                {!_.isEmpty(touched) ? (
-                  <h1>
-                    No results {queries.query && `for: "${queries.query}"`}{" "}
-                    {searchedCategory &&
-                      `in category: "${searchedCategory.displayName}"`}
-                  </h1>
-                ) : null}
-              </Fragment>
-            )}
-          </SearchResults>
-        </SearchLayout>
+        <SEO />
+        <Helmet title={`${pageTitle} | ${globalSiteTitle}`} />
+        <Header>
+          <Search categories={categories} />
+        </Header>
+        <Body>
+          <SearchLayout>
+            <SearchResults>
+              {results && results.length ? (
+                <Fragment>
+                  <PaginatedContent
+                    page={this.state.currentPage}
+                    pages={pageCountForResultSet}
+                    isSearchResults
+                    handleButtonClick={this.handleButtonClick}
+                  >
+                    <h1>
+                      Search results{" "}
+                      {queries.query && `for: "${queries.query}"`}{" "}
+                      {searchedCategory &&
+                        `in category: "${searchedCategory.displayName}"`}
+                    </h1>
+                    <PostListing postEdges={currentItems} />
+                  </PaginatedContent>
+                </Fragment>
+              ) : (
+                <Fragment>
+                  {!_.isEmpty(touched) ? (
+                    <h1>
+                      No results {queries.query && `for: "${queries.query}"`}{" "}
+                      {searchedCategory &&
+                        `in category: "${searchedCategory.displayName}"`}
+                    </h1>
+                  ) : null}
+                </Fragment>
+              )}
+            </SearchResults>
+          </SearchLayout>
+        </Body>
         <Footer />
       </Fragment>
     );
@@ -175,4 +195,4 @@ export const searchPageQuery = graphql`
   }
 `;
 
-export default SearchTemplate;
+export default injectIntl(SearchTemplate);

@@ -1,14 +1,28 @@
 import React, { Component } from "react";
 import { navigateTo } from "gatsby-link";
 import { injectIntl } from "react-intl";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { hideVisually } from "polished";
+import SearchCategoriesDropdown from "../SearchCategoriesDropdown";
 import spacing from "../../tokens/dimensions";
 
-const Form = styled.form`
-  display: flex;
+const formBottomPadding = ({ needsToClearNegativeMargin }) =>
+  needsToClearNegativeMargin &&
+  css`
+    padding-bottom: ${spacing.xxl};
+  `;
 
-  padding: 0 0 ${spacing.lg};
+const Form = styled.form`
+  ${formBottomPadding};
+
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  padding-top: 8em;
+  margin: 0 -0.5em;
+  font-weight: bold;
+  color: ${props => props.theme.palette.blanc};
 `;
 
 const Label = styled.span`
@@ -16,19 +30,27 @@ const Label = styled.span`
 `;
 
 const SearchInput = styled.input`
-  padding: 1em;
-  border: 1px solid ${props => props.theme.palette.noir};
-  border-radius: ${spacing.xs};
+  margin: 0 0.5em;
+  padding: 0.5em 1em;
+  border: 1px solid currentColor;
+  border-radius: 2em;
+  line-height: inherit;
+  font-size: inherit;
+  font-weight: inherit;
   background-color: transparent;
+  color: currentColor;
 `;
 
-const CategoryInput = styled.select`
-  height: 2.3em;
-  padding: 1em;
-  border: 1px solid ${props => props.theme.palette.noir};
+const SubmitButton = styled.button`
+  margin: 0 0.5em;
+  padding: 0.5em 1em;
+  border: 1px solid currentColor;
+  border-radius: 2em;
+  line-height: inherit;
   font-size: inherit;
-  border-radius: ${spacing.xs};
+  font-weight: inherit;
   background-color: transparent;
+  color: currentColor;
 `;
 
 class Search extends Component {
@@ -38,9 +60,15 @@ class Search extends Component {
   };
 
   handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value === "all" ? "" : e.target.value
-    });
+    if (e.target.id === "searchInput") {
+      this.setState({
+        searchQuery: e.target.value === "all" ? "" : e.target.value
+      });
+    } else {
+      this.setState({
+        searchCategory: e.target.value === "all" ? "" : e.target.value
+      });
+    }
   };
 
   handleSubmit = e => {
@@ -53,9 +81,12 @@ class Search extends Component {
   };
 
   render() {
-    const { categories } = this.props;
+    const { categories, needsToClearNegativeMargin } = this.props;
     return (
-      <Form onSubmit={this.handleSubmit}>
+      <Form
+        onSubmit={this.handleSubmit}
+        needsToClearNegativeMargin={needsToClearNegativeMargin}
+      >
         <label htmlFor="searchInput">
           <Label>Search term</Label>
           <SearchInput
@@ -65,22 +96,11 @@ class Search extends Component {
             onChange={this.handleChange}
           />
         </label>
-        <label htmlFor="categorySelect">
-          <Label>Category</Label>
-          <CategoryInput
-            onChange={this.handleChange}
-            id="categorySelect"
-            name="searchCategory"
-          >
-            <option value="all">All categories</option>
-            {categories.map(({ node: category }) => (
-              <option key={category.title} value={category.title}>
-                {category.displayName}
-              </option>
-            ))}
-          </CategoryInput>
-        </label>
-        <button type="submit">Search</button>
+        <SearchCategoriesDropdown
+          categories={categories}
+          onCategorySelect={this.handleChange}
+        />
+        <SubmitButton type="submit">Search</SubmitButton>
       </Form>
     );
   }

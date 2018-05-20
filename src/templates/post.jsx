@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { FormattedMessage, injectIntl } from "react-intl";
 import config from "../../data/SiteConfig";
 import Header from "../components/Header";
+import Body from "../components/Layouts/Body";
 import Footer from "../components/Footer";
 import Search from "../components/Search";
 import PostDate from "../components/PostDate";
@@ -25,7 +26,7 @@ const Article = styled.article`
 `;
 
 const Thumbnail = styled(Img)`
-  ${"" /* margin-top: -${24 + 32}px; */}
+  margin-top: -${spacing.xxl};
   margin-right: -${spacing.md};
   margin-left: -${spacing.md};
 
@@ -68,7 +69,7 @@ const Title = styled.h1`
   }
 `;
 
-const Body = styled.section`
+const PostBody = styled.section`
   position: relative;
   margin: 0 auto;
 
@@ -190,67 +191,70 @@ class PostTemplate extends React.Component {
 
     return (
       <Fragment>
-        <Header />
-        <SingleColumn>
-          <SEO postSEO postNode={postNode} author={author} />
-          <Helmet title={`${title} | ${globalSiteTitle}`}>
-            {alternateLangLinks &&
-              alternateLangLinks.length > 0 &&
-              alternateLangLinks.map(link => (
-                <link
-                  key={link.linkUrl}
-                  rel="alternate"
-                  href={link.linkUrl}
-                  hrefLang={link.language}
-                />
-              ))}
-          </Helmet>
-          <Search categories={categories} />
-          <Article>
-            <header>
-              {thumbnail && <Thumbnail sizes={thumbnail.sizes} />}
-              <Meta>
-                <CategoryLink
-                  to={`/${locale}/categories/${_.kebabCase(category.title)}`}
-                  color={category.color}
-                >
-                  {category.displayName}
-                </CategoryLink>
-                <StyledPostDate date={date} localDate={localDate} />
-              </Meta>
-              <Title>{title}</Title>
-            </header>
-            <Body>
-              <SocialShareWrapper>
-                <SocialShare url={postUrl} title={title} />
-              </SocialShareWrapper>
-              <PostContent
-                dangerouslySetInnerHTML={{ __html: postNode.html }}
+        <SEO postSEO postNode={postNode} author={author} />
+        <Helmet title={`${title} | ${globalSiteTitle}`}>
+          {alternateLangLinks &&
+            alternateLangLinks.length > 0 &&
+            alternateLangLinks.map(link => (
+              <link
+                key={link.linkUrl}
+                rel="alternate"
+                href={link.linkUrl}
+                hrefLang={link.language}
               />
-            </Body>
-            <PostFooter>
-              <PostFooterSubscribe />
-              <PostTags tags={tags} />
-              <PostAuthor author={author} />
-              {relatedPostsList &&
-                relatedPostsList.length > 0 && (
-                  <RelatedPostsWrapper>
-                    <RelatedPostsHeading>
-                      <FormattedMessage id="post.relatedArticlesHeading" />
-                    </RelatedPostsHeading>
-                    <RelatedPosts>
-                      {relatedPostsList.map(post => (
-                        <PostCard
-                          post={post}
-                          key={`${post.path}+${post.locale}`}
-                        />
-                      ))}
-                    </RelatedPosts>
-                  </RelatedPostsWrapper>
-                )}
-            </PostFooter>
-          </Article>
-        </SingleColumn>
+            ))}
+        </Helmet>
+        <Header>
+          <Search categories={categories} needsToClearNegativeMargin />
+        </Header>
+        <Body>
+          <SingleColumn>
+            <Article>
+              <header>
+                {thumbnail && <Thumbnail sizes={thumbnail.sizes} />}
+                <Meta>
+                  <CategoryLink
+                    to={`/${locale}/categories/${_.kebabCase(category.title)}`}
+                    color={category.color}
+                  >
+                    {category.displayName}
+                  </CategoryLink>
+                  <StyledPostDate date={date} localDate={localDate} />
+                </Meta>
+                <Title>{title}</Title>
+              </header>
+              <PostBody>
+                <SocialShareWrapper>
+                  <SocialShare url={postUrl} title={title} />
+                </SocialShareWrapper>
+                <PostContent
+                  dangerouslySetInnerHTML={{ __html: postNode.html }}
+                />
+              </PostBody>
+              <PostFooter>
+                <PostFooterSubscribe />
+                <PostTags tags={tags} />
+                <PostAuthor author={author} />
+                {relatedPostsList &&
+                  relatedPostsList.length > 0 && (
+                    <RelatedPostsWrapper>
+                      <RelatedPostsHeading>
+                        <FormattedMessage id="post.relatedArticlesHeading" />
+                      </RelatedPostsHeading>
+                      <RelatedPosts>
+                        {relatedPostsList.map(post => (
+                          <PostCard
+                            post={post}
+                            key={`${post.path}+${post.locale}`}
+                          />
+                        ))}
+                      </RelatedPosts>
+                    </RelatedPostsWrapper>
+                  )}
+              </PostFooter>
+            </Article>
+          </SingleColumn>
+        </Body>
         <Footer />
       </Fragment>
     );
