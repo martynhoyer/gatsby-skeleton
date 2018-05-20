@@ -28,8 +28,7 @@ const StyledGlobe = styled(Globe)`
   margin-right: 0.5em;
   vertical-align: middle;
   fill: currentColor;
-`
-
+`;
 
 class LanguageSelection extends Component {
   handleLocaleClick = e => {
@@ -39,11 +38,17 @@ class LanguageSelection extends Component {
   };
 
   render() {
-    const { intl, isBottom } = this.props;
+    const { intl, isBottom, isMobile } = this.props;
     return (
       <Popover
-        buttonText={<Fragment><StyledGlobe /><FormattedMessage id="global.languagesLabel" /></Fragment>}
+        buttonText={
+          <Fragment>
+            <StyledGlobe />
+            <FormattedMessage id="global.languagesLabel" />
+          </Fragment>
+        }
         isBottom={isBottom}
+        isMobile={isMobile}
       >
         {config.locales.map(locale => (
           <StyledLink

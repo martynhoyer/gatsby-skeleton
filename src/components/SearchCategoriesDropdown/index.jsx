@@ -2,13 +2,15 @@ import React, { Component } from "react";
 import MenuButton from "react-menu-button";
 import styled from "styled-components";
 import spacing from "../../tokens/dimensions";
+import media from "../../tokens/breakpoints";
 
 const StyledMenuButton = styled(MenuButton)`
-  margin: 0 0.5em;
   position: relative;
+  margin-top: 1em;
   color: currentColor;
 
   & > button {
+    width: 100%;
     margin: 0;
     padding: 0.5em 1em;
     line-height: inherit;
@@ -42,6 +44,10 @@ const StyledMenuButton = styled(MenuButton)`
     background-color: ${props => props.theme.palette.blanc};
     overflow: hidden;
     z-index: 1;
+  }
+
+  @media (${media.md}) {
+    flex-shrink: 0;
   }
 `;
 

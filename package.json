@@ -50,6 +50,7 @@
     "react-intl": "^2.4.0",
     "react-load-script": "0.0.6",
     "react-menu-button": "^0.2.0",
+    "react-scrolllock": "^2.0.7",
     "react-share": "^2.1.1",
     "styled-components": "^3.2.6",
     "universal-cookie": "^2.1.2"

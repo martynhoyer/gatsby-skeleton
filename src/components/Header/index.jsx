@@ -5,9 +5,11 @@ import { injectIntl } from "react-intl";
 import spacing from "../../tokens/dimensions";
 import Navigation from "../Navigation";
 import { ReactComponent as LogoSvg } from "../../svg/logo.svg";
+import MobileNavigation from "../MobileNavigation/index";
 
 const StyledHeader = styled.header`
   padding: ${spacing.xl} ${spacing.md};
+  background-color: ${props => props.theme.palette.violet};
   background-image: linear-gradient(
     to bottom,
     ${props => props.theme.palette.violet},
@@ -17,22 +19,25 @@ const StyledHeader = styled.header`
 `;
 
 const Container = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-
   max-width: 1440px;
   margin: 0 auto;
 `;
 
-const Logo = styled(Link)`
-  flex-shrink: 0;
+const TopBar = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
 
-  width: ${424 / 2.5}px;
-  height: ${88 / 2.5}px;
+const Logo = styled(Link)`
+  max-width: ${424 / 2.5}px;
+  color: inherit;
+
   & > svg {
-    fill: white;
+    display: block;
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
   }
 `;
 
@@ -45,10 +50,13 @@ const Header = ({ intl, children }) => {
   return (
     <StyledHeader>
       <Container>
-        <Logo to={`/${locale}/`}>
-          <LogoSvg />
-        </Logo>
-        <Navigation />
+        <TopBar>
+          <Logo to={`/${locale}/`}>
+            <LogoSvg />
+          </Logo>
+          <MobileNavigation />
+          <Navigation />
+        </TopBar>
         <ChildrenWrapper>{children}</ChildrenWrapper>
       </Container>
     </StyledHeader>

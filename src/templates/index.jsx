@@ -40,7 +40,7 @@ class IndexTemplate extends React.Component {
         <SEO />
         <Helmet title={`${pageTitle} | ${globalSiteTitle}`} />
         <Header>
-          <TwoColumn>
+          <TwoColumn noHorizontalPadding>
             <Search categories={categories} needsToClearNegativeMargin />
           </TwoColumn>
         </Header>

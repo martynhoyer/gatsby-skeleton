@@ -5,6 +5,7 @@ import styled, { css } from "styled-components";
 import { hideVisually } from "polished";
 import SearchCategoriesDropdown from "../SearchCategoriesDropdown";
 import spacing from "../../tokens/dimensions";
+import media from "../../tokens/breakpoints";
 
 const formBottomPadding = ({ needsToClearNegativeMargin }) =>
   needsToClearNegativeMargin &&
@@ -19,10 +20,38 @@ const Form = styled.form`
   justify-content: center;
   flex-wrap: wrap;
 
-  padding-top: 8em;
-  margin: 0 -0.5em;
+  padding-top: 2em;
   font-weight: bold;
   color: ${props => props.theme.palette.blanc};
+
+  & > * {
+    flex-basis: 100%;
+  }
+
+  @media (${media.md}) {
+    flex-wrap: nowrap;
+
+    margin: 0 -${spacing.xs};
+    padding-top: 8em;
+
+    & > * {
+      flex-basis: auto;
+    }
+  }
+`;
+
+const LabelWrapper = styled.label`
+  @media (${media.md}) {
+    padding: 0 ${spacing.xs};
+  }
+`;
+
+const Wrapper = styled.div`
+  @media (${media.md}) {
+    flex-shrink: 0;
+
+    padding: 0 ${spacing.xs};
+  }
 `;
 
 const Label = styled.span`
@@ -30,7 +59,8 @@ const Label = styled.span`
 `;
 
 const SearchInput = styled.input`
-  margin: 0 0.5em;
+  width: 100%;
+  margin-top: 1em;
   padding: 0.5em 1em;
   border: 1px solid currentColor;
   border-radius: 2em;
@@ -42,7 +72,8 @@ const SearchInput = styled.input`
 `;
 
 const SubmitButton = styled.button`
-  margin: 0 0.5em;
+  width: 100%;
+  margin-top: 1em;
   padding: 0.5em 1em;
   border: 1px solid currentColor;
   border-radius: 2em;
@@ -87,7 +118,7 @@ class Search extends Component {
         onSubmit={this.handleSubmit}
         needsToClearNegativeMargin={needsToClearNegativeMargin}
       >
-        <label htmlFor="searchInput">
+        <LabelWrapper htmlFor="searchInput">
           <Label>Search term</Label>
           <SearchInput
             id="searchInput"
@@ -95,12 +126,16 @@ class Search extends Component {
             type="text"
             onChange={this.handleChange}
           />
-        </label>
-        <SearchCategoriesDropdown
-          categories={categories}
-          onCategorySelect={this.handleChange}
-        />
-        <SubmitButton type="submit">Search</SubmitButton>
+        </LabelWrapper>
+        <Wrapper>
+          <SearchCategoriesDropdown
+            categories={categories}
+            onCategorySelect={this.handleChange}
+          />
+        </Wrapper>
+        <Wrapper>
+          <SubmitButton type="submit">Search</SubmitButton>
+        </Wrapper>
       </Form>
     );
   }

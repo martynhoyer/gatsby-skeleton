@@ -11,7 +11,9 @@ const Container = styled.div`
 const ToggleButton = styled.button`
   display: flex;
   align-items: center;
+  justify-content: center;
 
+  width: 100%;
   margin: initial;
   padding: 0.5em;
   border: 0;
@@ -19,7 +21,7 @@ const ToggleButton = styled.button`
   line-height: inherit;
   font-weight: inherit;
   letter-spacing: inherit;
-  text-align: inherit;
+  text-align: center;
   text-transform: inherit;
   background-color: transparent;
   color: inherit;
@@ -34,10 +36,19 @@ const contentPosition = ({ isBottom }) =>
         top: 100%;
       `;
 
+const mobilePosition = ({ isMobile }) =>
+  isMobile
+    ? css`
+        position: relative;
+      `
+    : css`
+        position: absolute;
+      `;
+
 const Content = styled.div`
+  ${mobilePosition};
   ${contentPosition};
 
-  position: absolute;
   width: 100%;
   border-radius: ${spacing.xs};
   box-shadow: ${props => props.theme.shadows.default};
@@ -79,7 +90,7 @@ class Popover extends Component {
   };
 
   render() {
-    const { isBottom, buttonText, children } = this.props;
+    const { isBottom, isMobile, buttonText, children } = this.props;
     const { isToggled } = this.state;
     return (
       <Container
@@ -94,7 +105,7 @@ class Popover extends Component {
         >
           {buttonText}
         </ToggleButton>
-        <Content hidden={!isToggled} isBottom={isBottom}>
+        <Content hidden={!isToggled} isBottom={isBottom} isMobile={isMobile}>
           {children}
         </Content>
       </Container>
