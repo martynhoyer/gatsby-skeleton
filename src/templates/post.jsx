@@ -99,10 +99,16 @@ const PostContent = styled.div`
   margin: 0 auto;
 
   @media (${media.sm}) {
+    /* Min height to match social buttons */
+    min-height: 120px;
+
     padding: 0 calc(${spacing.lg} + ${spacing.md});
   }
 
   @media (${media.md}) {
+    /* Min height to match social buttons */
+    min-height: 168px;
+
     padding: 0 calc(${spacing.xl} + ${spacing.md});
   }
 `;

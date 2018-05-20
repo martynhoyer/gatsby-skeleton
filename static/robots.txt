@@ -2,4 +2,4 @@ User-agent: *
 Disallow: */tags/
 Disallow: */categories/
 
-sitemap: https://martynhoyer.co.uk/sitemap.xml
+sitemap: https://blog.gymlib.com/sitemap.xml
