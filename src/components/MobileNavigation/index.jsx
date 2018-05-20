@@ -3,13 +3,27 @@ import { injectIntl } from "react-intl";
 import styled from "styled-components";
 import Link from "gatsby-link";
 import ScrollLock from "react-scrolllock";
+import { hideVisually } from "polished";
 import LanguageSelection from "../LanguageSelection";
 import { ReactComponent as User } from "../../svg/user.svg";
+import { ReactComponent as Cross } from "../../svg/cross.svg";
+import { ReactComponent as Hamburger } from "../../svg/hamburger.svg";
 import media from "../../tokens/breakpoints";
+import spacing from "../../tokens/dimensions";
 
 const Wrapper = styled.div`
   @media (${media.md}) {
     display: none;
+  }
+`;
+
+const MenuButton = styled.button`
+  border: 0;
+  background-color: transparent;
+  color: inherit;
+
+  & > svg {
+    fill: currentColor;
   }
 `;
 
@@ -63,6 +77,28 @@ const StyledUser = styled(User)`
   fill: currentColor;
 `;
 
+const CloseButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: ${spacing.xxl};
+  height: ${spacing.xxl};
+  margin-top: ${spacing.xl};
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background-color: transparent;
+  color: inherit;
+
+  & > svg {
+    fill: currentColor;
+  }
+`;
+
+const ScreenreaderText = styled.span`
+  ${hideVisually};
+`;
+
 class MobileNavigation extends Component {
   state = {
     isExpanded: false
@@ -85,17 +121,20 @@ class MobileNavigation extends Component {
     const { messages } = intl;
     return (
       <Wrapper>
-        <button
+        <MenuButton
           onClick={this.handleToggleClick}
           aria-expanded={this.state.isExpanded}
         >
-          Menu
-        </button>
+          <Hamburger />
+          <ScreenreaderText>
+            {messages["navigation.menuTitle"]}
+          </ScreenreaderText>
+        </MenuButton>
         {this.state.isExpanded && (
           <Popover>
             <ScrollLock />
             <ContentWrapper>
-              <h2>Menu</h2>
+              <h2>{messages["navigation.menuTitle"]}</h2>
               <NavList>
                 <NavItem>
                   <NavLink to={messages["navigation.home.linkUrl"]}>
@@ -116,7 +155,12 @@ class MobileNavigation extends Component {
                   </NavLink>
                 </NavItem>
               </NavList>
-              <button onClick={this.handleClose}>Close</button>
+              <CloseButton onClick={this.handleClose}>
+                <Cross />
+                <ScreenreaderText>
+                  {messages["navigation.closeButtonText"]}
+                </ScreenreaderText>
+              </CloseButton>
             </ContentWrapper>
           </Popover>
         )}
