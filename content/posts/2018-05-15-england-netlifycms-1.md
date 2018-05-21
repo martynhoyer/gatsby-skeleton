@@ -2,7 +2,7 @@
 isPublished: true
 locale: en
 title: England NetlifyCMS 1
-category: uncategorised
+category: ressources-humaines
 tags:
   - new tag
   - another one

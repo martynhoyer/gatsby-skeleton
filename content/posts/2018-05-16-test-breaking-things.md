@@ -2,7 +2,7 @@
 isPublished: false
 locale: fr
 title: Test breaking things!
-category: uncategoriseddfdfdf
+category: sport-et-bien-etre-asass
 tags:
   - newsfdfdf
 date: '2018-05-16T08:33:15+01:00'

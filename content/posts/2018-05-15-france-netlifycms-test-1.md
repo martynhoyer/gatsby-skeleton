@@ -2,7 +2,7 @@
 isPublished: true
 locale: fr
 title: France NetlifyCMS test 1
-category: netlifycms
+category: sante
 tags:
   - ''
 date: '2018-05-15T22:09:09+01:00'

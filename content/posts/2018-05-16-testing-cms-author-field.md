@@ -2,7 +2,7 @@
 isPublished: true
 locale: fr
 title: Testing CMS author field
-category: uncategorised
+category: du-cote-de-gymlib
 tags:
   - news
 date: '2018-05-16T08:05:14+01:00'
