@@ -1,7 +1,7 @@
-import React from "react";
-import Link from "gatsby-link";
-import styled from "styled-components";
-import spacing from "../../tokens/dimensions";
+import React from 'react'
+import Link from 'gatsby-link'
+import styled from 'styled-components'
+import spacing from '../../tokens/dimensions'
 
 const StyledLink = styled(Link)`
   width: ${spacing.lg};
@@ -12,15 +12,15 @@ const StyledLink = styled(Link)`
   border-radius: 50%;
   text-decoration: none;
   color: ${props => props.theme.palette.noir};
-`;
+`
 
 class PaginationLink extends React.Component {
   render() {
     if (this.props.url) {
-      return <StyledLink to={this.props.url}>{this.props.text}</StyledLink>;
+      return <StyledLink to={this.props.url}>{this.props.text}</StyledLink>
     }
-    return null;
+    return null
   }
 }
 
-export default PaginationLink;
+export default PaginationLink

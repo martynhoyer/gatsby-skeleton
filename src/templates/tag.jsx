@@ -1,66 +1,56 @@
-import React, { Fragment } from "react";
-import Helmet from "react-helmet";
-import styled from "styled-components";
-import { injectIntl } from "react-intl";
-import Header from "../components/Header";
-import Body from "../components/Layouts/Body";
-import Footer from "../components/Footer";
-import PostListing from "../components/PostListing";
-import Search from "../components/Search";
-import PaginatedContent from "../components/PaginatedContent";
-import PopularPosts from "../components/PopularPosts";
-import CategoriesList from "../components/CategoriesList";
-import Sidebar from "../components/Sidebar";
-import TwoColumn from "../components/Layouts/TwoColumn";
-import Box from "../components/Box";
-import SubscribeForm from "../components/SubscribeForm";
-import About from "../components/About";
-import SocialFollow from "../components/SocialFollow";
-import SubSidebar from "../components/SubSidebar";
-import { fontsize } from "../tokens/dimensions";
-import SEO from "../components/SEO/index";
+import React, { Fragment } from 'react'
+import Helmet from 'react-helmet'
+import styled from 'styled-components'
+import { injectIntl } from 'react-intl'
+import Header from '../components/Header'
+import Body from '../components/Layouts/Body'
+import Footer from '../components/Footer'
+import PostListing from '../components/PostListing'
+import Search from '../components/Search'
+import PaginatedContent from '../components/PaginatedContent'
+import PopularPosts from '../components/PopularPosts'
+import CategoriesList from '../components/CategoriesList'
+import Sidebar from '../components/Sidebar'
+import TwoColumn from '../components/Layouts/TwoColumn'
+import Box from '../components/Box'
+import SubscribeForm from '../components/SubscribeForm'
+import About from '../components/About'
+import SocialFollow from '../components/SocialFollow'
+import SubSidebar from '../components/SubSidebar'
+import { fontsize } from '../tokens/dimensions'
+import SEO from '../components/SEO/index'
 
 const Heading = styled.h1`
   font-size: ${fontsize.xxl};
   text-align: center;
-  color: ${props =>
-    props.color === "default" ? props.theme.palette.noir : props.color};
-`;
+  color: ${props => (props.color === 'default' ? props.theme.palette.noir : props.color)};
+`
 
 class TagTemplate extends React.Component {
   render() {
-    const { intl } = this.props;
-    const {
-      tag,
-      nodes,
-      page,
-      pages,
-      total,
-      limit,
-      prev,
-      next
-    } = this.props.pathContext;
-    const authorsEdges = this.props.data.authors.edges;
-    const popularPosts = this.props.data.popularPosts.edges;
-    const categories = this.props.data.categories.edges;
-    const { category } = this.props.data;
+    const { intl } = this.props
+    const { tag, nodes, page, pages, total, limit, prev, next } = this.props.pathContext
+    const authorsEdges = this.props.data.authors.edges
+    const popularPosts = this.props.data.popularPosts.edges
+    const categories = this.props.data.categories.edges
+    const { category } = this.props.data
 
     const pageTitle = tag
-      ? intl.formatMessage({ id: "global.pageTitles.tag" }, { tag })
+      ? intl.formatMessage({ id: 'global.pageTitles.tag' }, { tag })
       : intl.formatMessage(
-          { id: "global.pageTitles.category" },
+          { id: 'global.pageTitles.category' },
           {
-            category: category.displayName
-          }
-        );
+            category: category.displayName,
+          },
+        )
 
-    const pageTitleColor = (tag && "default") || (category && category.color);
+    const pageTitleColor = (tag && 'default') || (category && category.color)
 
     const globalSiteTitle =
-      intl.messages["global.seo.siteTitle"] &&
+      intl.messages['global.seo.siteTitle'] &&
       intl.formatMessage({
-        id: "global.seo.siteTitle"
-      });
+        id: 'global.seo.siteTitle',
+      })
 
     return (
       <Fragment>
@@ -74,17 +64,8 @@ class TagTemplate extends React.Component {
         <Body>
           <TwoColumn>
             <div>
-              <Heading color={pageTitleColor}>
-                {tag || (category && category.displayName)}
-              </Heading>
-              <PaginatedContent
-                page={page}
-                pages={pages}
-                total={total}
-                limit={limit}
-                prev={prev}
-                next={next}
-              >
+              <Heading color={pageTitleColor}>{tag || (category && category.displayName)}</Heading>
+              <PaginatedContent page={page} pages={pages} total={total} limit={limit} prev={prev} next={next}>
                 {/* PostListing component renders all the posts */}
                 <PostListing postEdges={nodes} postAuthors={authorsEdges} />
               </PaginatedContent>
@@ -109,7 +90,7 @@ class TagTemplate extends React.Component {
         </Body>
         <Footer />
       </Fragment>
-    );
+    )
   }
 }
 
@@ -127,13 +108,7 @@ export const tagPageQuery = graphql`
     popularPosts: allMarkdownRemark(
       limit: 4
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: {
-        frontmatter: {
-          isPopular: { eq: true }
-          locale: { eq: $locale }
-          isPublished: { eq: true }
-        }
-      }
+      filter: { frontmatter: { isPopular: { eq: true }, locale: { eq: $locale }, isPublished: { eq: true } } }
     ) {
       edges {
         node {
@@ -150,10 +125,7 @@ export const tagPageQuery = graphql`
         }
       }
     }
-    category: categoriesJson(
-      title: { eq: $category }
-      locale: { eq: $locale }
-    ) {
+    category: categoriesJson(title: { eq: $category }, locale: { eq: $locale }) {
       displayName
       color
     }
@@ -167,6 +139,6 @@ export const tagPageQuery = graphql`
       }
     }
   }
-`;
+`
 
-export default injectIntl(TagTemplate);
+export default injectIntl(TagTemplate)

@@ -1,14 +1,14 @@
-import React from "react";
-import styled, { css } from "styled-components";
-import media from "../../tokens/breakpoints";
-import spacing from "../../tokens/dimensions";
-import PostCard from "../PostCard/index";
+import React from 'react'
+import styled, { css } from 'styled-components'
+import media from '../../tokens/breakpoints'
+import spacing from '../../tokens/dimensions'
+import PostCard from '../PostCard/index'
 
 const homeTemplateNegativeMargin = ({ isIndex }) =>
   isIndex &&
   css`
     margin-top: -${spacing.xxl};
-  `;
+  `
 
 const PostList = styled.div`
   ${homeTemplateNegativeMargin};
@@ -19,7 +19,7 @@ const PostList = styled.div`
   @media (${media.sm}) {
     grid-template-columns: 1fr 1fr;
   }
-`;
+`
 
 const getPostList = postEdges =>
   postEdges.map(postEdge => ({
@@ -33,28 +33,21 @@ const getPostList = postEdges =>
     excerpt: postEdge.node.excerpt,
     timeToRead: postEdge.node.timeToRead,
     thumbnailArray: postEdge.node.thumbnailArray,
-    categoriesArray: postEdge.node.categoriesArray
-  }));
+    categoriesArray: postEdge.node.categoriesArray,
+  }))
 
 class PostListing extends React.Component {
   render() {
-    const postList = getPostList(this.props.postEdges);
-    const { isIndex } = this.props;
+    const postList = getPostList(this.props.postEdges)
+    const { isIndex } = this.props
 
     return (
       <PostList isIndex={isIndex}>
         {/* This is the post loop - each post will be output using this markup */}
-        {postList.map(post => (
-          <PostCard
-            post={post}
-            isIndex={isIndex}
-            isBoxed
-            key={`${post.path}+${post.locale}`}
-          />
-        ))}
+        {postList.map(post => <PostCard post={post} isIndex={isIndex} isBoxed key={`${post.path}+${post.locale}`} />)}
       </PostList>
-    );
+    )
   }
 }
 
-export default PostListing;
+export default PostListing

@@ -1,29 +1,29 @@
-import React, { Fragment } from "react";
-import { Helmet } from "react-helmet";
-import _ from "lodash";
-import Link from "gatsby-link";
-import Img from "gatsby-image";
-import styled from "styled-components";
-import { FormattedMessage, injectIntl } from "react-intl";
-import config from "../../data/SiteConfig";
-import Header from "../components/Header";
-import Body from "../components/Layouts/Body";
-import Footer from "../components/Footer";
-import Search from "../components/Search";
-import PostDate from "../components/PostDate";
-import PostTags from "../components/PostTags";
-import SingleColumn from "../components/Layouts/SingleColumn";
-import media from "../tokens/breakpoints";
-import PostFooterSubscribe from "../components/PostFooterSubscribe";
-import PostCard from "../components/PostCard";
-import PostAuthor from "../components/PostAuthor";
-import SocialShare from "../components/SocialShare";
-import SEO from "../components/SEO";
-import spacing, { fontsize } from "../tokens/dimensions";
+import React, { Fragment } from 'react'
+import { Helmet } from 'react-helmet'
+import _ from 'lodash'
+import Link from 'gatsby-link'
+import Img from 'gatsby-image'
+import styled from 'styled-components'
+import { FormattedMessage, injectIntl } from 'react-intl'
+import config from '../../data/SiteConfig'
+import Header from '../components/Header'
+import Body from '../components/Layouts/Body'
+import Footer from '../components/Footer'
+import Search from '../components/Search'
+import PostDate from '../components/PostDate'
+import PostTags from '../components/PostTags'
+import SingleColumn from '../components/Layouts/SingleColumn'
+import media from '../tokens/breakpoints'
+import PostFooterSubscribe from '../components/PostFooterSubscribe'
+import PostCard from '../components/PostCard'
+import PostAuthor from '../components/PostAuthor'
+import SocialShare from '../components/SocialShare'
+import SEO from '../components/SEO'
+import spacing, { fontsize } from '../tokens/dimensions'
 
 const Article = styled.article`
   padding-bottom: ${spacing.lg};
-`;
+`
 
 const Thumbnail = styled(Img)`
   margin-top: -${spacing.xxl};
@@ -34,27 +34,27 @@ const Thumbnail = styled(Img)`
     margin-right: 0;
     margin-left: 0;
   }
-`;
+`
 
 const Meta = styled.div`
   display: flex;
   justify-content: center;
 
   margin-top: ${spacing.xxl};
-`;
+`
 
 const CategoryLink = styled(Link)`
   margin-right: ${spacing.sm};
   margin-left: ${spacing.sm};
   text-decoration: none;
   color: ${props => props.color};
-`;
+`
 
 const StyledPostDate = styled(PostDate)`
   margin-right: ${spacing.sm};
   margin-left: ${spacing.sm};
   color: ${props => props.theme.palette.grisLight};
-`;
+`
 
 const Title = styled.h1`
   font-size: 24px;
@@ -67,7 +67,7 @@ const Title = styled.h1`
   @media (${media.md}) {
     font-size: 64px;
   }
-`;
+`
 
 const PostBody = styled.section`
   position: relative;
@@ -76,7 +76,7 @@ const PostBody = styled.section`
   @media (${media.md}) {
     font-size: 1.25em;
   }
-`;
+`
 
 const SocialShareWrapper = styled.div`
   display: none;
@@ -92,7 +92,7 @@ const SocialShareWrapper = styled.div`
   @media (${media.md}) {
     width: ${spacing.xl};
   }
-`;
+`
 
 const PostContent = styled.div`
   max-width: 70ch;
@@ -111,23 +111,23 @@ const PostContent = styled.div`
 
     padding: 0 calc(${spacing.xl} + ${spacing.md});
   }
-`;
+`
 
 const PostFooter = styled.footer`
   margin-top: ${spacing.xxl};
-`;
+`
 
 const RelatedPostsWrapper = styled.div`
   margin-top: ${spacing.xl};
   padding-top: ${spacing.xl};
   border-top: 1px solid ${props => props.theme.palette.grisLight};
-`;
+`
 
 const RelatedPostsHeading = styled.h2`
   margin: 0;
   font-size: ${fontsize.xl};
   text-align: center;
-`;
+`
 
 const RelatedPosts = styled.div`
   display: grid;
@@ -138,7 +138,7 @@ const RelatedPosts = styled.div`
   @media (${media.md}) {
     grid-template-columns: 1fr 1fr 1fr;
   }
-`;
+`
 
 const getPostList = postEdges =>
   postEdges.map(postEdge => ({
@@ -151,49 +151,36 @@ const getPostList = postEdges =>
     excerpt: postEdge.node.excerpt,
     timeToRead: postEdge.node.timeToRead,
     thumbnailArray: postEdge.node.thumbnailArray,
-    categoriesArray: postEdge.node.categoriesArray
-  }));
+    categoriesArray: postEdge.node.categoriesArray,
+  }))
 
 class PostTemplate extends React.Component {
   render() {
-    const { intl } = this.props;
-    const postNode = this.props.data.markdownRemark;
-    const {
-      locale,
-      title,
-      localDate,
-      date,
-      tags,
-      alternateLangLinks
-    } = postNode.frontmatter;
-    const postUrl = `${config.siteUrl}${this.props.location.pathname}`;
-    const categories = this.props.data.categories.edges;
+    const { intl } = this.props
+    const postNode = this.props.data.markdownRemark
+    const { locale, title, localDate, date, tags, alternateLangLinks } = postNode.frontmatter
+    const postUrl = `${config.siteUrl}${this.props.location.pathname}`
+    const categories = this.props.data.categories.edges
 
-    let relatedPostsList = [];
+    let relatedPostsList = []
 
     if (this.props.data.relatedPosts) {
-      const { edges: relatedPosts } = this.props.data.relatedPosts;
+      const { edges: relatedPosts } = this.props.data.relatedPosts
 
-      relatedPostsList = getPostList(relatedPosts);
+      relatedPostsList = getPostList(relatedPosts)
     }
 
-    const thumbnail =
-      postNode.thumbnailArray &&
-      postNode.thumbnailArray.length > 0 &&
-      postNode.thumbnailArray[0];
+    const thumbnail = postNode.thumbnailArray && postNode.thumbnailArray.length > 0 && postNode.thumbnailArray[0]
 
-    const category =
-      postNode.categoriesArray &&
-      postNode.categoriesArray.length > 0 &&
-      postNode.categoriesArray[0];
+    const category = postNode.categoriesArray && postNode.categoriesArray.length > 0 && postNode.categoriesArray[0]
 
-    const { author } = this.props.data;
+    const { author } = this.props.data
 
     const globalSiteTitle =
-      intl.messages["global.seo.siteTitle"] &&
+      intl.messages['global.seo.siteTitle'] &&
       intl.formatMessage({
-        id: "global.seo.siteTitle"
-      });
+        id: 'global.seo.siteTitle',
+      })
 
     return (
       <Fragment>
@@ -202,12 +189,7 @@ class PostTemplate extends React.Component {
           {alternateLangLinks &&
             alternateLangLinks.length > 0 &&
             alternateLangLinks.map(link => (
-              <link
-                key={link.linkUrl}
-                rel="alternate"
-                href={link.linkUrl}
-                hrefLang={link.language}
-              />
+              <link key={link.linkUrl} rel="alternate" href={link.linkUrl} hrefLang={link.language} />
             ))}
         </Helmet>
         <Header>
@@ -219,10 +201,7 @@ class PostTemplate extends React.Component {
               <header>
                 {thumbnail && <Thumbnail sizes={thumbnail.sizes} />}
                 <Meta>
-                  <CategoryLink
-                    to={`/${locale}/categories/${_.kebabCase(category.title)}`}
-                    color={category.color}
-                  >
+                  <CategoryLink to={`/${locale}/categories/${_.kebabCase(category.title)}`} color={category.color}>
                     {category.displayName}
                   </CategoryLink>
                   <StyledPostDate date={date} localDate={localDate} />
@@ -233,9 +212,7 @@ class PostTemplate extends React.Component {
                 <SocialShareWrapper>
                   <SocialShare url={postUrl} title={title} />
                 </SocialShareWrapper>
-                <PostContent
-                  dangerouslySetInnerHTML={{ __html: postNode.html }}
-                />
+                <PostContent dangerouslySetInnerHTML={{ __html: postNode.html }} />
               </PostBody>
               <PostFooter>
                 <PostFooterSubscribe />
@@ -248,12 +225,7 @@ class PostTemplate extends React.Component {
                         <FormattedMessage id="post.relatedArticlesHeading" />
                       </RelatedPostsHeading>
                       <RelatedPosts>
-                        {relatedPostsList.map(post => (
-                          <PostCard
-                            post={post}
-                            key={`${post.path}+${post.locale}`}
-                          />
-                        ))}
+                        {relatedPostsList.map(post => <PostCard post={post} key={`${post.path}+${post.locale}`} />)}
                       </RelatedPosts>
                     </RelatedPostsWrapper>
                   )}
@@ -263,18 +235,13 @@ class PostTemplate extends React.Component {
         </Body>
         <Footer />
       </Fragment>
-    );
+    )
   }
 }
 
 /* eslint no-undef: "off" */
 export const pageQuery = graphql`
-  query BlogPostBySlug(
-    $slug: String!
-    $locale: String!
-    $category: String!
-    $author: String!
-  ) {
+  query BlogPostBySlug($slug: String!, $locale: String!, $category: String!, $author: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       timeToRead
@@ -336,11 +303,7 @@ export const pageQuery = graphql`
       limit: 3
       sort: { fields: [frontmatter___date], order: DESC }
       filter: {
-        frontmatter: {
-          category: { eq: $category }
-          locale: { eq: $locale }
-          isPublished: { eq: true }
-        }
+        frontmatter: { category: { eq: $category }, locale: { eq: $locale }, isPublished: { eq: true } }
         fields: { slug: { ne: $slug } }
       }
     ) {
@@ -381,6 +344,6 @@ export const pageQuery = graphql`
       }
     }
   }
-`;
+`
 
-export default injectIntl(PostTemplate);
+export default injectIntl(PostTemplate)

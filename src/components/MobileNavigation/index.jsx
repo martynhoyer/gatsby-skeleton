@@ -1,21 +1,21 @@
-import React, { Component } from "react";
-import { injectIntl } from "react-intl";
-import styled from "styled-components";
-import Link from "gatsby-link";
-import ScrollLock from "react-scrolllock";
-import { hideVisually } from "polished";
-import LanguageSelection from "../LanguageSelection";
-import { ReactComponent as User } from "../../svg/user.svg";
-import { ReactComponent as Cross } from "../../svg/cross.svg";
-import { ReactComponent as Hamburger } from "../../svg/hamburger.svg";
-import media from "../../tokens/breakpoints";
-import spacing from "../../tokens/dimensions";
+import React, { Component } from 'react'
+import { injectIntl } from 'react-intl'
+import styled from 'styled-components'
+import Link from 'gatsby-link'
+import ScrollLock from 'react-scrolllock'
+import { hideVisually } from 'polished'
+import LanguageSelection from '../LanguageSelection'
+import { ReactComponent as User } from '../../svg/user.svg'
+import { ReactComponent as Cross } from '../../svg/cross.svg'
+import { ReactComponent as Hamburger } from '../../svg/hamburger.svg'
+import media from '../../tokens/breakpoints'
+import spacing from '../../tokens/dimensions'
 
 const Wrapper = styled.div`
   @media (${media.md}) {
     display: none;
   }
-`;
+`
 
 const MenuButton = styled.button`
   padding: 0;
@@ -28,9 +28,9 @@ const MenuButton = styled.button`
     height: ${spacing.md};
     fill: currentColor;
   }
-`;
+`
 
-const Popover = styled.div``;
+const Popover = styled.div``
 
 const ContentWrapper = styled.div`
   position: fixed;
@@ -52,15 +52,15 @@ const ContentWrapper = styled.div`
   );
   color: ${props => props.theme.palette.blanc};
   z-index: 1;
-`;
+`
 
 const NavList = styled.ul`
   margin: 0;
   padding: 0;
   list-style: none;
-`;
+`
 
-const NavItem = styled.li``;
+const NavItem = styled.li``
 
 const NavLink = styled(Link)`
   display: flex;
@@ -71,14 +71,14 @@ const NavLink = styled(Link)`
   text-decoration: none;
   white-space: nowrap;
   color: ${props => props.theme.palette.blanc};
-`;
+`
 
 const StyledUser = styled(User)`
   width: 1.2em;
   height: 1.2em;
   margin-left: 0.75em;
   fill: currentColor;
-`;
+`
 
 const CloseButton = styled.button`
   display: flex;
@@ -99,80 +99,69 @@ const CloseButton = styled.button`
     height: ${spacing.md};
     fill: currentColor;
   }
-`;
+`
 
 const ScreenreaderText = styled.span`
   ${hideVisually};
-`;
+`
 
 class MobileNavigation extends Component {
   state = {
-    isExpanded: false
-  };
+    isExpanded: false,
+  }
 
   handleToggleClick = () => {
     this.setState({
-      isExpanded: !this.state.isExpanded
-    });
-  };
+      isExpanded: !this.state.isExpanded,
+    })
+  }
 
   handleClose = () => {
     this.setState({
-      isExpanded: false
-    });
-  };
+      isExpanded: false,
+    })
+  }
 
   render() {
-    const { intl } = this.props;
-    const { messages } = intl;
+    const { intl } = this.props
+    const { messages } = intl
     return (
       <Wrapper>
-        <MenuButton
-          onClick={this.handleToggleClick}
-          aria-expanded={this.state.isExpanded}
-        >
+        <MenuButton onClick={this.handleToggleClick} aria-expanded={this.state.isExpanded}>
           <Hamburger />
-          <ScreenreaderText>
-            {messages["navigation.menuTitle"]}
-          </ScreenreaderText>
+          <ScreenreaderText>{messages['navigation.menuTitle']}</ScreenreaderText>
         </MenuButton>
         {this.state.isExpanded && (
           <Popover>
             <ScrollLock />
             <ContentWrapper>
-              <h2>{messages["navigation.menuTitle"]}</h2>
+              <h2>{messages['navigation.menuTitle']}</h2>
               <NavList>
                 <NavItem>
-                  <NavLink to={messages["navigation.home.linkUrl"]}>
-                    {messages["navigation.home.linkText"]}
-                  </NavLink>
+                  <NavLink to={messages['navigation.home.linkUrl']}>{messages['navigation.home.linkText']}</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink to={messages["navigation.offers.linkUrl"]}>
-                    {messages["navigation.offers.linkText"]}
-                  </NavLink>
+                  <NavLink to={messages['navigation.offers.linkUrl']}>{messages['navigation.offers.linkText']}</NavLink>
                 </NavItem>
                 <NavItem>
                   <LanguageSelection isMobile id="mobileLangSelection" />
                 </NavItem>
                 <NavItem>
-                  <NavLink to={messages["navigation.profile.linkUrl"]}>
-                    {messages["navigation.profile.linkText"]} <StyledUser />
+                  <NavLink to={messages['navigation.profile.linkUrl']}>
+                    {messages['navigation.profile.linkText']} <StyledUser />
                   </NavLink>
                 </NavItem>
               </NavList>
               <CloseButton onClick={this.handleClose}>
                 <Cross />
-                <ScreenreaderText>
-                  {messages["navigation.closeButtonText"]}
-                </ScreenreaderText>
+                <ScreenreaderText>{messages['navigation.closeButtonText']}</ScreenreaderText>
               </CloseButton>
             </ContentWrapper>
           </Popover>
         )}
       </Wrapper>
-    );
+    )
   }
 }
 
-export default injectIntl(MobileNavigation);
+export default injectIntl(MobileNavigation)

@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import MenuButton from "react-menu-button";
-import { injectIntl } from "react-intl";
-import styled from "styled-components";
-import spacing from "../../tokens/dimensions";
-import media from "../../tokens/breakpoints";
+import React, { Component } from 'react'
+import MenuButton from 'react-menu-button'
+import { injectIntl } from 'react-intl'
+import styled from 'styled-components'
+import spacing from '../../tokens/dimensions'
+import media from '../../tokens/breakpoints'
 
 const StyledMenuButton = styled(MenuButton)`
   position: relative;
@@ -26,7 +26,7 @@ const StyledMenuButton = styled(MenuButton)`
     }
 
     &::after {
-      content: "▼";
+      content: '▼';
       display: inline-block;
       margin-left: 1em;
       line-height: 1;
@@ -50,7 +50,7 @@ const StyledMenuButton = styled(MenuButton)`
   @media (${media.md}) {
     flex-shrink: 0;
   }
-`;
+`
 
 const ItemButton = styled.button`
   display: block;
@@ -71,70 +71,61 @@ const ItemButton = styled.button`
     color: ${props => props.theme.palette.blanc};
     outline: none;
   }
-`;
+`
 
 class SearchCategoriesDropdown extends Component {
-  state = { choice: null };
+  state = { choice: null }
 
   componentDidMount() {
-    document.addEventListener("click", this.handleClickOutside);
-    this.menu.on("choose", choice => {
-      this.setState({ choice: choice.innerText });
-    });
+    document.addEventListener('click', this.handleClickOutside)
+    this.menu.on('choose', choice => {
+      this.setState({ choice: choice.innerText })
+    })
   }
 
   componentWillUnmount() {
-    document.removeEventListener("click", this.handleClickOutside);
+    document.removeEventListener('click', this.handleClickOutside)
   }
 
   onCategorySelect = e => {
-    this.props.onCategorySelect(e);
-  };
+    this.props.onCategorySelect(e)
+  }
 
   saveMenuRef = ref => {
-    this.menu = ref;
-  };
+    this.menu = ref
+  }
 
   handleClickOutside = e => {
     if (this.menu.button === e.target) {
-      return;
+      return
     }
-    this.menu.close();
-  };
+    this.menu.close()
+  }
 
   render() {
-    const { categories, intl } = this.props;
+    const { categories, intl } = this.props
     const allCategoriesLabel = intl.formatMessage({
-      id: "search.allCategoriesLabel"
-    });
-    let label = allCategoriesLabel;
+      id: 'search.allCategoriesLabel',
+    })
+    let label = allCategoriesLabel
 
     if (this.state.choice) {
-      label = this.state.choice;
+      label = this.state.choice
     }
 
     return (
-      <StyledMenuButton
-        id="categories"
-        label={label}
-        menuRef={this.saveMenuRef}
-      >
+      <StyledMenuButton id="categories" label={label} menuRef={this.saveMenuRef}>
         <ItemButton type="button" value="all" onClick={this.onCategorySelect}>
           {allCategoriesLabel}
         </ItemButton>
         {categories.map(({ node: category }) => (
-          <ItemButton
-            type="button"
-            onClick={this.onCategorySelect}
-            key={category.title}
-            value={category.title}
-          >
+          <ItemButton type="button" onClick={this.onCategorySelect} key={category.title} value={category.title}>
             {category.displayName}
           </ItemButton>
         ))}
       </StyledMenuButton>
-    );
+    )
   }
 }
 
-export default injectIntl(SearchCategoriesDropdown);
+export default injectIntl(SearchCategoriesDropdown)

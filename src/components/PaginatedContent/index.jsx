@@ -1,17 +1,9 @@
-import React from "react";
-import Pagination from "../../components/Pagination";
+import React from 'react'
+import Pagination from '../../components/Pagination'
 
 class PaginatedContent extends React.Component {
   render() {
-    const {
-      page,
-      pages,
-      prev,
-      next,
-      children,
-      isSearchResults = false,
-      handleButtonClick = null
-    } = this.props;
+    const { page, pages, prev, next, children, isSearchResults = false, handleButtonClick = null } = this.props
     return (
       <main>
         {children}
@@ -26,8 +18,8 @@ class PaginatedContent extends React.Component {
           handleButtonClick={handleButtonClick}
         />
       </main>
-    );
+    )
   }
 }
 
-export default PaginatedContent;
+export default PaginatedContent

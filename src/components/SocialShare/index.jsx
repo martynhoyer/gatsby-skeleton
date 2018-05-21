@@ -1,28 +1,24 @@
-import React, { Fragment } from "react";
-import {
-  FacebookShareButton,
-  LinkedinShareButton,
-  TwitterShareButton
-} from "react-share";
-import styled, { css } from "styled-components";
-import spacing from "../../tokens/dimensions";
-import { FacebookIcon, TwitterIcon, LinkedinIcon } from "../SocialIcons";
+import React, { Fragment } from 'react'
+import { FacebookShareButton, LinkedinShareButton, TwitterShareButton } from 'react-share'
+import styled, { css } from 'styled-components'
+import spacing from '../../tokens/dimensions'
+import { FacebookIcon, TwitterIcon, LinkedinIcon } from '../SocialIcons'
 
 const buttonStyles = css`
   margin-top: ${spacing.sm};
-`;
+`
 
 const StyledFacebookShareButton = styled(FacebookShareButton)`
   ${buttonStyles};
-`;
+`
 
 const StyledTwitterShareButton = styled(TwitterShareButton)`
   ${buttonStyles};
-`;
+`
 
 const StyledLinkedinShareButton = styled(LinkedinShareButton)`
   ${buttonStyles};
-`;
+`
 
 const SocialShare = ({ url, title }) => (
   <Fragment>
@@ -36,6 +32,6 @@ const SocialShare = ({ url, title }) => (
       <LinkedinIcon />
     </StyledLinkedinShareButton>
   </Fragment>
-);
+)
 
-export default SocialShare;
+export default SocialShare

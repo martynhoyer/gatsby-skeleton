@@ -1,34 +1,34 @@
-import React from "react";
-import Link from "gatsby-link";
-import _ from "lodash";
-import { FormattedMessage, injectIntl } from "react-intl";
-import styled from "styled-components";
-import { fontsize } from "../../tokens/dimensions";
+import React from 'react'
+import Link from 'gatsby-link'
+import _ from 'lodash'
+import { FormattedMessage, injectIntl } from 'react-intl'
+import styled from 'styled-components'
+import { fontsize } from '../../tokens/dimensions'
 
 const Title = styled.h2`
   margin: 0;
   font-size: ${fontsize.base};
-`;
+`
 
 const List = styled.ul`
   margin: 0;
   padding: 0 0 0 1em;
   text-indent: -0.25em;
-`;
+`
 
 const ListItem = styled.li`
   margin: 1em 0 0;
   color: ${props => props.color};
-`;
+`
 
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: inherit;
-`;
+`
 
 const CategoriesList = ({ categories = [], intl }) => {
-  const { locale } = intl;
-  if (!categories.length) return null;
+  const { locale } = intl
+  if (!categories.length) return null
   return (
     <div>
       <Title>
@@ -37,16 +37,12 @@ const CategoriesList = ({ categories = [], intl }) => {
       <List>
         {categories.map(({ node: category }) => (
           <ListItem key={`${category.title}+${locale}`} color={category.color}>
-            <StyledLink
-              to={`/${locale}/categories/${_.kebabCase(category.title)}`}
-            >
-              {category.displayName}
-            </StyledLink>
+            <StyledLink to={`/${locale}/categories/${_.kebabCase(category.title)}`}>{category.displayName}</StyledLink>
           </ListItem>
         ))}
       </List>
     </div>
-  );
-};
+  )
+}
 
-export default injectIntl(CategoriesList);
+export default injectIntl(CategoriesList)

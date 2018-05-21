@@ -1,18 +1,18 @@
-import React, { Component } from "react";
-import { navigateTo } from "gatsby-link";
-import { injectIntl } from "react-intl";
-import styled, { css } from "styled-components";
-import { hideVisually } from "polished";
-import { ReactComponent as MagnifyingGlass } from "../../svg/magnifying-glass.svg";
-import SearchCategoriesDropdown from "../SearchCategoriesDropdown";
-import spacing from "../../tokens/dimensions";
-import media from "../../tokens/breakpoints";
+import React, { Component } from 'react'
+import { navigateTo } from 'gatsby-link'
+import { injectIntl } from 'react-intl'
+import styled, { css } from 'styled-components'
+import { hideVisually } from 'polished'
+import { ReactComponent as MagnifyingGlass } from '../../svg/magnifying-glass.svg'
+import SearchCategoriesDropdown from '../SearchCategoriesDropdown'
+import spacing from '../../tokens/dimensions'
+import media from '../../tokens/breakpoints'
 
 const formBottomPadding = ({ needsToClearNegativeMargin }) =>
   needsToClearNegativeMargin &&
   css`
     padding-bottom: ${spacing.xxl};
-  `;
+  `
 
 const Form = styled.form`
   ${formBottomPadding};
@@ -39,7 +39,7 @@ const Form = styled.form`
       flex-basis: auto;
     }
   }
-`;
+`
 
 const LabelWrapper = styled.label`
   position: relative;
@@ -48,7 +48,7 @@ const LabelWrapper = styled.label`
   @media (${media.md}) {
     padding: 0 ${spacing.xs};
   }
-`;
+`
 
 const Wrapper = styled.div`
   margin-top: 1em;
@@ -58,7 +58,7 @@ const Wrapper = styled.div`
 
     padding: 0 ${spacing.xs};
   }
-`;
+`
 
 const StyledMagnifyingGlass = styled(MagnifyingGlass)`
   position: absolute;
@@ -68,11 +68,11 @@ const StyledMagnifyingGlass = styled(MagnifyingGlass)`
   height: 1em;
   margin-top: -0.5em;
   fill: currentColor;
-`;
+`
 
 const Label = styled.span`
   ${hideVisually};
-`;
+`
 
 const SearchInput = styled.input`
   width: 100%;
@@ -84,7 +84,7 @@ const SearchInput = styled.input`
   font-weight: inherit;
   background-color: transparent;
   color: currentColor;
-`;
+`
 
 const SubmitButton = styled.button`
   width: 100%;
@@ -96,72 +96,59 @@ const SubmitButton = styled.button`
   font-weight: inherit;
   background-color: transparent;
   color: currentColor;
-`;
+`
 
 class Search extends Component {
   state = {
-    searchQuery: "",
-    searchCategory: ""
-  };
+    searchQuery: '',
+    searchCategory: '',
+  }
 
   handleChange = e => {
-    if (e.target.id === "searchInput") {
+    if (e.target.id === 'searchInput') {
       this.setState({
-        searchQuery: e.target.value === "all" ? "" : e.target.value
-      });
+        searchQuery: e.target.value === 'all' ? '' : e.target.value,
+      })
     } else {
       this.setState({
-        searchCategory: e.target.value === "all" ? "" : e.target.value
-      });
+        searchCategory: e.target.value === 'all' ? '' : e.target.value,
+      })
     }
-  };
+  }
 
   handleSubmit = e => {
-    e.preventDefault();
+    e.preventDefault()
     navigateTo(
-      `/${this.props.intl.locale}/search?query=${
-        this.state.searchQuery
-      }&category=${this.state.searchCategory}`
-    );
-  };
+      `/${this.props.intl.locale}/search?query=${this.state.searchQuery}&category=${this.state.searchCategory}`,
+    )
+  }
 
   render() {
-    const { categories, needsToClearNegativeMargin, intl } = this.props;
+    const { categories, needsToClearNegativeMargin, intl } = this.props
     return (
-      <Form
-        onSubmit={this.handleSubmit}
-        needsToClearNegativeMargin={needsToClearNegativeMargin}
-      >
+      <Form onSubmit={this.handleSubmit} needsToClearNegativeMargin={needsToClearNegativeMargin}>
         <LabelWrapper htmlFor="searchInput">
           <StyledMagnifyingGlass />
           <Label>
             {intl.formatMessage({
-              id: "search.searchInputLabel"
+              id: 'search.searchInputLabel',
             })}
           </Label>
-          <SearchInput
-            id="searchInput"
-            name="searchQuery"
-            type="text"
-            onChange={this.handleChange}
-          />
+          <SearchInput id="searchInput" name="searchQuery" type="text" onChange={this.handleChange} />
         </LabelWrapper>
         <Wrapper>
-          <SearchCategoriesDropdown
-            categories={categories}
-            onCategorySelect={this.handleChange}
-          />
+          <SearchCategoriesDropdown categories={categories} onCategorySelect={this.handleChange} />
         </Wrapper>
         <Wrapper>
           <SubmitButton type="submit">
             {intl.formatMessage({
-              id: "search.searchButtonText"
+              id: 'search.searchButtonText',
             })}
           </SubmitButton>
         </Wrapper>
       </Form>
-    );
+    )
   }
 }
 
-export default injectIntl(Search);
+export default injectIntl(Search)

@@ -1,82 +1,71 @@
-import React, { Component } from "react";
-import Helmet from "react-helmet";
-import { injectIntl } from "react-intl";
-import config from "../../../data/SiteConfig";
+import React, { Component } from 'react'
+import Helmet from 'react-helmet'
+import { injectIntl } from 'react-intl'
+import config from '../../../data/SiteConfig'
 
 class SEO extends Component {
   render() {
-    const { postNode, postSEO, author, intl } = this.props;
-    let title;
-    let description;
-    let keywords;
-    let image;
-    let postURL;
-    let locale;
-    let publishTime;
-    let ogArticleTags;
-    let additionalCustomTags;
+    const { postNode, postSEO, author, intl } = this.props
+    let title
+    let description
+    let keywords
+    let image
+    let postURL
+    let locale
+    let publishTime
+    let ogArticleTags
+    let additionalCustomTags
 
     const globalSiteTitle =
-      intl.messages["global.seo.siteTitle"] &&
+      intl.messages['global.seo.siteTitle'] &&
       intl.formatMessage({
-        id: "global.seo.siteTitle"
-      });
+        id: 'global.seo.siteTitle',
+      })
 
     const globalSiteDescription =
-      intl.messages["global.seo.siteDescription"] &&
+      intl.messages['global.seo.siteDescription'] &&
       intl.formatMessage({
-        id: "global.seo.siteDescription"
-      });
+        id: 'global.seo.siteDescription',
+      })
 
     const globalSiteKeywords =
-      intl.messages["global.seo.siteKeywords"] &&
+      intl.messages['global.seo.siteKeywords'] &&
       intl.formatMessage({
-        id: "global.seo.siteKeywords"
-      });
+        id: 'global.seo.siteKeywords',
+      })
 
     if (postSEO) {
-      const postMeta = postNode.frontmatter;
-      ({ locale, title, date: publishTime } = postMeta);
-      image =
-        postMeta.seo && postMeta.seo.ogImage
-          ? postMeta.seo.ogImage
-          : postNode.thumbnailArray[0].sizes.originalImg;
-      description =
-        postMeta.seo && postMeta.seo.description
-          ? postMeta.seo.description
-          : postNode.excerpt;
-      postURL = `${config.siteUrl}/${postNode.frontmatter.locale}${
-        postNode.fields.slug
-      }`;
-      keywords =
-        postMeta.seo && postMeta.seo.keywords
-          ? postMeta.seo.keywords
-          : postMeta.tags;
-      ogArticleTags = postMeta.seo && postMeta.seo.ogArticleTags;
-      additionalCustomTags = postMeta.seo && postMeta.seo.additional;
+      const postMeta = postNode.frontmatter
+      ;({ locale, title, date: publishTime } = postMeta)
+      image = postMeta.seo && postMeta.seo.ogImage ? postMeta.seo.ogImage : postNode.thumbnailArray[0].sizes.originalImg
+      description = postMeta.seo && postMeta.seo.description ? postMeta.seo.description : postNode.excerpt
+      postURL = `${config.siteUrl}/${postNode.frontmatter.locale}${postNode.fields.slug}`
+      keywords = postMeta.seo && postMeta.seo.keywords ? postMeta.seo.keywords : postMeta.tags
+      ogArticleTags = postMeta.seo && postMeta.seo.ogArticleTags
+      additionalCustomTags = postMeta.seo && postMeta.seo.additional
     } else {
-      title = globalSiteTitle;
-      description = globalSiteDescription;
-      image = config.siteLogo;
-      keywords = globalSiteKeywords;
+      title = globalSiteTitle
+      description = globalSiteDescription
+      image = config.siteLogo
+      keywords = globalSiteKeywords
     }
-    image = config.siteUrl + image;
-    const blogURL = config.siteUrl;
+    image = config.siteUrl + image
+    const blogURL = config.siteUrl
     const schemaOrgJSONLD = [
       {
-        "@context": "http://schema.org",
-        "@type": "WebSite",
+        '@context': 'http://schema.org',
+        '@type': 'WebSite',
         url: blogURL,
-        name: globalSiteTitle
-      }
-    ];
+        name: globalSiteTitle,
+      },
+    ]
     if (postSEO) {
       schemaOrgJSONLD.push({
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
+        '@context': 'http://schema.org',
+        '@type': 'BlogPosting',
         mainEntityOfPage: {
-          "@type": "WebSite",
-          "@id": blogURL
+          '@type': 'WebSite',
+          '@id': blogURL,
         },
         url: postURL,
         name: title,
@@ -85,22 +74,22 @@ class SEO extends Component {
         datePublished: publishTime,
         dateModified: publishTime,
         publisher: {
-          "@type": "Organization",
+          '@type': 'Organization',
           name: config.organizationName,
           logo: {
-            "@type": "ImageObject",
-            url: config.siteUrl + config.siteLogo
-          }
+            '@type': 'ImageObject',
+            url: config.siteUrl + config.siteLogo,
+          },
         },
         image: {
-          "@type": "ImageObject",
-          url: image
+          '@type': 'ImageObject',
+          url: image,
         },
-        description
-      });
+        description,
+      })
     }
 
-    const ogTags = ogArticleTags || keywords;
+    const ogTags = ogArticleTags || keywords
 
     return (
       <Helmet>
@@ -112,37 +101,22 @@ class SEO extends Component {
         {postSEO && <link rel="canonical" href={postURL} />}
 
         {/* Schema.org tags */}
-        <script type="application/ld+json">
-          {JSON.stringify(schemaOrgJSONLD)}
-        </script>
+        <script type="application/ld+json">{JSON.stringify(schemaOrgJSONLD)}</script>
 
         {/* OpenGraph tags */}
         <meta property="og:url" content={postSEO ? postURL : blogURL} />
-        {postSEO ? (
-          <meta property="og:type" content="article" />
-        ) : (
-          <meta property="og:type" content="website" />
-        )}
+        {postSEO ? <meta property="og:type" content="article" /> : <meta property="og:type" content="website" />}
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:site_name" content={globalSiteTitle} />
         <meta property="og:locale" content={locale} />
         <meta property="og:image" content={image} />
-        {postSEO &&
-          ogTags.map(tag => (
-            <meta key={tag} property="article:tag" content={tag} />
-          ))}
-        <meta
-          property="fb:app_id"
-          content={config.siteFBAppID ? config.siteFBAppID : ""}
-        />
+        {postSEO && ogTags.map(tag => <meta key={tag} property="article:tag" content={tag} />)}
+        <meta property="fb:app_id" content={config.siteFBAppID ? config.siteFBAppID : ''} />
 
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary" />
-        <meta
-          name="twitter:creator"
-          content={config.userTwitter ? config.userTwitter : ""}
-        />
+        <meta name="twitter:creator" content={config.userTwitter ? config.userTwitter : ''} />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={image} />
@@ -152,23 +126,15 @@ class SEO extends Component {
           additionalCustomTags &&
           additionalCustomTags.map(
             tag =>
-              tag.type === "name" ? (
-                <meta
-                  key={tag.type + tag.typeValue + tag.content}
-                  name={tag.typeValue}
-                  content={tag.content}
-                />
+              tag.type === 'name' ? (
+                <meta key={tag.type + tag.typeValue + tag.content} name={tag.typeValue} content={tag.content} />
               ) : (
-                <meta
-                  key={tag.type + tag.typeValue + tag.content}
-                  property={tag.typeValue}
-                  content={tag.content}
-                />
-              )
+                <meta key={tag.type + tag.typeValue + tag.content} property={tag.typeValue} content={tag.content} />
+              ),
           )}
       </Helmet>
-    );
+    )
   }
 }
 
-export default injectIntl(SEO);
+export default injectIntl(SEO)

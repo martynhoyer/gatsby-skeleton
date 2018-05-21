@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import styled, { css } from "styled-components";
-import spacing from "../../tokens/dimensions";
+import React, { Component } from 'react'
+import styled, { css } from 'styled-components'
+import spacing from '../../tokens/dimensions'
 
 const Container = styled.div`
   position: relative;
   margin: 0;
   color: ${props => props.theme.palette.blanc};
-`;
+`
 
 const ToggleButton = styled.button`
   display: flex;
@@ -25,7 +25,7 @@ const ToggleButton = styled.button`
   text-transform: inherit;
   background-color: transparent;
   color: inherit;
-`;
+`
 
 const contentPosition = ({ isBottom }) =>
   isBottom
@@ -34,7 +34,7 @@ const contentPosition = ({ isBottom }) =>
       `
     : css`
         top: 100%;
-      `;
+      `
 
 const mobilePosition = ({ isMobile }) =>
   isMobile
@@ -43,7 +43,7 @@ const mobilePosition = ({ isMobile }) =>
       `
     : css`
         position: absolute;
-      `;
+      `
 
 const Content = styled.div`
   ${mobilePosition};
@@ -59,58 +59,53 @@ const Content = styled.div`
   & > * {
     position: relative;
   }
-`;
+`
 
 class Popover extends Component {
   state = {
-    isToggled: false
-  };
+    isToggled: false,
+  }
 
   componentWillUnmount() {
-    document.removeEventListener("click", this.handleOutsideClick, false);
+    document.removeEventListener('click', this.handleOutsideClick, false)
   }
 
   handleToggleClick = () => {
     if (!this.state.isToggled) {
       // attach/remove event handler
-      document.addEventListener("click", this.handleOutsideClick, false);
+      document.addEventListener('click', this.handleOutsideClick, false)
     } else {
-      document.removeEventListener("click", this.handleOutsideClick, false);
+      document.removeEventListener('click', this.handleOutsideClick, false)
     }
-    this.setState({ isToggled: !this.state.isToggled });
-  };
+    this.setState({ isToggled: !this.state.isToggled })
+  }
 
   handleOutsideClick = e => {
     // ignore clicks on the component itself
     if (this.node.contains(e.target)) {
-      return;
+      return
     }
 
-    this.handleToggleClick();
-  };
+    this.handleToggleClick()
+  }
 
   render() {
-    const { isBottom, isMobile, buttonText, children } = this.props;
-    const { isToggled } = this.state;
+    const { isBottom, isMobile, buttonText, children } = this.props
+    const { isToggled } = this.state
     return (
       <Container
         innerRef={node => {
-          this.node = node;
-        }}
-      >
-        <ToggleButton
-          onClick={this.handleToggleClick}
-          isToggled={isToggled}
-          aria-expanded={isToggled}
-        >
+          this.node = node
+        }}>
+        <ToggleButton onClick={this.handleToggleClick} isToggled={isToggled} aria-expanded={isToggled}>
           {buttonText}
         </ToggleButton>
         <Content hidden={!isToggled} isBottom={isBottom} isMobile={isMobile}>
           {children}
         </Content>
       </Container>
-    );
+    )
   }
 }
 
-export default Popover;
+export default Popover

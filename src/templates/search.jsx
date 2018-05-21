@@ -1,94 +1,83 @@
-import React, { Fragment } from "react";
-import { Helmet } from "react-helmet";
-import _ from "lodash";
-import queryString from "query-string";
-import { injectIntl } from "react-intl";
-import config from "../../data/SiteConfig";
-import SEO from "../components/SEO";
-import Header from "../components/Header";
-import Body from "../components/Layouts/Body";
-import Footer from "../components/Footer";
-import PostListing from "../components/PostListing";
-import PaginatedContent from "../components/PaginatedContent";
-import {
-  SearchLayout,
-  SearchResults
-} from "../components/Layouts/SearchLayout";
-import Search from "../components/Search";
+import React, { Fragment } from 'react'
+import { Helmet } from 'react-helmet'
+import _ from 'lodash'
+import queryString from 'query-string'
+import { injectIntl } from 'react-intl'
+import config from '../../data/SiteConfig'
+import SEO from '../components/SEO'
+import Header from '../components/Header'
+import Body from '../components/Layouts/Body'
+import Footer from '../components/Footer'
+import PostListing from '../components/PostListing'
+import PaginatedContent from '../components/PaginatedContent'
+import { SearchLayout, SearchResults } from '../components/Layouts/SearchLayout'
+import Search from '../components/Search'
 
 class SearchTemplate extends React.Component {
   static getDerivedStateFromProps(nextProps) {
-    const { search } = nextProps.location;
-    const { edges: postEdges } = nextProps.data.allMarkdownRemark;
-    const queries = queryString.parse(search);
+    const { search } = nextProps.location
+    const { edges: postEdges } = nextProps.data.allMarkdownRemark
+    const queries = queryString.parse(search)
 
     const filteredEdges = postEdges.filter(({ node }) => {
-      const bodyMatch =
-        queries.query &&
-        node.html.toLowerCase().indexOf(queries.query.toLowerCase()) > -1;
-      const titleMatch =
-        queries.query &&
-        node.frontmatter.title
-          .toLowerCase()
-          .indexOf(queries.query.toLowerCase()) > -1;
-      const categoryMatch = node.frontmatter.category === queries.category;
+      const bodyMatch = queries.query && node.html.toLowerCase().indexOf(queries.query.toLowerCase()) > -1
+      const titleMatch = queries.query && node.frontmatter.title.toLowerCase().indexOf(queries.query.toLowerCase()) > -1
+      const categoryMatch = node.frontmatter.category === queries.category
       if (!queries.query) {
-        return categoryMatch;
+        return categoryMatch
       }
       if (!queries.category) {
-        return bodyMatch || titleMatch;
+        return bodyMatch || titleMatch
       }
-      return categoryMatch && (bodyMatch || titleMatch);
-    });
+      return categoryMatch && (bodyMatch || titleMatch)
+    })
 
     return {
       results: filteredEdges,
       currentPage: 1,
-      touched: queries
-    };
+      touched: queries,
+    }
   }
 
   state = {
     results: [],
     currentPage: 1,
     itemsPerPage: config.sitePaginationLimit,
-    touched: false
-  };
+    touched: false,
+  }
 
   handleButtonClick = e => {
-    this.setState({ currentPage: e.target.value });
-  };
+    this.setState({ currentPage: e.target.value })
+  }
 
   render() {
-    const { intl } = this.props;
-    const { results, currentPage, itemsPerPage, touched } = this.state;
-    const { search } = this.props.location;
-    const categories = this.props.data.categories.edges;
-    const queries = queryString.parse(search);
+    const { intl } = this.props
+    const { results, currentPage, itemsPerPage, touched } = this.state
+    const { search } = this.props.location
+    const categories = this.props.data.categories.edges
+    const queries = queryString.parse(search)
 
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = results.slice(indexOfFirstItem, indexOfLastItem);
-    const pageCountForResultSet = Math.ceil(results.length / itemsPerPage);
+    const indexOfLastItem = currentPage * itemsPerPage
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage
+    const currentItems = results.slice(indexOfFirstItem, indexOfLastItem)
+    const pageCountForResultSet = Math.ceil(results.length / itemsPerPage)
 
     const searchedCategoryNode =
       !_.isEmpty(queries) &&
       queries.category &&
-      categories.find(
-        ({ node: category }) => category.title === queries.category
-      );
+      categories.find(({ node: category }) => category.title === queries.category)
 
-    const searchedCategory = searchedCategoryNode && searchedCategoryNode.node;
+    const searchedCategory = searchedCategoryNode && searchedCategoryNode.node
 
     const globalSiteTitle =
-      intl.messages["global.seo.siteTitle"] &&
+      intl.messages['global.seo.siteTitle'] &&
       intl.formatMessage({
-        id: "global.seo.siteTitle"
-      });
+        id: 'global.seo.siteTitle',
+      })
 
     const pageTitle = intl.formatMessage({
-      id: "global.pageTitles.search"
-    });
+      id: 'global.pageTitles.search',
+    })
 
     return (
       <Fragment>
@@ -106,13 +95,10 @@ class SearchTemplate extends React.Component {
                     page={this.state.currentPage}
                     pages={pageCountForResultSet}
                     isSearchResults
-                    handleButtonClick={this.handleButtonClick}
-                  >
+                    handleButtonClick={this.handleButtonClick}>
                     <h1>
-                      Search results{" "}
-                      {queries.query && `for: "${queries.query}"`}{" "}
-                      {searchedCategory &&
-                        `in category: "${searchedCategory.displayName}"`}
+                      Search results {queries.query && `for: "${queries.query}"`}{' '}
+                      {searchedCategory && `in category: "${searchedCategory.displayName}"`}
                     </h1>
                     <PostListing postEdges={currentItems} />
                   </PaginatedContent>
@@ -121,9 +107,8 @@ class SearchTemplate extends React.Component {
                 <Fragment>
                   {!_.isEmpty(touched) ? (
                     <h1>
-                      No results {queries.query && `for: "${queries.query}"`}{" "}
-                      {searchedCategory &&
-                        `in category: "${searchedCategory.displayName}"`}
+                      No results {queries.query && `for: "${queries.query}"`}{' '}
+                      {searchedCategory && `in category: "${searchedCategory.displayName}"`}
                     </h1>
                   ) : null}
                 </Fragment>
@@ -133,7 +118,7 @@ class SearchTemplate extends React.Component {
         </Body>
         <Footer />
       </Fragment>
-    );
+    )
   }
 }
 
@@ -193,6 +178,6 @@ export const searchPageQuery = graphql`
       }
     }
   }
-`;
+`
 
-export default injectIntl(SearchTemplate);
+export default injectIntl(SearchTemplate)

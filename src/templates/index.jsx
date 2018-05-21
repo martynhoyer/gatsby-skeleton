@@ -1,39 +1,39 @@
-import React, { Fragment } from "react";
-import { Helmet } from "react-helmet";
-import { injectIntl } from "react-intl";
-import Header from "../components/Header";
-import Body from "../components/Layouts/Body";
-import Footer from "../components/Footer";
-import PostListing from "../components/PostListing";
-import PaginatedContent from "../components/PaginatedContent";
-import PopularPosts from "../components/PopularPosts";
-import CategoriesList from "../components/CategoriesList";
-import TwoColumn from "../components/Layouts/TwoColumn";
-import Sidebar from "../components/Sidebar";
-import SubSidebar from "../components/SubSidebar";
-import SubscribeForm from "../components/SubscribeForm";
-import Box from "../components/Box";
-import About from "../components/About";
-import SocialFollow from "../components/SocialFollow";
-import SEO from "../components/SEO";
-import Search from "../components/Search";
+import React, { Fragment } from 'react'
+import { Helmet } from 'react-helmet'
+import { injectIntl } from 'react-intl'
+import Header from '../components/Header'
+import Body from '../components/Layouts/Body'
+import Footer from '../components/Footer'
+import PostListing from '../components/PostListing'
+import PaginatedContent from '../components/PaginatedContent'
+import PopularPosts from '../components/PopularPosts'
+import CategoriesList from '../components/CategoriesList'
+import TwoColumn from '../components/Layouts/TwoColumn'
+import Sidebar from '../components/Sidebar'
+import SubSidebar from '../components/SubSidebar'
+import SubscribeForm from '../components/SubscribeForm'
+import Box from '../components/Box'
+import About from '../components/About'
+import SocialFollow from '../components/SocialFollow'
+import SEO from '../components/SEO'
+import Search from '../components/Search'
 
 class IndexTemplate extends React.Component {
   render() {
-    const { intl } = this.props;
-    const { nodes, page, pages, limit, prev, next } = this.props.pathContext;
-    const popularPosts = this.props.data.popularPosts.edges;
-    const categories = this.props.data.categories.edges;
+    const { intl } = this.props
+    const { nodes, page, pages, limit, prev, next } = this.props.pathContext
+    const popularPosts = this.props.data.popularPosts.edges
+    const categories = this.props.data.categories.edges
 
     const globalSiteTitle =
-      intl.messages["global.seo.siteTitle"] &&
+      intl.messages['global.seo.siteTitle'] &&
       intl.formatMessage({
-        id: "global.seo.siteTitle"
-      });
+        id: 'global.seo.siteTitle',
+      })
 
     const pageTitle = intl.formatMessage({
-      id: "global.pageTitles.home"
-    });
+      id: 'global.pageTitles.home',
+    })
 
     return (
       <Fragment>
@@ -46,13 +46,7 @@ class IndexTemplate extends React.Component {
         </Header>
         <Body>
           <TwoColumn>
-            <PaginatedContent
-              page={page}
-              pages={pages}
-              limit={limit}
-              prev={prev}
-              next={next}
-            >
+            <PaginatedContent page={page} pages={pages} limit={limit} prev={prev} next={next}>
               {/* PostListing component renders all the posts */}
               <PostListing postEdges={nodes} isIndex />
             </PaginatedContent>
@@ -76,7 +70,7 @@ class IndexTemplate extends React.Component {
         </Body>
         <Footer />
       </Fragment>
-    );
+    )
   }
 }
 
@@ -86,13 +80,7 @@ export const indexPageQuery = graphql`
     popularPosts: allMarkdownRemark(
       limit: 4
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: {
-        frontmatter: {
-          isPopular: { eq: true }
-          locale: { eq: $locale }
-          isPublished: { eq: true }
-        }
-      }
+      filter: { frontmatter: { isPopular: { eq: true }, locale: { eq: $locale }, isPublished: { eq: true } } }
     ) {
       edges {
         node {
@@ -119,6 +107,6 @@ export const indexPageQuery = graphql`
       }
     }
   }
-`;
+`
 
-export default injectIntl(IndexTemplate);
+export default injectIntl(IndexTemplate)

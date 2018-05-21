@@ -1,7 +1,7 @@
-import React, { Fragment } from "react";
-import styled from "styled-components";
-import PaginationLink from "../PaginationLink";
-import spacing from "../../tokens/dimensions";
+import React, { Fragment } from 'react'
+import styled from 'styled-components'
+import PaginationLink from '../PaginationLink'
+import spacing from '../../tokens/dimensions'
 
 const Container = styled.nav`
   display: flex;
@@ -10,7 +10,7 @@ const Container = styled.nav`
   margin-top: ${spacing.xxl};
   text-align: center;
   color: ${props => props.theme.palette.noir};
-`;
+`
 
 const CurrentPage = styled.span`
   width: ${spacing.lg};
@@ -21,7 +21,7 @@ const CurrentPage = styled.span`
   border-radius: 50%;
   background-color: ${props => props.theme.palette.rose};
   color: ${props => props.theme.palette.blanc};
-`;
+`
 
 const PageButton = styled.button`
   width: ${spacing.lg};
@@ -35,20 +35,13 @@ const PageButton = styled.button`
   text-decoration: none;
   background-color: inherit;
   color: ${props => props.theme.palette.noir};
-`;
+`
 
 class Pagination extends React.Component {
   render() {
-    const {
-      page,
-      pages,
-      prev,
-      next,
-      isSearchResults,
-      handleButtonClick
-    } = this.props;
+    const { page, pages, prev, next, isSearchResults, handleButtonClick } = this.props
     if (isSearchResults) {
-      const pageAsNumber = Number(page);
+      const pageAsNumber = Number(page)
       return (
         <Container>
           {pageAsNumber > 1 && (
@@ -58,10 +51,7 @@ class Pagination extends React.Component {
               </PageButton>
 
               {pageAsNumber > 2 && (
-                <PageButton
-                  onClick={handleButtonClick}
-                  value={pageAsNumber - 2}
-                >
+                <PageButton onClick={handleButtonClick} value={pageAsNumber - 2}>
                   {pageAsNumber - 2}
                 </PageButton>
               )}
@@ -77,10 +67,7 @@ class Pagination extends React.Component {
                 {pageAsNumber + 1}
               </PageButton>
               {pageAsNumber < pages - 1 && (
-                <PageButton
-                  onClick={handleButtonClick}
-                  value={pageAsNumber + 2}
-                >
+                <PageButton onClick={handleButtonClick} value={pageAsNumber + 2}>
                   {pageAsNumber + 2}
                 </PageButton>
               )}
@@ -90,25 +77,22 @@ class Pagination extends React.Component {
             </Fragment>
           )}
         </Container>
-      );
+      )
     }
 
     const getUrlRoot = string => {
-      if (string === undefined) return null;
-      const arrayFromString = string.split("/");
-      arrayFromString.pop();
-      const urlRoot = arrayFromString.join("/");
-      return urlRoot;
-    };
+      if (string === undefined) return null
+      const arrayFromString = string.split('/')
+      arrayFromString.pop()
+      const urlRoot = arrayFromString.join('/')
+      return urlRoot
+    }
 
-    const urlRoot = getUrlRoot(next || prev);
-    const nextAsNumber = next && Number(next.split("/").pop());
-    const prevAsNumber = prev && Number(prev.split("/").pop());
-    const nextPlusOneUrl =
-      nextAsNumber < pages && `${urlRoot}/${nextAsNumber + 1}`;
-    const prevMinusOneUrl =
-      prevAsNumber > 1 &&
-      `${urlRoot}/${prevAsNumber - 1 === 1 ? "" : prevAsNumber - 1}`;
+    const urlRoot = getUrlRoot(next || prev)
+    const nextAsNumber = next && Number(next.split('/').pop())
+    const prevAsNumber = prev && Number(prev.split('/').pop())
+    const nextPlusOneUrl = nextAsNumber < pages && `${urlRoot}/${nextAsNumber + 1}`
+    const prevMinusOneUrl = prevAsNumber > 1 && `${urlRoot}/${prevAsNumber - 1 === 1 ? '' : prevAsNumber - 1}`
 
     return (
       <Container>
@@ -120,8 +104,8 @@ class Pagination extends React.Component {
         <PaginationLink url={nextPlusOneUrl} text={page + 2} />
         <PaginationLink url={next} text="&rarr;" />
       </Container>
-    );
+    )
   }
 }
 
-export default Pagination;
+export default Pagination

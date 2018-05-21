@@ -1,22 +1,22 @@
-import React, { Component, Fragment } from "react";
-import styled, { css } from "styled-components";
-import { navigateTo } from "gatsby-link";
-import Cookies from "universal-cookie";
-import MenuButton from "react-menu-button";
-import { injectIntl } from "react-intl";
-import config from "../../../data/SiteConfig";
-import { ReactComponent as Globe } from "../../svg/globe.svg";
-import spacing from "../../tokens/dimensions";
-import media from "../../tokens/breakpoints";
+import React, { Component, Fragment } from 'react'
+import styled, { css } from 'styled-components'
+import { navigateTo } from 'gatsby-link'
+import Cookies from 'universal-cookie'
+import MenuButton from 'react-menu-button'
+import { injectIntl } from 'react-intl'
+import config from '../../../data/SiteConfig'
+import { ReactComponent as Globe } from '../../svg/globe.svg'
+import spacing from '../../tokens/dimensions'
+import media from '../../tokens/breakpoints'
 
-const cookies = new Cookies();
+const cookies = new Cookies()
 
 const bottomButton = ({ isBottom }) =>
   isBottom
     ? css`
         & > button {
           &::after {
-            content: "▲";
+            content: '▲';
           }
         }
 
@@ -27,14 +27,14 @@ const bottomButton = ({ isBottom }) =>
     : css`
         & > button {
           &::after {
-            content: "▼";
+            content: '▼';
           }
         }
 
         & > div {
           top: 100%;
         }
-      `;
+      `
 
 const mobileButton = ({ isMobile }) =>
   isMobile
@@ -47,7 +47,7 @@ const mobileButton = ({ isMobile }) =>
         & > div {
           position: absolute;
         }
-      `;
+      `
 
 const StyledMenuButton = styled(MenuButton)`
   ${bottomButton};
@@ -92,7 +92,7 @@ const StyledMenuButton = styled(MenuButton)`
     overflow: hidden;
     z-index: 1;
   }
-`;
+`
 
 // const StyledLink = styled(Link)`
 //   display: block;
@@ -113,13 +113,13 @@ const StyledGlobe = styled(Globe)`
   margin-right: 0.5em;
   vertical-align: middle;
   fill: currentColor;
-`;
+`
 
 const isCurrent = ({ current }) =>
   current &&
   css`
     &::after {
-      content: "✓";
+      content: '✓';
       position: absolute;
       display: block;
       right: ${spacing.sm};
@@ -127,7 +127,7 @@ const isCurrent = ({ current }) =>
       margin-top: -0.5em;
       line-height: 1;
     }
-  `;
+  `
 
 const ItemButton = styled.button`
   ${isCurrent};
@@ -150,42 +150,42 @@ const ItemButton = styled.button`
     color: ${props => props.theme.palette.blanc};
     outline: none;
   }
-`;
+`
 
 class LanguageSelection extends Component {
-  state = { choice: null };
+  state = { choice: null }
 
   componentDidMount() {
-    document.addEventListener("click", this.handleClickOutside);
-    this.menu.on("choose", choice => {
-      this.setState({ choice: choice.value });
-    });
+    document.addEventListener('click', this.handleClickOutside)
+    this.menu.on('choose', choice => {
+      this.setState({ choice: choice.value })
+    })
   }
 
   componentWillUnmount() {
-    document.removeEventListener("click", this.handleClickOutside);
+    document.removeEventListener('click', this.handleClickOutside)
   }
 
   handleLocaleClick = e => {
-    cookies.set("lang", e.target.value, {
-      path: "/"
-    });
-    navigateTo(`/${this.state.choice}/`);
-  };
+    cookies.set('lang', e.target.value, {
+      path: '/',
+    })
+    navigateTo(`/${this.state.choice}/`)
+  }
 
   saveMenuRef = ref => {
-    this.menu = ref;
-  };
+    this.menu = ref
+  }
 
   handleClickOutside = e => {
     if (this.menu.button === e.target) {
-      return;
+      return
     }
-    this.menu.close();
-  };
+    this.menu.close()
+  }
 
   render() {
-    const { intl, isBottom, isMobile, id } = this.props;
+    const { intl, isBottom, isMobile, id } = this.props
     return (
       <StyledMenuButton
         isBottom={isBottom}
@@ -195,25 +195,19 @@ class LanguageSelection extends Component {
           <Fragment>
             <StyledGlobe />
             {intl.formatMessage({
-              id: "global.languagesLabel"
+              id: 'global.languagesLabel',
             })}
           </Fragment>
         }
-        menuRef={this.saveMenuRef}
-      >
+        menuRef={this.saveMenuRef}>
         {config.locales.map(locale => (
-          <ItemButton
-            current={intl.locale === locale}
-            key={locale}
-            onClick={this.handleLocaleClick}
-            value={locale}
-          >
+          <ItemButton current={intl.locale === locale} key={locale} onClick={this.handleLocaleClick} value={locale}>
             {locale}
           </ItemButton>
         ))}
       </StyledMenuButton>
-    );
+    )
   }
 }
 
-export default injectIntl(LanguageSelection);
+export default injectIntl(LanguageSelection)

@@ -1,9 +1,9 @@
-import React from "react";
-import styled from "styled-components";
-import media from "../../tokens/breakpoints";
-import spacing from "../../tokens/dimensions";
-import Box from "../Box";
-import SubscribeForm from "../SubscribeForm";
+import React from 'react'
+import styled from 'styled-components'
+import media from '../../tokens/breakpoints'
+import spacing from '../../tokens/dimensions'
+import Box from '../Box'
+import SubscribeForm from '../SubscribeForm'
 
 const Container = styled.div`
   display: grid;
@@ -12,7 +12,7 @@ const Container = styled.div`
   @media (${media.md}) {
     grid-template-columns: 1fr 1fr;
   }
-`;
+`
 
 const PostFooterSubscribe = () => (
   <Container>
@@ -23,6 +23,6 @@ const PostFooterSubscribe = () => (
       <SubscribeForm />
     </Box>
   </Container>
-);
+)
 
-export default PostFooterSubscribe;
+export default PostFooterSubscribe

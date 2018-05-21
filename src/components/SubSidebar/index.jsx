@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import spacing from "../../tokens/dimensions";
+import React from 'react'
+import styled from 'styled-components'
+import spacing from '../../tokens/dimensions'
 
 const StyledSubSidebar = styled.div`
   display: grid;
@@ -19,10 +19,8 @@ const StyledSubSidebar = styled.div`
   > :last-child {
     margin-bottom: ${spacing.base};
   }
-`;
+`
 
-const SubSidebar = ({ children }) => (
-  <StyledSubSidebar>{children}</StyledSubSidebar>
-);
+const SubSidebar = ({ children }) => <StyledSubSidebar>{children}</StyledSubSidebar>
 
-export default SubSidebar;
+export default SubSidebar

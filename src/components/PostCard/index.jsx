@@ -1,12 +1,12 @@
-import React, { Fragment } from "react";
-import Link from "gatsby-link";
-import Img from "gatsby-image";
-import styled, { css } from "styled-components";
-import { FormattedMessage } from "react-intl";
-import spacing, { boxPadding } from "../../tokens/dimensions";
-import media from "../../tokens/breakpoints";
-import PostDate from "../PostDate";
-import Box from "../Box";
+import React, { Fragment } from 'react'
+import Link from 'gatsby-link'
+import Img from 'gatsby-image'
+import styled, { css } from 'styled-components'
+import { FormattedMessage } from 'react-intl'
+import spacing, { boxPadding } from '../../tokens/dimensions'
+import media from '../../tokens/breakpoints'
+import PostDate from '../PostDate'
+import Box from '../Box'
 
 const doubleWidthFirstPost = ({ isIndex }) =>
   isIndex &&
@@ -16,13 +16,13 @@ const doubleWidthFirstPost = ({ isIndex }) =>
         grid-column: span 2;
       }
     }
-  `;
+  `
 
 const Article = styled.article`
   ${doubleWidthFirstPost};
 
   color: ${props => props.theme.palette.noir};
-`;
+`
 
 const thumbnailNeedsNegativeMargin = ({ isBoxed }) =>
   isBoxed &&
@@ -33,39 +33,39 @@ const thumbnailNeedsNegativeMargin = ({ isBoxed }) =>
       margin-right: -${boxPadding.default.md.x};
       margin-left: -${boxPadding.default.md.x};
     }
-  `;
+  `
 
 const Thumbnail = styled(Img)`
   ${thumbnailNeedsNegativeMargin};
-`;
+`
 
 const Header = styled.header`
   margin-top: ${spacing.lg};
-`;
+`
 
 const Meta = styled.div`
   display: flex;
   flex-wrap: wrap;
-`;
+`
 
 const Category = styled.span`
   margin-right: ${spacing.base};
   color: ${props => props.color};
-`;
+`
 
 const CategoryLink = styled(Link)`
   text-decoration: none;
   color: inherit;
-`;
+`
 
 const StyledPostDate = styled(PostDate)`
   white-space: nowrap;
   color: ${props => props.theme.palette.grisLight};
-`;
+`
 
 const Title = styled.h2`
   margin: ${spacing.md} 0 0;
-`;
+`
 
 const TitleLink = styled(Link)`
   text-decoration: none;
@@ -75,18 +75,18 @@ const TitleLink = styled(Link)`
   &:focus {
     color: ${props => props.theme.palette.rose};
   }
-`;
+`
 
 const Body = styled.section`
   margin-top: ${spacing.base};
-`;
+`
 
 const Footer = styled.footer`
   display: flex;
   justify-content: flex-end;
 
   margin-top: ${spacing.md};
-`;
+`
 
 const ReadMoreLink = styled(Link)`
   text-decoration: none;
@@ -96,29 +96,18 @@ const ReadMoreLink = styled(Link)`
   &:focus {
     color: ${props => props.theme.palette.rose};
   }
-`;
+`
 
 const Arrow = styled.span`
   margin-left: ${spacing.base};
   color: ${props => props.theme.palette.rose};
-`;
+`
 
 const CardRoot = ({ post, isBoxed }) => {
-  const {
-    locale,
-    title,
-    path,
-    excerpt,
-    localDate,
-    date,
-    thumbnailArray = [],
-    categoriesArray = []
-  } = post;
-  const url = `/${locale}${path}`;
-  const thumbnail =
-    thumbnailArray && thumbnailArray.length > 0 && thumbnailArray[0];
-  const category =
-    categoriesArray && categoriesArray.length > 0 && categoriesArray[0];
+  const { locale, title, path, excerpt, localDate, date, thumbnailArray = [], categoriesArray = [] } = post
+  const url = `/${locale}${path}`
+  const thumbnail = thumbnailArray && thumbnailArray.length > 0 && thumbnailArray[0]
+  const category = categoriesArray && categoriesArray.length > 0 && categoriesArray[0]
 
   return (
     <Fragment>
@@ -130,9 +119,7 @@ const CardRoot = ({ post, isBoxed }) => {
       <Header>
         <Meta>
           <Category color={category.color}>
-            <CategoryLink to={`/${locale}/categories/${category.title}`}>
-              {category.displayName}
-            </CategoryLink>
+            <CategoryLink to={`/${locale}/categories/${category.title}`}>{category.displayName}</CategoryLink>
           </Category>
           <StyledPostDate date={date} localDate={localDate} />
         </Meta>
@@ -149,8 +136,8 @@ const CardRoot = ({ post, isBoxed }) => {
         </ReadMoreLink>
       </Footer>
     </Fragment>
-  );
-};
+  )
+}
 
 const PostCard = ({ post, isIndex, isBoxed = false }) =>
   isBoxed ? (
@@ -163,6 +150,6 @@ const PostCard = ({ post, isIndex, isBoxed = false }) =>
     <Article isIndex={isIndex}>
       <CardRoot post={post} />
     </Article>
-  );
+  )
 
-export default PostCard;
+export default PostCard

@@ -1,14 +1,14 @@
-import React from "react";
-import addToMailchimp from "gatsby-plugin-mailchimp";
-import { FormattedMessage, injectIntl } from "react-intl";
-import styled from "styled-components";
-import { hideVisually } from "polished";
-import spacing, { fontsize } from "../../tokens/dimensions";
+import React from 'react'
+import addToMailchimp from 'gatsby-plugin-mailchimp'
+import { FormattedMessage, injectIntl } from 'react-intl'
+import styled from 'styled-components'
+import { hideVisually } from 'polished'
+import spacing, { fontsize } from '../../tokens/dimensions'
 
 const Title = styled.h2`
   margin: 0;
   font-size: ${fontsize.base};
-`;
+`
 
 const Form = styled.form`
   display: flex;
@@ -17,7 +17,7 @@ const Form = styled.form`
   margin-top: ${spacing.sm};
   margin-right: -${spacing.xs};
   margin-left: -${spacing.xs};
-`;
+`
 
 const Label = styled.label`
   flex-grow: 1;
@@ -26,11 +26,11 @@ const Label = styled.label`
   margin-top: ${spacing.sm};
   margin-right: ${spacing.xs};
   margin-left: ${spacing.xs};
-`;
+`
 
 const LabelText = styled.span`
   ${hideVisually};
-`;
+`
 
 const Input = styled.input`
   width: 100%;
@@ -40,7 +40,7 @@ const Input = styled.input`
   line-height: inherit;
   font-family: inherit;
   font-size: inherit;
-`;
+`
 
 const SubmitButton = styled.button`
   flex-grow: 1;
@@ -59,20 +59,20 @@ const SubmitButton = styled.button`
   background-color: ${props => props.theme.palette.rose};
   color: ${props => props.theme.palette.blanc};
   cursor: pointer;
-`;
+`
 
 class SubscribeForm extends React.Component {
   constructor() {
-    super();
+    super()
     this.state = {
-      email: ``
-    };
+      email: ``,
+    }
   }
 
   // Update state each time user edits their email address
   handleEmailChange = e => {
-    this.setState({ email: e.target.value });
-  };
+    this.setState({ email: e.target.value })
+  }
 
   // Post to MC server & handle its response
   postEmailToMailchimp = (email, attributes) => {
@@ -83,57 +83,55 @@ class SubscribeForm extends React.Component {
         if (result.result !== `success`) {
           this.setState({
             status: `error`,
-            msg: result.msg
-          });
+            msg: result.msg,
+          })
         } else {
           // Email address succesfully subcribed to Mailchimp
           this.setState({
             status: `success`,
-            msg: result.msg
-          });
+            msg: result.msg,
+          })
         }
       })
       .catch(err => {
         // Network failures, timeouts, etc
         this.setState({
           status: `error`,
-          msg: err
-        });
-      });
-  };
+          msg: err,
+        })
+      })
+  }
 
   handleFormSubmit = e => {
-    e.preventDefault();
-    e.stopPropagation();
+    e.preventDefault()
+    e.stopPropagation()
 
     this.setState(
       {
         status: `sending`,
-        msg: null
+        msg: null,
       },
       // setState callback (subscribe email to MC)
       this.postEmailToMailchimp(this.state.email, {
         LANG: this.props.intl.locale,
-        WHITEPAPER: this.props.whitepaper || false
-      })
-    );
-  };
+        WHITEPAPER: this.props.whitepaper || false,
+      }),
+    )
+  }
 
   render() {
-    const { intl, formId = null, whitepaper = false } = this.props;
+    const { intl, formId = null, whitepaper = false } = this.props
     const heading = whitepaper
-      ? "sidebar.mailchimpBoxes.whitepaper.heading"
-      : "sidebar.mailchimpBoxes.subscribe.heading";
-    const body = whitepaper
-      ? "sidebar.mailchimpBoxes.whitepaper.body"
-      : "sidebar.mailchimpBoxes.subscribe.body";
+      ? 'sidebar.mailchimpBoxes.whitepaper.heading'
+      : 'sidebar.mailchimpBoxes.subscribe.heading'
+    const body = whitepaper ? 'sidebar.mailchimpBoxes.whitepaper.body' : 'sidebar.mailchimpBoxes.subscribe.body'
     const buttonText = whitepaper
-      ? "sidebar.mailchimpBoxes.whitepaper.buttonText"
-      : "sidebar.mailchimpBoxes.subscribe.buttonText";
+      ? 'sidebar.mailchimpBoxes.whitepaper.buttonText'
+      : 'sidebar.mailchimpBoxes.subscribe.buttonText'
 
     const placeholder = intl.formatMessage({
-      id: "sidebar.mailchimpBoxes.emailAddressPlaceholder"
-    });
+      id: 'sidebar.mailchimpBoxes.emailAddressPlaceholder',
+    })
     return (
       <div>
         {this.state.status === `success` ? (
@@ -146,35 +144,23 @@ class SubscribeForm extends React.Component {
             <p>
               <FormattedMessage id={body} />
             </p>
-            <Form
-              id={formId}
-              method="post"
-              noValidate
-              onSubmit={this.handleFormSubmit}
-            >
+            <Form id={formId} method="post" noValidate onSubmit={this.handleFormSubmit}>
               <Label htmlFor="email">
                 <LabelText>
                   <FormattedMessage id="sidebar.mailchimpBoxes.emailAddressLabel" />
                 </LabelText>
-                <Input
-                  type="email"
-                  name="email"
-                  placeholder={placeholder}
-                  onChange={this.handleEmailChange}
-                />
+                <Input type="email" name="email" placeholder={placeholder} onChange={this.handleEmailChange} />
               </Label>
               <SubmitButton type="submit">
                 <FormattedMessage id={buttonText} />
               </SubmitButton>
-              {this.state.status === `error` && (
-                <div dangerouslySetInnerHTML={{ __html: this.state.msg }} />
-              )}
+              {this.state.status === `error` && <div dangerouslySetInnerHTML={{ __html: this.state.msg }} />}
             </Form>
           </div>
         )}
       </div>
-    );
+    )
   }
 }
 
-export default injectIntl(SubscribeForm);
+export default injectIntl(SubscribeForm)
