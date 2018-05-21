@@ -2,7 +2,7 @@ module.exports = {
   blogPostDir: "posts", // The name of directory that contains your posts.
   blogAuthorDir: "authors", // The name of directory that contains your 'authors' folder.
   organizationName: "Gymlib", // Used for SEO schema.org "organization" type
-  siteUrl: "https://fervent-noether-d935b7.netlify.com/",
+  siteUrl: "https://fervent-noether-d935b7.netlify.com",
   siteLogo: "/favicons/android-chrome-512x512.png",
   sitePaginationLimit: 6, // The max number of posts per page.
   locales: ["fr", "en"],
