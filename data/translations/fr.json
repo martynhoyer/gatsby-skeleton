@@ -33,7 +33,11 @@
   "search": {
     "searchInputLabel": "Terme de recherche",
     "allCategoriesLabel": "Catégories",
-    "searchButtonText": "Rechercher"
+    "searchButtonText": "Rechercher",
+    "noResultsLabel": "Aucun résultat",
+    "searchResultsLabel": "Résultats de la recherche",
+    "queryPrefix": "pour: {query}",
+    "categoryPrefix": "dans la catégorie: {category}"
   },
   "sidebar": {
     "mailchimpBoxes": {

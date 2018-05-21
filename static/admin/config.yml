@@ -78,6 +78,8 @@ collections:
         name: "navigation"
         widget: "object"
         fields: 
+          - {label: "Menu title", name: "menuTitle", widget: "string"}
+          - {label: "Close button text", name: "closeButtonText", widget: "string"}
           - label: "Home"
             name: "home"
             widget: "object"
@@ -96,6 +98,17 @@ collections:
             fields: 
               - {label: "Link text", name: "linkText", widget: "string"}
               - {label: "Link URL", name: "linkUrl", widget: "string"}
+      - label: "Search"
+        name: "search"
+        widget: "object"
+        fields: 
+          - {label: "Search input label", name: "searchInputLabel", widget: "string"}
+          - {label: "All categories label", name: "allCategoriesLabel", widget: "string"}
+          - {label: "Search button text", name: "searchButtonText", widget: "string"}
+          - {label: "No results label", name: "noResultsLabel", widget: "string"}
+          - {label: "Search results label", name: "searchResultsLabel", widget: "string"}
+          - {label: "Query prefix", name: "queryPrefix", widget: "string"}
+          - {label: "Category prefix", name: "categoryPrefix", widget: "string"}
       - label: "Sidebar"
         name: "sidebar"
         widget: "object"

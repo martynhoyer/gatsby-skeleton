@@ -97,8 +97,21 @@ class SearchTemplate extends React.Component {
                     isSearchResults
                     handleButtonClick={this.handleButtonClick}>
                     <h1>
-                      Search results {queries.query && `for: "${queries.query}"`}{' '}
-                      {searchedCategory && `in category: "${searchedCategory.displayName}"`}
+                      {intl.formatMessage({ id: 'search.searchResultsLabel' })}{' '}
+                      {queries.query &&
+                        intl.formatMessage(
+                          { id: 'search.queryPrefix' },
+                          {
+                            query: queries.query,
+                          },
+                        )}{' '}
+                      {searchedCategory &&
+                        intl.formatMessage(
+                          { id: 'search.categoryPrefix' },
+                          {
+                            category: searchedCategory.displayName,
+                          },
+                        )}
                     </h1>
                     <PostListing postEdges={currentItems} />
                   </PaginatedContent>
@@ -107,8 +120,21 @@ class SearchTemplate extends React.Component {
                 <Fragment>
                   {!_.isEmpty(touched) ? (
                     <h1>
-                      No results {queries.query && `for: "${queries.query}"`}{' '}
-                      {searchedCategory && `in category: "${searchedCategory.displayName}"`}
+                      {intl.formatMessage({ id: 'search.noResultsLabel' })}{' '}
+                      {queries.query &&
+                        intl.formatMessage(
+                          { id: 'search.queryPrefix' },
+                          {
+                            query: queries.query,
+                          },
+                        )}{' '}
+                      {searchedCategory &&
+                        intl.formatMessage(
+                          { id: 'search.categoryPrefix' },
+                          {
+                            category: searchedCategory.displayName,
+                          },
+                        )}
                     </h1>
                   ) : null}
                 </Fragment>
