@@ -36,6 +36,16 @@ const NavLink = styled(Link)`
   color: ${props => props.theme.palette.blanc};
 `
 
+const ExternalLink = styled.a`
+  display: flex;
+  align-items: center;
+
+  padding: 0.5em;
+  text-decoration: none;
+  white-space: nowrap;
+  color: ${props => props.theme.palette.blanc};
+`
+
 const StyledUser = styled(User)`
   width: 1.2em;
   height: 1.2em;
@@ -52,7 +62,9 @@ const Navigation = ({ intl }) => {
           <NavLink to={messages['navigation.home.linkUrl']}>{messages['navigation.home.linkText']}</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink to={messages['navigation.offers.linkUrl']}>{messages['navigation.offers.linkText']}</NavLink>
+          <ExternalLink href={messages['navigation.offers.linkUrl']}>
+            {messages['navigation.offers.linkText']}
+          </ExternalLink>
         </NavItem>
         <NavItem>
           <LanguageSelection id="topbarLangSelection" />
