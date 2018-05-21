@@ -109,7 +109,7 @@ class SEO extends Component {
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:site_name" content={globalSiteTitle} />
-        <meta property="og:locale" content={locale} />
+        {/* <meta property="og:locale" content={locale} /> */}
         <meta property="og:image" content={image} />
         {postSEO && ogTags.map(tag => <meta key={tag} property="article:tag" content={tag} />)}
         <meta property="fb:app_id" content={config.siteFBAppID ? config.siteFBAppID : ''} />
