@@ -11,7 +11,11 @@ import media from '../../tokens/breakpoints'
 const formBottomPadding = ({ needsToClearNegativeMargin }) =>
   needsToClearNegativeMargin &&
   css`
-    padding-bottom: ${spacing.xxl};
+    padding-bottom: ${spacing.md};
+
+    @media (${media.md}) {
+      padding-bottom: ${spacing.xxl};
+    }
   `
 
 const Form = styled.form`
@@ -34,17 +38,16 @@ const ErrorMessage = styled.p`
 const FormElementsWrapper = styled.div`
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
+  align-items: flex-start;
 
-  font-weight: bold;
+  font-size: 0.75rem;
 
-  & > * {
-    flex-basis: 100%;
+  @media (${media.sm}) {
+    font-size: 1rem;
+    font-weight: bold;
   }
 
   @media (${media.md}) {
-    flex-wrap: nowrap;
-
     margin: 0 -${spacing.xs};
 
     & > * {
@@ -56,20 +59,14 @@ const FormElementsWrapper = styled.div`
 const LabelWrapper = styled.label`
   position: relative;
   margin-top: 1em;
-
-  @media (${media.md}) {
-    padding: 0 ${spacing.xs};
-  }
+  padding: 0 ${spacing.xs};
 `
 
 const Wrapper = styled.div`
+  flex-shrink: 0;
+
   margin-top: 1em;
-
-  @media (${media.md}) {
-    flex-shrink: 0;
-
-    padding: 0 ${spacing.xs};
-  }
+  padding: 0 ${spacing.xs};
 `
 
 const StyledMagnifyingGlass = styled(MagnifyingGlass)`

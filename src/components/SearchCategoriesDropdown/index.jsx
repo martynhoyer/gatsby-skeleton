@@ -13,11 +13,12 @@ const StyledMenuButton = styled(MenuButton)`
     width: 100%;
     margin: 0;
     padding: 0.5em 1em;
+    border: 1px solid currentColor;
+    border-radius: 2em;
     line-height: inherit;
     font-size: inherit;
     font-weight: inherit;
-    border: 1px solid currentColor;
-    border-radius: 2em;
+    white-space: nowrap;
     background-color: inherit;
     color: inherit;
 
