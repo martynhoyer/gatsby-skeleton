@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import MenuButton from "react-menu-button";
+import { injectIntl } from "react-intl";
 import styled from "styled-components";
 import spacing from "../../tokens/dimensions";
 import media from "../../tokens/breakpoints";
@@ -102,8 +103,11 @@ class SearchCategoriesDropdown extends Component {
   };
 
   render() {
-    let label = "All categories";
-    const { categories } = this.props;
+    const { categories, intl } = this.props;
+    const allCategoriesLabel = intl.formatMessage({
+      id: "search.allCategoriesLabel"
+    });
+    let label = allCategoriesLabel;
 
     if (this.state.choice) {
       label = this.state.choice;
@@ -116,7 +120,7 @@ class SearchCategoriesDropdown extends Component {
         menuRef={this.saveMenuRef}
       >
         <ItemButton type="button" value="all" onClick={this.onCategorySelect}>
-          All categories
+          {allCategoriesLabel}
         </ItemButton>
         {categories.map(({ node: category }) => (
           <ItemButton
@@ -133,4 +137,4 @@ class SearchCategoriesDropdown extends Component {
   }
 }
 
-export default SearchCategoriesDropdown;
+export default injectIntl(SearchCategoriesDropdown);

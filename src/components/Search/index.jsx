@@ -126,7 +126,7 @@ class Search extends Component {
   };
 
   render() {
-    const { categories, needsToClearNegativeMargin } = this.props;
+    const { categories, needsToClearNegativeMargin, intl } = this.props;
     return (
       <Form
         onSubmit={this.handleSubmit}
@@ -134,7 +134,11 @@ class Search extends Component {
       >
         <LabelWrapper htmlFor="searchInput">
           <StyledMagnifyingGlass />
-          <Label>Search term</Label>
+          <Label>
+            {intl.formatMessage({
+              id: "search.searchInputLabel"
+            })}
+          </Label>
           <SearchInput
             id="searchInput"
             name="searchQuery"
@@ -149,7 +153,11 @@ class Search extends Component {
           />
         </Wrapper>
         <Wrapper>
-          <SubmitButton type="submit">Search</SubmitButton>
+          <SubmitButton type="submit">
+            {intl.formatMessage({
+              id: "search.searchButtonText"
+            })}
+          </SubmitButton>
         </Wrapper>
       </Form>
     );

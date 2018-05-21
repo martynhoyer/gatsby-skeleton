@@ -30,6 +30,11 @@
       "linkUrl": "/"
     }
   },
+  "search": {
+    "searchInputLabel": "Terme de recherche",
+    "allCategoriesLabel": "Toutes catégories",
+    "searchButtonText": "Rechercher"
+  },
   "sidebar": {
     "mailchimpBoxes": {
       "emailAddressLabel": "Email",
