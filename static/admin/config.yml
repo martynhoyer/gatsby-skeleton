@@ -190,6 +190,80 @@ collections:
       - {label: "Show on popular posts sidebar?", name: "isPopular", widget: "boolean", required: false}
       - {label: "Image", name: "image", widget: "image"}
       - {label: "Content", name: "body", widget: "markdown"}
+      - {
+          label: "SEO", 
+          name: "seo", 
+          widget: "object", 
+          required: true,
+          fields: [
+            {
+              label: "Title", 
+              name: "title", 
+              required: false,
+              widget: "string"
+            },
+            {
+              label: "og:title", 
+              name: "ogTitle", 
+              required: false,
+              widget: "string"
+            },
+            {
+              label: "Description", 
+              name: "description", 
+              required: true,
+              widget: "string"
+            },
+            {
+              label: "og:description", 
+              name: "ogDescription", 
+              required: false,
+              widget: "string"
+            },
+            {
+              label: "Keywords", 
+              name: "keywords", 
+              widget: "list", 
+              required: false
+            },
+            {
+              label: "article:tag (comma-separated)", 
+              name: "ogArticleTags", 
+              widget: "list", 
+              required: false
+            },
+            {
+              label: "og:image", 
+              name: "ogImage", 
+              widget: "image", 
+              required: false
+            },
+            {
+              label: "Additional custom entries", 
+              name: "additional", 
+              widget: "list",
+              required: false,
+              fields: [
+                {
+                  label: "Type", 
+                  name: "type", 
+                  widget: "select",
+                  options: ["name", "property"]
+                }, 
+                {
+                  label: "Type value", 
+                  name: "typeValue", 
+                  widget: "string"
+                }, 
+                {
+                  label: "Content", 
+                  name: "content", 
+                  widget: "string"
+                }
+              ]              
+            }
+          ]
+        }
 
   - label: "Blog in English"
     name: "english_posts"
@@ -296,9 +370,7 @@ collections:
                   name: "content", 
                   widget: "string"
                 }
-              ]
-
-              
+              ]              
             }
           ]
         }
