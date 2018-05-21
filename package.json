@@ -82,7 +82,7 @@
     "lint:js": "eslint --ext .js,.jsx --ignore-pattern public --ignore-pattern static .",
     "lint:css": "stylelint --fix 'src/**/*.css'",
     "lint:md": "remark content/posts/",
-    "format:js": "prettier '**/*.{js,jsx}' --write",
+    "format:js": "prettier --config .prettierrc --write ./src/**/*.{js,jsx} && prettier --config .prettierrc --write ./*.{js,jsx}",
     "release": "standard-version -a",
     "optimize:svg": "svgo -f ./src/svg -o ./src/svg -p 2 --multipass --enable removeTitle --enable removeXMLNS --enable removeDimensions --enable removeAttrs"
   },
