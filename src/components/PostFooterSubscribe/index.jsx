@@ -11,6 +11,8 @@ const Container = styled.div`
 
   @media (${media.md}) {
     grid-template-columns: 1fr 1fr;
+
+    text-align: center;
   }
 `
 
