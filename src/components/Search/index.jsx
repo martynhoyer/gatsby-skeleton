@@ -76,6 +76,7 @@ const Label = styled.span`
 
 const SearchInput = styled.input`
   width: 100%;
+  margin: 0;
   padding: 0.5em 1em 0.5em ${spacing.lg};
   border: 1px solid currentColor;
   border-radius: 2em;
@@ -88,6 +89,7 @@ const SearchInput = styled.input`
 
 const SubmitButton = styled.button`
   width: 100%;
+  margin: 0;
   padding: 0.5em 1em;
   border: 1px solid currentColor;
   border-radius: 2em;
