@@ -9,11 +9,13 @@ import spacing, { fontsize } from '../../tokens/dimensions'
 const Container = styled.div`
   margin-top: ${spacing.xxl};
   text-align: center;
+  color: ${props => props.theme.palette.grisLight};
 `
 
 const Heading = styled.h2`
   margin: 0 0 ${spacing.base};
   font-size: ${fontsize.md};
+  color: ${props => props.theme.palette.noir};
 `
 
 const StyledTagIcon = styled(TagIcon)`
@@ -26,7 +28,7 @@ const StyledTagIcon = styled(TagIcon)`
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  color: ${props => props.theme.palette.grisLight};
+  color: inherit;
 `
 
 class PostTags extends Component {
@@ -42,9 +44,7 @@ class PostTags extends Component {
           </Heading>
           {tags.map((tag, index, arr) => (
             <span key={tag}>
-              <StyledLink key={tag} to={`/${locale}/tags/${_.kebabCase(tag)}`}>
-                {tag}
-              </StyledLink>
+              <StyledLink to={`/${locale}/tags/${_.kebabCase(tag)}`}>{tag}</StyledLink>
               {index !== arr.length - 1 ? ', ' : ''}
             </span>
           ))}
