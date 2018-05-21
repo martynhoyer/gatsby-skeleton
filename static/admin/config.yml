@@ -165,7 +165,7 @@ collections:
       - {label: "Is published", name: "isPublished", widget: "boolean", default: true}
       - {label: "Language", name: "locale", widget: "hidden", default: "fr"}
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Category", name: "category", widget: "relation", collection: "french_categories", searchFields: ["title", "displayName"], valueField: "title", displayFields: ["title", "displayName"], default: "uncategorised"}
+      - {label: "Category", name: "category", widget: "relation", collection: "french_categories", searchFields: ["title", "displayName"], valueField: "title", displayFields: ["title", "displayName"]}
       - {label: "Tags", name: "tags", widget: "list", default: ["news"], required: false}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Author", name: "author", widget: "relation", collection: "authors", searchFields: ["title", "displayName"], valueField: "title", displayFields: ["displayName"]}
@@ -194,7 +194,7 @@ collections:
           label: "SEO", 
           name: "seo", 
           widget: "object", 
-          required: true,
+          required: false,
           fields: [
             {
               label: "Title", 
@@ -275,7 +275,7 @@ collections:
       - {label: "Is published", name: "isPublished", widget: "boolean", default: true}
       - {label: "Language", name: "locale", widget: "hidden", default: "en"}
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Category", name: "category", widget: "relation", collection: "english_categories", searchFields: ["title", "displayName"], valueField: "title", displayFields: ["title", "displayName"], default: "uncategorised"}
+      - {label: "Category", name: "category", widget: "relation", collection: "english_categories", searchFields: ["title", "displayName"], valueField: "title", displayFields: ["title", "displayName"]}
       - {label: "Tags", name: "tags", widget: "list", default: ["news"], required: false}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Author", name: "author", widget: "relation", collection: "authors", searchFields: ["title", "displayName"], valueField: "title", displayFields: ["displayName"]}
@@ -304,7 +304,7 @@ collections:
           label: "SEO", 
           name: "seo", 
           widget: "object", 
-          required: true,
+          required: false,
           fields: [
             {
               label: "Title", 
