@@ -44,7 +44,7 @@ const SocialItem = ({ url, providerDisplayName, profileDisplayName, providerName
     <Fragment>
       <DefinitionTitle>{providerDisplayName}</DefinitionTitle>
       <DefinitionData>
-        <Link href={url} providerName={providerName}>
+        <Link href={url} target="_blank" rel="noopener" providerName={providerName}>
           {icons[providerName]}
           <DisplayName>{profileDisplayName}</DisplayName>
         </Link>
