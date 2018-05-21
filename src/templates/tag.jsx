@@ -40,7 +40,7 @@ class TagTemplate extends React.Component {
       : intl.formatMessage(
           { id: 'global.pageTitles.category' },
           {
-            category: category.displayName,
+            category: category && category.displayName,
           },
         )
 
