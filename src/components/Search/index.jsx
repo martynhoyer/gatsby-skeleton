@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
 import { navigateTo } from 'gatsby-link'
 import { injectIntl } from 'react-intl'
 import styled, { css } from 'styled-components'

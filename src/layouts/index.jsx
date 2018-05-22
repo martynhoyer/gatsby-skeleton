@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react'
 import Helmet from 'react-helmet'
-
 import { getCurrentLangKey } from 'ptz-i18n'
 import { IntlProvider, addLocaleData } from 'react-intl'
 import 'intl'
@@ -9,12 +8,19 @@ import 'intl/locale-data/jsonp/en'
 import fr from 'react-intl/locale-data/fr'
 import 'intl/locale-data/jsonp/fr'
 
-import { ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 import config from '../../data/SiteConfig'
 import './global.styles.css'
 import GYMLIB from '../tokens/colours'
 
 addLocaleData([...en, ...fr])
+
+const PageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+`
 
 export default class MainLayout extends React.Component {
   render() {
@@ -53,7 +59,7 @@ export default class MainLayout extends React.Component {
             <Helmet>
               <html lang={langKey} />
             </Helmet>
-            {children()}
+            <PageWrapper>{children()}</PageWrapper>
           </Fragment>
         </ThemeProvider>
       </IntlProvider>

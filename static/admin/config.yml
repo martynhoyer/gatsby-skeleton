@@ -92,12 +92,6 @@ collections:
             fields: 
               - {label: "Link text", name: "linkText", widget: "string"}
               - {label: "Link URL", name: "linkUrl", widget: "string"}
-          - label: "Profile"
-            name: "profile"
-            widget: "object"
-            fields: 
-              - {label: "Link text", name: "linkText", widget: "string"}
-              - {label: "Link URL", name: "linkUrl", widget: "string"}
       - label: "Search"
         name: "search"
         widget: "object"

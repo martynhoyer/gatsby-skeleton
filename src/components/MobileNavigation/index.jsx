@@ -5,7 +5,6 @@ import Link from 'gatsby-link'
 import ScrollLock from 'react-scrolllock'
 import { hideVisually } from 'polished'
 import LanguageSelection from '../LanguageSelection'
-import { ReactComponent as User } from '../../svg/user.svg'
 import { ReactComponent as Cross } from '../../svg/cross.svg'
 import { ReactComponent as Hamburger } from '../../svg/hamburger.svg'
 import media from '../../tokens/breakpoints'
@@ -81,11 +80,15 @@ const NavLink = styled(Link)`
   color: ${props => props.theme.palette.blanc};
 `
 
-const StyledUser = styled(User)`
-  width: 1.2em;
-  height: 1.2em;
-  margin-left: 0.75em;
-  fill: currentColor;
+const ExternalLink = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 1em 0.5em;
+  text-decoration: none;
+  white-space: nowrap;
+  color: ${props => props.theme.palette.blanc};
 `
 
 const CloseButton = styled.button`
@@ -150,12 +153,9 @@ class MobileNavigation extends Component {
                   <NavLink to={messages['navigation.home.linkUrl']}>{messages['navigation.home.linkText']}</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink to={messages['navigation.offers.linkUrl']}>{messages['navigation.offers.linkText']}</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink to={messages['navigation.profile.linkUrl']}>
-                    {messages['navigation.profile.linkText']} <StyledUser />
-                  </NavLink>
+                  <ExternalLink href={messages['navigation.offers.linkUrl']}>
+                    {messages['navigation.offers.linkText']}
+                  </ExternalLink>
                 </NavItem>
                 <NavItem>
                   <LanguageSelection id="mobileLangSelection" />

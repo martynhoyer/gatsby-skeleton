@@ -24,10 +24,6 @@
     "offers": {
       "linkText": "Business & Employee Offer",
       "linkUrl": "https://www.gymlib.com/en/corporate"
-    },
-    "profile": {
-      "linkText": "Profile",
-      "linkUrl": "/"
     }
   },
   "search": {

@@ -3,7 +3,6 @@ import { injectIntl } from 'react-intl'
 import styled from 'styled-components'
 import Link from 'gatsby-link'
 import LanguageSelection from '../LanguageSelection'
-import { ReactComponent as User } from '../../svg/user.svg'
 import media from '../../tokens/breakpoints'
 
 const Container = styled.nav`
@@ -46,13 +45,6 @@ const ExternalLink = styled.a`
   color: ${props => props.theme.palette.blanc};
 `
 
-const StyledUser = styled(User)`
-  width: 1.2em;
-  height: 1.2em;
-  margin-left: 0.75em;
-  fill: currentColor;
-`
-
 const Navigation = ({ intl }) => {
   const { messages } = intl
   return (
@@ -68,11 +60,6 @@ const Navigation = ({ intl }) => {
         </NavItem>
         <NavItem>
           <LanguageSelection id="topbarLangSelection" />
-        </NavItem>
-        <NavItem>
-          <NavLink to={messages['navigation.profile.linkUrl']}>
-            {messages['navigation.profile.linkText']} <StyledUser />
-          </NavLink>
         </NavItem>
       </NavList>
     </Container>
