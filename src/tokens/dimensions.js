@@ -15,7 +15,8 @@ export const boxPadding = {
       y: spacing.md,
     },
     md: {
-      x: spacing.md,
+      x: spacing.lg,
+      y: spacing.xl,
     },
   },
   default: {
@@ -25,6 +26,7 @@ export const boxPadding = {
     },
     md: {
       x: spacing.xl,
+      y: spacing.md,
     },
   },
 }

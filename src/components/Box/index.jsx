@@ -9,16 +9,14 @@ const getBoxPadding = ({ compact }) =>
         padding: ${boxPadding.compact.xs.y} ${boxPadding.compact.xs.x};
 
         @media (${media.md}) {
-          padding-right: ${boxPadding.compact.md.x};
-          padding-left: ${boxPadding.compact.md.x};
+          padding: ${boxPadding.compact.md.y} ${boxPadding.compact.md.x};
         }
       `
     : css`
         padding: ${boxPadding.default.xs.y} ${boxPadding.default.xs.x};
 
         @media (${media.md}) {
-          padding-right: ${boxPadding.default.md.x};
-          padding-left: ${boxPadding.default.md.x};
+          padding: ${boxPadding.default.md.y} ${boxPadding.default.md.x};
         }
       `
 
