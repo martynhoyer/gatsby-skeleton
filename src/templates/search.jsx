@@ -84,7 +84,7 @@ class SearchTemplate extends React.Component {
         <SEO />
         <Helmet title={`${pageTitle} | ${globalSiteTitle}`} />
         <Header>
-          <Search categories={categories} />
+          <Search categories={categories} queries={queries} />
         </Header>
         <Body>
           <SearchLayout>

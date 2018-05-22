@@ -103,11 +103,11 @@ class SearchCategoriesDropdown extends Component {
   }
 
   render() {
-    const { categories, intl } = this.props
+    const { categories, categoryQuery = null, intl } = this.props
     const allCategoriesLabel = intl.formatMessage({
       id: 'search.allCategoriesLabel',
     })
-    let label = allCategoriesLabel
+    let label = categoryQuery || allCategoriesLabel
 
     if (this.state.choice) {
       label = this.state.choice

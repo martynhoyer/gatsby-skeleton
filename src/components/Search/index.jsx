@@ -102,8 +102,8 @@ const SubmitButton = styled.button`
 
 class Search extends Component {
   state = {
-    searchQuery: '',
-    searchCategory: '',
+    searchQuery: this.props.queries.query || '',
+    searchCategory: this.props.queries.category || '',
   }
 
   handleChange = e => {
@@ -136,10 +136,20 @@ class Search extends Component {
               id: 'search.searchInputLabel',
             })}
           </Label>
-          <SearchInput id="searchInput" name="searchQuery" type="text" onChange={this.handleChange} />
+          <SearchInput
+            id="searchInput"
+            name="searchQuery"
+            type="text"
+            onChange={this.handleChange}
+            value={this.state.searchQuery}
+          />
         </LabelWrapper>
         <Wrapper>
-          <SearchCategoriesDropdown categories={categories} onCategorySelect={this.handleChange} />
+          <SearchCategoriesDropdown
+            categories={categories}
+            onCategorySelect={this.handleChange}
+            categoryQuery={this.state.searchCategory}
+          />
         </Wrapper>
         <Wrapper>
           <SubmitButton type="submit">
