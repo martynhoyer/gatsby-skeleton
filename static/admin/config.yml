@@ -109,6 +109,7 @@ collections:
           - {label: "Search results label", name: "searchResultsLabel", widget: "string"}
           - {label: "Query prefix", name: "queryPrefix", widget: "string"}
           - {label: "Category prefix", name: "categoryPrefix", widget: "string"}
+          - {label: "Empty query warning message", name: "emptyQueryWarning", widget: "string"}
       - label: "Sidebar"
         name: "sidebar"
         widget: "object"

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
 import { navigateTo } from 'gatsby-link'
 import { injectIntl } from 'react-intl'
 import styled, { css } from 'styled-components'
@@ -17,13 +18,26 @@ const formBottomPadding = ({ needsToClearNegativeMargin }) =>
 const Form = styled.form`
   ${formBottomPadding};
 
+  padding-top: 2em;
+  color: ${props => props.theme.palette.blanc};
+
+  @media (${media.md}) {
+    padding-top: 8em;
+  }
+`
+
+const ErrorMessage = styled.p`
+  margin: 0.5em 0 0;
+  font-weight: normal;
+  text-align: center;
+`
+
+const FormElementsWrapper = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
 
-  padding-top: 2em;
   font-weight: bold;
-  color: ${props => props.theme.palette.blanc};
 
   & > * {
     flex-basis: 100%;
@@ -33,7 +47,6 @@ const Form = styled.form`
     flex-wrap: nowrap;
 
     margin: 0 -${spacing.xs};
-    padding-top: 8em;
 
     & > * {
       flex-basis: auto;
@@ -102,13 +115,15 @@ const SubmitButton = styled.button`
 
 class Search extends Component {
   state = {
-    searchQuery: this.props.queries.query || '',
-    searchCategory: this.props.queries.category || '',
+    searchQuery: (this.props.queries && this.props.queries.query) || '',
+    searchCategory: (this.props.queries && this.props.queries.category) || '',
+    error: false,
   }
 
   handleChange = e => {
     if (e.target.id === 'searchInput') {
       this.setState({
+        error: false,
         searchQuery: e.target.value === 'all' ? '' : e.target.value,
       })
     } else {
@@ -120,6 +135,16 @@ class Search extends Component {
 
   handleSubmit = e => {
     e.preventDefault()
+    if (this.state.searchQuery === '') {
+      this.setState({
+        error: true,
+      })
+      this.searchInput.focus()
+      return
+    }
+    this.setState({
+      error: false,
+    })
     navigateTo(
       `/${this.props.intl.locale}/search?query=${this.state.searchQuery}&category=${this.state.searchCategory}`,
     )
@@ -127,37 +152,51 @@ class Search extends Component {
 
   render() {
     const { categories, needsToClearNegativeMargin, intl } = this.props
+
     return (
       <Form onSubmit={this.handleSubmit} needsToClearNegativeMargin={needsToClearNegativeMargin}>
-        <LabelWrapper htmlFor="searchInput">
-          <StyledMagnifyingGlass />
-          <Label>
+        <FormElementsWrapper>
+          <LabelWrapper htmlFor="searchInput">
+            <StyledMagnifyingGlass />
+            <Label>
+              {intl.formatMessage({
+                id: 'search.searchInputLabel',
+              })}
+            </Label>
+            <SearchInput
+              type="text"
+              id="searchInput"
+              name="searchQuery"
+              innerRef={el => {
+                this.searchInput = el
+              }}
+              onChange={this.handleChange}
+              value={this.state.searchQuery}
+              error={this.state.error}
+            />
+          </LabelWrapper>
+          <Wrapper>
+            <SearchCategoriesDropdown
+              categories={categories}
+              onCategorySelect={this.handleChange}
+              categoryQuery={this.state.searchCategory}
+            />
+          </Wrapper>
+          <Wrapper>
+            <SubmitButton type="submit">
+              {intl.formatMessage({
+                id: 'search.searchButtonText',
+              })}
+            </SubmitButton>
+          </Wrapper>
+        </FormElementsWrapper>
+        {this.state.error && (
+          <ErrorMessage>
             {intl.formatMessage({
-              id: 'search.searchInputLabel',
+              id: 'search.emptyQueryWarning',
             })}
-          </Label>
-          <SearchInput
-            id="searchInput"
-            name="searchQuery"
-            type="text"
-            onChange={this.handleChange}
-            value={this.state.searchQuery}
-          />
-        </LabelWrapper>
-        <Wrapper>
-          <SearchCategoriesDropdown
-            categories={categories}
-            onCategorySelect={this.handleChange}
-            categoryQuery={this.state.searchCategory}
-          />
-        </Wrapper>
-        <Wrapper>
-          <SubmitButton type="submit">
-            {intl.formatMessage({
-              id: 'search.searchButtonText',
-            })}
-          </SubmitButton>
-        </Wrapper>
+          </ErrorMessage>
+        )}
       </Form>
     )
   }

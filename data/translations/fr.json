@@ -37,7 +37,8 @@
     "noResultsLabel": "Aucun résultat",
     "searchResultsLabel": "Résultats de la recherche",
     "queryPrefix": "pour: {query}",
-    "categoryPrefix": "dans la catégorie: {category}"
+    "categoryPrefix": "dans la catégorie: {category}",
+    "emptyQueryWarning": "Veuillez entrer un terme de recherche"
   },
   "sidebar": {
     "mailchimpBoxes": {
