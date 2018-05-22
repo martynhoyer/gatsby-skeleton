@@ -38,7 +38,8 @@ const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
+  justify-content: space-evenly;
 
   width: 100%;
   height: 100%;
@@ -55,12 +56,19 @@ const ContentWrapper = styled.div`
 `
 
 const NavList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  justify-content: space-evenly;
+
   margin: 0;
   padding: 0;
   list-style: none;
 `
 
-const NavItem = styled.li``
+const NavItem = styled.li`
+  margin: ${spacing.base} 0;
+`
 
 const NavLink = styled(Link)`
   display: flex;
@@ -84,10 +92,11 @@ const CloseButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0;
 
   width: ${spacing.xxl};
   height: ${spacing.xxl};
-  margin-top: ${spacing.xl};
+  margin: ${spacing.md} 0;
   padding: 0;
   border: 1px solid currentColor;
   border-radius: 50%;
