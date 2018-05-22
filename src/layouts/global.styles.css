@@ -95,7 +95,7 @@ svg {
   fill: currentColor;
 }
 
-*[role=button],
+[role=button],
 button {
   cursor: pointer;
 }

@@ -64,7 +64,7 @@ const StyledPostDate = styled(PostDate)`
 `
 
 const Title = styled.h2`
-  margin: ${spacing.md} 0 0;
+  margin: ${spacing.base} 0 0;
 `
 
 const TitleLink = styled(Link)`
