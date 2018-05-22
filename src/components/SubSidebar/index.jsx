@@ -11,14 +11,6 @@ const StyledSubSidebar = styled.div`
     padding-top: ${spacing.lg};
     border-top: 1px solid ${props => props.theme.palette.grisLight};
   }
-
-  > :first-child {
-    margin-top: ${spacing.base};
-  }
-
-  > :last-child {
-    margin-bottom: ${spacing.base};
-  }
 `
 
 const SubSidebar = ({ children }) => <StyledSubSidebar>{children}</StyledSubSidebar>
