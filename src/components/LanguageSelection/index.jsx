@@ -7,7 +7,6 @@ import { injectIntl } from 'react-intl'
 import config from '../../../data/SiteConfig'
 import { ReactComponent as Globe } from '../../svg/globe.svg'
 import spacing from '../../tokens/dimensions'
-import media from '../../tokens/breakpoints'
 
 const cookies = new Cookies()
 
@@ -36,22 +35,8 @@ const bottomButton = ({ isBottom }) =>
         }
       `
 
-const mobileButton = ({ isMobile }) =>
-  isMobile
-    ? css`
-        & > div {
-          position: relative;
-        }
-      `
-    : css`
-        & > div {
-          position: absolute;
-        }
-      `
-
 const StyledMenuButton = styled(MenuButton)`
   ${bottomButton};
-  ${mobileButton};
 
   position: relative;
   color: currentColor;
@@ -84,6 +69,7 @@ const StyledMenuButton = styled(MenuButton)`
   }
 
   & > div {
+    position: absolute;
     min-width: 100%;
     margin-top: 0.5em;
     border-radius: ${spacing.xs};
@@ -93,19 +79,6 @@ const StyledMenuButton = styled(MenuButton)`
     z-index: 1;
   }
 `
-
-// const StyledLink = styled(Link)`
-//   display: block;
-//   padding: 0.25em 0.5em;
-//   text-decoration: ${props => (props.current ? "underline" : "none")};
-//   color: ${props => props.theme.palette.noir};
-
-//   &:hover,
-//   &:focus {
-//     background-color: ${props => props.theme.palette.rose};
-//     color: ${props => props.theme.palette.blanc};
-//   }
-// `;
 
 const StyledGlobe = styled(Globe)`
   width: 1em;
@@ -185,11 +158,10 @@ class LanguageSelection extends Component {
   }
 
   render() {
-    const { intl, isBottom, isMobile, id } = this.props
+    const { intl, isBottom, id } = this.props
     return (
       <StyledMenuButton
         isBottom={isBottom}
-        isMobile={isMobile}
         id={id}
         label={
           <Fragment>

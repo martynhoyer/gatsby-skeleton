@@ -67,7 +67,7 @@ const NavList = styled.ul`
 `
 
 const NavItem = styled.li`
-  margin: ${spacing.base} 0;
+  margin: ${spacing.sm} 0;
 `
 
 const NavLink = styled(Link)`
@@ -153,12 +153,12 @@ class MobileNavigation extends Component {
                   <NavLink to={messages['navigation.offers.linkUrl']}>{messages['navigation.offers.linkText']}</NavLink>
                 </NavItem>
                 <NavItem>
-                  <LanguageSelection isMobile id="mobileLangSelection" />
-                </NavItem>
-                <NavItem>
                   <NavLink to={messages['navigation.profile.linkUrl']}>
                     {messages['navigation.profile.linkText']} <StyledUser />
                   </NavLink>
+                </NavItem>
+                <NavItem>
+                  <LanguageSelection id="mobileLangSelection" />
                 </NavItem>
               </NavList>
               <CloseButton onClick={this.handleClose}>
