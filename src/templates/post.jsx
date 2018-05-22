@@ -29,6 +29,7 @@ const Thumbnail = styled(Img)`
   margin-top: -${spacing.xxl};
   margin-right: -${spacing.md};
   margin-left: -${spacing.md};
+  background-color: ${props => props.theme.palette.grisLight};
 
   @media (${media.sm}) {
     margin-right: 0;
