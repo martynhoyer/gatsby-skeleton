@@ -88,10 +88,19 @@ const SocialShareWrapper = styled.div`
 
   @media (${media.sm}) {
     display: block;
+
+    /* 
+    Kinda hacky... this just pushes it down to line up with the post title.
+    Having the title inside the <header> makes the most sense semantically which
+    is why I haven't just put the <h1> (and social wrapper) inside the post 
+    body.
+    */
+    margin-top: 4.5rem;
   }
 
   @media (${media.md}) {
     width: ${spacing.xl};
+    margin-top: 6rem;
   }
 `
 
@@ -199,22 +208,24 @@ class PostTemplate extends React.Component {
         <Body>
           <SingleColumn>
             <Article>
-              <header>
-                {thumbnail && <Thumbnail sizes={thumbnail.sizes} />}
-                <Meta>
-                  <CategoryLink to={`/${locale}/categories/${_.kebabCase(category.title)}`} color={category.color}>
-                    {category.displayName}
-                  </CategoryLink>
-                  <StyledPostDate date={date} localDate={localDate} />
-                </Meta>
-                <Title>{title}</Title>
-              </header>
-              <PostBody>
+              {thumbnail && <Thumbnail sizes={thumbnail.sizes} />}
+              <div>
                 <SocialShareWrapper>
                   <SocialShare url={postUrl} title={title} />
                 </SocialShareWrapper>
-                <PostContent dangerouslySetInnerHTML={{ __html: postNode.html }} />
-              </PostBody>
+                <header>
+                  <Meta>
+                    <CategoryLink to={`/${locale}/categories/${_.kebabCase(category.title)}`} color={category.color}>
+                      {category.displayName}
+                    </CategoryLink>
+                    <StyledPostDate date={date} localDate={localDate} />
+                  </Meta>
+                  <Title>{title}</Title>
+                </header>
+                <PostBody>
+                  <PostContent dangerouslySetInnerHTML={{ __html: postNode.html }} />
+                </PostBody>
+              </div>
               <PostFooter>
                 <PostFooterSubscribe />
                 <PostTags tags={tags} />

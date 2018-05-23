@@ -6,6 +6,10 @@ import { FacebookIcon, TwitterIcon, LinkedinIcon } from '../SocialIcons'
 
 const buttonStyles = css`
   margin-top: ${spacing.sm};
+
+  &:first-child {
+    margin-top: 0;
+  }
 `
 
 const StyledFacebookShareButton = styled(FacebookShareButton)`
