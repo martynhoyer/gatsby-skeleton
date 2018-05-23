@@ -108,6 +108,44 @@ const PostContent = styled.div`
   max-width: 70ch;
   margin: 0 auto;
 
+  & a {
+    font-weight: 600;
+    text-decoration: none;
+    color: ${props => props.theme.palette.violet};
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+
+  & blockquote {
+    display: block;
+    margin: 2em auto;
+    line-height: 1.2;
+    font-family: bergensans;
+    font-size: 2.5em;
+    font-style: italic;
+    text-align: center;
+    color: ${props => props.theme.palette.violet};
+  }
+
+  & pre {
+    white-space: pre-wrap;
+  }
+
+  & table {
+    width: 100%;
+    border: 1px solid ${props => props.theme.palette.grisLight};
+    border-collapse: collapse;
+
+    & th,
+    & td {
+      padding: 0.25em 0.5em;
+      border: 1px solid ${props => props.theme.palette.grisLight};
+    }
+  }
+
   @media (${media.sm}) {
     /* Min height to match social buttons */
     min-height: 120px;
