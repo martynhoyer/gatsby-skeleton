@@ -74,8 +74,12 @@ const PostBody = styled.section`
   position: relative;
   margin: 0 auto;
 
+  @media (${media.sm}) {
+    font-size: 1.142em;
+  }
+
   @media (${media.md}) {
-    font-size: 1.25em;
+    font-size: 1.428em;
   }
 `
 
@@ -136,6 +140,7 @@ const PostContent = styled.div`
 
   & table {
     width: 100%;
+    margin-top: 1em;
     border: 1px solid ${props => props.theme.palette.grisLight};
     border-collapse: collapse;
 

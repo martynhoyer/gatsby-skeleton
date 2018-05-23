@@ -42,6 +42,13 @@
 
 @font-face {
   font-family: "opensans";
+  src: url("../fonts/opensans-light.woff2") format("woff2"), url("../fonts/opensans-light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "opensans";
   src: url("../fonts/opensans-regular.woff2") format("woff2"), url("../fonts/opensans-regular.woff") format("woff");
   font-weight: normal;
   font-style: normal;
@@ -63,12 +70,13 @@
 html {
   box-sizing: border-box;
   height: 100%;
+  font-size: 14px;
 }
 
 body {
   height: 100%;
   margin: 0;
-  font-size: 16px;
+  font-weight: 300;
   line-height: 1.5;
   font-family: opensans;
   background-color: #f5f8fb;

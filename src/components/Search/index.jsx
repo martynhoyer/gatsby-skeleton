@@ -40,16 +40,13 @@ const FormElementsWrapper = styled.div`
   justify-content: center;
   align-items: flex-start;
 
-  font-size: 0.75rem;
+  font-size: 0.857rem;
 
   @media (${media.sm}) {
-    font-size: 1rem;
     font-weight: bold;
   }
 
   @media (${media.md}) {
-    margin: 0 -${spacing.xs};
-
     & > * {
       flex-basis: auto;
     }
@@ -57,26 +54,23 @@ const FormElementsWrapper = styled.div`
 `
 
 const LabelWrapper = styled.label`
+  max-width: 24em;
   position: relative;
   margin-top: 1em;
-  padding: 0 ${spacing.xs};
+
+  @media (${media.md}) {
+    flex-grow: 1;
+  }
 `
 
 const Wrapper = styled.div`
   flex-shrink: 0;
 
   margin-top: 1em;
-  padding: 0 ${spacing.xs};
-`
 
-const StyledMagnifyingGlass = styled(MagnifyingGlass)`
-  position: absolute;
-  top: 50%;
-  left: ${spacing.base};
-  width: 1em;
-  height: 1em;
-  margin-top: -0.5em;
-  fill: currentColor;
+  &:last-child {
+    margin-left: 0.5em;
+  }
 `
 
 const Label = styled.span`
@@ -86,27 +80,56 @@ const Label = styled.span`
 const SearchInput = styled.input`
   width: 100%;
   margin: 0;
-  padding: 0.5em 1em 0.5em ${spacing.lg};
+  padding: 0.25em 1em;
   border: 1px solid currentColor;
-  border-radius: 2em;
+  border-radius: 2em 0 0 2em;
   line-height: inherit;
   font-size: inherit;
   font-weight: inherit;
   background-color: transparent;
   color: currentColor;
+
+  @media (${media.sm}) {
+    padding: 0.5em 1.5em;
+  }
+
+  @media (${media.md}) {
+    padding: 1em 1.5em;
+  }
 `
 
 const SubmitButton = styled.button`
+  display: flex;
+  align-items: center;
+
   width: 100%;
   margin: 0;
-  padding: 0.5em 1em;
-  border: 1px solid currentColor;
-  border-radius: 2em;
+  padding: 0.25em 1em;
+  border-width: 1px 1px 1px 0;
+  border-style: solid;
+  border-color: currentColor;
+  border-radius: 0 2em 2em 0;
   line-height: inherit;
   font-size: inherit;
   font-weight: inherit;
   background-color: transparent;
   color: currentColor;
+
+  @media (${media.sm}) {
+    padding: 0.5em 1.5em;
+  }
+
+  @media (${media.md}) {
+    padding: 1em 1.5em;
+  }
+`
+
+const StyledMagnifyingGlass = styled(MagnifyingGlass)`
+  width: 1em;
+  height: 1em;
+  margin-right: 0.75em;
+  vertical-align: middle;
+  fill: currentColor;
 `
 
 class Search extends Component {
@@ -153,7 +176,6 @@ class Search extends Component {
       <Form onSubmit={this.handleSubmit} needsToClearNegativeMargin={needsToClearNegativeMargin}>
         <FormElementsWrapper>
           <LabelWrapper htmlFor="searchInput">
-            <StyledMagnifyingGlass />
             <Label>
               {intl.formatMessage({
                 id: 'search.searchInputLabel',
@@ -172,18 +194,19 @@ class Search extends Component {
             />
           </LabelWrapper>
           <Wrapper>
+            <SubmitButton type="submit">
+              <StyledMagnifyingGlass />
+              {intl.formatMessage({
+                id: 'search.searchButtonText',
+              })}
+            </SubmitButton>
+          </Wrapper>
+          <Wrapper>
             <SearchCategoriesDropdown
               categories={categories}
               onCategorySelect={this.handleChange}
               categoryQuery={this.state.searchCategory}
             />
-          </Wrapper>
-          <Wrapper>
-            <SubmitButton type="submit">
-              {intl.formatMessage({
-                id: 'search.searchButtonText',
-              })}
-            </SubmitButton>
           </Wrapper>
         </FormElementsWrapper>
         {this.state.error && (
