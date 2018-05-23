@@ -115,6 +115,7 @@ collections:
               - {label: "Email address label", name: "emailAddressLabel", widget: "string"}
               - {label: "Email address placeholder", name: "emailAddressPlaceholder", widget: "string"}
               - {label: "Success message", name: "successMessage", widget: "string"}
+              - {label: "Invalid email message", name: "invalidEmailMessage", widget: "string"}
               - label: "Subscribe"
                 name: "subscribe"
                 widget: "object"

@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import addToMailchimp from 'gatsby-plugin-mailchimp'
+import EmailValidator from 'email-validator'
 import { FormattedMessage, injectIntl } from 'react-intl'
 import styled from 'styled-components'
 import { hideVisually } from 'polished'
@@ -61,17 +62,28 @@ const SubmitButton = styled.button`
   cursor: pointer;
 `
 
+const MessageWrapper = styled.div`
+  flex-basis: 100%;
+
+  width: 100%;
+`
+
+const SuccessMessage = styled.p`
+  color: ${props => props.theme.status.success};
+`
+
+const ErrorMessage = styled.p`
+  color: ${props => props.theme.status.danger};
+`
+
 class SubscribeForm extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      email: ``,
-    }
+  state = {
+    email: '',
   }
 
   // Update state each time user edits their email address
   handleEmailChange = e => {
-    this.setState({ email: e.target.value })
+    this.setState({ email: e.target.value, status: '', msg: '' })
   }
 
   // Post to MC server & handle its response
@@ -106,6 +118,17 @@ class SubscribeForm extends React.Component {
     e.preventDefault()
     e.stopPropagation()
 
+    if (!this.state.email || !EmailValidator.validate(this.state.email)) {
+      this.setState({
+        status: 'error',
+        msg: this.props.intl.formatMessage({
+          id: 'sidebar.mailchimpBoxes.invalidEmailMessage',
+        }),
+      })
+      this.emailInput.focus()
+      return
+    }
+
     this.setState(
       {
         status: `sending`,
@@ -133,32 +156,43 @@ class SubscribeForm extends React.Component {
       id: 'sidebar.mailchimpBoxes.emailAddressPlaceholder',
     })
     return (
-      <div>
-        {this.state.status === `success` ? (
-          <FormattedMessage id="sidebar.mailchimpBoxes.successMessage" />
-        ) : (
-          <div>
-            <Title>
-              <FormattedMessage id={heading} />
-            </Title>
-            <p>
-              <FormattedMessage id={body} />
-            </p>
-            <Form id={formId} method="post" noValidate onSubmit={this.handleFormSubmit}>
-              <Label htmlFor="email">
-                <LabelText>
-                  <FormattedMessage id="sidebar.mailchimpBoxes.emailAddressLabel" />
-                </LabelText>
-                <Input type="email" name="email" placeholder={placeholder} onChange={this.handleEmailChange} />
-              </Label>
-              <SubmitButton type="submit">
-                <FormattedMessage id={buttonText} />
-              </SubmitButton>
-              {this.state.status === `error` && <div dangerouslySetInnerHTML={{ __html: this.state.msg }} />}
-            </Form>
-          </div>
-        )}
-      </div>
+      <Fragment>
+        <Title>
+          <FormattedMessage id={heading} />
+        </Title>
+        <p>
+          <FormattedMessage id={body} />
+        </p>
+        <Form id={formId} method="post" noValidate onSubmit={this.handleFormSubmit}>
+          <Label htmlFor="email">
+            <LabelText>
+              <FormattedMessage id="sidebar.mailchimpBoxes.emailAddressLabel" />
+            </LabelText>
+            <Input
+              type="email"
+              name="email"
+              placeholder={placeholder}
+              innerRef={el => {
+                this.emailInput = el
+              }}
+              onChange={this.handleEmailChange}
+            />
+          </Label>
+          <SubmitButton type="submit">
+            <FormattedMessage id={buttonText} />
+          </SubmitButton>
+          {this.state.status === `success` && (
+            <MessageWrapper>
+              <SuccessMessage>{intl.formatMessage({ id: 'sidebar.mailchimpBoxes.successMessage' })}</SuccessMessage>
+            </MessageWrapper>
+          )}
+          {this.state.status === `error` && (
+            <MessageWrapper>
+              <ErrorMessage dangerouslySetInnerHTML={{ __html: this.state.msg }} />
+            </MessageWrapper>
+          )}
+        </Form>
+      </Fragment>
     )
   }
 }

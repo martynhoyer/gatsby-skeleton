@@ -40,7 +40,8 @@
     "mailchimpBoxes": {
       "emailAddressLabel": "Email",
       "emailAddressPlaceholder": "you@email.com",
-      "successMessage": "Merci pour votre subscription!",
+      "successMessage": "Votre email à bien été enregistré",
+      "invalidEmailMessage": "Cet email est invalide",
       "subscribe": {
         "heading": "Souscrivez",
         "body": "Receive our newsletter to stay on top of the latest posts.",

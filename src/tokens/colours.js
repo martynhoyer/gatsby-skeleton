@@ -7,6 +7,10 @@ const GYMLIB = {
     blanc: '#fff',
     grisLight: '#8f959b',
   },
+  status: {
+    danger: '#ff2ba3',
+    success: '#1ec076',
+  },
   social: {
     facebook: '#6075f4',
     linkedin: '#0073b1',
