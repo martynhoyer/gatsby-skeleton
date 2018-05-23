@@ -24,6 +24,11 @@ const ListItem = styled.li`
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: inherit;
+
+  &:hover,
+  &:focus {
+    font-weight: bold;
+  }
 `
 
 const CategoriesList = ({ categories = [], intl }) => {
