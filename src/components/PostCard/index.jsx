@@ -32,7 +32,9 @@ const Article = styled.article`
 `
 
 const CardLink = styled(Link)`
-  display: block;
+  display: flex;
+  flex-direction: column;
+
   height: 100%;
   text-decoration: none;
   color: inherit;
@@ -43,6 +45,10 @@ const CardLink = styled(Link)`
   &:focus {
     opacity: 0.5;
   }
+`
+
+const StyledBox = styled(Box)`
+  flex-grow: 1;
 `
 
 const thumbnailNeedsNegativeMargin = ({ isBoxed }) =>
@@ -99,8 +105,15 @@ const ReadMore = styled.span`
 `
 
 const Arrow = styled.span`
+  display: inline-block;
   margin-left: ${spacing.base};
   color: ${props => props.theme.palette.rose};
+  transition: transform 0.25s;
+
+  ${CardLink}:hover &,
+  ${CardLink}:focus & {
+    transform: translateX(0.5em);
+  }
 `
 
 const CardRoot = ({ post, isBoxed }) => {
@@ -136,9 +149,9 @@ const PostCard = ({ post, isIndex, isBoxed = false }) => {
   return isBoxed ? (
     <Article isIndex={isIndex} isBoxed>
       <CardLink to={url}>
-        <Box>
+        <StyledBox>
           <CardRoot post={post} isBoxed />
-        </Box>
+        </StyledBox>
       </CardLink>
     </Article>
   ) : (

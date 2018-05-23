@@ -27,6 +27,10 @@ const StyledBox = styled.div`
   background-color: ${props => props.theme.palette.blanc};
 `
 
-const Box = ({ children, compact }) => <StyledBox compact={compact}>{children}</StyledBox>
+const Box = ({ children, compact, className }) => (
+  <StyledBox className={className} compact={compact}>
+    {children}
+  </StyledBox>
+)
 
 export default Box
