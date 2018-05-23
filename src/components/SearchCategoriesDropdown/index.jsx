@@ -12,7 +12,7 @@ const StyledMenuButton = styled(MenuButton)`
   & > button {
     width: 100%;
     margin: 0;
-    padding: 0.5em 1em;
+    padding: 0.25em 1em;
     border: 1px solid currentColor;
     border-radius: 2em;
     line-height: inherit;
@@ -48,8 +48,18 @@ const StyledMenuButton = styled(MenuButton)`
     z-index: 1;
   }
 
+  @media (${media.sm}) {
+    & > button {
+      padding: 0.5em 1.5em;
+    }
+  }
+
   @media (${media.md}) {
     flex-shrink: 0;
+
+    & > button {
+      padding: 1em 1.5em;
+    }
   }
 `
 
