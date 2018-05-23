@@ -18,10 +18,31 @@ const doubleWidthFirstPost = ({ isIndex }) =>
     }
   `
 
+const articleBg = ({ isBoxed }) =>
+  isBoxed &&
+  css`
+    background-color: ${props => props.theme.palette.blanc};
+  `
+
 const Article = styled.article`
   ${doubleWidthFirstPost};
+  ${articleBg};
 
   color: ${props => props.theme.palette.noir};
+`
+
+const CardLink = styled(Link)`
+  display: block;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+  opacity: 1;
+  transition: opacity 0.25s;
+
+  &:hover,
+  &:focus {
+    opacity: 0.5;
+  }
 `
 
 const thumbnailNeedsNegativeMargin = ({ isBoxed }) =>
@@ -53,11 +74,6 @@ const Category = styled.span`
   color: ${props => props.color};
 `
 
-const CategoryLink = styled(Link)`
-  text-decoration: none;
-  color: inherit;
-`
-
 const StyledPostDate = styled(PostDate)`
   white-space: nowrap;
   color: ${props => props.theme.palette.grisLight};
@@ -65,16 +81,6 @@ const StyledPostDate = styled(PostDate)`
 
 const Title = styled.h2`
   margin: ${spacing.base} 0 0;
-`
-
-const TitleLink = styled(Link)`
-  text-decoration: none;
-  color: inherit;
-
-  &:hover,
-  &:focus {
-    color: ${props => props.theme.palette.rose};
-  }
 `
 
 const Body = styled.section`
@@ -88,14 +94,8 @@ const Footer = styled.footer`
   margin-top: ${spacing.md};
 `
 
-const ReadMoreLink = styled(Link)`
-  text-decoration: none;
+const ReadMore = styled.span`
   color: ${props => props.theme.palette.noir};
-
-  &:hover,
-  &:focus {
-    color: ${props => props.theme.palette.rose};
-  }
 `
 
 const Arrow = styled.span`
@@ -104,52 +104,50 @@ const Arrow = styled.span`
 `
 
 const CardRoot = ({ post, isBoxed }) => {
-  const { locale, title, path, excerpt, localDate, date, thumbnailArray = [], categoriesArray = [] } = post
-  const url = `/${locale}${path}`
+  const { title, excerpt, localDate, date, thumbnailArray = [], categoriesArray = [] } = post
   const thumbnail = thumbnailArray && thumbnailArray.length > 0 && thumbnailArray[0]
   const category = categoriesArray && categoriesArray.length > 0 && categoriesArray[0]
 
   return (
     <Fragment>
-      {thumbnail && (
-        <Link to={url}>
-          <Thumbnail sizes={thumbnail.sizes} isBoxed={isBoxed} />
-        </Link>
-      )}
+      {thumbnail && <Thumbnail sizes={thumbnail.sizes} isBoxed={isBoxed} />}
       <Header>
         <Meta>
-          <Category color={category.color}>
-            <CategoryLink to={`/${locale}/categories/${category.title}`}>{category.displayName}</CategoryLink>
-          </Category>
+          <Category color={category.color}>{category.displayName}</Category>
           <StyledPostDate date={date} localDate={localDate} />
         </Meta>
-        <Title>
-          <TitleLink to={url}>{title}</TitleLink>
-        </Title>
+        <Title>{title}</Title>
       </Header>
       <Body>
         <p>{excerpt}</p>
       </Body>
       <Footer>
-        <ReadMoreLink to={url}>
+        <ReadMore>
           <FormattedMessage id="blogList.readMoreLink" /> <Arrow>&rarr;</Arrow>
-        </ReadMoreLink>
+        </ReadMore>
       </Footer>
     </Fragment>
   )
 }
 
-const PostCard = ({ post, isIndex, isBoxed = false }) =>
-  isBoxed ? (
-    <Article isIndex={isIndex}>
-      <Box>
-        <CardRoot post={post} isBoxed />
-      </Box>
+const PostCard = ({ post, isIndex, isBoxed = false }) => {
+  const { locale, path } = post
+  const url = `/${locale}${path}`
+  return isBoxed ? (
+    <Article isIndex={isIndex} isBoxed>
+      <CardLink to={url}>
+        <Box>
+          <CardRoot post={post} isBoxed />
+        </Box>
+      </CardLink>
     </Article>
   ) : (
     <Article isIndex={isIndex}>
-      <CardRoot post={post} />
+      <CardLink to={url}>
+        <CardRoot post={post} />
+      </CardLink>
     </Article>
   )
+}
 
 export default PostCard
