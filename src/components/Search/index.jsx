@@ -154,7 +154,7 @@ class Search extends Component {
 
   handleSubmit = e => {
     e.preventDefault()
-    if (this.state.searchQuery === '') {
+    if (this.state.searchQuery === '' && this.state.searchCategory === '') {
       this.setState({
         error: true,
       })

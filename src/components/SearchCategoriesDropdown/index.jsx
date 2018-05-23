@@ -118,7 +118,10 @@ class SearchCategoriesDropdown extends Component {
     const allCategoriesLabel = intl.formatMessage({
       id: 'search.allCategoriesLabel',
     })
-    let label = categoryQuery || allCategoriesLabel
+
+    const queriedCategory = categories.find(({ node: cat }) => cat.title === categoryQuery)
+
+    let label = (queriedCategory && queriedCategory.node.displayName) || allCategoriesLabel
 
     if (this.state.choice) {
       label = this.state.choice

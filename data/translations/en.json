@@ -32,7 +32,7 @@
     "searchButtonText": "Search",
     "noResultsLabel": "No results",
     "searchResultsLabel": "Search results",
-    "queryPrefix": "for: {query}",
+    "queryPrefix": "for: \"{query}\"",
     "categoryPrefix": "in category: {category}",
     "emptyQueryWarning": "Please enter a search term"
   },
