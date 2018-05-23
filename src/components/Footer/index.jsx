@@ -5,7 +5,8 @@ import Copyright from '../Copyright'
 import LanguageSelection from '../LanguageSelection'
 
 const StyledFooter = styled.footer`
-  padding: 24px 0;
+  padding: ${spacing.lg} 0;
+  font-size: 1.2em;
   background-color: ${props => props.theme.palette.violet};
   color: ${props => props.theme.palette.blanc};
 `

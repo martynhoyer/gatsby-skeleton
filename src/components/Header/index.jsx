@@ -27,6 +27,8 @@ const TopBar = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  font-size: 1.2em;
 `
 
 const Logo = styled(Link)`

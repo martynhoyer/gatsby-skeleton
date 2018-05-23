@@ -58,15 +58,15 @@ const StyledPostDate = styled(PostDate)`
 `
 
 const Title = styled.h1`
-  font-size: 24px;
+  font-size: 1.7em;
   text-align: center;
 
   @media (${media.sm}) {
-    font-size: 48px;
+    font-size: 3.4285em;
   }
 
   @media (${media.md}) {
-    font-size: 64px;
+    font-size: 4.8em;
   }
 `
 
