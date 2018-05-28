@@ -4,9 +4,7 @@ import moment from 'moment'
 const BlogPostPreview = ({ entry, widgetFor }) => {
   const locale = entry.getIn(['data', 'locale'])
   require(`moment/locale/${locale}`)
-  const date = moment(new Date(entry.getIn(['data', 'date'])))
-    .format('YYYY-MM-DD')
-    .locale()
+  const date = moment(new Date(entry.getIn(['data', 'date']))).format('DD MMMM YYYY')
   return (
     <div>
       <div>{entry.getIn(['data', 'image'])}</div>
