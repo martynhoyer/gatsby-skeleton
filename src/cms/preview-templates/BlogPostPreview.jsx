@@ -5,7 +5,9 @@ const BlogPostPreview = ({ entry, widgetFor }) => {
   const locale = entry.getIn(['data', 'locale'])
   require(`moment/locale/${locale}`)
   const date = moment(new Date(entry.getIn(['data', 'date']))).format('DD MMMM YYYY')
-  const category = require(`../../../content/categories/${locale}-${entry.getIn(['data', 'category'])}`)
+  const categoryJsonPath = `${locale}-${entry.getIn(['data', 'category'])}`
+  console.log(categoryJsonPath)
+  const category = require(`../../../content/categories/fr-du-cote-de-gymlib.json`)
   console.log(category.displayName)
   return (
     <div>
