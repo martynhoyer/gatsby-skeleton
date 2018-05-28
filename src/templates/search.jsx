@@ -34,7 +34,6 @@ class SearchTemplate extends React.Component {
 
     return {
       results: filteredEdges,
-      currentPage: 1,
       touched: queries,
     }
   }
