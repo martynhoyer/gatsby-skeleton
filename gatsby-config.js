@@ -1,5 +1,32 @@
 const config = require('./data/SiteConfig')
 
+const rootDir = 'public'
+
+const offlineOptions = {
+  staticFileGlobs: [
+    `${rootDir}/**/*.{js,woff2,svg,png}`,
+    `${rootDir}/commons-*js`,
+    `${rootDir}/app-*js`,
+    `${rootDir}/index.html`,
+    `${rootDir}/manifest.json`,
+    `${rootDir}/manifest.webmanifest`,
+    `${rootDir}/offline-plugin-app-shell-fallback/index.html`,
+    `${rootDir}/admin`,
+    `${rootDir}/admin/`,
+    `${rootDir}/admin/index.html`,
+  ],
+  stripPrefix: rootDir,
+  navigateFallback: `/offline-plugin-app-shell-fallback/index.html`,
+  navigateFallbackWhitelist: [/^.*(?!\.\w?$)/],
+  cacheId: `gatsby-plugin-offline`,
+  dontCacheBustUrlsMatching: /(.\w{8}.woff2)/, //|-\w{20}.js)/,
+  runtimeCaching: [{
+    urlPattern: /\.(?:png|jpg|jpeg|webp|svg|gif|tiff)$/,
+    handler: `fastest`,
+  }, ],
+  skipWaiting: false,
+};
+
 module.exports = {
   siteMetadata: {
     siteUrl: config.siteUrl,
@@ -139,6 +166,9 @@ module.exports = {
         mergeCachingHeaders: false, // boolean to turn off the default caching headers
       },
     },
-    'gatsby-plugin-offline',
+    {
+      resolve: 'gatsby-plugin-offline',
+      options: offlineOptions
+    }
   ],
 }
