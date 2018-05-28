@@ -1,5 +1,6 @@
 import React from 'react'
 import moment from 'moment'
+import PostTags from '../../components/PostTags'
 
 class BlogPostPreview extends React.Component {
   componentDidMount() {
@@ -9,11 +10,10 @@ class BlogPostPreview extends React.Component {
       require(`moment/locale/${locale}`)
       moment.locale(locale)
     }
-    console.log(moment.locale())
   }
 
   render() {
-    const { entry, widgetFor } = this.props
+    const { entry, widgetFor, widgetsFor } = this.props
     const locale = entry.getIn(['data', 'locale'])
     const date = moment(new Date(entry.getIn(['data', 'date']))).format('DD MMMM YYYY')
     const categoryJsonPath = `${locale}-${entry.getIn(['data', 'category'])}`
@@ -34,8 +34,9 @@ class BlogPostPreview extends React.Component {
         <div>{widgetFor('body')}</div>
         <div style={{ textAlign: 'center' }}>
           <h4 style={{ marginBottom: '0.5em' }}>Tags</h4>
-          {entry.getIn(['data', 'tags'])}
+          {entry.getIn(['data', 'tags']).map(tag => <span key={tag}>{tag}</span>)}
         </div>
+        <PostTags tags={entry.getIn(['data', 'tags'])} />
         <div style={{ textAlign: 'center', marginTop: '1em' }}>
           <h4 style={{ marginBottom: '0.5em' }}>Author</h4>
           {author.displayName}
