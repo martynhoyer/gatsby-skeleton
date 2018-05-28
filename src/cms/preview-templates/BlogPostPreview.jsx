@@ -3,9 +3,7 @@ import moment from 'moment'
 
 const BlogPostPreview = ({ entry, widgetFor }) => {
   const locale = entry.getIn(['data', 'locale'])
-  if (locale !== 'en') {
-    require(`moment/locale/${locale}`)
-  }
+  moment.locale(locale)
   const date = moment(new Date(entry.getIn(['data', 'date']))).format('DD MMMM YYYY')
   const categoryJsonPath = `${locale}-${entry.getIn(['data', 'category'])}`
   const category = require(`../../../content/categories/${categoryJsonPath}.json`)
