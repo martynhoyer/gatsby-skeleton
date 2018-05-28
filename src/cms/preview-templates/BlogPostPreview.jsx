@@ -12,13 +12,21 @@ class BlogPostPreview extends React.Component {
   }
 
   render() {
-    const { entry, widgetFor, widgetsFor } = this.props
+    const { entry, widgetFor } = this.props
     const locale = entry.getIn(['data', 'locale'])
     const date = moment(new Date(entry.getIn(['data', 'date']))).format('DD MMMM YYYY')
-    const categoryJsonPath = `${locale}-${entry.getIn(['data', 'category'])}`
-    const category = require(`../../../content/categories/${categoryJsonPath}.json`)
-    const authorJsonPath = `${entry.getIn(['data', 'author'])}`
-    const author = require(`../../../content/authors/${authorJsonPath}.json`)
+    let categoryJsonPath
+    let category
+    let authorJsonPath
+    let author
+    if (entry.getIn(['data', 'category'])) {
+      categoryJsonPath = `${locale}-${entry.getIn(['data', 'category'])}`
+      category = require(`../../../content/categories/${categoryJsonPath}.json`)
+    }
+    if (entry.getIn(['data', 'author'])) {
+      authorJsonPath = `${entry.getIn(['data', 'author'])}`
+      author = require(`../../../content/authors/${authorJsonPath}.json`)
+    }
     return (
       <div
         style={{
