@@ -1,6 +1,5 @@
 import React from 'react'
 import moment from 'moment'
-import PostTags from '../../components/PostTags'
 
 class BlogPostPreview extends React.Component {
   componentDidMount() {
@@ -30,13 +29,17 @@ class BlogPostPreview extends React.Component {
         <div style={{ textAlign: 'center', marginTop: '1em' }}>
           <span style={{ color: category.color }}>{category.displayName}</span> {date}
         </div>
-        <h1>{entry.getIn(['data', 'title'])}</h1>
+        <h1 style={{ textAlign: 'center' }}>{entry.getIn(['data', 'title'])}</h1>
         <div>{widgetFor('body')}</div>
         <div style={{ textAlign: 'center' }}>
           <h4 style={{ marginBottom: '0.5em' }}>Tags</h4>
-          {entry.getIn(['data', 'tags']).map(tag => <span key={tag}>{tag}</span>)}
+          {entry.getIn(['data', 'tags']).map((tag, index, arr) => (
+            <span key={tag}>
+              {tag}
+              {index !== arr.length - 1 ? ', ' : ''}
+            </span>
+          ))}
         </div>
-        <PostTags tags={entry.getIn(['data', 'tags'])} />
         <div style={{ textAlign: 'center', marginTop: '1em' }}>
           <h4 style={{ marginBottom: '0.5em' }}>Author</h4>
           {author.displayName}
