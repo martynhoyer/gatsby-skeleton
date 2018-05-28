@@ -8,6 +8,9 @@ const cookies = new Cookies()
 class RedirectIndex extends React.Component {
   componentDidMount() {
     if (typeof window !== 'undefined') {
+      if (window.location.href.indexOf('#invite_token') > -1) {
+        return
+      }
       const { locales, defaultLangKey } = config
       const cookiedLang = cookies.get('lang')
       let homeUrl
