@@ -25,16 +25,6 @@ const NavItem = styled.li`
   margin-left: 1em;
 `
 
-const NavLink = styled(Link)`
-  display: flex;
-  align-items: center;
-
-  padding: 0.5em;
-  text-decoration: none;
-  white-space: nowrap;
-  color: ${props => props.theme.palette.blanc};
-`
-
 const ExternalLink = styled.a`
   display: flex;
   align-items: center;
@@ -51,7 +41,7 @@ const Navigation = ({ intl }) => {
     <Container>
       <NavList>
         <NavItem>
-          <NavLink to={messages['navigation.home.linkUrl']}>{messages['navigation.home.linkText']}</NavLink>
+          <ExternalLink href={messages['navigation.home.linkUrl']}>{messages['navigation.home.linkText']}</ExternalLink>
         </NavItem>
         <NavItem>
           <ExternalLink href={messages['navigation.offers.linkUrl']}>

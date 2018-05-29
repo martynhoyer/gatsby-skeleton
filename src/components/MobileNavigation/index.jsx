@@ -69,17 +69,6 @@ const NavItem = styled.li`
   margin: ${spacing.sm} 0;
 `
 
-const NavLink = styled(Link)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 1em 0.5em;
-  text-decoration: none;
-  white-space: nowrap;
-  color: ${props => props.theme.palette.blanc};
-`
-
 const ExternalLink = styled.a`
   display: flex;
   align-items: center;
@@ -150,7 +139,9 @@ class MobileNavigation extends Component {
               <h2>{messages['navigation.menuTitle']}</h2>
               <NavList>
                 <NavItem>
-                  <NavLink to={messages['navigation.home.linkUrl']}>{messages['navigation.home.linkText']}</NavLink>
+                  <ExternalLink href={messages['navigation.home.linkUrl']}>
+                    {messages['navigation.home.linkText']}
+                  </ExternalLink>
                 </NavItem>
                 <NavItem>
                   <ExternalLink href={messages['navigation.offers.linkUrl']}>

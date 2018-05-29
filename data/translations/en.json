@@ -19,7 +19,7 @@
     "closeButtonText": "Close",
     "home": {
       "linkText": "Home",
-      "linkUrl": "/"
+      "linkUrl": "https://www.gymlib.com"
     },
     "offers": {
       "linkText": "Business & Employee Offer",
