@@ -72,3 +72,75 @@ The `search.jsx` template queries the top 1000 posts in the current locale and t
 The `post.jsx` template does the most extra data querying since it has to retrieve author data, related posts data, as well as all the post data including SEO items.
 
 The other `index.jsx` and `tag.jsx` perform standard queries for the "Popular posts" and "Categories" lists. The `tag` template will also go and find the current category's data as it's more simple than doing the lookup client side.
+
+## Plugins
+
+The `gatsby-config.js` file shows all the plugins in use, but any special requirements are detailed here: 
+
+### `gatsby-plugin-react-helmet`
+
+Standard - allows the `<head>` of a page to be manipulated from within a component.
+
+### `gatsby-plugin-i18n`
+
+Provides the multilanguage support - uses `react-intl` under the hood.
+
+### `gatsby-source-filesystem`
+
+Standard Gatsby plugin to allow reading from local filesystem directories with GraphQL.
+
+### `gatsby-transformer-json`
+
+Allows using JSON files as data endpoints.
+
+### `gatsby-transformer-remark`
+
+Transforms the markdown files into HTML.
+
+### `gatsby-plugin-mailchimp`
+
+Allows subscriptions to Mailchimp. The Mailchimp endpoint needs to be configured in the `SiteConfig` file. Instructions for setting up Mailchimp can be found on the plugin's GitHub repo.
+
+### `gatsby-plugin-svgr`
+
+Allows using SVGR to generate React components from SVGs.
+
+### `gatbsy-plugin-nprogress`
+
+Provides the small loading progress bar across the top of the page when navigating between pages.
+
+### `gatsby-plugin-google-tagmanager`
+
+Injects the Google Tag Manager scripts. Google tag manager ID needs to be configured in `SiteConfig`.
+
+### `gatsby-plugin-favicon`
+
+Takes a source favicon image and generates appropriate files for relevant devices/platforms and injects them into the `<head>`.
+
+### `gatsby-plugin-sharp`, `gatsby-transformer-sharp`
+
+Image processor used by `gatsby-image`.
+
+### `gatbsy-plugin-catch-links`
+
+Catches markdown links to internal pages and turns them into Gatsby `<Link />` components to avoid a page refresh when navigating to them.
+
+### `gatsby-plugin-sitemap`
+
+Generates a sitemap XML file and injects a link to it into the `<head>`.
+
+### `gatsby-plugin-styled-components`
+
+Allows usage of the CSS-in-JS library `styled-components` to style the React components.
+
+### `gatsby-plugin-netlify-cms`
+
+Automates the process of adding the CMS HTML files/scripts.
+
+### `gatsby-plugin-netlify`
+
+Allows configuration to be set at Netlify. Current config provided by SHO.ai
+
+### `gatsby-plugin-offline`
+
+Adds offline support to the site with ServiceWorker etc. Config has been customised slightly to keep the CMS working as expected.

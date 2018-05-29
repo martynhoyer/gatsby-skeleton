@@ -17,6 +17,7 @@ module.exports = {
   backgroundColor: "#e0e0e0", // Used for setting manifest background color.
   mailchimpEndpoint: "https://corseconcierge.us18.list-manage.com/subscribe/post?u=a4f682a765cb09bfe2f975137&amp;id=1e22875e0a",
   siteFBAppID: "XXX",
+  googleTagManagerId: "XXX",
   userTwitter: "gymlib",
   social: [{
       providerName: "twitter",
