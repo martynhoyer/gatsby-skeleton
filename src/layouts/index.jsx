@@ -3,6 +3,10 @@ import Helmet from 'react-helmet'
 import { getCurrentLangKey } from 'ptz-i18n'
 import { IntlProvider, addLocaleData } from 'react-intl'
 import 'intl'
+
+/* 
+These files need to be manually imported if more languages are added
+*/
 import en from 'react-intl/locale-data/en'
 import 'intl/locale-data/jsonp/en'
 import fr from 'react-intl/locale-data/fr'
@@ -13,6 +17,9 @@ import config from '../../data/SiteConfig'
 import './global.styles.css'
 import GYMLIB from '../tokens/colours'
 
+/* 
+This will need updating manually if more languages are added
+*/
 addLocaleData([...en, ...fr])
 
 const PageWrapper = styled.div`
@@ -35,6 +42,12 @@ export default class MainLayout extends React.Component {
     // with the appropriate language code
     const i18nMessages = require(`../../data/translations/${langKey}.json`)
 
+    /*
+    Copied from https://github.com/yahoo/react-intl/wiki/Upgrade-Guide#flatten-messages-object 
+    This flattens the JSON languages file before passing it to the IntlProvider
+    This allows us to used a nested syntax for translations making grouping a
+    little bit easier to see in Netlify CMS
+    */
     function flattenMessages(nestedMessages, prefix = '') {
       return Object.keys(nestedMessages).reduce((messages, key) => {
         const value = nestedMessages[key]
