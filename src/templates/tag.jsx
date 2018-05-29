@@ -30,7 +30,6 @@ class TagTemplate extends React.Component {
   render() {
     const { intl } = this.props
     const { tag, nodes, page, pages, total, limit, prev, next } = this.props.pathContext
-    const authorsEdges = this.props.data.authors.edges
     const popularPosts = this.props.data.popularPosts.edges
     const categories = this.props.data.categories.edges
     const { category } = this.props.data
@@ -67,7 +66,7 @@ class TagTemplate extends React.Component {
               <Heading color={pageTitleColor}>{tag || (category && category.displayName)}</Heading>
               <PaginatedContent page={page} pages={pages} total={total} limit={limit} prev={prev} next={next}>
                 {/* PostListing component renders all the posts */}
-                <PostListing postEdges={nodes} postAuthors={authorsEdges} />
+                <PostListing postEdges={nodes} />
               </PaginatedContent>
             </div>
             <Sidebar>
@@ -97,14 +96,6 @@ class TagTemplate extends React.Component {
 /* eslint no-undef: "off" */
 export const tagPageQuery = graphql`
   query TagPage($locale: String!, $category: String) {
-    authors: allAuthorsJson {
-      edges {
-        node {
-          title
-          displayName
-        }
-      }
-    }
     popularPosts: allMarkdownRemark(
       limit: 4
       sort: { fields: [frontmatter___date], order: DESC }

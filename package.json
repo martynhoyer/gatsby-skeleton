@@ -1,6 +1,6 @@
 {
-  "name": "gatsby-skeleton",
-  "description": "Gatsby skeleton",
+  "name": "gymlib-blog",
+  "description": "Gymlib blog",
   "version": "1.0.0",
   "author": "Martyn Hoyer",
   "dependencies": {
