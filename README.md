@@ -53,6 +53,8 @@ The `admin` directory is used by Netlify CMS. The `config.yml` file inside it co
 
 `templates` contains React components for each of the main page templates. These files also contain the GraphQL queries to fetch the relevant data for those page.
 
+`tokens` is where common site variables (mostly for styling) are stored. Colour palette, media query breakpoints, dimensions etc. are in here to keep things consistent and easy to manage.
+
 ### Root directory
 
 On the root, aside from the standard `package.json` and dotfiles, you'll find the Gatsby standard `gatsby-config.js` and `gatsby-node.js`.
@@ -60,6 +62,12 @@ On the root, aside from the standard `package.json` and dotfiles, you'll find th
 `gatsby-config.js` is where some basic config is set up, but mostly contains details of (and configuration for) the various Gatsby plugins which are in use.
 
 `gatsby-node.js` is where a lot of magic happens. This is quite heavily customised due to the nature of the site. It is responsible for creating the pages of the site, which, in this case, includes all the pages for pagination, and the localised variants. It also links up data items to page nodes (like making CMS images into ImageSharp nodes so gatsby-image works properly).
+
+## Styles
+
+Outside of the small amount of global CSS injected into the main layout component, we use `styled-components` for styling the React components. styled-components is a CSS-in-JS library which gives many advantages when working with React, such as dynamic styles based on props, JS variables for sizing/colours etc. and locally scoped component styles ensuring the styles will never leak out of a component.
+
+A component's styles are stored at the top of a component file, after the imports.
 
 ## Data flow
 
@@ -72,6 +80,8 @@ The `search.jsx` template queries the top 1000 posts in the current locale and t
 The `post.jsx` template does the most extra data querying since it has to retrieve author data, related posts data, as well as all the post data including SEO items.
 
 The other `index.jsx` and `tag.jsx` perform standard queries for the "Popular posts" and "Categories" lists. The `tag` template will also go and find the current category's data as it's more simple than doing the lookup client side.
+
+##
 
 ## Plugins
 
