@@ -155,7 +155,6 @@ export const searchPageQuery = graphql`
       sort: { fields: [frontmatter___date], order: DESC }
       filter: { frontmatter: { locale: { eq: $locale } } }
     ) {
-      totalCount
       edges {
         node {
           frontmatter {
@@ -164,7 +163,6 @@ export const searchPageQuery = graphql`
             localDate: date(locale: $locale, formatString: "DD MMMM YYYY")
             date
             category
-            author
             locale
           }
           fields {
@@ -172,7 +170,6 @@ export const searchPageQuery = graphql`
           }
           excerpt
           html
-          timeToRead
           thumbnailArray: childrenImageSharp {
             sizes(maxWidth: 560) {
               base64
