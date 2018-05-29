@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { FormattedMessage } from 'react-intl'
 import styled from 'styled-components'
 import { hideVisually } from 'polished'
-import config from '../../../data/SiteConfig'
+import config from '../../../data/SiteConfig.json'
 import { FacebookIcon, TwitterIcon, LinkedinIcon, InstagramIcon } from '../SocialIcons'
 import spacing, { fontsize } from '../../tokens/dimensions'
 

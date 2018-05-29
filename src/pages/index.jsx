@@ -1,7 +1,7 @@
 import React from 'react'
 import { getUserLangKey } from 'ptz-i18n'
 import Cookies from 'universal-cookie'
-import config from '../../data/SiteConfig'
+import config from '../../data/SiteConfig.json'
 
 const cookies = new Cookies()
 

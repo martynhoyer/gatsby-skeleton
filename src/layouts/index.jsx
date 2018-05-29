@@ -13,7 +13,7 @@ import fr from 'react-intl/locale-data/fr'
 import 'intl/locale-data/jsonp/fr'
 
 import styled, { ThemeProvider } from 'styled-components'
-import config from '../../data/SiteConfig'
+import config from '../../data/SiteConfig.json'
 import './global.styles.css'
 import GYMLIB from '../tokens/colours'
 

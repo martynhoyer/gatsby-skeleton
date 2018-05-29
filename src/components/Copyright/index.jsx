@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import config from '../../../data/SiteConfig'
+import config from '../../../data/SiteConfig.json'
 
 const Container = styled.p`
   margin: 0;

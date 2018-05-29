@@ -4,7 +4,7 @@ import { navigateTo } from 'gatsby-link'
 import Cookies from 'universal-cookie'
 import MenuButton from 'react-menu-button'
 import { injectIntl } from 'react-intl'
-import config from '../../../data/SiteConfig'
+import config from '../../../data/SiteConfig.json'
 import { ReactComponent as Globe } from '../../svg/globe.svg'
 import spacing from '../../tokens/dimensions'
 

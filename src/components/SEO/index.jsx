@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Helmet from 'react-helmet'
 import { injectIntl } from 'react-intl'
-import config from '../../../data/SiteConfig'
+import config from '../../../data/SiteConfig.json'
 
 class SEO extends Component {
   render() {

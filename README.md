@@ -26,7 +26,7 @@ Inside it, we have:
 
 ### `data` contains data for the site, including translations
 
-`SiteConfig.js` is a global data set for the whole site with entries like titles, social media profiles etc. Some of the entries in this file are editable via Netlify CMS.
+`SiteConfig.json` is a global data set for the whole site with entries like titles, social media profiles etc. Some of the entries in this file are editable via Netlify CMS.
 `translations` contains a JSON file for each supported language. These translations are editable via Netlify CMS.
 
 ### `static` contains files that Gatsby will copy over to the production build

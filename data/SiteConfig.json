@@ -1,0 +1,45 @@
+{
+  "blogPostDir": "posts",
+  "blogAuthorDir": "authors",
+  "organizationName": "Gymlib",
+  "siteUrl": "https://fervent-noether-d935b7.netlify.com",
+  "siteLogo": "/favicons/android-chrome-512x512.png",
+  "sitePaginationLimit": 6,
+  "locales": ["fr", "en"],
+  "defaultLangKey": "fr",
+  "copyright": {
+    "label": "Gymlib.com",
+    "startYear": "2014"
+  },
+  "themeColor": "#c62828",
+  "backgroundColor": "#e0e0e0",
+  "mailchimpEndpoint": "https://corseconcierge.us18.list-manage.com/subscribe/post?u=a4f682a765cb09bfe2f975137&amp;id=1e22875e0a",
+  "siteFBAppID": "XXX",
+  "googleTagManagerId": "XXX",
+  "userTwitter": "gymlib",
+  "social": [{
+      "providerName": "twitter",
+      "providerDisplayName": "Twitter",
+      "url": "https://twitter.com/gymlib",
+      "profileDisplayName": "@Gymlib"
+    },
+    {
+      "providerName": "facebook",
+      "providerDisplayName": "Facebook",
+      "url": "https://facebook.com/gymlib",
+      "profileDisplayName": "Gymlib"
+    },
+    {
+      "providerName": "linkedin",
+      "providerDisplayName": "LinkedIn",
+      "url": "https://linkedin.com/gymlib",
+      "profileDisplayName": "Gymlib"
+    },
+    {
+      "providerName": "instagram",
+      "providerDisplayName": "Instagram",
+      "url": "https://instagram.com/gymlib",
+      "profileDisplayName": "Gymlib"
+    }
+  ]
+}
