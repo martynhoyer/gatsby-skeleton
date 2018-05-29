@@ -1,11 +1,64 @@
 backend:
   name: git-gateway
-  branch: master
+  branch: feature/documentation
 
 media_folder: static/img
 public_folder: /img
 
 collections:
+
+  - name: "settings"
+    label: "Site config"
+    delete: false # Prevent users from deleting documents in this collection
+    editor:
+      preview: false
+    files:
+      - name: "general"
+        label: "Site config"
+        file: "data/SiteConfig.json"
+        description: "Global site config"
+        fields:
+          - {label: "Organisation name", name: "organizationName", widget: "string"}
+          - {label: "Pagination limit", name: "sitePaginationLimit", widget: "number"}
+          - {label: "Locales", name: "locales", widget: "list"}
+          - {label: "Default language", name: "defaultLangKey", widget: "string"}
+          - label: "Copyright"
+            name: "copyright"
+            widget: "object"
+            fields:
+              - {label: "Label", name: "label", widget: "string"}
+              - {label: "Start year", name: "startYear", widget: "string"}
+          - {label: "Theme colour (hex code)", name: "themeColor", widget: "string"}
+          - {label: "Background colour (hex code)", name: "backgroundColor", widget: "string"}
+          - {label: "Mailchimp endpoint", name: "mailchimpEndpoint", widget: "string"}
+          - {label: "Facebook app ID", name: "siteFBAppID", widget: "string"}
+          - {label: "Google Tag Manager ID", name: "googleTagManagerId", widget: "string"}
+          - {label: "Twitter ID", name: "userTwitter", widget: "string"}
+          - label: "Social media profiles"
+            name: "social"
+            widget: "list"
+            fields: [
+              {
+                label: "Provider Name", 
+                name: "providerName", 
+                widget: "string"
+              },
+              {
+                label: "Provider display name", 
+                name: "providerDisplayName", 
+                widget: "string"
+              },
+              {
+                label: "URL", 
+                name: "url", 
+                widget: "string"
+              },
+              {
+                label: "Profile display name", 
+                name: "profileDisplayName", 
+                widget: "string"
+              }
+            ]
 
   - name: "authors"
     label: "Authors"
