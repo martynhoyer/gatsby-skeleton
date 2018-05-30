@@ -166,9 +166,9 @@ module.exports = {
         mergeCachingHeaders: false, // boolean to turn off the default caching headers
       },
     },
-    {
-      resolve: 'gatsby-plugin-offline',
-      // options: offlineOptions
-    },
+    // {
+    //   resolve: 'gatsby-plugin-offline',
+    //   // options: offlineOptions
+    // },
   ],
 }
