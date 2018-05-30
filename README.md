@@ -14,6 +14,12 @@
 
 You can also run `npm run clean` to clear out old build caches/artefacts (sometimes required between development runs if the build fails to start)
 
+## Build/CI/CD
+
+The site is hosted and managed with Netlify, which makes building/CI/CD a breeze. Every push to `master` will trigger a new build. If the build is successful, it will become the hosted version. If the build fails, the previous good version will persist. Netlify's control panel will provide build console output, so if a build fails, that should give you an indication as to why.
+
+Netlify provides CDN, caching, SSL, branch deploys, A/B tests etc. This can be configured at the Netlify control panel and some finer details are configured via the `gatbsy-plugin-netlify`.
+
 ## Directory structure
 
 ### `content` contains CMS-generated content
