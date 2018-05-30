@@ -141,10 +141,6 @@ module.exports = {
     "gatsby-plugin-sitemap",
     "gatsby-plugin-styled-components",
     {
-      resolve: 'gatsby-plugin-offline',
-      // options: offlineOptions
-    },
-    {
       resolve: 'gatsby-plugin-netlify-cms',
       options: {
         modulePath: `${__dirname}/src/cms/cms.js`,
@@ -169,6 +165,10 @@ module.exports = {
         mergeLinkHeaders: true, // boolean to turn off the default gatsby js headers (disabled by default, until gzip is fixed for server push)
         mergeCachingHeaders: false, // boolean to turn off the default caching headers
       },
-    }
+    },
+    {
+      resolve: 'gatsby-plugin-offline',
+      // options: offlineOptions
+    },
   ],
 }
