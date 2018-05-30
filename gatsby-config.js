@@ -1,31 +1,31 @@
 const config = require('./data/SiteConfig.json')
 
-const rootDir = 'public'
+// const rootDir = 'public'
 
-const offlineOptions = {
-  staticFileGlobs: [
-    `${rootDir}/**/*.{js,woff2,svg,png}`,
-    `${rootDir}/commons-*js`,
-    `${rootDir}/app-*js`,
-    `${rootDir}/index.html`,
-    `${rootDir}/manifest.json`,
-    `${rootDir}/manifest.webmanifest`,
-    `${rootDir}/offline-plugin-app-shell-fallback/index.html`,
-    `${rootDir}/admin`,
-    `${rootDir}/admin/`,
-    `${rootDir}/admin/index.html`,
-  ],
-  stripPrefix: rootDir,
-  navigateFallback: `/offline-plugin-app-shell-fallback/index.html`,
-  navigateFallbackWhitelist: [/^.*(?!\.\w?$)/],
-  cacheId: `gatsby-plugin-offline`,
-  dontCacheBustUrlsMatching: /(.\w{8}.woff2)/, //|-\w{20}.js)/,
-  runtimeCaching: [{
-    urlPattern: /\.(?:png|jpg|jpeg|webp|svg|gif|tiff)$/,
-    handler: `fastest`,
-  }, ],
-  skipWaiting: false,
-};
+// const offlineOptions = {
+//   staticFileGlobs: [
+//     `${rootDir}/**/*.{js,woff2,svg,png}`,
+//     `${rootDir}/commons-*js`,
+//     `${rootDir}/app-*js`,
+//     `${rootDir}/index.html`,
+//     `${rootDir}/manifest.json`,
+//     `${rootDir}/manifest.webmanifest`,
+//     `${rootDir}/offline-plugin-app-shell-fallback/index.html`,
+//     `${rootDir}/admin`,
+//     `${rootDir}/admin/`,
+//     `${rootDir}/admin/index.html`,
+//   ],
+//   stripPrefix: rootDir,
+//   navigateFallback: `/offline-plugin-app-shell-fallback/index.html`,
+//   navigateFallbackWhitelist: [/^.*(?!\.\w?$)/],
+//   cacheId: `gatsby-plugin-offline`,
+//   dontCacheBustUrlsMatching: /(.\w{8}.woff2)/, //|-\w{20}.js)/,
+//   runtimeCaching: [{
+//     urlPattern: /\.(?:png|jpg|jpeg|webp|svg|gif|tiff)$/,
+//     handler: `fastest`,
+//   }, ],
+//   skipWaiting: false,
+// };
 
 module.exports = {
   siteMetadata: {
@@ -141,6 +141,10 @@ module.exports = {
     "gatsby-plugin-sitemap",
     "gatsby-plugin-styled-components",
     {
+      resolve: 'gatsby-plugin-offline',
+      // options: offlineOptions
+    },
+    {
       resolve: 'gatsby-plugin-netlify-cms',
       options: {
         modulePath: `${__dirname}/src/cms/cms.js`,
@@ -165,10 +169,6 @@ module.exports = {
         mergeLinkHeaders: true, // boolean to turn off the default gatsby js headers (disabled by default, until gzip is fixed for server push)
         mergeCachingHeaders: false, // boolean to turn off the default caching headers
       },
-    },
-    {
-      resolve: 'gatsby-plugin-offline',
-      options: offlineOptions
     }
   ],
 }
