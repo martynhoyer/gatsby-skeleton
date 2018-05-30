@@ -20,8 +20,10 @@ You can also run `npm run clean` to clear out old build caches/artefacts (someti
 
 Inside it, we have:
 
-`posts` directory containing all the blog posts in markdown.  
-`authors` directory containing JSON files for each author (needed to allow authors to have images)
+`posts` directory containing all the blog posts in markdown.
+
+`authors` directory containing JSON files for each author (needed to allow authors to have images).
+
 `categories` directory containing JSON files for each category (needed to allow categories to have colour coding).
 
 ### `data` contains data for the site, including translations
@@ -47,7 +49,7 @@ The `admin` directory is used by Netlify CMS. The `config.yml` file inside it co
 
 `layouts` is as per Gatsby standards - it contains the global wrapper layout component for the site, as well as the global CSS file.
 
-`pages` is the Gatsby standard directory for single pages, however, due to the nature of this blog, we don't use it as all the pages are generated via the `gatsby-node.js` file which builds them into the templates. There is one file in this directory which is the index page and is only there to redirect the user into the appropriate language home page.
+`pages` is the Gatsby standard directory for single pages, however, due to the nature of this blog, we don't use it as all the pages are generated via the `gatsby-node.js` file which builds them into the templates. There are two files in this directory; the index page which is only there to redirect the user into the appropriate language home page and the 404 page which renders when a user navigates to a non-existing page.
 
 `svg` contains the raw SVGs used for icons/logo before `svgr` makes them into React components. These files have been optimised with SVGO. `npm run optimize:svg` will optimise any new SVGs that are added.
 
