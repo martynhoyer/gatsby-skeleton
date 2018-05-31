@@ -5,6 +5,8 @@ import { FormattedMessage, injectIntl } from 'react-intl'
 import styled from 'styled-components'
 import { hideVisually } from 'polished'
 import spacing, { fontsize } from '../../tokens/dimensions'
+import { ReactComponent as Cross } from '../../svg/cross.svg'
+import { ReactComponent as Tick } from '../../svg/tick.svg'
 
 const Title = styled.h2`
   margin: 0;
@@ -69,11 +71,33 @@ const MessageWrapper = styled.div`
 `
 
 const SuccessMessage = styled.p`
+  display: flex;
+  align-items: flex-start;
+  
   color: ${props => props.theme.status.success};
+
+  & > svg {
+    flex-shrink: 0;
+
+    margin-top: 0.3em;
+    margin-right: 0.5em;
+  }
 `
 
 const ErrorMessage = styled.p`
+  display: flex;
+  align-items: flex-start;
+
   color: ${props => props.theme.status.danger};
+
+  & > svg {
+    flex-shrink: 0;
+
+    width: 0.8em;
+    height: 0.8em;
+    margin-top: 0.35em;
+    margin-right: 0.5em;
+  }
 `
 
 class SubscribeForm extends React.Component {
@@ -183,12 +207,12 @@ class SubscribeForm extends React.Component {
           </SubmitButton>
           {this.state.status === `success` && (
             <MessageWrapper>
-              <SuccessMessage>{intl.formatMessage({ id: 'sidebar.mailchimpBoxes.successMessage' })}</SuccessMessage>
+              <SuccessMessage><Tick /> {intl.formatMessage({ id: 'sidebar.mailchimpBoxes.successMessage' })}</SuccessMessage>
             </MessageWrapper>
           )}
           {this.state.status === `error` && (
             <MessageWrapper>
-              <ErrorMessage dangerouslySetInnerHTML={{ __html: this.state.msg }} />
+              <ErrorMessage><Cross /> <span dangerouslySetInnerHTML={{ __html: this.state.msg }} /></ErrorMessage> 
             </MessageWrapper>
           )}
         </Form>
