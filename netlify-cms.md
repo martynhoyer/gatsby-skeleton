@@ -58,7 +58,7 @@ There is a categories collection for each language.
 
 You can edit an existing category or create a new one using the "New categories" button in the top right.
 
-* The `Author ID` which should be a unique string. This is never displayed publicly, but is used to connect categories to posts in the code, so it should be all lower-case, have no punctuation, and contain `hyphens-for-spaces` (if there are spaces).
+* The `Category ID` which should be a unique string. This is never displayed publicly, but is used to connect categories to posts in the code, so it should be all lower-case, have no punctuation, and contain `hyphens-for-spaces` (if there are spaces).
 * The `Display name` is the name which will be shown on the site, so should be written as it is intended to be displayed (correct captilisation etc.).
 * The `Colour` is the hex code of the colour you'd like the category to display in. The colours are used on the categories list on the sidebar, in the category text on post tiles and the post pages and in the page title for the category listings pages. You should keep this in mind when choosing a colour - `#ffffff` (white) for example would be a bad choice because it won't be readable.
 
@@ -93,3 +93,18 @@ It's not possible to add new entries into the config file in the CMS (because th
 Like the site config, you can only edit existing entries in the language files.
 
 You may come across some entries which contain text surrounded by curly braces, for example `dans la catégorie: {category}`. That represents some dynamic data - in this case it's the category the user has searched for. We expose it in the translations to give you some better context around how the text is used. Editing these variables could stop things working as expected, so tread carefully here!
+
+## SEO
+
+Site-wide SEO data is stored in the language files. There's a `global` group with some SEO-specific fields and also a titles for the pages.
+
+Post-level SEO is built in to the post files. There is an SEO group at the bottom of the post edit view containing the following fields:
+
+* `Title` this is not a required field, and if left blank, the title of the post will be used.
+* `og:title` allows you to override the title specifically for the `og:title` meta tag. If left blank, the `Title` field above will be used (and if that's blank, the post title will be used).
+* `Description` is a required field and is used to populate the meta description. If this is left blank, the post excerpt is used.
+* `og:description` allows you to override the description specifically for the `og:description` meta tag. If left blank the `Description` field will be used (and if that's left blank, the post excerpt will be used).
+* `Keywords` allows you to set post-specific keywords into the keywords meta tag. These should be entered as comma-separated keywords. If left blank, the post's tags will be used.
+* `article:tag` allows you to specify a comma-separated list of tags for the `article:tag` meta tags. If left blank, the `Keywords` above will be used (and if that's blank, the post tags will be used)
+* `og:image` allows you to set the `og:image` meta tag. If left blank, the post image will be used.
+* `Additional custom entries` allows you to set up specific custom meta tags for a post. Each entry has three fields to fill out; the `Type`, the `Type value` and the `Content`. The resultant meta tag will render as `<meta [type]="[type value]" content="[content]">`

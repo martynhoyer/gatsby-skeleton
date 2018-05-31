@@ -13,7 +13,10 @@ class SEO extends Component {
     let postURL
     let locale
     let publishTime
+    let ogTitle
+    let ogDescription
     let ogArticleTags
+    let ogImage
     let additionalCustomTags
 
     const globalSiteTitle =
@@ -37,11 +40,15 @@ class SEO extends Component {
     if (postSEO) {
       const postMeta = postNode.frontmatter
       ;({ locale, title, date: publishTime } = postMeta)
-      image = postMeta.seo && postMeta.seo.ogImage ? postMeta.seo.ogImage : postNode.thumbnailArray[0].sizes.originalImg
+      image = postNode.thumbnailArray[0].sizes.originalImg
       description = postMeta.seo && postMeta.seo.description ? postMeta.seo.description : postNode.excerpt
       postURL = `${config.siteUrl}/${postNode.frontmatter.locale}${postNode.fields.slug}`
       keywords = postMeta.seo && postMeta.seo.keywords ? postMeta.seo.keywords : postMeta.tags
+      title = postMeta.seo && postMeta.seo.title || title
+      ogTitle = postMeta.seo && postMeta.seo.ogTitle
+      ogDescription = postMeta.seo && postMeta.seo.ogDescription
       ogArticleTags = postMeta.seo && postMeta.seo.ogArticleTags
+      ogImage = postMeta.seo && postMeta.seo.ogImage
       additionalCustomTags = postMeta.seo && postMeta.seo.additional
     } else {
       title = globalSiteTitle
@@ -106,11 +113,11 @@ class SEO extends Component {
         {/* OpenGraph tags */}
         <meta property="og:url" content={postSEO ? postURL : blogURL} />
         {postSEO ? <meta property="og:type" content="article" /> : <meta property="og:type" content="website" />}
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
+        <meta property="og:title" content={ogTitle || title} />
+        <meta property="og:description" content={ogDescription || description} />
         <meta property="og:site_name" content={globalSiteTitle} />
         {/* <meta property="og:locale" content={locale} /> */}
-        <meta property="og:image" content={image} />
+        <meta property="og:image" content={ogImage || image} />
         {postSEO && ogTags.map(tag => <meta key={tag} property="article:tag" content={tag} />)}
         <meta property="fb:app_id" content={config.siteFBAppID ? config.siteFBAppID : ''} />
 
