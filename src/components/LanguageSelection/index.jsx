@@ -6,6 +6,7 @@ import MenuButton from 'react-menu-button'
 import { injectIntl } from 'react-intl'
 import config from '../../../data/SiteConfig.json'
 import { ReactComponent as Globe } from '../../svg/globe.svg'
+import { ReactComponent as Tick } from '../../svg/tick.svg'
 import spacing from '../../tokens/dimensions'
 
 const cookies = new Cookies()
@@ -88,27 +89,11 @@ const StyledGlobe = styled(Globe)`
   fill: currentColor;
 `
 
-const isCurrent = ({ current }) =>
-  current &&
-  css`
-    &::after {
-      content: '✓';
-      position: absolute;
-      display: block;
-      right: ${spacing.sm};
-      top: 50%;
-      margin-top: -0.5em;
-      line-height: 1;
-    }
-  `
-
 const ItemButton = styled.button`
-  ${isCurrent};
-
   position: relative;
   width: 100%;
   margin: 0;
-  padding: 0.75em 1em;
+  padding: 0.75em 2em;
   line-height: inherit;
   font-size: inherit;
   font-weight: inherit;
@@ -123,6 +108,14 @@ const ItemButton = styled.button`
     color: ${props => props.theme.palette.blanc};
     outline: none;
   }
+`
+
+const StyledTick = styled(Tick)`
+  position: absolute;
+  display: block;
+  right: ${spacing.base};
+  top: 50%;
+  margin-top: -0.5em;
 `
 
 class LanguageSelection extends Component {
@@ -173,8 +166,9 @@ class LanguageSelection extends Component {
         }
         menuRef={this.saveMenuRef}>
         {config.locales.map(locale => (
-          <ItemButton current={intl.locale === locale} key={locale} onClick={this.handleLocaleClick} value={locale}>
+          <ItemButton key={locale} onClick={this.handleLocaleClick} value={locale}>
             {locale}
+            {intl.locale === locale && <StyledTick />}
           </ItemButton>
         ))}
       </StyledMenuButton>
