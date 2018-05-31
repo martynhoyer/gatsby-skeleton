@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import { getUserLangKey } from 'ptz-i18n'
 import Cookies from 'universal-cookie'
 import config from '../../data/SiteConfig.json'

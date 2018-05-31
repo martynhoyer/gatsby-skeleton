@@ -124,7 +124,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
   // const categoryPage = path.resolve("src/templates/category.jsx");
   // const authorPage = path.resolve("src/templates/author.jsx");
 
-
   /*
   Loop through the pagination build process for each locale defined in the site
   config. The locale code is then passed to each pagination set via path context 
