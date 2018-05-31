@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import _ from 'lodash'
 import Link from 'gatsby-link'
 import { FormattedMessage, injectIntl } from 'react-intl'
@@ -31,28 +31,25 @@ const StyledLink = styled(Link)`
   color: inherit;
 `
 
-class PostTags extends Component {
-  render() {
-    const { tags, intl } = this.props
-    const { locale } = intl
-    if (tags && tags.indexOf('') === -1) {
-      return (
-        <Container>
-          <Heading>
-            <StyledTagIcon />
-            <FormattedMessage id="post.tagsHeading" />
-          </Heading>
-          {tags.map((tag, index, arr) => (
-            <span key={tag}>
-              <StyledLink to={`/${locale}/tags/${_.kebabCase(tag)}`}>{tag}</StyledLink>
-              {index !== arr.length - 1 ? ', ' : ''}
-            </span>
-          ))}
-        </Container>
-      )
-    }
-    return null
+const PostTags = ({tags, intl}) => {
+  const { locale } = intl
+  if (tags && tags.indexOf('') === -1) {
+    return (
+      <Container>
+        <Heading>
+          <StyledTagIcon />
+          <FormattedMessage id="post.tagsHeading" />
+        </Heading>
+        {tags.map((tag, index, arr) => (
+          <span key={tag}>
+            <StyledLink to={`/${locale}/tags/${_.kebabCase(tag)}`}>{tag}</StyledLink>
+            {index !== arr.length - 1 ? ', ' : ''}
+          </span>
+        ))}
+      </Container>
+    )
   }
+  return null
 }
 
 export default injectIntl(PostTags)

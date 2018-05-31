@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, Component } from 'react'
 import addToMailchimp from 'gatsby-plugin-mailchimp'
 import EmailValidator from 'email-validator'
 import { FormattedMessage, injectIntl } from 'react-intl'
@@ -110,7 +110,7 @@ const ErrorMessage = styled.p`
   }
 `
 
-class SubscribeForm extends React.Component {
+class SubscribeForm extends Component {
   state = {
     email: '',
   }

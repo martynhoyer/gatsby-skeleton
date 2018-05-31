@@ -36,18 +36,14 @@ const getPostList = postEdges =>
     categoriesArray: postEdge.node.categoriesArray,
   }))
 
-class PostListing extends React.Component {
-  render() {
-    const postList = getPostList(this.props.postEdges)
-    const { isIndex } = this.props
-
-    return (
-      <PostList isIndex={isIndex}>
-        {/* This is the post loop - each post will be output using this markup */}
-        {postList.map(post => <PostCard post={post} isIndex={isIndex} isBoxed key={`${post.path}+${post.locale}`} />)}
-      </PostList>
-    )
-  }
+const PostListing = ({ isIndex, postEdges }) => {
+  const postList = getPostList(postEdges)
+  return (
+    <PostList isIndex={isIndex}>
+      {/* This is the post loop - each post will be output using this markup */}
+      {postList.map(post => <PostCard post={post} isIndex={isIndex} isBoxed key={`${post.path}+${post.locale}`} />)}
+    </PostList>
+  )
 }
 
 export default PostListing

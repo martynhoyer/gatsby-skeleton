@@ -8,6 +8,11 @@ const { createPaginationPages, prefixPathFormatter } = require('gatsby-paginatio
 exports.onCreateNode = ({ node, boundActionCreators, getNode, getNodes }) => {
   const { createNodeField, createParentChildLink } = boundActionCreators
   let slug
+
+  /*
+  If the node is an Author JSON file, we need to create a parent/child link to 
+  its appropriate ImageSharp node to let gatsby-image work properly.
+  */
   if (node.internal.type === 'AuthorsJson') {
     // Attach image's ImageSharp node by public path if necessary
     if (node.image && typeof node.image === 'string') {
@@ -118,6 +123,12 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
   const searchPage = path.resolve('src/templates/search.jsx')
   // const categoryPage = path.resolve("src/templates/category.jsx");
   // const authorPage = path.resolve("src/templates/author.jsx");
+
+
+  /*
+  Loop through the pagination build process for each locale defined in the site
+  config. The locale code is then passed to each pagination set via path context 
+  */
   siteConfig.locales.forEach(
     code =>
       new Promise((resolve, reject) => {

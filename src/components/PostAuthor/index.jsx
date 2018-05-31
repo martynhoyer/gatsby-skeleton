@@ -29,16 +29,14 @@ const Name = styled.span`
   font-weight: bold;
 `
 
-const PostAuthor = ({ author }) => {
-  return (
-    <Container>
-      <StyledImg resolutions={author.image.resolutions} />
-      <Heading>
-        <FormattedMessage id="post.authorHeading" />
-      </Heading>
-      <Name>{author.displayName}</Name>
-    </Container>
-  )
-}
+const PostAuthor = ({ author }) => (
+  <Container>
+    <StyledImg resolutions={author.image.resolutions} />
+    <Heading>
+      <FormattedMessage id="post.authorHeading" />
+    </Heading>
+    <Name>{author.displayName}</Name>
+  </Container>
+)
 
 export default PostAuthor

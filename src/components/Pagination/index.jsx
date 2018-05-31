@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, Component } from 'react'
 import styled from 'styled-components'
 import PaginationLink from '../PaginationLink'
 import spacing from '../../tokens/dimensions'
@@ -37,7 +37,7 @@ const PageButton = styled.button`
   color: ${props => props.theme.palette.noir};
 `
 
-class Pagination extends React.Component {
+class Pagination extends Component {
   render() {
     const { page, pages, prev, next, isSearchResults, handleButtonClick } = this.props
     if (isSearchResults) {

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, Component } from 'react'
 import Helmet from 'react-helmet'
 import { getCurrentLangKey } from 'ptz-i18n'
 import { IntlProvider, addLocaleData } from 'react-intl'
@@ -29,7 +29,7 @@ const PageWrapper = styled.div`
   height: 100%;
 `
 
-export default class MainLayout extends React.Component {
+export default class MainLayout extends Component {
   render() {
     const { children, location } = this.props
 

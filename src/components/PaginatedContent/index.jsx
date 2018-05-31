@@ -1,9 +1,7 @@
 import React from 'react'
 import Pagination from '../../components/Pagination'
 
-class PaginatedContent extends React.Component {
-  render() {
-    const { page, pages, prev, next, children, isSearchResults = false, handleButtonClick = null } = this.props
+const PaginatedContent = ({ page, pages, prev, next, children, isSearchResults = false, handleButtonClick = null }) => {
     return (
       <main>
         {children}
@@ -19,7 +17,6 @@ class PaginatedContent extends React.Component {
         />
       </main>
     )
-  }
 }
 
 export default PaginatedContent

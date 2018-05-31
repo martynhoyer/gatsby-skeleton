@@ -1,6 +1,6 @@
-import React from 'react'
+import React, {Component} from 'react'
 
-class BlogPostPreview extends React.Component {
+class BlogPostPreview extends Component {
   render() {
     const { entry, widgetFor } = this.props
     return (

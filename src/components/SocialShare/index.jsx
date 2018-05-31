@@ -1,11 +1,18 @@
 import React, { Fragment } from 'react'
 import { FacebookShareButton, LinkedinShareButton, TwitterShareButton } from 'react-share'
 import styled, { css } from 'styled-components'
+import { transparentize } from 'polished'
 import spacing from '../../tokens/dimensions'
 import { FacebookIcon, TwitterIcon, LinkedinIcon } from '../SocialIcons'
 
 const buttonStyles = css`
   margin-top: ${spacing.sm};
+  border-radius: 50%;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 ${spacing.xs} ${props => transparentize(0.5, props.theme.palette.grisLight)};
+  }
 
   &:first-child {
     margin-top: 0;

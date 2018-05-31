@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, Component } from 'react'
 import styled from 'styled-components'
 import Body from '../components/Layouts/Body'
 import TwoColumn from '../components/Layouts/TwoColumn'
@@ -10,7 +10,7 @@ const Heading = styled.h1`
   color: black;
 `
 
-class NotFoundPage extends React.Component {
+class NotFoundPage extends Component {
   render() {
     return (
       <Fragment>

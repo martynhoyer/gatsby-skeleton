@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, Component } from 'react'
 import { Helmet } from 'react-helmet'
 import { injectIntl } from 'react-intl'
 import Header from '../components/Header'
@@ -18,7 +18,7 @@ import SocialFollow from '../components/SocialFollow'
 import SEO from '../components/SEO'
 import Search from '../components/Search'
 
-class IndexTemplate extends React.Component {
+class IndexTemplate extends Component {
   render() {
     const { intl } = this.props
     const { nodes, page, pages, limit, prev, next } = this.props.pathContext

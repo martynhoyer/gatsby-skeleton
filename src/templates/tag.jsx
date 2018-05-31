@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, Component } from 'react'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import { injectIntl } from 'react-intl'
@@ -26,7 +26,7 @@ const Heading = styled.h1`
   color: ${props => (props.color === 'default' ? props.theme.palette.noir : props.color)};
 `
 
-class TagTemplate extends React.Component {
+class TagTemplate extends Component {
   render() {
     const { intl } = this.props
     const { tag, nodes, page, pages, total, limit, prev, next } = this.props.pathContext

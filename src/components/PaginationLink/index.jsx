@@ -14,13 +14,11 @@ const StyledLink = styled(Link)`
   color: ${props => props.theme.palette.noir};
 `
 
-class PaginationLink extends React.Component {
-  render() {
-    if (this.props.url) {
-      return <StyledLink to={this.props.url}>{this.props.text}</StyledLink>
-    }
-    return null
-  }
+
+
+const PaginationLink = ({ url, text }) => {
+  if (!url) return null
+  return <StyledLink to={url}>{text}</StyledLink>
 }
 
 export default PaginationLink

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, Component } from 'react'
 import { Helmet } from 'react-helmet'
 import _ from 'lodash'
 import queryString from 'query-string'
@@ -13,7 +13,7 @@ import PaginatedContent from '../components/PaginatedContent'
 import { SearchLayout, SearchResults } from '../components/Layouts/SearchLayout'
 import Search from '../components/Search'
 
-class SearchTemplate extends React.Component {
+class SearchTemplate extends Component {
   static getDerivedStateFromProps(nextProps) {
     const { search } = nextProps.location
     const { edges: postEdges } = nextProps.data.allMarkdownRemark

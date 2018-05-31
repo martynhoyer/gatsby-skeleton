@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, Component } from 'react'
 import { Helmet } from 'react-helmet'
 import _ from 'lodash'
 import Link from 'gatsby-link'
@@ -207,7 +207,7 @@ const getPostList = postEdges =>
     categoriesArray: postEdge.node.categoriesArray,
   }))
 
-class PostTemplate extends React.Component {
+class PostTemplate extends Component {
   render() {
     const { intl } = this.props
     const postNode = this.props.data.markdownRemark
