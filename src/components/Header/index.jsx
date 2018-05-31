@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { transparentize } from 'polished'
 import Link from 'gatsby-link'
 import { injectIntl } from 'react-intl'
 import spacing from '../../tokens/dimensions'
@@ -32,8 +33,15 @@ const TopBar = styled.div`
 `
 
 const Logo = styled(Link)`
-  max-width: ${424 / 2.5}px;
+  max-width: ${424 / 2.2}px;
+  margin-left: -${spacing.sm};
+  padding: ${spacing.base} ${spacing.sm};
   color: inherit;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 ${spacing.xs} ${props => transparentize(0.5, props.theme.palette.blanc)};
+  }
 
   & > svg {
     display: block;

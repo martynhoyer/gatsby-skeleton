@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import styled, { css } from 'styled-components'
+import { transparentize } from 'polished'
 import { navigateTo } from 'gatsby-link'
 import Cookies from 'universal-cookie'
 import MenuButton from 'react-menu-button'
@@ -66,6 +67,11 @@ const StyledMenuButton = styled(MenuButton)`
       margin-left: 1em;
       line-height: 1;
       font-size: 0.6em;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 ${spacing.xs} ${props => transparentize(0.5, props.theme.palette.blanc)};
     }
   }
 

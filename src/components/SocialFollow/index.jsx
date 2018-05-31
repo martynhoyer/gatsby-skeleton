@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { FormattedMessage } from 'react-intl'
 import styled from 'styled-components'
-import { hideVisually } from 'polished'
+import { hideVisually, transparentize } from 'polished'
 import config from '../../../data/SiteConfig.json'
 import { FacebookIcon, TwitterIcon, LinkedinIcon, InstagramIcon } from '../SocialIcons'
 import spacing, { fontsize } from '../../tokens/dimensions'
@@ -27,6 +27,12 @@ export const DefinitionData = styled.dd`
 export const Link = styled.a`
   display: block;
   max-width: ${spacing.xl};
+  border-radius: 50%;
+  
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 ${spacing.xs} ${props => transparentize(0.5, props.theme.palette.grisLight)};
+  }
 `
 
 export const DisplayName = styled.span`

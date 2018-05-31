@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import MenuButton from 'react-menu-button'
 import { injectIntl } from 'react-intl'
 import styled from 'styled-components'
+import {transparentize} from 'polished'
 import spacing from '../../tokens/dimensions'
 import media from '../../tokens/breakpoints'
 
@@ -33,6 +34,11 @@ const StyledMenuButton = styled(MenuButton)`
       line-height: 1;
       font-size: 0.6em;
       vertical-align: middle;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 ${spacing.xs} ${props => transparentize(0.5, props.theme.palette.blanc)};
     }
   }
 

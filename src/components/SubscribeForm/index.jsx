@@ -3,7 +3,7 @@ import addToMailchimp from 'gatsby-plugin-mailchimp'
 import EmailValidator from 'email-validator'
 import { FormattedMessage, injectIntl } from 'react-intl'
 import styled from 'styled-components'
-import { hideVisually } from 'polished'
+import { hideVisually, transparentize } from 'polished'
 import spacing, { fontsize } from '../../tokens/dimensions'
 import { ReactComponent as Cross } from '../../svg/cross.svg'
 import { ReactComponent as Tick } from '../../svg/tick.svg'
@@ -43,6 +43,11 @@ const Input = styled.input`
   line-height: inherit;
   font-family: inherit;
   font-size: inherit;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 ${spacing.xs} ${props => transparentize(0.5, props.theme.palette.grisLight)};
+  }
 `
 
 const SubmitButton = styled.button`
@@ -62,6 +67,11 @@ const SubmitButton = styled.button`
   background-color: ${props => props.theme.palette.rose};
   color: ${props => props.theme.palette.blanc};
   cursor: pointer;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 ${spacing.xs} ${props => transparentize(0.5, props.theme.palette.rose)};
+  }
 `
 
 const MessageWrapper = styled.div`

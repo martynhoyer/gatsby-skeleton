@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import Link from 'gatsby-link'
 import Img from 'gatsby-image'
 import styled, { css } from 'styled-components'
+import { transparentize } from 'polished'
 import { FormattedMessage } from 'react-intl'
 import spacing, { boxPadding } from '../../tokens/dimensions'
 import media from '../../tokens/breakpoints'
@@ -44,6 +45,11 @@ const CardLink = styled(Link)`
   &:hover,
   &:focus {
     opacity: 0.5;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 ${spacing.xs} ${props => transparentize(0.5, props.theme.palette.grisLight)};
   }
 `
 

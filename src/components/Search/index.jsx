@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { navigateTo } from 'gatsby-link'
 import { injectIntl } from 'react-intl'
 import styled, { css } from 'styled-components'
-import { hideVisually } from 'polished'
+import { hideVisually , transparentize} from 'polished'
 import { ReactComponent as MagnifyingGlass } from '../../svg/magnifying-glass.svg'
 import SearchCategoriesDropdown from '../SearchCategoriesDropdown'
 import spacing from '../../tokens/dimensions'
@@ -89,6 +89,11 @@ const SearchInput = styled.input`
   background-color: transparent;
   color: currentColor;
 
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 ${spacing.xs} ${props => transparentize(0.5, props.theme.palette.blanc)};
+  }
+
   @media (${media.sm}) {
     padding: 0.5em 1.5em;
   }
@@ -114,6 +119,11 @@ const SubmitButton = styled.button`
   font-weight: inherit;
   background-color: transparent;
   color: currentColor;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 ${spacing.xs} ${props => transparentize(0.5, props.theme.palette.blanc)};
+  }
 
   @media (${media.sm}) {
     padding: 0.5em 1.5em;
