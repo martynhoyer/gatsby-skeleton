@@ -35,6 +35,7 @@ Inside it, we have:
 ### `data` contains data for the site, including translations
 
 `SiteConfig.json` is a global data set for the whole site with entries like titles, social media profiles etc. Some of the entries in this file are editable via Netlify CMS.
+
 `translations` contains a JSON file for each supported language. These translations are editable via Netlify CMS.
 
 ### `static` contains files that Gatsby will copy over to the production build
@@ -161,4 +162,4 @@ Allows configuration to be set at Netlify. Current config provided by SHO.ai
 
 ### `gatsby-plugin-offline`
 
-Adds offline support to the site with ServiceWorker etc. Config has been customised slightly to keep the CMS working as expected.
+Adds offline support to the site with ServiceWorker etc.
