@@ -14,8 +14,6 @@ const StyledLink = styled(Link)`
   color: ${props => props.theme.palette.noir};
 `
 
-
-
 const PaginationLink = ({ url, text }) => {
   if (!url) return null
   return <StyledLink to={url}>{text}</StyledLink>

@@ -170,6 +170,7 @@ class SubscribeForm extends Component {
       },
       // setState callback (subscribe email to MC)
       this.postEmailToMailchimp(this.state.email, {
+        // send Mailchimp custom fields for segmentation
         LANG: this.props.intl.locale,
         WHITEPAPER: this.props.whitepaper || false,
       }),

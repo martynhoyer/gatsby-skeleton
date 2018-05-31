@@ -19,19 +19,60 @@ class SearchTemplate extends Component {
     const { edges: postEdges } = nextProps.data.allMarkdownRemark
     const queries = queryString.parse(search)
 
+    /*
+    Create an array of the posts filtered by the search queries and inject it 
+    into the state as the component mounts.
+    */
     const filteredEdges = postEdges.filter(({ node }) => {
-      const bodyMatch = queries.query && node.html.toLowerCase().indexOf(queries.query.toLowerCase()) > -1
-      const titleMatch = queries.query && node.frontmatter.title.toLowerCase().indexOf(queries.query.toLowerCase()) > -1
+      /*
+      Stringify the post tags array for easy query matching
+      */
+      const postTagsAsString = node.frontmatter.tags.toString()
+      /*
+      Normalise the queries
+      */
+      const queryLowerCased = queries.query && queries.query.toLowerCase()
+
+      /* 
+      If we have a search query in the querystring, see if its contents matches
+      the post's body, title or tags
+      */
+      const bodyMatch = queries.query && node.html.toLowerCase().indexOf(queryLowerCased) > -1
+      const titleMatch = queries.query && node.frontmatter.title.toLowerCase().indexOf(queryLowerCased) > -1
+      const tagMatch = queries.query && postTagsAsString.toLowerCase().indexOf(queryLowerCased) > -1
+
+      /*
+      Also check for a match on the category from the querystring
+      */
       const categoryMatch = node.frontmatter.category === queries.category
+
+      /*
+      If there's no search query, just return the posts matching the category
+      */
       if (!queries.query) {
         return categoryMatch
       }
+
+      /* 
+      If there's no category set, just return the posts matching the search
+      query
+      */
       if (!queries.category) {
-        return bodyMatch || titleMatch
+        return bodyMatch || titleMatch || tagMatch
       }
-      return categoryMatch && (bodyMatch || titleMatch)
+
+      /*
+      Or if both were set, return a combined result set
+      */
+      return categoryMatch && (bodyMatch || titleMatch || tagMatch)
     })
 
+    /*
+    Add the filtered posts to the state and flag the search as "touched", i.e. 
+    it has been interacted with so we know whether to show the "no results"
+    message or not - we don't want to show "no results" if a user navigates to
+    the search page with no queries.
+    */
     return {
       results: filteredEdges,
       touched: queries,
