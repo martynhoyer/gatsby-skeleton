@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import media from "../../../tokens/breakpoints";
-import spacing from "../../../tokens/dimensions";
+import React from 'react'
+import styled from 'styled-components'
+import media from '../../../tokens/breakpoints'
+import spacing from '../../../tokens/dimensions'
 
 const StyledSingleColumn = styled.div`
   margin-right: auto;
@@ -11,10 +11,8 @@ const StyledSingleColumn = styled.div`
   @media (${media.md}) {
     max-width: 1024px;
   }
-`;
+`
 
-const SingleColumn = ({ children }) => (
-  <StyledSingleColumn>{children}</StyledSingleColumn>
-);
+const SingleColumn = ({ children }) => <StyledSingleColumn>{children}</StyledSingleColumn>
 
-export default SingleColumn;
+export default SingleColumn

@@ -83,7 +83,7 @@ const MessageWrapper = styled.div`
 const SuccessMessage = styled.p`
   display: flex;
   align-items: flex-start;
-  
+
   color: ${props => props.theme.status.success};
 
   & > svg {
@@ -218,12 +218,16 @@ class SubscribeForm extends Component {
           </SubmitButton>
           {this.state.status === `success` && (
             <MessageWrapper>
-              <SuccessMessage><Tick /> {intl.formatMessage({ id: 'sidebar.mailchimpBoxes.successMessage' })}</SuccessMessage>
+              <SuccessMessage>
+                <Tick /> {intl.formatMessage({ id: 'sidebar.mailchimpBoxes.successMessage' })}
+              </SuccessMessage>
             </MessageWrapper>
           )}
           {this.state.status === `error` && (
             <MessageWrapper>
-              <ErrorMessage><Cross /> <span dangerouslySetInnerHTML={{ __html: this.state.msg }} /></ErrorMessage> 
+              <ErrorMessage>
+                <Cross /> <span dangerouslySetInnerHTML={{ __html: this.state.msg }} />
+              </ErrorMessage>
             </MessageWrapper>
           )}
         </Form>

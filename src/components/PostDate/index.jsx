@@ -7,6 +7,4 @@ const PostDate = ({ date, localDate, className }) => (
   </time>
 )
 
-
-
 export default PostDate

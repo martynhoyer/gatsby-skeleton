@@ -1,7 +1,7 @@
-import React from "react";
-import styled, { css } from "styled-components";
-import media from "../../../tokens/breakpoints";
-import spacing from "../../../tokens/dimensions";
+import React from 'react'
+import styled, { css } from 'styled-components'
+import media from '../../../tokens/breakpoints'
+import spacing from '../../../tokens/dimensions'
 
 const hasHorizontalPadding = ({ noHorizontalPadding }) =>
   noHorizontalPadding
@@ -10,7 +10,7 @@ const hasHorizontalPadding = ({ noHorizontalPadding }) =>
       `
     : css`
         padding: ${spacing.md} ${spacing.md} 0;
-      `;
+      `
 
 const StyledTwoColumn = styled.div`
   ${hasHorizontalPadding};
@@ -26,12 +26,10 @@ const StyledTwoColumn = styled.div`
 
     max-width: 1200px;
   }
-`;
+`
 
 const TwoColumn = ({ children, noHorizontalPadding }) => (
-  <StyledTwoColumn noHorizontalPadding={noHorizontalPadding}>
-    {children}
-  </StyledTwoColumn>
-);
+  <StyledTwoColumn noHorizontalPadding={noHorizontalPadding}>{children}</StyledTwoColumn>
+)
 
-export default TwoColumn;
+export default TwoColumn

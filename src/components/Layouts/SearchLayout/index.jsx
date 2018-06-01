@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import media from "../../../tokens/breakpoints";
-import spacing from "../../../tokens/dimensions";
+import React from 'react'
+import styled from 'styled-components'
+import media from '../../../tokens/breakpoints'
+import spacing from '../../../tokens/dimensions'
 
 const StyledSearchLayout = styled.div`
   display: grid;
@@ -16,14 +16,12 @@ const StyledSearchLayout = styled.div`
 
     max-width: 1200px;
   }
-`;
+`
 
 export const SearchResults = styled.div`
   @media (${media.md}) {
     grid-column-start: 2;
   }
-`;
+`
 
-export const SearchLayout = ({ children }) => (
-  <StyledSearchLayout>{children}</StyledSearchLayout>
-);
+export const SearchLayout = ({ children }) => <StyledSearchLayout>{children}</StyledSearchLayout>
