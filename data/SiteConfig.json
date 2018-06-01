@@ -1,23 +1,13 @@
 {
-  "blogPostDir": "posts",
-  "blogAuthorDir": "authors",
-  "organizationName": "Gymlib",
-  "siteUrl": "https://fervent-noether-d935b7.netlify.com",
-  "siteLogo": "/favicons/android-chrome-512x512.png",
-  "sitePaginationLimit": 6,
-  "locales": ["fr", "en"],
-  "defaultLangKey": "fr",
+  "mailchimpEndpoint": "https://corseconcierge.us18.list-manage.com/subscribe/post?u=a4f682a765cb09bfe2f975137&amp;id=1e22875e0a",
+  "googleTagManagerId": "GTM-NF925T",
   "copyright": {
     "label": "Gymlib.com",
     "startYear": "2014"
   },
-  "themeColor": "#c62828",
-  "backgroundColor": "#e0e0e0",
-  "mailchimpEndpoint": "https://corseconcierge.us18.list-manage.com/subscribe/post?u=a4f682a765cb09bfe2f975137&amp;id=1e22875e0a",
-  "siteFBAppID": "XXX",
-  "googleTagManagerId": "XXX",
   "userTwitter": "gymlib",
-  "social": [{
+  "social": [
+    {
       "providerName": "twitter",
       "providerDisplayName": "Twitter",
       "url": "https://twitter.com/gymlib",
@@ -41,5 +31,15 @@
       "url": "https://instagram.com/gymlib",
       "profileDisplayName": "Gymlib"
     }
-  ]
+  ],
+  "defaultLangKey": "fr",
+  "backgroundColor": "#e0e0e0",
+  "locales": [
+    "fr",
+    "en"
+  ],
+  "siteFBAppID": "XXX",
+  "sitePaginationLimit": 6,
+  "themeColor": "#c62828",
+  "organizationName": "Gymlib"
 }
