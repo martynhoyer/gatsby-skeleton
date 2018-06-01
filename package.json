@@ -43,7 +43,7 @@
     "netlify-cms": "1.8.4",
     "polished": "1.9.2",
     "ptz-i18n": "0.4.0",
-    "query-string": "6.1.0",
+    "query-string": "5.1.1",
     "react": "16.4.0",
     "react-cookie": "2.1.6",
     "react-dom": "16.4.0",
