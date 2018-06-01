@@ -5,6 +5,8 @@ const webpackLodashPlugin = require('lodash-webpack-plugin')
 const siteConfig = require('./data/SiteConfig.json')
 const { createPaginationPages, prefixPathFormatter } = require('gatsby-pagination')
 
+// Called when a new node is created. Plugins wishing to extend or transform nodes created by other plugins should implement this API.
+// https://www.gatsbyjs.org/docs/node-apis/#onCreateNode
 exports.onCreateNode = ({ node, boundActionCreators, getNode, getNodes }) => {
   const { createNodeField, createParentChildLink } = boundActionCreators
   let slug
@@ -114,6 +116,9 @@ exports.onCreateNode = ({ node, boundActionCreators, getNode, getNodes }) => {
   }
 }
 
+// Tell plugins to add pages. This extension point is called only after the initial sourcing and transformation
+// of nodes plus creation of the GraphQL schema are complete so you can query your data in order to create pages.
+// https://www.gatsbyjs.org/docs/node-apis/#createPages
 exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators
 
@@ -304,8 +309,12 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
   )
 }
 
+// Let plugins extend/mutate the site’s webpack configuration.
+// https://github.com/gatsbyjs/gatsby/blob/master/docs/docs/add-custom-webpack-config.md
 exports.modifyWebpackConfig = ({ config, stage }) => {
   if (stage === 'build-javascript') {
+    // Add Webpack Lodash plugin which will cherry-pick lodash at build time
+    // instead of having the cherry-pick manually while coding.
     config.plugin('Lodash', webpackLodashPlugin, null)
   }
 }
