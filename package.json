@@ -78,7 +78,7 @@
     "develop": "gatsby develop",
     "serve": "gatsby serve",
     "build": "gatsby build",
-    "clean": "rm -rf .cache && rm -rf public",
+    "clean": "rm -rf .cache && rm -rf public && exit 0",
     "lint": "npm run lint:js && npm run lint:css && npm run lint:md",
     "lint:js": "eslint --ext .js,.jsx --ignore-pattern public --ignore-pattern static .",
     "lint:css": "stylelint --fix 'src/**/*.css'",
