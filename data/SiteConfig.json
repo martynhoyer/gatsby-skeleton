@@ -1,4 +1,8 @@
 {
+  "blogPostDir": "posts",
+  "blogAuthorDir": "authors",
+  "siteUrl": "https://fervent-noether-d935b7.netlify.com",
+  "siteLogo": "/favicons/android-chrome-512x512.png",
   "mailchimpEndpoint": "https://corseconcierge.us18.list-manage.com/subscribe/post?u=a4f682a765cb09bfe2f975137&amp;id=1e22875e0a",
   "googleTagManagerId": "GTM-NF925T",
   "copyright": {

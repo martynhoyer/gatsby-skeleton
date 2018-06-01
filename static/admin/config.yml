@@ -18,6 +18,10 @@ collections:
         file: "data/SiteConfig.json"
         description: "Global site config"
         fields:
+          - {label: "Blog post directory", name: "blogPostDir", widget: "hidden", default: "posts"}
+          - {label: "Blog authors directory", name: "blogAuthorDir", widget: "hidden", default: "authors"}
+          - {label: "Site URL", name: "siteUrl", widget: "hidden"}
+          - {label: "Site logo", name: "siteLogo", widget: "hidden"}
           - {label: "Organisation name", name: "organizationName", widget: "string"}
           - {label: "Pagination limit", name: "sitePaginationLimit", widget: "number"}
           - {label: "Locales", name: "locales", widget: "list"}
