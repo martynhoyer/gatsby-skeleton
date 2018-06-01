@@ -1,0 +1,31 @@
+﻿/* TEAM */
+Name: Martyn Hoyer
+Contact: martyn@corseconcierge.com
+Location: GB
+
+Name: Sho Rust
+Contact: sho.rust@sho.ai
+Location: USA
+
+Name: Michael Machiah
+Contact: michael.machiah@sho.ai
+Location: USA
+
+Name: Sébastien Fichot
+Contact: sebastien.fichot@sho.ai
+Twitter: https://twitter.com/3sebfi
+Facebook: https://www.facebook.com/fichot.sebastien
+Linkedin: https://www.linkedin.com/in/sebastienfichot
+Location: Provence, France
+
+/* THANKS */
+Name: Raphael Dardek
+Name: Loic Monthorin
+Name: Christian Truong
+Name: Hortense Gueneau
+
+/* SITE */
+Last update: 06/2018
+Standards: HTML5, CSS3
+Components: React
+Software: VSCode
