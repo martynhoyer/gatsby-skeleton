@@ -1,15 +1,14 @@
 {
-  "blogPostDir": "posts",
   "blogAuthorDir": "authors",
-  "siteUrl": "https://fervent-noether-d935b7.netlify.com",
-  "siteLogo": "/favicons/android-chrome-512x512.png",
   "mailchimpEndpoint": "https://corseconcierge.us18.list-manage.com/subscribe/post?u=a4f682a765cb09bfe2f975137&amp;id=1e22875e0a",
-  "googleTagManagerId": "GTM-NF925T",
+  "googleTagManagerId": "GTM-5ZPCLSF",
   "copyright": {
     "label": "Gymlib.com",
     "startYear": "2014"
   },
   "userTwitter": "gymlib",
+  "siteUrl": "https://fervent-noether-d935b7.netlify.com",
+  "blogPostDir": "posts",
   "social": [
     {
       "providerName": "twitter",
@@ -37,6 +36,7 @@
     }
   ],
   "defaultLangKey": "fr",
+  "siteLogo": "/favicons/android-chrome-512x512.png",
   "backgroundColor": "#e0e0e0",
   "locales": [
     "fr",
