@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { injectIntl } from 'react-intl'
 import styled from 'styled-components'
-import Link from 'gatsby-link'
 import ScrollLock from 'react-scrolllock'
 import { hideVisually } from 'polished'
 import LanguageSelection from '../LanguageSelection'
