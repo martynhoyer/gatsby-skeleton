@@ -87,6 +87,7 @@ const ItemButton = styled.button`
     background-color: ${props => props.theme.palette.rose};
     color: ${props => props.theme.palette.blanc};
     outline: none;
+    transition: 250ms;
   }
 `
 
