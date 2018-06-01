@@ -3,6 +3,7 @@
   "description": "Gymlib blog",
   "version": "1.0.0",
   "author": "Martyn Hoyer",
+  "private": true,
   "dependencies": {
     "babel-eslint": "8.2.3",
     "babel-plugin-lodash": "3.3.2",
