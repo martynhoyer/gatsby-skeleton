@@ -47,6 +47,9 @@ jspm_packages
 # Yarn Integrity file
 .yarn-integrity
 
+# Yarn error file
+yarn-error.log
+
 
 # Build Files
 public/
@@ -58,4 +61,9 @@ public/
 # Bundle stats
 bundle-stats.json
 
+# OSX env files.
 .DS_store
+
+# NPM lock file.
+package-lock.json
+
