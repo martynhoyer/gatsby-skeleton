@@ -42,7 +42,7 @@ const SEO = ({ postNode, postSEO, author, intl }) => {
     description = postMeta.seo && postMeta.seo.description ? postMeta.seo.description : postNode.excerpt
     postURL = `${config.siteUrl}/${postNode.frontmatter.locale}${postNode.fields.slug}`
     keywords = postMeta.seo && postMeta.seo.keywords ? postMeta.seo.keywords : postMeta.tags
-    title = postMeta.seo && postMeta.seo.title || title
+    title = (postMeta.seo && postMeta.seo.title) || title
     ogTitle = postMeta.seo && postMeta.seo.ogTitle
     ogDescription = postMeta.seo && postMeta.seo.ogDescription
     ogArticleTags = postMeta.seo && postMeta.seo.ogArticleTags

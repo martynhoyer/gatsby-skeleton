@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import MenuButton from 'react-menu-button'
 import { injectIntl } from 'react-intl'
 import styled from 'styled-components'
-import {transparentize} from 'polished'
+import { transparentize } from 'polished'
 import spacing from '../../tokens/dimensions'
 import media from '../../tokens/breakpoints'
 

@@ -31,7 +31,7 @@ const StyledLink = styled(Link)`
   color: inherit;
 `
 
-const PostTags = ({tags, intl}) => {
+const PostTags = ({ tags, intl }) => {
   const { locale } = intl
   if (tags && tags.indexOf('') === -1) {
     return (
