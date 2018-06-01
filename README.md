@@ -2,17 +2,17 @@
 
 ## Get started
 
-`npm install` to install all dependencies
+`yarn install` to install all dependencies
 
 `npm i -g gatsby-cli` to install the Gatsby CLI to run Gatsby commands
 
-`gatsby develop` or `npm run develop` runs Gatsby in the development environment
+`gatsby develop` or `yarn run develop` runs Gatsby in the development environment
 
-`gatsby build` or `npm run build` runs a production build of the site
+`gatsby build` or `yarn run build` runs a production build of the site
 
-`gatsby serve` or `npm run serve` will serve the production build
+`gatsby serve` or `yarn run serve` will serve the production build
 
-You can also run `npm run clean` to clear out old build caches/artefacts (sometimes required between development runs if the build fails to start)
+You can also run `yarn run clean` to clear out old build caches/artefacts (sometimes required between development runs if the build fails to start)
 
 ## Build/CI/CD
 
@@ -40,7 +40,7 @@ Inside it, we have:
 
 ### `static` contains files that Gatsby will copy over to the production build
 
-We include a default `favicon` and `robots.txt` here.
+We include a default `favicon`, `robots.txt` and `humans.txt` here.
 
 The `img` directory is the upload point for the Netlify CMS image uploader. Most of the images here are processed by `gatsby-image` for use on the site.
 
@@ -158,7 +158,7 @@ Automates the process of adding the CMS HTML files/scripts.
 
 ### `gatsby-plugin-netlify`
 
-Allows configuration to be set at Netlify. Current config provided by SHO.ai
+Allows configuration to be set at Netlify.
 
 ### `gatsby-plugin-offline`
 
