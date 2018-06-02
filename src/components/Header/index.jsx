@@ -34,6 +34,7 @@ const TopBar = styled.div`
 
 const Logo = styled(Link)`
   max-width: ${424 / 2.2}px;
+  margin-bottom: 3px; /* To align with baseline of menu text */
   margin-left: -${spacing.sm};
   padding: ${spacing.base} ${spacing.sm};
   color: inherit;
