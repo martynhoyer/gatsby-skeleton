@@ -58,14 +58,16 @@ const NavList = styled.ul`
   flex-direction: column;
   justify-content: space-around;
   justify-content: space-evenly;
+  flex-grow: 1;
 
+  max-height: 50vh;
   margin: 0;
   padding: 0;
   list-style: none;
 `
 
 const NavItem = styled.li`
-  margin: ${spacing.sm} 0;
+
 `
 
 const ExternalLink = styled.a`
@@ -73,7 +75,7 @@ const ExternalLink = styled.a`
   align-items: center;
   justify-content: center;
 
-  padding: 1em 0.5em;
+  padding: 0.5em 0.5em;
   text-decoration: none;
   white-space: nowrap;
   color: ${props => props.theme.palette.blanc};
@@ -148,7 +150,7 @@ class MobileNavigation extends Component {
                   </ExternalLink>
                 </NavItem>
                 <NavItem>
-                  <LanguageSelection id="mobileLangSelection" />
+                  <LanguageSelection id="mobileLangSelection" isBottom />
                 </NavItem>
               </NavList>
               <CloseButton onClick={this.handleClose}>
