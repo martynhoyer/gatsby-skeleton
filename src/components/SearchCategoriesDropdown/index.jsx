@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { transparentize } from 'polished'
 import spacing from '../../tokens/dimensions'
 import media from '../../tokens/breakpoints'
+import { ReactComponent as Tick } from '../../svg/tick.svg'
 
 const StyledMenuButton = styled(MenuButton)`
   position: relative;
@@ -74,10 +75,11 @@ const StyledMenuButton = styled(MenuButton)`
 `
 
 const ItemButton = styled.button`
+  position: relative;
   display: block;
   width: 100%;
   margin: 0;
-  padding: 0.75em 1em;
+  padding: 0.75em 1.5em;
   line-height: inherit;
   font-size: inherit;
   font-weight: inherit;
@@ -97,6 +99,14 @@ const ItemButton = styled.button`
       border:0;
     }
   }
+`
+
+const StyledTick = styled(Tick)`
+  position: absolute;
+  display: block;
+  right: ${spacing.sm};
+  top: 50%;
+  margin-top: -0.5em;
 `
 
 class SearchCategoriesDropdown extends Component {
@@ -150,6 +160,7 @@ class SearchCategoriesDropdown extends Component {
         {categories.map(({ node: category }) => (
           <ItemButton type="button" onClick={this.onCategorySelect} key={category.title} value={category.title}>
             {category.displayName}
+            {this.state.choice === category.displayName && <StyledTick />}
           </ItemButton>
         ))}
       </StyledMenuButton>
