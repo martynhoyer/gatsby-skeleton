@@ -184,9 +184,11 @@ const RelatedPostsHeading = styled.h2`
 
 const RelatedPosts = styled.div`
   display: grid;
-  grid-gap: ${spacing.base} ${spacing.md};
+  grid-gap: ${spacing.base} 0;
 
   margin-top: ${spacing.xxl};
+  margin-right: -${spacing.base};
+  margin-left: -${spacing.base};
 
   @media (${media.md}) {
     grid-template-columns: 1fr 1fr 1fr;

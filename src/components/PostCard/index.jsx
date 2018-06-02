@@ -32,7 +32,10 @@ const Article = styled.article`
   color: ${props => props.theme.palette.noir};
 `
 
+const paddedLink = ({isBoxed}) => !isBoxed ? css`padding: ${spacing.base};` : null
+
 const CardLink = styled(Link)`
+  ${paddedLink};
   display: flex;
   flex-direction: column;
 
@@ -163,7 +166,7 @@ const PostCard = ({ post, isIndex, isBoxed = false }) => {
   const url = `/${locale}${path}`
   return isBoxed ? (
     <Article isIndex={isIndex} isBoxed>
-      <CardLink to={url}>
+      <CardLink to={url} isBoxed>
         <StyledBox>
           <CardRoot post={post} isBoxed />
         </StyledBox>
