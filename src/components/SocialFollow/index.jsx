@@ -38,6 +38,7 @@ export const Link = styled.a`
   max-width: ${spacing.xl};
   border-radius: 50%;
 
+  &:hover,
   &:focus {
     outline: none;
     box-shadow: 0 0 0 ${spacing.xs} ${props => transparentize(0.5, props.theme.palette.grisLight)};
