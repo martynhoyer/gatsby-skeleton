@@ -4,7 +4,7 @@ import Img from 'gatsby-image'
 import styled, { css } from 'styled-components'
 import { transparentize } from 'polished'
 import { FormattedMessage } from 'react-intl'
-import spacing, { boxPadding } from '../../tokens/dimensions'
+import spacing, { boxPadding , fontsize} from '../../tokens/dimensions'
 import media from '../../tokens/breakpoints'
 import PostDate from '../PostDate'
 import Box from '../Box'
@@ -93,6 +93,15 @@ const StyledPostDate = styled(PostDate)`
 
 const Title = styled.h2`
   margin: ${spacing.base} 0 0;
+  font-size: ${fontsize.md};
+
+  @media (${media.sm}) {
+    font-size: 1.125rem;
+  }
+
+  @media (${media.md}) {
+    font-size: 1.8rem;
+  }
 `
 
 const Body = styled.section`

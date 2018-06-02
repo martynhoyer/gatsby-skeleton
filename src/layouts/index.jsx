@@ -12,15 +12,30 @@ import 'intl/locale-data/jsonp/en'
 import fr from 'react-intl/locale-data/fr'
 import 'intl/locale-data/jsonp/fr'
 
-import styled, { ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider, injectGlobal } from 'styled-components'
 import config from '../../data/SiteConfig.json'
 import './global.styles.css'
 import GYMLIB from '../tokens/colours'
+import media from '../tokens/breakpoints';
 
 /* 
 This will need updating manually if more languages are added
 */
 addLocaleData([...en, ...fr])
+
+injectGlobal`
+ html {
+   font-size: 14px;
+
+   @media (${media.sm}) {
+     font-size: 16px;
+   }
+
+   @media (${media.md}) {
+     font-size: 14px;
+   }
+ }
+`
 
 const PageWrapper = styled.div`
   display: flex;

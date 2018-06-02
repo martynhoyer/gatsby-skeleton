@@ -7,10 +7,19 @@ import { hideVisually, transparentize } from 'polished'
 import spacing, { fontsize } from '../../tokens/dimensions'
 import { ReactComponent as Cross } from '../../svg/cross.svg'
 import { ReactComponent as Tick } from '../../svg/tick.svg'
+import media from '../../tokens/breakpoints';
 
 const Title = styled.h2`
   margin: 0;
-  font-size: ${fontsize.base};
+  font-size: ${fontsize.md};
+
+  @media (${media.sm}) {
+    font-size: 1.125rem;
+  }
+
+  @media (${media.md}) {
+    font-size: ${fontsize.base};
+  }
 `
 
 const Form = styled.form`

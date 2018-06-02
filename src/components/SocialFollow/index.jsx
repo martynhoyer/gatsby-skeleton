@@ -5,10 +5,19 @@ import { hideVisually, transparentize } from 'polished'
 import config from '../../../data/SiteConfig.json'
 import { FacebookIcon, TwitterIcon, LinkedinIcon, InstagramIcon } from '../SocialIcons'
 import spacing, { fontsize } from '../../tokens/dimensions'
+import media from '../../tokens/breakpoints';
 
 const Title = styled.h2`
   margin: 0;
-  font-size: ${fontsize.base};
+  font-size: ${fontsize.md};
+
+  @media (${media.sm}) {
+    font-size: 1.125rem;
+  }
+
+  @media (${media.md}) {
+    font-size: ${fontsize.base};
+  }
 `
 
 export const List = styled.dl`
