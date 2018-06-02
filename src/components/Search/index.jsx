@@ -92,6 +92,10 @@ const SearchInput = styled.input`
   &:focus {
     outline: none;
     box-shadow: 0 0 0 ${spacing.xs} ${props => transparentize(0.5, props.theme.palette.blanc)};
+
+    &::-moz-focus-inner {
+      border:0;
+    }
   }
 
   @media (${media.sm}) {
@@ -123,6 +127,10 @@ const SubmitButton = styled.button`
   &:focus {
     outline: none;
     box-shadow: 0 0 0 ${spacing.xs} ${props => transparentize(0.5, props.theme.palette.blanc)};
+
+    &::-moz-focus-inner {
+      border:0;
+    }
   }
 
   @media (${media.sm}) {

@@ -56,6 +56,10 @@ const Input = styled.input`
   &:focus {
     outline: none;
     box-shadow: 0 0 0 ${spacing.xs} ${props => transparentize(0.5, props.theme.palette.grisLight)};
+
+    &::-moz-focus-inner {
+      border:0;
+    }
   }
 `
 
@@ -80,6 +84,10 @@ const SubmitButton = styled.button`
   &:focus {
     outline: none;
     box-shadow: 0 0 0 ${spacing.xs} ${props => transparentize(0.5, props.theme.palette.rose)};
+
+    &::-moz-focus-inner {
+      border:0;
+    }
   }
 `
 
