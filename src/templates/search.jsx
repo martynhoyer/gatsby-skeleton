@@ -95,6 +95,8 @@ class SearchTemplate extends Component {
     const { results, currentPage, itemsPerPage, touched } = this.state
     const { search } = this.props.location
     const categories = this.props.data.categories.edges
+    const activeCategories = this.props.data.activeCategories.group
+    const categoriesToList = categories.filter(cat => activeCategories.find(activeCat => activeCat.fieldValue === cat.node.title));
     const queries = queryString.parse(search)
 
     const indexOfLastItem = currentPage * itemsPerPage
@@ -124,7 +126,7 @@ class SearchTemplate extends Component {
         <SEO />
         <Helmet title={`${pageTitle} | ${globalSiteTitle}`} />
         <Header>
-          <Search categories={categories} queries={queries} />
+          <Search categories={categoriesToList} queries={queries} />
         </Header>
         <Body>
           <SearchLayout>
@@ -238,6 +240,15 @@ export const searchPageQuery = graphql`
           displayName
           color
         }
+      }
+    }
+    activeCategories: allMarkdownRemark(
+      limit: 2000
+      filter: { frontmatter: { isPublished: { eq: true }, locale: { eq: $locale } } }
+    ) {
+      group(field: frontmatter___category) {
+        fieldValue
+        # totalCount
       }
     }
   }

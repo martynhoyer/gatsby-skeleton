@@ -216,6 +216,8 @@ class PostTemplate extends Component {
     const { locale, title, localDate, date, tags, alternateLangLinks } = postNode.frontmatter
     const postUrl = `${config.siteUrl}${this.props.location.pathname}`
     const categories = this.props.data.categories.edges
+    const activeCategories = this.props.data.activeCategories.group
+    const categoriesToList = categories.filter(cat => activeCategories.find(activeCat => activeCat.fieldValue === cat.node.title));
 
     let relatedPostsList = []
 
@@ -248,7 +250,7 @@ class PostTemplate extends Component {
             ))}
         </Helmet>
         <Header>
-          <Search categories={categories} needsToClearNegativeMargin />
+          <Search categories={categoriesToList} needsToClearNegativeMargin />
         </Header>
         <Body>
           <SingleColumn>
@@ -398,6 +400,15 @@ export const pageQuery = graphql`
           displayName
           color
         }
+      }
+    }
+    activeCategories: allMarkdownRemark(
+      limit: 2000
+      filter: { frontmatter: { isPublished: { eq: true }, locale: { eq: $locale } } }
+    ) {
+      group(field: frontmatter___category) {
+        fieldValue
+        # totalCount
       }
     }
   }
