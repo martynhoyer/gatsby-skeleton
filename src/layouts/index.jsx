@@ -1,5 +1,6 @@
 import React, { Fragment, Component } from 'react'
 import Helmet from 'react-helmet'
+import Cookies from 'universal-cookie'
 import { getCurrentLangKey } from 'ptz-i18n'
 import { IntlProvider, addLocaleData } from 'react-intl'
 import 'intl'
@@ -16,7 +17,9 @@ import styled, { ThemeProvider, injectGlobal } from 'styled-components'
 import config from '../../data/SiteConfig.json'
 import './global.styles.css'
 import GYMLIB from '../tokens/colours'
-import media from '../tokens/breakpoints';
+import media from '../tokens/breakpoints'
+
+const cookies = new Cookies()
 
 /* 
 This will need updating manually if more languages are added
@@ -50,7 +53,14 @@ export default class MainLayout extends Component {
 
     const url = location.pathname
     const { locales, defaultLangKey } = config
-    const langKey = getCurrentLangKey(locales, defaultLangKey, url)
+
+    let langKey
+    const cookiedLang = cookies.get('lang')
+    if (cookiedLang) {
+      langKey = cookiedLang
+    } else {
+      langKey = getCurrentLangKey(locales, defaultLangKey, url)
+    }
 
     // get the appropriate message file based on langKey
     // at the moment this assumes that langKey will provide us

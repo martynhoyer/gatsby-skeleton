@@ -11,7 +11,8 @@
       "home": "Home",
       "category": "Posts categorised as: {category}",
       "tag": "Posts tagged with: {tag}",
-      "search": "Search"
+      "search": "Search",
+      "notFound": "Page not found"
     }
   },
   "navigation": {

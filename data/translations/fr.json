@@ -11,7 +11,8 @@
       "home": "Acceuil",
       "category": "Posts categorised as: {category}",
       "tag": "Posts tagged with: {tag}",
-      "search": "Rechercher"
+      "search": "Rechercher",
+      "notFound": "Page non trouvée"
     }
   },
   "navigation": {
