@@ -26,7 +26,7 @@ class NotFoundPage extends React.Component {
   render() {
     // const popularPosts = this.props.data.popularPosts.edges
     // const categories = this.props.data.categories.edges
-    const { intl } = this.props
+    // const { intl } = this.props
     return (
       <Fragment>
         <Header>
@@ -36,11 +36,11 @@ class NotFoundPage extends React.Component {
         <Body>
           <TwoColumn>
             <div>
-              <Heading>
+              {/* <Heading>
                 {intl.formatMessage({
                   id: 'global.pageTitles.notFound',
                 })}
-              </Heading>
+              </Heading> */}
             </div>
             <Sidebar>
               <Box compact>
@@ -101,4 +101,5 @@ class NotFoundPage extends React.Component {
 //   }
 // `
 
-export default injectIntl(NotFoundPage)
+// export default injectIntl(NotFoundPage)
+export default NotFoundPage
