@@ -24,6 +24,10 @@ class IndexTemplate extends Component {
     const { nodes, page, pages, limit, prev, next } = this.props.pathContext
     const popularPosts = this.props.data.popularPosts.edges
     const categories = this.props.data.categories.edges
+    const activeCategories = this.props.data.activeCategories.group
+    const categoriesToList = categories.filter(cat =>
+      activeCategories.find(activeCat => activeCat.fieldValue === cat.node.title),
+    )
 
     const globalSiteTitle =
       intl.messages['global.seo.siteTitle'] &&
@@ -41,7 +45,7 @@ class IndexTemplate extends Component {
         <Helmet title={`${pageTitle} | ${globalSiteTitle}`} />
         <Header>
           <TwoColumn noHorizontalPadding>
-            <Search categories={categories} needsToClearNegativeMargin />
+            <Search categories={categoriesToList} needsToClearNegativeMargin />
           </TwoColumn>
         </Header>
         <Body>
@@ -61,7 +65,7 @@ class IndexTemplate extends Component {
                 <SubSidebar>
                   <About />
                   <PopularPosts popularPosts={popularPosts} />
-                  <CategoriesList categories={categories} />
+                  <CategoriesList categories={categoriesToList} />
                   <SocialFollow />
                 </SubSidebar>
               </Box>
@@ -104,6 +108,15 @@ export const indexPageQuery = graphql`
           displayName
           color
         }
+      }
+    }
+    activeCategories: allMarkdownRemark(
+      limit: 2000
+      filter: { frontmatter: { isPublished: { eq: true }, locale: { eq: $locale } } }
+    ) {
+      group(field: frontmatter___category) {
+        fieldValue
+        # totalCount
       }
     }
   }

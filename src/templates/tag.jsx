@@ -32,6 +32,10 @@ class TagTemplate extends Component {
     const { tag, nodes, page, pages, total, limit, prev, next } = this.props.pathContext
     const popularPosts = this.props.data.popularPosts.edges
     const categories = this.props.data.categories.edges
+    const activeCategories = this.props.data.activeCategories.group
+    const categoriesToList = categories.filter(cat =>
+      activeCategories.find(activeCat => activeCat.fieldValue === cat.node.title),
+    )
     const { category } = this.props.data
 
     const pageTitle = tag
@@ -57,7 +61,7 @@ class TagTemplate extends Component {
         <Helmet title={`${pageTitle} | ${globalSiteTitle}`} />
         <Header>
           <TwoColumn noHorizontalPadding>
-            <Search categories={categories} />
+            <Search categories={categoriesToList} />
           </TwoColumn>
         </Header>
         <Body>
@@ -80,7 +84,7 @@ class TagTemplate extends Component {
                 <SubSidebar>
                   <About />
                   <PopularPosts popularPosts={popularPosts} />
-                  <CategoriesList categories={categories} />
+                  <CategoriesList categories={categoriesToList} />
                   <SocialFollow />
                 </SubSidebar>
               </Box>
@@ -127,6 +131,15 @@ export const tagPageQuery = graphql`
           displayName
           color
         }
+      }
+    }
+    activeCategories: allMarkdownRemark(
+      limit: 2000
+      filter: { frontmatter: { isPublished: { eq: true }, locale: { eq: $locale } } }
+    ) {
+      group(field: frontmatter___category) {
+        fieldValue
+        # totalCount
       }
     }
   }

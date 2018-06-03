@@ -16,7 +16,7 @@ import styled, { ThemeProvider, injectGlobal } from 'styled-components'
 import config from '../../data/SiteConfig.json'
 import './global.styles.css'
 import GYMLIB from '../tokens/colours'
-import media from '../tokens/breakpoints';
+import media from '../tokens/breakpoints'
 
 /* 
 This will need updating manually if more languages are added
