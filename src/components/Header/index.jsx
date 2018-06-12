@@ -7,9 +7,10 @@ import spacing from '../../tokens/dimensions'
 import Navigation from '../Navigation'
 import { ReactComponent as LogoSvg } from '../../svg/logo.svg'
 import MobileNavigation from '../MobileNavigation/index'
+import media from '../../tokens/breakpoints';
 
 const StyledHeader = styled.header`
-  padding: ${spacing.xl} ${spacing.md};
+  padding: ${spacing.base} ${spacing.md} ${spacing.xl};
   background-color: ${props => props.theme.palette.violet};
   background-image: linear-gradient(
     to bottom,
@@ -17,6 +18,10 @@ const StyledHeader = styled.header`
     ${props => props.theme.palette.rose} 200%
   );
   color: ${props => props.theme.palette.blanc};
+
+  @media (${media.md}) {
+    padding: ${spacing.xl} ${spacing.md};
+  }
 `
 
 const Container = styled.div`

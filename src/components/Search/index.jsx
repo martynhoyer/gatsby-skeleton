@@ -4,7 +4,7 @@ import { injectIntl } from 'react-intl'
 import styled, { css } from 'styled-components'
 import { hideVisually, transparentize } from 'polished'
 import { ReactComponent as MagnifyingGlass } from '../../svg/magnifying-glass.svg'
-import SearchCategoriesDropdown from '../SearchCategoriesDropdown'
+// import SearchCategoriesDropdown from '../SearchCategoriesDropdown'
 import spacing from '../../tokens/dimensions'
 import media from '../../tokens/breakpoints'
 
@@ -21,10 +21,13 @@ const formBottomPadding = ({ needsToClearNegativeMargin }) =>
 const Form = styled.form`
   ${formBottomPadding};
 
+  max-width: 24em;
+  margin: 0 auto;
   padding-top: 2em;
   color: ${props => props.theme.palette.blanc};
 
   @media (${media.md}) {
+    max-width: 40em;
     padding-top: 8em;
   }
 `
@@ -32,13 +35,12 @@ const Form = styled.form`
 const ErrorMessage = styled.p`
   margin: 0.5em 0 0;
   font-weight: normal;
-  text-align: center;
 `
 
 const FormElementsWrapper = styled.div`
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: stretch;
 
   font-size: 0.857rem;
 
@@ -54,13 +56,9 @@ const FormElementsWrapper = styled.div`
 `
 
 const LabelWrapper = styled.label`
-  max-width: 24em;
+  flex-grow: 1;
   position: relative;
   margin-top: 1em;
-
-  @media (${media.md}) {
-    flex-grow: 1;
-  }
 `
 
 const Wrapper = styled.div`
@@ -68,9 +66,11 @@ const Wrapper = styled.div`
 
   margin-top: 1em;
 
+  /*
   &:last-child {
     margin-left: 0.5em;
   }
+  */
 `
 
 const Label = styled.span`
@@ -112,6 +112,7 @@ const SubmitButton = styled.button`
   align-items: center;
 
   width: 100%;
+  height: 100%;
   margin: 0;
   padding: 0.25em 1em;
   border-width: 1px 1px 1px 0;
@@ -142,10 +143,13 @@ const SubmitButton = styled.button`
   }
 `
 
+const SubmitButtonText = styled.span`
+  ${hideVisually};
+`
+
 const StyledMagnifyingGlass = styled(MagnifyingGlass)`
   width: 1em;
   height: 1em;
-  margin-right: 0.75em;
   vertical-align: middle;
   fill: currentColor;
 `
@@ -188,7 +192,11 @@ class Search extends Component {
   }
 
   render() {
-    const { categories, needsToClearNegativeMargin, intl } = this.props
+    const { 
+      // categories, 
+      needsToClearNegativeMargin, 
+      intl
+    } = this.props
 
     return (
       <Form onSubmit={this.handleSubmit} needsToClearNegativeMargin={needsToClearNegativeMargin}>
@@ -214,18 +222,20 @@ class Search extends Component {
           <Wrapper>
             <SubmitButton type="submit">
               <StyledMagnifyingGlass />
-              {intl.formatMessage({
-                id: 'search.searchButtonText',
-              })}
+              <SubmitButtonText>
+                {intl.formatMessage({
+                  id: 'search.searchButtonText',
+                })}
+              </SubmitButtonText>
             </SubmitButton>
           </Wrapper>
-          <Wrapper>
+          {/* <Wrapper>
             <SearchCategoriesDropdown
               categories={categories}
               onCategorySelect={this.handleChange}
               categoryQuery={this.state.searchCategory}
             />
-          </Wrapper>
+          </Wrapper> */}
         </FormElementsWrapper>
         {this.state.error && (
           <ErrorMessage>
