@@ -13,7 +13,7 @@ const Container = styled.div`
 `
 
 const Heading = styled.h2`
-  margin: 0 0 ${spacing.base};
+  margin: 0 0 ${spacing.lg};
   font-size: ${fontsize.md};
   color: ${props => props.theme.palette.noir};
 `
