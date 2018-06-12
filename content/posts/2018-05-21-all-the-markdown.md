@@ -11,9 +11,7 @@ image: /img/016.jpeg
 seo:
   title: Test
 ---
-_Photo by
-[Joshua Earle](https://unsplash.com/@joshuaearle) via
-[Unsplash](https://unsplash.com/@joshuaearle?photo=-87JyMb9ZfU)_
+<iframe width="1200" height="900" src="https://www.youtube.com/embed/C0DPdy98e4c" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 _**Note how all headlines below show an anchor link when you hover them?**_\
 That's [gatsby-remark-autolink-headers](https://www.gatsbyjs.org/packages/gatsby-remark-autolink-headers/) hooking up all `MarkdownRemark` headers
@@ -25,6 +23,8 @@ Markdown parsing in Gatsby is done with [gatsby-transformer-remark](https://www.
 uses the excellent [remark](http://remark.js.org/) under the hood.\
 Alongside remark we also use [gatsby-remark-smartypants](https://www.gatsbyjs.org/packages/gatsby-remark-smartypants/), which provides smart
 punctuation through [retext-smartypants](https://github.com/wooorm/retext-smartypants).
+
+![](/img/003.jpeg)
 
 The examples on this page cover the basic Markdown syntax and are adapted from
 [Markdown Here's Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) ([CC-BY](https://creativecommons.org/licenses/by/3.0/)).

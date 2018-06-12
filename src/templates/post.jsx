@@ -124,6 +124,10 @@ const PostContent = styled.div`
     }
   }
 
+  & img {
+    max-width: 100%;
+  }
+
   & blockquote {
     display: block;
     margin: 2em auto;
