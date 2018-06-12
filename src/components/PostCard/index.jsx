@@ -58,6 +58,8 @@ const CardLink = styled(Link)`
 
 const StyledBox = styled(Box)`
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 `
 
 const thumbnailNeedsNegativeMargin = ({ isBoxed }) =>
@@ -108,6 +110,8 @@ const Title = styled.h2`
 `
 
 const Body = styled.section`
+  flex-grow: 1;
+
   margin-top: ${spacing.base};
 `
 
