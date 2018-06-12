@@ -29,6 +29,11 @@ const StyledTagIcon = styled(TagIcon)`
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: inherit;
+
+  &:hover,
+  &:focus {
+    color: ${props => props.theme.palette.rose};
+  }
 `
 
 const PostTags = ({ tags, intl }) => {
