@@ -89,6 +89,7 @@ const SocialShareWrapper = styled.div`
   float: left;
   top: ${spacing.md};
   width: ${spacing.lg};
+  z-index: 1;
 
   @media (${media.sm}) {
     display: block;
