@@ -21,13 +21,14 @@ const formBottomPadding = ({ needsToClearNegativeMargin }) =>
 const Form = styled.form`
   ${formBottomPadding};
 
-  max-width: 24em;
+  width: 80%;
+  max-width: 24rem;
   margin: 0 auto;
   padding-top: 2em;
   color: ${props => props.theme.palette.blanc};
 
   @media (${media.md}) {
-    max-width: 40em;
+    max-width: 40rem;
     padding-top: 8em;
   }
 `
