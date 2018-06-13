@@ -62,11 +62,11 @@ const Title = styled.h1`
   text-align: center;
 
   @media (${media.sm}) {
-    font-size: 3.4285em;
+    font-size: 3em;
   }
 
   @media (${media.md}) {
-    font-size: 4.8em;
+    font-size: 3.5em;
   }
 `
 
@@ -344,7 +344,7 @@ export const pageQuery = graphql`
         slug
       }
       thumbnailArray: childrenImageSharp {
-        sizes(maxWidth: 1600) {
+        sizes(maxWidth: 1600, maxHeight: 640, cropFocus: CENTER) {
           ...GatsbyImageSharpSizes_withWebp
           originalImg
         }
