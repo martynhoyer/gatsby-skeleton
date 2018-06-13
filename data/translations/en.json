@@ -30,9 +30,8 @@
     "searchInputLabel": "Search term",
     "allCategoriesLabel": "Categories",
     "searchButtonText": "Search",
-    "noResultsLabel": "No results",
-    "searchResultsLabel": "Search results",
-    "queryPrefix": "for: \"{query}\"",
+    "noResultsLabel": "No results for: ",
+    "searchResultsLabel": "Search results for: ",
     "categoryPrefix": "in category: {category}",
     "emptyQueryWarning": "Please enter a search term"
   },

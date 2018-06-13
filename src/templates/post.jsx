@@ -344,7 +344,7 @@ export const pageQuery = graphql`
         slug
       }
       thumbnailArray: childrenImageSharp {
-        sizes(maxWidth: 1600, maxHeight: 640, cropFocus: CENTER) {
+        sizes(maxWidth: 1600) {
           ...GatsbyImageSharpSizes_withWebp
           originalImg
         }

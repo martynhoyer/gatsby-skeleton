@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet'
 import _ from 'lodash'
 import queryString from 'query-string'
 import { injectIntl } from 'react-intl'
+import styled from 'styled-components';
 import config from '../../data/SiteConfig.json'
 import SEO from '../components/SEO'
 import Header from '../components/Header'
@@ -12,6 +13,21 @@ import PostListing from '../components/PostListing'
 import PaginatedContent from '../components/PaginatedContent'
 import { SearchLayout, SearchResults } from '../components/Layouts/SearchLayout'
 import Search from '../components/Search'
+import {fontsize} from '../tokens/dimensions';
+
+const Title = styled.h2`
+  font-size: ${fontsize.lg};
+  font-weight: normal;
+  text-align: center;
+`
+
+const SearchQuery = styled.span`
+  display: block;
+  font-family: bergensans;
+  font-size: ${fontsize.xxl};
+  font-weight: bold;
+  color: ${props => props.theme.palette.violet};
+`
 
 class SearchTemplate extends Component {
   static getDerivedStateFromProps(nextProps) {
@@ -106,13 +122,6 @@ class SearchTemplate extends Component {
     const currentItems = results.slice(indexOfFirstItem, indexOfLastItem)
     const pageCountForResultSet = Math.ceil(results.length / itemsPerPage)
 
-    const searchedCategoryNode =
-      !_.isEmpty(queries) &&
-      queries.category &&
-      categories.find(({ node: category }) => category.title === queries.category)
-
-    const searchedCategory = searchedCategoryNode && searchedCategoryNode.node
-
     const globalSiteTitle =
       intl.messages['global.seo.siteTitle'] &&
       intl.formatMessage({
@@ -140,46 +149,24 @@ class SearchTemplate extends Component {
                     pages={pageCountForResultSet}
                     isSearchResults
                     handleButtonClick={this.handleButtonClick}>
-                    <h1>
-                      {intl.formatMessage({ id: 'search.searchResultsLabel' })}{' '}
-                      {queries.query &&
-                        intl.formatMessage(
-                          { id: 'search.queryPrefix' },
-                          {
-                            query: queries.query,
-                          },
-                        )}{' '}
-                      {searchedCategory &&
-                        intl.formatMessage(
-                          { id: 'search.categoryPrefix' },
-                          {
-                            category: searchedCategory.displayName,
-                          },
-                        )}
-                    </h1>
+                    <Title>
+                      {intl.formatMessage({ id: 'search.searchResultsLabel' })}
+                      <SearchQuery>
+                        {queries.query && queries.query}
+                      </SearchQuery>
+                    </Title>
                     <PostListing postEdges={currentItems} />
                   </PaginatedContent>
                 </Fragment>
               ) : (
                 <Fragment>
                   {!_.isEmpty(touched) ? (
-                    <h1>
-                      {intl.formatMessage({ id: 'search.noResultsLabel' })}{' '}
-                      {queries.query &&
-                        intl.formatMessage(
-                          { id: 'search.queryPrefix' },
-                          {
-                            query: queries.query,
-                          },
-                        )}{' '}
-                      {searchedCategory &&
-                        intl.formatMessage(
-                          { id: 'search.categoryPrefix' },
-                          {
-                            category: searchedCategory.displayName,
-                          },
-                        )}
-                    </h1>
+                    <Title>
+                      {intl.formatMessage({ id: 'search.noResultsLabel' })}
+                      <SearchQuery>
+                        {queries.query && queries.query}
+                      </SearchQuery>
+                    </Title>
                   ) : null}
                 </Fragment>
               )}
