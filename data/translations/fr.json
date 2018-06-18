@@ -28,6 +28,7 @@
   },
   "search": {
     "searchInputLabel": "Terme de recherche",
+    "searchInputPlaceholder": "RH, QVT, Sport...",
     "allCategoriesLabel": "Catégories",
     "searchButtonText": "Rechercher",
     "noResultsLabel": "Aucun résultat pour: ",

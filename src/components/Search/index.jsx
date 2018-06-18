@@ -99,6 +99,19 @@ const SearchInput = styled.input`
     }
   }
 
+  &::placeholder {
+    color: currentColor;
+    opacity: 1; /* Firefox */
+  }
+
+  &:-ms-input-placeholder {
+    color: currentColor;
+  }
+
+  &::-ms-input-placeholder {
+    color: currentColor;
+  }
+
   @media (${media.sm}) {
     padding: 0.5em 1.5em;
   }
@@ -215,6 +228,9 @@ class Search extends Component {
               innerRef={el => {
                 this.searchInput = el
               }}
+              placeholder={intl.formatMessage({
+                id: 'search.searchInputPlaceholder',
+              })}
               onChange={this.handleChange}
               value={this.state.searchQuery}
               error={this.state.error}
