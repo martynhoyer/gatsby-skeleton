@@ -41,7 +41,11 @@ const Meta = styled.div`
   display: flex;
   justify-content: center;
 
-  margin-top: ${spacing.xxl};
+  margin-top: ${spacing.lg};
+
+  @media (${media.md}) {
+    margin-top: ${spacing.xl};
+  }
 `
 
 const CategoryLink = styled(Link)`
