@@ -10,7 +10,7 @@ import MobileNavigation from '../MobileNavigation/index'
 import media from '../../tokens/breakpoints';
 
 const StyledHeader = styled.header`
-  padding: ${spacing.base} ${spacing.md} ${spacing.xl};
+  padding: ${spacing.sm} ${spacing.md} ${spacing.xl};
   background-color: ${props => props.theme.palette.violet};
   background-image: linear-gradient(
     to bottom,
@@ -38,8 +38,8 @@ const TopBar = styled.div`
 `
 
 const Logo = styled(Link)`
-  max-width: ${424 / 2.2}px;
-  margin-bottom: 3px; /* To align with baseline of menu text */
+  max-width: ${424 / 2.8}px;
+  margin-bottom: 5px; /* To align with baseline of menu text */
   margin-left: -${spacing.sm};
   padding: ${spacing.base} ${spacing.sm};
   color: inherit;
@@ -54,6 +54,11 @@ const Logo = styled(Link)`
     width: 100%;
     height: 100%;
     fill: currentColor;
+  }
+
+  @media (${media.md}) {
+    max-width: ${424 / 2.2}px;
+    margin-bottom: 3px; /* To align with baseline of menu text */
   }
 `
 
