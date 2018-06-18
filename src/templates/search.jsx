@@ -13,9 +13,10 @@ import PostListing from '../components/PostListing'
 import PaginatedContent from '../components/PaginatedContent'
 import { SearchLayout, SearchResults } from '../components/Layouts/SearchLayout'
 import Search from '../components/Search'
-import {fontsize} from '../tokens/dimensions';
+import spacing, {fontsize} from '../tokens/dimensions';
 
 const Title = styled.h2`
+  margin-bottom: ${spacing.xl};
   font-size: ${fontsize.lg};
   font-weight: normal;
   text-align: center;
