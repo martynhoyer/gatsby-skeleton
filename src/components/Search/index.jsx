@@ -101,15 +101,17 @@ const SearchInput = styled.input`
 
   &::placeholder {
     color: currentColor;
-    opacity: 1; /* Firefox */
+    opacity: 0.7;
   }
 
   &:-ms-input-placeholder {
     color: currentColor;
+    opacity: 0.7;
   }
 
   &::-ms-input-placeholder {
     color: currentColor;
+    opacity: 0.7;
   }
 
   @media (${media.sm}) {
