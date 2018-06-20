@@ -20,7 +20,7 @@ const StyledHeader = styled.header`
   color: ${props => props.theme.palette.blanc};
 
   @media (${media.md}) {
-    padding: ${spacing.xl} ${spacing.md};
+    padding: ${spacing.md};
   }
 `
 
