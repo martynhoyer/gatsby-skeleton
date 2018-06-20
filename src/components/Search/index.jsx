@@ -91,8 +91,8 @@ const SearchInput = styled.input`
   color: currentColor;
 
   &:focus {
+    border-color: ${props => props.theme.palette.rose};
     outline: none;
-    box-shadow: 0 0 0 ${spacing.xs} ${props => transparentize(0.5, props.theme.palette.rose)};
 
     &::-moz-focus-inner {
       border:0;
@@ -142,8 +142,9 @@ const SubmitButton = styled.button`
   color: currentColor;
 
   &:focus {
+    border-color: ${props => props.theme.palette.rose};
     outline: none;
-    box-shadow: 0 0 0 ${spacing.xs} ${props => transparentize(0.5, props.theme.palette.rose)};
+    color: ${props => props.theme.palette.rose};
 
     &::-moz-focus-inner {
       border:0;
