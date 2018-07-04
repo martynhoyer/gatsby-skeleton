@@ -13,7 +13,7 @@ date: '2018-06-20T18:57:11+02:00'
 author: gabrielle
 alternateLangLinks: []
 isPopular: true
-image: /img/qvt-et-silicon-valley.jpg
+image: /img/siliconvalley.png
 seo:
   description: >-
     Découvrez les principales initiatives de la Silicon Valley en matière de
@@ -30,7 +30,7 @@ seo:
   ogDescription: >-
     Découvrez les principales initiatives de la Silicon Valley en matière de
     qualité de vie au travail.
-  ogImage: /img/qvt-et-silicon-valley.jpg
+  ogImage: /img/siliconvalley.png
   ogTitle: >-
     La démesure, dernier recours de la Silicon Valley face au désengagement des
     talents ?
