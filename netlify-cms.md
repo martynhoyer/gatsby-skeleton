@@ -84,7 +84,9 @@ As you might expect, posts have quite a few options/fields to complete:
 * `Content` is the main body of the post, in markdown form. The editor here gives you the option to switch between rich text and markdown. It's worth bearing in mind that there will already be an `h1` element on the post page (the post title) so adding more `h1` elements in the markdown could have a negative effect on the search engine optimisation. We should be able to customise the markdown editor controls soon and getting more heading levels added in (and probably remove the `h1`), but that's a feature currently in development at Netlify CMS.
 * `SEO` is a group of fields that allows you to specifically override certain SEO meta tags/elements and do more specific targeting. This is covered more deeply in the SEO section.
 
-**One important thing to note**: because of the way Gatsby works (how the data is queried) there needs to be at least one post in the posts directory that contains all the custom fields. If there isn't, the build will fail because it can't find the right data. The simplest way to achieve this is to keep a non-published dummy post in the CMS, with dummy content in place. Because it's not published, it won't ever appear on the site, but will keep the build working.
+**One important thing to note**: because of the way Gatsby works (how the data is queried) there needs to be at least two posts in the posts directory that contains all the custom fields. It needs to be two posts to make sure the author, category and image queries are prepared to handle the same items being set on different posts. 
+
+If there isn't, the build will fail because it can't find the right data. The simplest way to achieve this is to keep two non-published dummy posts in the CMS, with the same dummy content in place. Because they're not published, they won't ever appear on the site, but will keep the build working.
 
 Reference point for this issue is: https://github.com/gatsbyjs/gatsby/issues/3344
 
