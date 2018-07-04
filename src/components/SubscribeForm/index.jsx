@@ -190,7 +190,7 @@ class SubscribeForm extends Component {
         // send Mailchimp custom fields for segmentation
         LANG: this.props.intl.locale,
         WHITEPAPER: this.props.whitepaper || false,
-        SIGNUP: this.props.location.pathname,
+        SIGNUP: window.location.pathname,
       }),
     )
   }

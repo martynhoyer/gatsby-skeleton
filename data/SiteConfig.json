@@ -1,10 +1,10 @@
 {
   "blogAuthorDir": "authors",
-  "mailchimpEndpoint": "https://corseconcierge.us18.list-manage.com/subscribe/post?u=a4f682a765cb09bfe2f975137&amp;id=1e22875e0a",
-  "googleTagManagerId": "GTM-5ZPCLSF",
+  "mailchimpEndpoint": "https://gymlib.us11.list-manage.com/subscribe/post?u=e2a7e32ece969bcf7cd6a02e4&amp;id=e864fbaa4d",
+  "googleTagManagerId": "GTM-NF925T",
   "copyright": {
-    "label": "Gymlib.com",
-    "startYear": "2014"
+    "label": "Gymlib",
+    "startYear": "2013"
   },
   "userTwitter": "gymlib",
   "siteUrl": "https://fervent-noether-d935b7.netlify.com",
@@ -25,7 +25,7 @@
     {
       "providerName": "linkedin",
       "providerDisplayName": "LinkedIn",
-      "url": "https://linkedin.com/gymlib",
+      "url": "https://www.linkedin.com/company/gymlib/",
       "profileDisplayName": "Gymlib"
     },
     {

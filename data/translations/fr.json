@@ -3,9 +3,9 @@
   "global": {
     "languagesLabel": "Langues",
     "seo": {
-      "siteTitle": "Gymlib blog FR",
-      "siteDescription": "Gymlib blog FR description",
-      "siteKeywords": ""
+      "siteTitle": "Blog Gymlib",
+      "siteDescription": "Le blog de Gymlib vous parle de sport et de bien-être, mais aussi des bonnes pratiques RH en matière de qualité de vie au travail et de marque employeur.",
+      "siteKeywords": "Gymlib, sport, bien-être, RH, santé, QVT, qualité, vie, travail, ressources, humaines"
     },
     "pageTitles": {
       "home": "Accueil",
@@ -28,43 +28,43 @@
   },
   "search": {
     "searchInputLabel": "Terme de recherche",
-    "searchInputPlaceholder": "RH, QVT, Sport...",
+    "searchInputPlaceholder": " ",
     "allCategoriesLabel": "Catégories",
     "searchButtonText": "Rechercher",
-    "noResultsLabel": "Aucun résultat pour: ",
-    "searchResultsLabel": "Résultats de la recherche pour: ",
-    "categoryPrefix": "dans la catégorie: {category}",
+    "noResultsLabel": "Aucun résultat pour : ",
+    "searchResultsLabel": "Résultats de la recherche pour : ",
+    "categoryPrefix": "dans la catégorie : {category}",
     "emptyQueryWarning": "Veuillez entrer un terme de recherche"
   },
   "sidebar": {
     "mailchimpBoxes": {
       "emailAddressLabel": "Email",
-      "emailAddressPlaceholder": "you@email.com",
-      "successMessage": "Votre email à bien été enregistré",
+      "emailAddressPlaceholder": "hello@email.com",
+      "successMessage": "Votre email a bien été enregistré",
       "invalidEmailMessage": "Cet email est invalide",
       "subscribe": {
-        "heading": "Souscrivez",
-        "body": "Receive our newsletter to stay on top of the latest posts.",
+        "heading": "Recevoir notre newsletter",
+        "body": "Restez au courant de nos derrières actualités grâce à notre newsletter.",
         "buttonText": "Souscrire"
       },
       "whitepaper": {
-        "heading": "Téléchargez notre livre blanc",
-        "body": "Receive our newsletter to stay on top of the latest posts.",
-        "buttonText": "Souscrire"
+        "heading": "Etude sur la rétention des talents",
+        "body": "Téléchargez notre étude et découvrez des solutions dédiées aux problématiques liées à la rétention des talents.",
+        "buttonText": "Télécharger"
       }
     },
     "about": {
       "heading": "A propos",
-      "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      "body": "Gymlib améliore le bien-être et la santé des salariés français par le sport et son réseau de partenaires : plus de 2000 infrastructures et 200 activités différentes partout en France et en Belgique."
     },
     "categories": {
       "heading": "Catégories"
     },
     "popularPosts": {
-      "heading": "Popular post"
+      "heading": "Publications populaires"
     },
     "socialMedia": {
-      "heading": "Suivez nous"
+      "heading": "Suivez-nous"
     }
   },
   "blogList": {

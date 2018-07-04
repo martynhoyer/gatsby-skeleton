@@ -3,9 +3,9 @@
   "global": {
     "languagesLabel": "Languages",
     "seo": {
-      "siteTitle": "Gymlib blog EN",
-      "siteDescription": "Gymlib blog EN description",
-      "siteKeywords": ""
+      "siteTitle": "Gymlib blog",
+      "siteDescription": " Gymlib's blog keeps you posted about sport and well-being, but also HR best practices in terms of quality of life at work and employer brand.",
+      "siteKeywords": "Gymlib, sport, well-being, quality, of, life, work, employer, brand, HR, human, ressources"
     },
     "pageTitles": {
       "home": "Home",
@@ -22,13 +22,13 @@
       "linkUrl": "/en/"
     },
     "offers": {
-      "linkText": "Business & Employee Offer",
+      "linkText": "Business & Employees Offer",
       "linkUrl": "https://www.gymlib.com/en/corporate"
     }
   },
   "search": {
     "searchInputLabel": "Search term",
-    "searchInputPlaceholder": "RH, QVT, Sport...",
+    "searchInputPlaceholder": " ",
     "allCategoriesLabel": "Categories",
     "searchButtonText": "Search",
     "noResultsLabel": "No results for: ",
@@ -48,14 +48,14 @@
         "buttonText": "Subscribe"
       },
       "whitepaper": {
-        "heading": "Download our white paper",
-        "body": "Receive our newsletter to stay on top of the latest posts.",
-        "buttonText": "Subscribe"
+        "heading": "Download our study (french)",
+        "body": "Download our study and discover solutions dedicated to talents loyalty.",
+        "buttonText": "Download"
       }
     },
     "about": {
       "heading": "About",
-      "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      "body": "Gymlib improves the well-being and health of employees through its sport program and its network of partners: more than 2000 infrastructures and 200 different activities throughout France and Belgium."
     },
     "categories": {
       "heading": "Categories"
