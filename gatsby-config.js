@@ -148,19 +148,20 @@ module.exports = {
         color: '#ff57b6',
       },
     },
-    {
-      // https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-google-tagmanager
-      resolve: `gatsby-plugin-google-tagmanager`,
-      options: {
-        id: config.googleTagManagerId,
-        // Include GTM in development.
-        // Defaults to false meaning GTM will only be loaded in production.
-        includeInDevelopment: false,
-        // Specify optional GTM environment details.
-        // gtmAuth: "YOUR_GOOGLE_TAGMANAGER_ENVIROMENT_AUTH_STRING",
-        // gtmPreview: "YOUR_GOOGLE_TAGMANAGER_ENVIROMENT_PREVIEW_NAME",
-      },
-    },
+    // Deactivated GTM meanwhile Gymlib's GTM code is optimized.
+    // {
+    //   // https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-google-tagmanager
+    //   resolve: `gatsby-plugin-google-tagmanager`,
+    //   options: {
+    //     id: config.googleTagManagerId,
+    //     // Include GTM in development.
+    //     // Defaults to false meaning GTM will only be loaded in production.
+    //     includeInDevelopment: false,
+    //     // Specify optional GTM environment details.
+    //     // gtmAuth: "YOUR_GOOGLE_TAGMANAGER_ENVIROMENT_AUTH_STRING",
+    //     // gtmPreview: "YOUR_GOOGLE_TAGMANAGER_ENVIROMENT_PREVIEW_NAME",
+    //   },
+    // },
     {
       // https://github.com/Creatiwity/gatsby-plugin-favicon
       resolve: `gatsby-plugin-favicon`,

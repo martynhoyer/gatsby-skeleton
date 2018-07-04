@@ -37,7 +37,7 @@ const TopBar = styled.div`
   font-size: 1.2em;
 `
 
-const Logo = styled(Link)`
+const Logo = styled.a`
   max-width: ${424 / 2.8}px;
   margin-bottom: 5px; /* To align with baseline of menu text */
   margin-left: -${spacing.sm};
@@ -72,7 +72,7 @@ const Header = ({ intl, children }) => {
     <StyledHeader>
       <Container>
         <TopBar>
-          <Logo to={`/${locale}/`}>
+          <Logo href={`https://www.gymlib.com`}>
             <LogoSvg />
           </Logo>
           <MobileNavigation />
