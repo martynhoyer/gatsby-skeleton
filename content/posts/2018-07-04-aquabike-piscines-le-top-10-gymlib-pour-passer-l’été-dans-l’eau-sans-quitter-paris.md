@@ -15,7 +15,7 @@ tags:
 date: '2018-07-04T17:38:48+02:00'
 author: clara
 isPopular: true
-image: /img/piscines_et_aquabike1_plan-de-travail-1.jpg
+image: /img/piscines_et_aquabike.jpg
 seo:
   description: Quelques idées pour passer un été dans l'eau dans la capitale !
   keywords:
