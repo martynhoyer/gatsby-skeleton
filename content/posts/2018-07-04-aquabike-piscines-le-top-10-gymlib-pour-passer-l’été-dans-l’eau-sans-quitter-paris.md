@@ -12,10 +12,10 @@ tags:
   - ete
   - eau
   - paris
-date: '2018-07-04T17:38:48+02:00'
+date: '2018-06-13T17:38:48+02:00'
 author: clara
 isPopular: true
-image: /img/piscines_et_aquabike.jpg
+image: /img/aquabike.png
 seo:
   description: Quelques idées pour passer un été dans l'eau dans la capitale !
   keywords:
@@ -29,7 +29,7 @@ seo:
     - aquabike
     - piscine
   ogDescription: Quelques idées pour passer un été dans l'eau dans la capitale !
-  ogImage: /img/piscines_et_aquabike.jpg
+  ogImage: /img/aquabike.png
   ogTitle: >-
     Aquabike & piscines : le Top 10 Gymlib pour passer l’été dans l’eau sans
     quitter Paris
@@ -71,7 +71,7 @@ Faire le grand plongeon dans un lieu d’exception ? On dit oui ! L’espace Pai
 
 **Où ça :** Dans le 19ème arrondissement de Paris
 
-**Le + : **Le bâtiment à lui seul vaut le détour ! Il a été classé "monument historique".
+**Le + :** Le bâtiment à lui seul vaut le détour ! Il a été classé "monument historique".
 
 ### Les Pyramides Le Port Marly
 
@@ -123,7 +123,7 @@ Inutile d’aller dans le Sud de la France pour trouver des maisons en pierre, v
 
 **Où ça :** Dans le 11e. Parfait pour enchaîner avec une terrasse à Bastille et se croire en vacances.
 
-**Le + : ** Le centre se trouve dans les anciens ateliers du créateur Jean-Paul Gaultier ! 
+**Le + :** Le centre se trouve dans les anciens ateliers du créateur Jean-Paul Gaultier ! 
 
 ## BONUS
 

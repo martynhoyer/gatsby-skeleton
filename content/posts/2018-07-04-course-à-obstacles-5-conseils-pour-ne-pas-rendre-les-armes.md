@@ -7,7 +7,7 @@ tags:
   - course
   - obstacle
   - conseils
-date: '2018-07-04T18:08:49+02:00'
+date: '2018-06-28T18:08:49+02:00'
 author: clara
 isPopular: true
 image: /img/course_obstacles.png
@@ -29,12 +29,11 @@ seo:
 ---
 Envie de challenges à l’approche de l’été ? Vous êtes de plus en plus nombreux à vous lancer dans les courses à obstacles ! A croire que courir 10 km n’est pas suffisant, on préfère ajouter quelques embûches et un peu de boue...
 
-Mais comment s’y retrouver ? Comment se préparer ? Nous avons dressé un panorama des pratiques à adopter en vue d’une course à obstacles avec les conseils avisés de Vincent Di Benedetto, coach SGX* pour la Spartan Race…. A l’attaque !
+Mais comment s’y retrouver ? Comment se préparer ? Nous avons dressé un panorama des pratiques à adopter en vue d’une course à obstacles avec les conseils avisés de Vincent Di Benedetto, coach SGX* pour la [Spartan Race](http://www.spartanrace.fr/fr)…. A l’attaque !
 
-_\*Programme d’entrainement officiel de Spartan Race
-_
+\*Programme d’entrainement officiel de Spartan Race
 
-![Spartan Race, course à obstacles](/img/spartan_race.jpg)
+![Spartan Race, course à obstacles](/img/spartan_race2.jpg)
 
 ## La tête dans les nuages mais les pieds sur terre
 

@@ -7,10 +7,10 @@ tags:
   - sport
   - midi
   - activites
-date: '2018-07-04T10:09:17+02:00'
+date: '2018-06-20T10:09:17+02:00'
 author: clara
 isPopular: true
-image: /img/activites-30-min.png
+image: /img/midi_sport.png
 seo:
   description: Découvrez quelles activités pratiquer pendant votre pause déjeuner.
   keywords:
@@ -23,7 +23,7 @@ seo:
     - bien etre
     - activites
   ogDescription: Découvrez quelles activités pratiquer pendant votre pause déjeuner.
-  ogImage: /img/activites-30-min.png
+  ogImage: /img/midi_sport.png
   ogTitle: Top 10 des disciplines à faire le midi
   title: Top 10 des disciplines à faire le midi
 ---
