@@ -19,15 +19,8 @@ const doubleWidthFirstPost = ({ isIndex }) =>
     }
   `
 
-const articleBg = ({ isBoxed }) =>
-  isBoxed &&
-  css`
-    background-color: ${props => props.theme.palette.blanc};
-  `
-
 const Article = styled.article`
   ${doubleWidthFirstPost};
-  ${articleBg};
 
   color: ${props => props.theme.palette.noir};
 `
@@ -57,7 +50,6 @@ const CardLink = styled(Link)`
 `
 
 const StyledBox = styled(Box)`
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
 `
@@ -110,8 +102,6 @@ const Title = styled.h2`
 `
 
 const Body = styled.section`
-  flex-grow: 1;
-
   margin-top: ${spacing.base};
 `
 
