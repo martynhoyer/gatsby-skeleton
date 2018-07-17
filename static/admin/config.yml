@@ -131,6 +131,14 @@ collections:
               - {label: "Site title", name: "siteTitle", widget: "string"}
               - {label: "Site description", name: "siteDescription", widget: "string"}
               - {label: "Site keywords", name: "siteKeywords", widget: "string"}
+          - label: "Page titles"
+            name: "pageTitles"
+            widget: "object"
+            fields: 
+              - {label: "Home", name: "home", widget: "string"}
+              - {label: "Category", name: "category", widget: "string"}
+              - {label: "Tag", name: "tag", widget: "string"}
+              - {label: "Search", name: "search", widget: "string"}
       - label: "Navigation"
         name: "navigation"
         widget: "object"
