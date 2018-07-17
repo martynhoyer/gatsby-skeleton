@@ -85,7 +85,7 @@ Notre action sera reconnue d’utilité publique !
 
 Aujourd’hui, Gymlib est un pass sport, mensuel, sans engagement, donnant accès à un large réseau d’infrastructures et d’activités sportives partout en France. 
 
-A l’heure où la France vibrera au rythme olympique, Gymlib sera déjà une application connectée à tous les clubs, depuis laquelle on pourra réserver l’activité de son choix. De nombreuses disciplines auront enrichi notre offre, presque aussi variées qu’aux Jeux ! Tous les salariés trouveront leur sport de prédilection.
+A l’heure où la France vibrera au rythme Olympique, Gymlib sera déjà une application connectée à tous les clubs, depuis laquelle on pourra réserver l’activité de son choix. De nombreuses disciplines auront enrichi notre offre, presque aussi variées qu’aux Jeux ! Tous les salariés trouveront leur sport de prédilection.
 
 <br>
 

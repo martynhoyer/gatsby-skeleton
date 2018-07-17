@@ -28,7 +28,7 @@
   },
   "search": {
     "searchInputLabel": "Search term",
-    "searchInputPlaceholder": " ",
+    "searchInputPlaceholder": "Trends, human resources, sport ...",
     "allCategoriesLabel": "Categories",
     "searchButtonText": "Search",
     "noResultsLabel": "No results for: ",
@@ -40,7 +40,7 @@
     "mailchimpBoxes": {
       "emailAddressLabel": "Email",
       "emailAddressPlaceholder": "you@email.com",
-      "successMessage": "Your email has been successfully saved",
+      "successMessage": "Check your mailbox ;)",
       "invalidEmailMessage": "This email is invalid",
       "subscribe": {
         "heading": "Subscribe",

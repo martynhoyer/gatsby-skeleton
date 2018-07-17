@@ -28,7 +28,7 @@
   },
   "search": {
     "searchInputLabel": "Terme de recherche",
-    "searchInputPlaceholder": " ",
+    "searchInputPlaceholder": "Tendances, ressources humaines, sport ...",
     "allCategoriesLabel": "Catégories",
     "searchButtonText": "Rechercher",
     "noResultsLabel": "Aucun résultat pour : ",
@@ -40,7 +40,7 @@
     "mailchimpBoxes": {
       "emailAddressLabel": "Email",
       "emailAddressPlaceholder": "hello@email.com",
-      "successMessage": "Votre email a bien été enregistré",
+      "successMessage": "Regardez votre boite e-mail :)",
       "invalidEmailMessage": "Cet email est invalide",
       "subscribe": {
         "heading": "Recevoir notre newsletter",
