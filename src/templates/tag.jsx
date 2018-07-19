@@ -30,7 +30,7 @@ class TagTemplate extends Component {
   render() {
     const { intl } = this.props
     const { tag, nodes, page, pages, total, limit, prev, next } = this.props.pathContext
-    const popularPosts = this.props.data.popularPosts.edges
+    const popularPosts = this.props.data.popularPosts && this.props.data.popularPosts.edges || []
     const categories = this.props.data.categories.edges
     const activeCategories = this.props.data.activeCategories.group
     const categoriesToList = categories.filter(cat =>
