@@ -1,7 +1,7 @@
 ---
-isPublished: false
-isPopular: false
-locale: fr
+isPublished: true
+isPopular: true
+locale: en
 title: DO NOT DELETE
 category: human-resources
 tags:
