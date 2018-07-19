@@ -19,29 +19,39 @@ const doubleWidthFirstPost = ({ isIndex }) =>
     }
   `
 
+const articleBg = ({ isBoxed }) =>
+isBoxed &&
+css`
+  background-color: ${props => props.theme.palette.blanc};
+`
+
 const Article = styled.article`
   ${doubleWidthFirstPost};
 
   color: ${props => props.theme.palette.noir};
 `
 
-const paddedLink = ({isBoxed}) => !isBoxed ? css`padding: ${spacing.base};` : null
+const paddedLink = ({isBoxed}) => !isBoxed ? 
+  css`
+    padding: ${spacing.base};
+    opacity: 1;
+    transition: opacity 0.25s;
+
+    &:hover,
+    &:focus {
+      opacity: 0.8;
+    }
+  ` : null
 
 const CardLink = styled(Link)`
   ${paddedLink};
+  ${articleBg};
+
   display: flex;
   flex-direction: column;
 
-  height: 100%;
   text-decoration: none;
   color: inherit;
-  opacity: 1;
-  transition: opacity 0.25s;
-
-  &:hover,
-  &:focus {
-    opacity: 0.8;
-  }
 
   &:focus {
     outline: none;
@@ -52,6 +62,13 @@ const CardLink = styled(Link)`
 const StyledBox = styled(Box)`
   display: flex;
   flex-direction: column;
+  opacity: 1;
+  transition: opacity 0.25s;
+
+  ${CardLink}:hover &,
+  ${CardLink}:focus & {
+    opacity: 0.8;
+  }
 `
 
 const thumbnailNeedsNegativeMargin = ({ isBoxed }) =>
